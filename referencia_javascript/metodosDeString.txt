@@ -1,0 +1,19 @@
+#Metodos e propriedades de String
+
+.length - retorna o tamanho da string.
+.indexOf("") - retorna o número da posição da ocorrência do primeiro caractere da primeira string especificada.
+.lastIndexOf("") - retorna o número da posição da ocorrência do primeiro caractere da última string especificada.
+.search("") - procura por uma palavra em uma string e retorna o número da posição do primeiro caractere dessa palavra.
+.slice(start, end) - extrai uma parte de uma string e retorna a parte extraida em uma nova string.
+.substring(start, end) - o método substring faz o mesmo que o slice (a diferença é que o método substring não aceita indices negativos como argumentos). 
+.substr(start, length) - o método substr é similar ao slice (a diferença é que o segundo parâmetro especifica o lenght (comprimento) da parte extraida).
+.replace("string1", "string2") - faz a troca da string definida no primeiro parâmetro, pela string definida no segundo parâmetro em uma string.  
+.toUpperCase("") - converte a string para maiúscula.
+.toLowerCase("") - converte a string para minúscula.
+.concat(string1, string2) - faz a concatenação de string.
+.trim() - remove espaços em branco do começo e do final da string. 
+.charAt(numIndex) - retorna (pelo index especificado no parâmetro) o caractere de uma string.
+.charCdeAt(numIndex) - retorna (pelo index especificado no parâmetro) o número unicode do caractere de uma string.  
+.split() - faz o fatiamento de strings ou caracteres, como transforma string em array de caracteres.
+
+

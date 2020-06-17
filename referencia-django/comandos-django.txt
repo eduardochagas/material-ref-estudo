@@ -1,0 +1,276 @@
+
+========================================================
+	iniciando a criação de um projeto django
+========================================================
+
+para criar um projeto django, crie uma pasta:
+
+    mkdir nomeDaPastaDoProjeto
+
+---------------------------------------------------
+em seguida, entre na pasta do projeto:
+
+    cd nomeDaPastaDoProjeto
+
+---------------------------------------------------
+agora, dentro da pasta do projeto, crie o ambiente virtual (venv) para desenvolver a aplicação django (é assim que criamos vários projetos de forma individual, sem que um interfira no outro).
+
+    virtualenv nomeDoAmbienteVirtual
+
+---------------------------------------------------
+após criar o ambiente virtual, vamos ativar esse ambiente virtual com o comando source:
+
+    no linux:
+
+	source nomeDoAmbienteVirtual/bin/activate
+
+
+    no Windows:
+
+	source nomeDoAmbienteVirtual/Scripts/activate
+
+    OBS: repare que após usar o comando source para ativar o ambiente virtual, aparecerá no começo da linha no terminal entre parênteses o nome do ambiente virtual. Isso indica que o ambiente virtual foi ativado com sucesso e já está funcionando.
+
+    OBS2: para desativar o ambiente virtual, basta digitar no terminal a palavra: deactivate.
+
+------------------------------------------------------
+agora, vamos instalar o django no ambiente virtual:
+
+    na versão python3: 
+
+    pip3 install django
+
+-----------------------------------------------------
+caso queira saber se realmente o django foi instalado, use o comando abaixo, que será mostrado no terminal a versão do django instalada:
+
+    django-admin --version
+
+---------------------------------------------------
+agora vamos iniciar o nosso projeto, com o comando:
+
+    django-admin startproject nomeDoProjeto
+
+---------------------------------------------------
+agora vamos entrar no nosso projeto (que foi criado e iniciado):
+
+    cd nomeDoProjeto
+
+---------------------------------------------------
+repare que, dentro do nomeDoProjeto, há um arquivo manage.py e uma pasta com o nome "nomeDoProjeto" definido no comando: django-admin startproject nomeDoProjeto.
+
+    O arquivo manage.py é o arquivo que utilizaremos para usar os comandos do django.
+
+    A pasta nomeDoProjeto é o nosso projeto.
+
+	OBS: PODEMOS TER VÁRIAS APLICAÇÕES EM UM MESMO PROJETO, MAS NUNCA VÁRIOS PROJETOS EM UMA MESMA APLICAÇÃO !!!
+
+
+	OBS2: QUANDO OS APPS FOREM CRIADOS, É NECESSÁRIO CRIAR DENTRO DA PASTA DO APP UMA PASTA TEMPLATES COM UMA PASTA DENTRO DE MESMO NOME DO APP, EXEMPLO:
+
+	    nomeDoApp/templates/nomeDoApp
+
+	A pasta nomeDoApp dentro de templates será usada para inserir as páginas html da aplicação.
+
+
+===========================================================
+	entendendo a estrutura de arquivos (do projeto) criados no django
+===========================================================
+
+__init__.py - 
+
+urls.py - usado para definir as url's do projeto.
+
+wsgi.py - é o arquivo que será lido quando colocarmos o projeto na internet. 
+
+
+
+===========================================================
+	entendendo a estrutura de arquivos (dos apps) criados no django
+===========================================================
+
+templates/nomeDoApp - diretório usado para criar as páginas html.
+
+admin.py - 
+
+apps.py -
+
+models.py - usado para modelar a estrutura da aplicação. É aqui que criamos uma classe com todos os campos de entrada de dados da aplicação  para o usuário que estiver usando a aplicação conseguir inserir seus dados.
+
+    OBS: NA DOCUMENTAÇÃO DO DJANGO, EXISTE UMA CLASSE DE NOME models. ESSA CLASSE models É HERDADA NA CLASSE QUE VAMOS CRIAR NO ARQUIVO models.py PARA CRIAR TODA A ESTRUTURA DE INSERÇÃO DE DADOS.
+
+    OBS2: O DJANGO POSSUI UMA CLASSE object QUE O DJANGO IMPLEMENTA PARA TODAS AS CLASSES QUE CRIAMOS NO ARQUIVO models.py (que é o arquivo do app) QUE HERDA A CLASSE models.Model. ESSA CLASSE object CONTÊM MÉTODOS PARA OPERAÇÕES DE BANCO DE DADOS.
+
+	Alguns métodos de operação de banco de dados da classe object:
+	    
+            object.all() - 
+
+	    object.filter() - 
+
+	    object.last() -
+
+	    object.first() -
+
+
+	Exempo de como usar as classe definidas no arquivo models.py lá no arquivo views.py:
+
+	   'Classe abaixo, criada no arquivo: models.py'
+
+	    class Cadastro(models.Models):
+
+		self.nome = nome
+		self.idade = idade
+		self.sexo = sexo
+
+---------------------------------------------------------------
+
+	    'função abaixo, criada no arquivo: views.py'
+
+	    from .models.py import Cadastro
+
+	    
+	    def exibir(request):
+		dados = Cadastro.object.all()
+		return render(request, 'caminho/da/pagina.html/definido/no/arquivo/urls.py', dados)
+
+----------------------------------------------------------------------------------------------------
+
+tests.py -
+
+view.py - usado para criar as funções que exibirão alguma coisa na página da aplicação para o usuário.
+
+	OBS: As variáveis criadas dentro das funções no arquivo views.py (que é o arquivo do app) podem ser usadas dentro dos arquivos .html criados na pasta template (pasta dentro do app onde fica os arquivos html) usando a estrutura da linguagem djinja do django (consulte a documentação djinja para saber mais sobre).
+
+
+
+==============================================================
+ Como os arquivos no django se conversam 
+==============================================================
+
+A request (que é o pedido do usuário no lado cliente para o servidor) começa em urls.py (que é o arquivo do projeto) e depois vai para a views.py (que é o arquivo do app). No arquivo do app chamado views.py, criamos uma função para que seja exibido o conteúdo de alguma página html que está na pasta de mesmo nome do app dentro da pasta templates.
+
+No arquivo admin.py (que é o arquivo do app), vamos importar a classe criada no arquivo models.py (que é o arquivo do app) e registrar essa classe no arquivo admin.py, assim:
+
+     admin.site.register(nomeDaClasseFeitaNoArquivoModels)
+
+
+As variáveis criadas no arquivo views.py (que é o arquivo do app) podem ser usadas nos arquivos .html que estão na pasta de mesmo nome do app dentro da pasta templates.
+
+    ************************************************
+    A sintaxe para usar variáveis no arquivo .html é:
+    ************************************************	
+	{{ nomeDaVariavel }}
+
+
+    ****************************
+    A sintaxe para usar um if é:
+    ****************************
+	
+	{% if condicao == "True" %}
+	    // bloco de código
+	{% endif%}
+
+
+    *********************************
+    A sintaxe para usar um if/else é:
+    *********************************
+
+	{% if condicao == "True" %}
+	    // bloco de código
+	{% else %}
+	    // bloco de código
+	{% endif%}
+
+
+    *********************************
+    A sintaxe para usar o loop for é:
+    *********************************
+
+	{% for item in lista %}
+	    // bloco de código
+	{% endfor%} 
+
+
+    **********************************************
+    A sintaxe para usar um loop for com if/else é:
+    **********************************************
+
+	{% for item in lista %}
+	    
+	    {% if condição == "True"%}
+		// bloco de código
+	    {% else %}
+	        // bloco de código
+	    {% endif%}
+
+	{% endfor%} 	
+
+
+para mostrar o que foi feito no banco de dados para o usuário, na janela do navegador, devemos importar o arquivo models.py (que é o arquivo do app) no arquivo views.py (que é o arquivo do app), assim:
+
+    from .models import nomeDaClasse
+
+
+
+
+
+==============================================================
+	lista de comandos usando o manage.py (que é o arquivo de gerenciamento do django)
+==============================================================
+
+python manage.py runserver - é usado para rodar o projeto django.
+
+
+python manage.py startapp nomeDaAplicação - usado para criar uma aplicação no projeto.
+
+    OBS: ao usar o comando acima para criar a aplicação, é necessário ir até o arquivo settings.py (esse é o arquivo que fica dentro da pasta do projeto) e registrar a app criada no final da lista de nome INSTALLED_APPS, assim:
+
+	INSTALLED_APPS = ['nomeDoApp']
+
+
+python manage.py createsuperuser - cria um super usuário para logar na aplicação.
+
+    OBS: o django já vem por padrão com um app de admin definido no arquivo settings.py (esse é o arquivo que fica dentro da pasta do projeto), em INSTALLED_APPS com o nome: 'django.contrib.admin'. É por isso que conseguimos criar um usuário para ser o responsável no gerenciamento do back-end do django.
+
+
+python manage.py makemigrations - pega tudo que foi criado no arquivo models.py (que fica dentro da pasta do app) e cria um arquivo dentro da pasta migrations (pasta que fica dentro do app) que descreve como que o django deve criar as tabelas do banco de dados.
+
+
+python manage.py migrate - usado para criar as tabelas no banco de dados do projeto (por padrão é usado o banco de dados sqlite3 do python, mas consultando a documentação do django, podemos usar outros bancos de dados tbm.)
+
+
+
+=========================================================================
+    Entendendo um projeto CRUD (Create, Read, Update, Delete) Django
+==========================================================================
+
+============
+ C - Create
+============
+
+Por padrão, o django já possui uma classe para criação de formulários chamada: ModelForm, que é uma classe baseada em um modelo de formulário para a criação de formulários no django. Sendo assim, usando essa classe o django já cria todos os campos do formulário, criando tbm as validações desse formulario, entre outras coisas.
+
+Para criar um formulário no django, devemos primeiro criar um arquivo para o formulário, por exemplo: forms.py (esse arquivo ficará junto dos arquivos do app). Em seguida, devemos importar a classe ModelForm no arquivo forms.py, assim:
+
+    from django.forms import ModelForm
+
+	OBS: consulte a documentação do django para saber mais sobre a classe ModelForm.
+
+
+========================================================================
+
+
+
+
+
+
+	 
+
+
+
+
+
+
+
+
+
+

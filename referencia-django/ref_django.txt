@@ -1,0 +1,187 @@
+#############################
+	Curso Django
+#############################
+
+	=========================================
+	Preparando o ambiente de desenvolvimento
+	=========================================
+
+	Requisitos para instalar o django:
+
+		- python3.x
+
+		- ambiente virtual (utilizaremos o programa: venv, que ja vem com o python3)
+		    OBS: existem outros programas para a criação de ambientes virtuais, como por
+		    exemplo o famoso: virtualenv, mas como o python3 já possui um programa para 
+		    a criação de ambientes virtuais (o venv), por padrão, é melhor utilizarmos ele. 
+		
+		-pip (usado para a instalação do django)
+		    OBS: o pip é o instalador de pacotes do python, é com ele que instalamos os
+		    programas do python.
+
+
+
+	Antes de tudo, vamos aprender a INSTALAR e CRIAR UM AMBIENTE VIRTUAL, para que possamos
+	criar cada projeto de forma separada e independente.
+
+		primeiro criamos uma pasta (onde iremos inserir o(s) projeto(s))
+
+			mkdir nomeDaPastaDoProjeto
+
+
+		em seguida, entre na pasta do projeto:
+
+	    	cd nomeDaPastaDoProjeto 
+
+
+	agora, dentro da pasta do projeto, crie o ambiente virtual (venv) para desenvolver 
+	a aplicação django (é assim que criamos vários projetos de forma individual, 
+	sem que um interfira no outro).
+
+	   	python3 -m venv nomeDoAmbienteVirtual
+
+	   	    OBS: caso o comando não funcione, instale o programa de ambiente virtual 
+	   	    do python chamado: venv, com o comando:
+
+	   	    	sudo apt-get install python3.x-venv 
+
+
+	após criar o ambiente virtual, vamos ATIVAR O AMBIENTE VIRTUAL com o comando source:
+
+	   	no linux:
+
+			source nomeDoAmbienteVirtual/bin/activate
+
+
+	    no Windows:
+
+			source nomeDoAmbienteVirtual/Scripts/activate
+
+	    OBS: repare que após usar o comando source para ativar o ambiente virtual, aparecerá no começo da linha no terminal entre parênteses o nome do ambiente virtual. Isso indica que o ambiente virtual foi ativado com sucesso e já está funcionando.
+
+	    OBS2: para desativar o ambiente virtual, basta digitar no terminal a palavra: deactivate.
+
+
+	e pronto, todo o ambiente necessário para a utilização do django foi criado. \0/
+
+
+	====================
+	Instalando o django
+	====================
+
+	agora, DENTRO DO AMBIENTE VIRTUAL criado, e com O AMBIENTE VIRTUAL ATIVADO,
+	vamos instalar o django no ambiente virtual:
+
+	   	na versão python3: 
+
+	   		pip3 install django
+
+	---------------------------------------------------
+	caso queira saber se realmente o django foi instalado, use o comando abaixo, que será mostrado no terminal a versão do django instalada:
+
+	    django-admin --version
+
+
+
+	==================================
+	Criando o primeiro projeto django
+	==================================
+
+	Quando instalamos o django, por padrão ele possui um comando chamado: django-admin, que 
+	é usado para a administação dos projetos django. Esse comando possui alguns parâmetros:
+
+
+		veja os comandos existentes para o comando django-admin:
+
+			changepassword - 
+			createsuperuser - cria novos usuarios.
+			remove_stale_contenttypes - 
+			check -
+			compilemessages -
+			createcachetable -
+			dbshell - acessa o banco de dados através da linha de comando, ou seja, você pode executar comandos sql do banco, por exemplo, diretamente do terminal.
+			diffsettings -
+			dumpdata -
+			flush -
+			inspectdb - retorna todos os modelos django que geraram as tabelas do banco de dados.
+			loaddata - carrega dados iniciais a partir de um json, por exemplo: django-admin loaddata fixtures.json
+			makemessages -
+			makemigrations - cria novas migrações baseadas nas mudanças detectadas (nas classes) no arquivo: models.py, do django.
+			migrate - sincroniza o banco de dados com as novas migraçoes (alterações feitas no arquivo models.py).
+			runserver - roda o servidor local do projeto django.
+			sendtestemail -
+			shell - inicializa um interpretador Python interativo.
+			showmigrations -
+			sqlflush -
+			sqlmigrate -
+			sqlsequencereset -
+			squashmigrations -
+			startapp - cria novas apps (cria novos módulos em um projeto).
+			startproject - cria novos projetos.
+			test - roda os testes da aplicação.
+			testserver -
+			clearsessions -
+			collectstatic -
+			findstatic -
+			runserver -
+
+
+	Para criarmos o nosso primeiro projeto, utilizamos o comando:
+
+	    django-admin startproject nomeDoProjeto .
+
+	    	OBS: o ponto inserido no final do comando indica que os arquivos gerados
+	    	a partir desse comando serão armazenados no diretório atual onde 
+	    	estivermos na linha do terminal. 
+
+	---------------------------------------------------
+	depois de criado o projeto, vamos entrar no nosso projeto:
+
+	    cd nomeDoProjeto
+
+	---------------------------------------------------
+	repare que, ao executar o comando: django-admin startproject nomeDoProjeto ., foi gerado
+	um arquivo de nome: manage.py e uma pasta com o nome "nomeDoProjeto".
+
+	    O arquivo manage.py é o arquivo que utilizaremos para usar os comandos do django.
+
+	    	
+	    	veja os comandos existentes para o comando django-admin:
+
+	    		check -
+				compilemessages -
+				createcachetable -
+				dbshell - acessa o banco de dados através da linha de comando, ou seja, você pode executar comandos sql do banco, por exemplo, diretamente do terminal.
+				diffsettings -
+				dumpdata -
+				flush -
+				inspectdb - retorna todos os modelos django que geraram as tabelas do banco de dados.
+				loaddata - carrega dados iniciais a partir de um json, por exemplo: django-admin loaddata fixtures.json
+				makemessages -
+				makemigrations - cria novas migrações baseadas nas mudanças detectadas (nas classes) no arquivo: models.py, do django.
+				migrate - sincroniza o banco de dados com as novas migraçoes (alterações feitas no arquivo models.py).
+				runserver - roda o servidor local do projeto django.
+				sendtestemail -
+				shell - inicializa um interpretador Python interativo.
+				showmigrations -
+				sqlflush -
+				sqlmigrate -
+				sqlsequencereset -
+				squashmigrations -
+				startapp - cria novas apps (cria novos módulos em um projeto).
+				startproject - cria novos projetos.
+				test - roda os testes da aplicação.
+				testserver -
+
+
+	    A pasta nomeDoProjeto é o nosso projeto.
+
+			OBS: PODEMOS TER VÁRIAS APLICAÇÕES EM UM MESMO PROJETO, MAS NUNCA VÁRIOS PROJETOS EM UMA MESMA APLICAÇÃO !!!
+
+
+			OBS2: QUANDO OS APPS FOREM CRIADOS, É NECESSÁRIO CRIAR DENTRO DA PASTA DO APP UMA PASTA TEMPLATES COM UMA PASTA DENTRO DE MESMO NOME DO APP, EXEMPLO:
+
+		    	nomeDoApp/templates/nomeDoApp
+
+		A pasta nomeDoApp dentro de templates será usada para inserir as páginas html da aplicação.
+

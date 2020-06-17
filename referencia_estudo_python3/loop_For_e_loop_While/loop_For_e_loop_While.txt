@@ -1,0 +1,19 @@
+
+#exemplo de loop For:
+
+for i in range(5):
+    print(i)
+
+
+
+
+#exemplo de loop While:
+x = 0
+
+while x < 10:
+    print(x)
+    x+=1
+
+OBS:Em um loop, a variável definida fora do loop (no caso, x) usada dentro de 
+um loop só terá o seu valor alterado se vc incrementar OU decrementar (exemplo: x+=1) dentro 
+de um loop, caso contrário, o valor da variável continua o mesmo como definido anteriormente.

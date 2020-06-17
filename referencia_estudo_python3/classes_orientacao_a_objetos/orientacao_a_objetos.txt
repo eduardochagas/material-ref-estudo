@@ -1,0 +1,478 @@
+###########################################
+#
+#   Entendendo como funciona a POO
+#
+###########################################
+
+Vamos ver no exemplo abaixo, a definição mais comum de estrutura de uma classe.
+
+    ex1:
+
+        class Carro:
+            
+            def __init__(self, modelo, cor):
+                self.modelo = modelo
+                self.cor = cor
+
+
+            def acelerar(self):
+                print('o carro está acelerando...'
+
+            def frear(self):
+                print('o carro foi feado e parado !!!')  
+
+
+    uno = Carro(1.0, 'amarelo') #instanciando a classe
+    print(uno.modelo) 
+    print(uno.cor)
+    uno.acelerar() #só é imprimido o texto na tela pq dentro dessa função usamos o print().
+    
+
+---------------------------------------------------------------------
+
+Também podemos criar classes SEM PARÂMETROS
+
+    ex2:
+
+        class Carro:
+            
+            def __init__(self):
+                self.modelo = 1.0
+                self.cor = 'vermelha'
+
+
+            def acelerar(self):
+                print('o carro está acelerando...')
+
+            def frear(self):
+                print('o carro foi feado e parado !!!')
+
+
+        uno = Carro()
+        print(uno.modelo) #imprimindo na tela o valor do atributo da classe.
+        print(uno.cor) #imprimindo na tela o valor do atributo da classe.
+        uno.acelerar() #só é imprimido o texto na tela pq dentro dessa função usamos o print().  
+
+
+--------------------------------------------------------------------------
+
+Também podemos TROCAR OS VALORES DOS ATRIBUTOS DEFINIDOS NA CLASSE, em tempo de execução.
+
+    ex3:
+        class Carro:
+        
+            def __init__(self, modelo, cor):
+                self.modelo = modelo
+                self.cor = cor
+
+
+            def acelerar(self):
+                print('o carro está acelerando...'
+
+            def frear(self):
+                print('o carro foi feado e parado !!!') 
+
+        
+        uno = Carro(1.0, 'vermelha') #criando a instância da classe.
+        # mudamos os valores das propriedades da classe em tempo de execução, por isso os valores são imprimidos diferente do que foi definido inicialmente na classe.
+        uno.modelo = 1.5
+        uno.cor = 'Preta'
+
+        # imprimindo os valores 
+        print(uno.modelo)
+        print(uno.cor)
+
+            OBS: repare que todos os códigos acima (do ex1, ex2 e ex3) dentro das classes, as variáveis das classes (tbm conhecidas como propriedades) e os métodos das classes foram definidos com o nome self, isso significa que tudo que for definido dentro da classe com o nome self, SÓ PODE SER ACESSADO PELA INSTÂNCIA DA CLASSE. 
+
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+#################################################################
+#
+#  variáveis e métodos da Instância
+#          e     
+#  Variáveis e métodos da Classe
+#
+#################################################################       
+
+
+Precisamos agora, de entender a diferença entre variáveis e métodos de INSTÃNCIA e variáveis e métodos de CLASSE.
+
+    OBS: propriedades ou atributos de uma classe, também são conhecidos como: variáveis de classe
+
+    -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    variáveis e métodos de INSTÃNCIA
+    -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+        Quando criamos uma classe, todas as PROPRIEDADES e MÉTODOS que FOREM DEFINIDAS COM A PALAVRA (self), significa que PERTENCEM A INSTÂNCIA, ou seja, significa que SÓ PODEMOS ACESSAR QUANDO CRIAMOS UMA INSTÂNCIA DA CLASSE.
+
+            ex:
+                class Pessoa:
+
+                    def __init__(self, nome, idade):
+                        self.nome = nome
+                        self.idade = idade
+                        self.sexo = 'Masculino'
+                        self.comidaPreferida = 'lasanha'
+
+
+                #instanciando a classe Pessoa
+                e = Pessoa('Eduardo', 30)
+
+                #acessando todas as propriedades da classe instanciada
+                print(e.nome) 
+                print(e.idade) 
+                print(e.sexo)
+                print(e.comidaPreferida)
+
+
+        Agora se, com a classe instanciada (ou seja, e = Pessoa('Eduardo', 30, 'M')), tentarmos acessar por exemplo, uma propriedade da classe que não possui o self (como por exemplo, a propriedade: estiloMusical = 'Hip-Hop'), será gerado um erro, dizendo: 
+
+            AttributeError: 'Pessoa' object has no attribute 'estiloMusical'
+
+        
+        isso significa que A CLASSE INSTANCIADA NÃO PODE ACESSAR A PROPRIEDADE estiloMusical, pq estiloMusical NÃO POSSUI O self, POR ISSO NÃO PODE SER ACESSADO PELA INSTÂNCIA. 
+
+            ex:
+
+                class Pessoa:
+
+                    def __init__(self, nome, idade, sexo):
+                        self.nome = nome
+                        self.idade = idade
+                        self.sexo = sexo
+                        self.comida = 'lasanha'
+                        estiloMusical = 'Hip-Hop' #repare que essa propriedade NÃO POSSUI O self, por isso NÃO PODE SER ACESSADA
+
+
+                e = Pessoa('Eduardo', 30, 'M')
+                print(e.nome) 
+                print(e.idade) 
+                print(e.sexo)
+                print(e.comida) 
+                print(e.estiloMusical) #sera gerado um erro, pq não pode ser acessado.
+
+
+
+    -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    variáveis e métodos de CLASSE
+    -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+    Quando criamos uma classe, TODAS AS PROPRIEDADES QUE FOREM DEFINIDAS SEM O self e TODOS OS MÉTODOS QUE FOREM DEFINIDOS COM A PALAVRA (cls), significa que PERTENCEM SOMENTE A CLASSE EM SI, ou seja, significa que SÓ PODEM SER ACESSADOS CHAMANDO O PRÓPRIO NOME DA CLASSE.
+
+    o exemplo de código abaixo mostra 
+
+        ex1:
+            class Animal:
+
+                #variáveis da classe
+                nome = 'pluto'
+                idade = 3
+                corDosOlhos = 'verde'
+
+
+                #metodos da classe
+                @classmethod
+                def andar(cls):
+                    return cls.nome + ' está andando e tem a cor do olhos ' + cls.corDosOlhos
+
+                @classmethod
+                def parar(cls):
+                    return cls.nome + 'parou de andar, sua idade é de: ' + str(cls.idade) + ' anos.'
+
+
+            # chamando os métodos da classe DIRETAMENTE PELO NOME DA CLASSE, sem instanciar.
+            print(Animal.andar())
+            print(Animal.parar())
+
+
+            # acessando os métodos da classe COM A CLASSE INSTÂNCIADA.
+            dog = Animal() #classe Animal() instânciada.
+            print(dog.nome) # acessando variáveis da classe (variáveis que não possuem o self) com a classe Animal() instânciada. 
+            print(dog.andar()) #acessando métodos de classe (métodos com o decorador: @classmethod, e que possuem o (cls) com a classe Animal() instânciada.
+
+
+                OBS: Quando a classe é chamada por uma INSTÃNCIA DA CLASSE, essa classe instanciada é armazenada em um espaço na memória do computador (ou seja, estamos pegando o molde da classe para criarmos alguma coisa). Quando a classe é chamada pelo próprio nome (ou seja, sem criar uma instancia), estamos acessando a classe em sí (ou seja, estamos acessando o molde em si da classe).
+
+
+
+----------------------------------------------------------------------------------------
+
+    O exemplo de código abaixo, mostra em uma situação real onde usamos variáveis de classe.
+
+            ex2:
+
+                class Conta(object):
+
+                    # variáveis de classe (pq não possuem o (self) antes do nome)
+                    total = 10000
+                    reserva = 0.1
+
+                    def __init__(self, ID, saldo):
+                        self.ID = ID  
+                        self.saldo = saldo
+
+                    def deposito(self, valor):
+                        self.saldo += valor
+                        Conta.total += valor
+
+                    def saque(self, valor):
+                        if self.saldo >= valor:
+                            self.saldo -= valor
+                            Conta.total -= valor
+
+                    def imprimeReserva():
+                        print(Conta.total*Conta.reserva)
+
+
+                itau = Conta(1, 2000)
+                itau.saque(500)
+                itau.deposito(1500)
+                itau.imprimeSaldo()
+
+
+
+######################################################
+#
+#   Nomes começados e terminando com DOIS underscores
+#
+######################################################
+
+    Esses são nomes começados e terminados com dois underscores. Eles são conhecidos como "métodos dunder". "Dunder" significa "double underscore".
+
+        ex: 
+            __init__ (lê-se "dunder init")
+            
+            __next__ ("dunder next")
+            
+            __getattr__
+            
+            __del__
+            
+            __str__
+
+
+    Qualquer identificador nomeado dessa forma, é considerado reservado para a linguagem Python.
+
+    Portanto, não crie variáveis, nem funções, nem métodos, nem classes, nem nada que o nome comece e termine com dois underscores. O manual avisa que isso pode causar problema de compatibilidade com a linguagem, sem nenhum aviso.
+
+    Bem, isso já é um aviso, certo?
+
+
+
+
+###########################################
+#
+#   Variáveis e métodos definidos 
+#    com UM underscore no começo da variável
+#
+###########################################
+
+
+    Usando o mesmo conceito de "interno", MÉTODOS e VARIÁVEIS INTERNAS DE UMA CLASSE que não devem ser acessados de fora dela, DEVEM COMEÇAR COM UM underscore. Mas ISSO NÃO OS TORNA PRIVADOS, É APENAS UMA CONVENÇÃO para não acessa-los.
+
+        ex:
+
+            import math
+
+
+            class Pizza:
+
+                def __init__(self, radius, ingredients):
+                    self.ingredients = ingredients
+                    self.radius = radius
+
+                def __repr__(self):
+                    return 'Pizza(self.ingredients)'
+
+                def area(self):
+                    return self._circle_area(self.radius)
+
+                @staticmethod
+                def _circle_area(r):
+                    return r ** 2 * math.pi
+
+
+            #chamando pelo nome da classe
+            print(Pizza(4.5, ['Calabresa']).area()) 
+
+            #chamando pela instância da classe
+            calabresa = Pizza(4.5, ['Calabresa'])
+            print(calabresa)
+
+
+
+###############################################
+#
+#   Variáveis e métodos definidos 
+#    com DOIS underscore no começo da variável
+#
+###############################################
+
+    Nomes começados com DOIS underscores são fonte de erro de interpretação e foram eles que me motivaram a escrever esse post. Eles são nomes de métodos ou variáveis PRIVADOS de uma classe.
+
+    Quando variáveis ou métodos com nomes assim são definidos dentro de uma classe, eles são modificados e têm o nome da classe inserido no início. Preciso mostrar isso com um exemplo:
+
+        ex:
+            class Pessoa(object):
+            
+                def __init__(self, nome):
+                    self.__nome = nome
+                 
+                def pega_nome(self):
+                    return self.__nome
+        
+        p1 = Pessoa('Pedro')
+        p1.pega_nome()
+        p1.__nome #gerará um erro: AttributeError: 'Pessoa' object has no attribute '__nome'
+
+
+    Aparentemente esse erro mostrado é estranho, não é? Afinal, temos uma variável __nome e o método pega_nome() mostrou o conteúdo dela.
+
+    Vamos ver, então, como essa variável foi criada dentro da instância de Pessoa():
+
+        >>> dir(p1)
+            ['_Pessoa__nome', '__class__', '__delattr__', '__dict__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__']
+
+
+    Viu ali, no início? Tem uma variável chamada _Pessoa__nome. É isso que o Python faz com variáveis ou métodos iniciados com DOIS underscores, dentro de uma classe. Ele insere o nome da classe antes do nome da variável ou método que você criou.
+
+    Agora vamos refazer a classe Pessoa() e vamos criar uma classe filha dela, com o método pega_nome() na filha e ver o que acontece quando tentarmos acessar a variável __nome.
+
+        ex:
+
+            class Pessoa(object):
+                def __init__(self, nome):
+                    self.__nome = nome
+
+            class Filha(Pessoa):
+                def pega_nome(self):
+                    return self.__nome
+                    
+            p1 = Filha('Pedro')
+            p1.pega_nome() #gerará um erro: AttributeError: 'Filha' object has no attribute '_Filha__nome'
+
+
+    Viu? A classe filha não conseguiu acessar a variável __nome criada na classe mãe. É para isso que o interpretador modifica o nome de variáveis iniciadas com dois underscores: para protegê-los e torná-los realmente privados. Nada fora da classe onde eles foram criados pode acessá-los, a não ser que seja explicitamente, assim: 
+
+        print(p1._Pessoa__nome) #imprimirá o nome: 'Pedro'
+        
+
+    Então, se você quer criar uma classe e ela tem a possibilidade de ser extendida, não crie métodos nem variáveis iniciados com dois underscores. A não ser que você tenha certeza que eles nunca serão usados nas classes filhas. 
+
+
+        OBS: quando vc cria variáveis ou métodos com DOIS UNDERSCORES ANTES DO NOME, vc está dizendo ao python que essas variáveis e métodos SOMENTE PODERÃO SER USADAS DENTRO DA CLASSE EM QUE FORAM CRIADAS. Caso essa classe seja passada como herança para outra classe, essa(s) classe(s) que recebem a herança NÃO HERDARÃO ESSAS VARIÁVEIS E MÉTODOS COM DOIS UNDERSCORES ANTES DO NOME.
+
+
+
+#############################################
+#
+# Herança de classes com o método super()
+#
+#############################################
+
+# superclasse - é um nome utilizado por programadores python para dizer  
+# que uma classe será usada como herança em uma subclasse.
+
+# subclasse - é um nome utilizado por programadores python para dizer 
+# que é a classe que está herdando uma outra classe. 
+
+
+#-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# vamos ao exemplo de herança de classe com essas duas classes abaixo:
+#-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+    class Mamifero:
+        def __init__(self, corDePelo, genero, andar):
+            self.corDePelo = corDePelo
+            self.genero = genero
+            self.numDePatas = andar
+
+        def falar(self):
+            print('Olá, sou um mamifero e eu sei falar')
+
+        def andar(self):
+            print('Estou andando sobre {} patas'.format(self.numDePatas))
+
+        def amamentar(self):
+            if self.genero.lower()[0] == 'm':
+                print('machos não amamentam')
+            else:
+                print('Amamentando meu filhote')
+
+
+    class Pessoa(Mamifero):
+
+        na subclasse (no caso a classe Pessoa), adicione normalmente todos os parâmetros que vc deseja que essa subclasse tenha em seu construtor __init__, criando os parâmetros como fazemos normalmente em qualquer classe.  
+
+        def __init__(self, corDePelo, genero, andar, cabelo):
+
+            o método built-in especial chamado super() é usado para herdar o (construtor __init__ com seus parâmetros) da classe Mamífero. 
+
+            No primeiro parametro do metodo built-in do python chamado: super(), vc insere o NOME DA CLASSE que está herdando (nesse caso, é o nome da classe Pessoa), e no segundo parâmetro, vc insere o self (esse self é o self da CLASSE QUE RECEBE a herança, no caso, é o self da classe Pessoa) seguido do .__init__ com os parâmetros da classe herdada, que no caso são: corDePelo, genero e andar (que é da classe Mamifero), ou seja, TODOS OS PARÂMETROS HERDADOS DA CLASSE Mamifero SERÃO ATRIBUIDOS OS PARÂMETROS DE MESMO NOME NA CLASSE Pessoa. Exemplo do que eu disse acima, na linha abaixo:
+            
+            super(Pessoa, self).__init__(corDePelo, genero, andar)
+
+
+            Vocẽ pode adicionar mais parâmentros além dos que já foram herdados, adicionando normalmente o parametro dentro das aspas do __init__ do construtor da subclasse (nesse caso, da classe Pessoa), ou simplesmente adicione uma propriedade na classe sem inserir um parametro no construtor, (no caso, da classe Pessoa).
+            self.cabelo = cabelo
+            self.corDosOlhos = 'marrom' 
+
+        def falar(self):
+            # Vc pode usar o built-in super() tbm para herdar um método da superclasse.
+            super(Pessoa, self).falar()
+            
+            OBS: Caso vc herde uma classe para outra classe, e as duas classes contenha metodos de nomes iguais,
+            o método da classe que herda (que é a subclasse) irá sobrepor 
+            o método da classe herdada (que é a superclasse), CUIDADO!!!
+
+
+
+        Exemplo do código limpo, sem as anotações, para ser executado:
+
+            class Mamifero:
+                def __init__(self, corDePelo, genero, andar):
+                    self.corDePelo = corDePelo
+                    self.genero = genero
+                    self.numDePatas = andar
+
+                def falar(self):
+                    print('Olá, sou um mamifero e eu sei falar')
+
+                def andar(self):
+                    print('Estou andando sobre {} patas'.format(self.numDePatas))
+
+                def amamentar(self):
+                    if self.genero.lower()[0] == 'm':
+                        print('machos não amamentam')
+                    else:
+                        print('Amamentando meu filhote')
+
+
+            class Pessoa(Mamifero):
+
+                def __init__(self, corDePelo, genero, andar, cabelo):   
+                    super(Pessoa, self).__init__(corDePelo, genero, andar)
+
+                    self.cabelo = cabelo
+                    self.corDosOlhos = 'marrom' 
+
+                def falar(self):
+                    # Vc pode usar o built-in super() tbm para herdar um método da superclasse.
+                    super(Pessoa, self).falar()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

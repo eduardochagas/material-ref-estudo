@@ -1,0 +1,484 @@
+ ##################################################
+#						   #
+# Como gerar o ambiente canvas no documento HTML.  #
+#						   #
+ ##################################################
+
+Crie a tag canvas com um id dentro do body do documento HTML.
+Exemplo:
+	<canvas id="canvasPrincipal" width="600" Height="400"></canvas>
+
+
+ou vc pode criar dentro das tags script uma variável atribuindo o método DOM javascript document.createElement("canvas"), que cria a tag <canvas></canvas> no documento HTML e em seguida, atribua canvas.getContext("2d") a uma variável context (vc pode abreviar para ctx), assim criando o contexto para a criação de coisas no canvas.
+Exemplo:
+	<script>
+		var canvas = document.createElement("canvas");
+		var ctx = canvas.getContext("2d");
+	</script>
+
+#################################################
+# metodos do objeto canvas.getContext("2d").    #
+#################################################
+
+# metodos para desenhar retângulos #
+ctx.fillStyle = "#ff0000"; - define uma cor para o objeto desenhado.
+ctx.fillRect(x, y, largura, altura); - desenha um retângulo preenchido por uma cor. 
+OBS: primeiro vc define a cor do objeto (ctx.fillStyle) para depois vc desenhar o objeto (ctx.fillRect()), caso não defina a cor do objeto e o objeto na ordem correta, o objeto retangular ficará com a cor preta (que é a cor padrão do objeto). defina na ordem correta. 
+
+# metodos para desenhar linhas #
+ctx.moveTo(x, y); - define a posição inicial em que o desenho começará a ser desenhado ou a posição a qual ele deve ser movido.
+ctx.lineTo(x, y); - define o ponto final da linha criada.
+ctx.stroke(); - desenha a linha definida com os metodos (ctx.moveTo() e ctx.lineTo()).
+OBS: primeiro vc define a ponto inicial da linha (ctx.moveTo()), depois vc define o ponto final da linha (ctx.lineTo()) e depois vc insere o (ctx.stroke()). Caso não defina esses métodos na ordem correta, a linha não será desenhada na tela. 
+
+# métodos para desenhar circulos #
+ctx.beginPath(); - usado para declarar que será desenhado um circulo na tela.
+ctx.arc(x, y, tam_circulo, 0, 2 * Math.PI); - usado para criar desenho do circulo.
+ctx.stroke(): - desenha o circulo na tela.
+OBS: primeiro vc insere o método de iniciação para a criação do circulo (ctx.beginPath()), depois vc insere o método de criação do circulo (ctx.arc()) e depois vc desenha esse circulo com o método (ctx.stroke()).
+
+
+
+# métodos para criação de gradientes (efeito degradê) #
+
+	# cria o linear gradiente
+	var grd = ctx.createLinearGradient(x, y, x1, y1); - cria um gradiente linear (cria um degradê de cores).
+	grd.addColorStop(0, "red"); - define a cor inicial do efeito gradiente.
+	grd.addColorStop(1, "white"); -  define a cor final do efeito gradiente.
+
+	# adiciona a cor e cria o retângulo
+	ctx.fillStyle = grd; - preenche com o grandiente.
+	ctx.fillRect(x, y, largura, altura); - desenha o retângulo na tela.
+	OBS: todos os comando de gradiente devem ser inseridos no código nessa ordem para que funcione corretamente.
+
+
+	# cria o radial gradiente
+	var grd = ctx.createRadialGradiente(75, 50, 5, 90, 60, 100); - a cor do gradiente fica de forma circular.
+	grd.addColorStop(0, "red") - define a cor inicial do efeito gradiente.
+	grd.addColorStop(1, "white") - define a cor final do efeito gradiente.   
+
+	# adiciona a cor e cria o retângulo
+	ctx.fillStyle = grd; - preenche com o grandiente.
+	ctx.fillRect(x, y, largura, altura); - desenha o retângulo na tela.
+	OBS: todos os comando de gradiente devem ser inseridos no código nessa ordem para que funcione corretamente.
+
+
+# desenhado texto no canvas #
+
+	# cria o texto com o preenchimento nas letras do texto no canvas
+	ctx.font = "30px Arial"; - define as propriedades para o texto.
+	ctx.fillText("Hello World", 10, 50); - desenha o texto com preechimento no canvas.
+	OBS: todos os comando de texto devem ser inseridos no código nessa ordem para que funcione corretamente.
+
+	# cria o texto sem o preenchimento das letras no canvas
+	ctx.font = "30px Arial"; - define as propriedades para o texto.
+	ctx.strokeText("Hello World", 10, 50); - desenha o texto sem o preenchimento das letras no canvas.
+	OBS: todos os comando de texto devem ser inseridos no código nessa ordem para que funcione corretamente.
+
+
+# adicionando cor e centralizando o texto no canvas
+ctx.font = "30px Comic Sans MS";
+ctx.fillStyle = "red"; - adiciona uma cor ao texto no canvas.
+ctx.textAlign = "center"; - centraliza o texto na tela do canvas.
+ctx.fillText("Hello World", canvas.width/2, canvas.height/2);
+
+
+########################################################################
+#                                                                      #
+#                   Referência Canvas                 		       #
+#								       #
+########################################################################
+
+#propriedades canvas para cores, style (textos) e sombras#
+ctx.fillstyle = 'gold'; - preenche o retângulo com uma cor.
+ctx.strokeStyle = 'red'; - mantêm somente as bordas do retângulo com a cor definida nas aspas.
+
+
+#propriedades para sombra do objeto#
+ctx.shadowBlur = 20; - define a quantidade de blur (embaçamento).
+ctx.shadowColor = "black"; - define a cor para o blur (embaçamento).
+
+
+#propriedades para posicionamento de sombra do objeto#
+ctx.shadowOffsetX = 20; - define a posição da sombra no angulo X da tela.
+ctx.shadowOffsetY = 20; - define a posição da sombra no angulo Y da tela.
+
+
+#metodos canvas#
+var pattern = ctx.createPattern(img, "repeat"); - usado como valor da propriedade fillStyle (ctx.fillStyle = pattern) para preencher o objeto com uma imagem repetindo essa imagem dentro do objeto.
+
+
+#propriedades para estilos de linha desenhada no canvas#
+ctx.lineCap = "round"; - arredonda as bordas da linha desenhada.
+OBS:há outros valores como: "butt", e "square".
+ctx.lineJoin = "round"; - arrendonda o canto do ponto em que duas linhas se encontram.
+OBS: há outros valore como: "bevel", "round" e "miter".
+ctx.lineWidth = 10; - define a grossura da largura da linha.
+ctx.miterLimit = 5; - corta a ponta onde há o encontro de duas linhas.
+
+
+#métodos para retângulos criados no canvas#
+ctx.rect(x, y, largura, altura); - cria um retângulo na tela do canvas.
+ctx.stroke(); - desenha o retângulo no canvas sem o preenchimento de cor interno do retângulo.
+ctx.fill(); - desenha o retângulo no canvas preenchendo toda a área interna do retângulo com uma cor.
+OBS: se quiser um retângulo com preenchimento interno de cor, use o (ctx.fill()), caso contrário utilize o (ctx.stroke()).
+
+ctx.fillRect(x, y, largura, altura); - usado para criar um retângulo todo preenchido por uma cor.
+
+ctx.strokeRect(x, y, largura, altura); - desenha um retângulo sem um preenchimento interno com cor.
+
+ctx.clearRect(x, y, largura, altura); - limpa uma área retângular de um retângulo já criado. 
+Exemplo:
+	ctx.fillStyle = "red";
+	ctx.fillRect(0, 0, 300, 150);
+	ctx.clearRect(20, 20, 100, 50);
+
+
+#Paths
+ctx.fill(); - preenche a área interna de um retângulo com uma cor definida.
+Exemplo:
+	ctx.rect(30, 30, 40, 40);
+	ctx.fillStyle = "red";
+	ctx.fill();
+
+
+ctx.stroke(); - desenha o caminho que foi definido para ser desenhado.
+Exemplo:
+	ctx.moveTo(20, 20);
+	ctx.lineTo(20, 100);
+	ctx.lineTo(70, 100);
+	ctx.strokeStyle = "red";
+	ctx.stroke();
+
+
+ctx.beginPath() - começa um caminho, ou reconfigura o atual caminho (usado para iniciar o processo para desenhar caminho de linhas diferentes dentro do canvas).
+Exemplo:
+	ctx.beginPath();
+	ctx.lineWidth = "5";
+	ctx.strokeStyle = "green"; // linha com cor verde.
+	ctx.moveTo(0, 75);
+	ctx.lineTo(250, 75);
+	ctx.stroke(); // desenha no canvas.
+
+	ctx.beginPath();
+	ctx.strokeStyle = "Purple"; // linha com cor roxa.
+	ctx.moveTo(50, 0);
+	ctx.lineTo(150, 130);
+	ctx.stroke(); // desenha no canvas.
+
+
+ctx.moveTo(); - somente define o ponto inicial para a criação de uma linha no canvas, sem criar a linha.
+Exemplo:
+	ctx.beginPath();
+	ctx.moveTo(0, 0);
+	ctx.lineTo(300, 150);
+	ctx.stroke();
+
+
+ctx.closePath(); - Cria um caminho do ponto atual de volta ao ponto inicial.
+Exemplo:
+	ctx.beginPath();
+	ctx.moveTo(20, 20);
+	ctx.lineTo(20, 100);
+	ctx.lineTo(70, 100);
+	ctx.closePath();
+	ctx.stroke();
+
+
+ctx.lineTo(); - Adiciona um novo ponto e cria uma linha para aquele ponto a partir do último ponto especificado no canvas.
+Exemplo:
+	ctx.beginPath();
+	ctx.moveTo(0, 0);
+	ctx.lineTo(300, 150);
+	ctx.stroke(); 
+
+
+ctx.clip(); - Clipa uma região (pega uma área) de qualquer forma ou tamanho a partir do canvas original.
+Exemplo:
+	ctx.rect(50, 20, 200, 120);
+	ctx.stroke();
+	ctx.clip();
+	// Desenha a área retângular depois do ctx.clip();
+	ctx.fillStyle = "red";
+	ctx.fillRect(0, 0, 150, 100);
+
+
+ctx.quadraticCurveTo(); - Cria uma curva quadrática Beziér (curva parecida com o símbolo da nike).
+Exemplo:
+	ctx.beginPath();
+	ctx.moveTo(20, 20);
+	ctx.quadraticCurveTo(20, 100, 200, 20);
+	ctx.stroke();
+
+
+ctx.bezierCurveTo(); - Cria uma curva cúbica Bezier.
+Exemplo:
+	ctx.beginPath();
+	ctx.moveTo(20, 20);
+	ctx.bezierCurveTo(20, 100, 200, 100, 200, 20);
+	ctx.stroke();
+
+
+ctx.arc(x, y, radius, sAngle, eAngle); - usado para criar um arco/curva (usado para criar circulos, ou partes do circulo).
+Exemplo:
+	ctx.beginPath();
+	ctx.arc(100, 75, 50, 0, 2, 2 * Math.PI);
+	ctx.stroke();
+
+
+ctx.arcTo() - Cria um arco/curva entre duas tangentes.
+Exemplo:
+	ctx.beginPath();
+	ctx.moveTo(20, 20);
+	ctx.lineTo(100, 20);
+	ctx.arc(150, 20, 150, 70, 50);
+	ctx.lineTo(150, 120);
+	ctx.stroke();
+
+
+isPointInPath(); - Retorna true se o especificado ponto está dentro do caminho atual, caso contrário retorna false.
+Exemplo:
+	ctx.rect(20, 20, 150, 100);
+	if (ctx.isPointInPath(20, 50)) {
+		ctx.stroke();	
+	};
+
+
+
+#Transformações
+ctx.scale(); - Desenhe um retângulo, dimensione para 200% (ou mais) e desenhe novamente o retângulo.
+Exemplo:
+	ctx.strokeRect(5, 5, 25, 15);
+	ctx.scale(2, 2);
+	ctx.strokeRect(5, 5, 25, 15);
+
+
+ctx.rotate(); - rotaciona o desenho atual.
+Exemplo:
+	ctx.rotate(20, Math.PI);
+	ctx.fillRect(50, 20, 100,50);
+
+
+ctx.translate(); - remapeia um novo objeto na posição (0, 0) no canvas.
+Exemplo:
+	ctx.fillRect(10, 10, 100, 50);
+	ctx.translate(70, 70);
+	ctx.fillRect();
+
+
+ctx.transform(); - Troca a atual transformação de matrix para desenhar (rode o exemplo para entender melhor, rsrsrsrs).
+Exemplo:
+	ctx.fillStyle = "yellow";
+	ctx.fillRect(0, 0, 250, 100)
+
+	ctx.transform(1, 0.5, -0.5, 1, 30, 10);
+	ctx.fillStyle = "red";
+	ctx.fillRect(0, 0, 250, 100);
+
+	ctx.transform(1, 0.5, -0.5, 1, 30, 10);
+	ctx.fillStyle = "blue";
+	ctx.fillRect(0, 0, 250, 100);
+
+
+ctx.setTransform(); - reconfigura a atual transformação para a identidade da matrix (rode o exemplo para entender melhor, rsrsrsrs).
+Exemplo:
+	ctx.fillStyle = "yellow";
+	ctx.fillRect(0, 0, 250, 100)
+
+	ctx.setTransform(1, 0.5, -0.5, 1, 30, 10);
+	ctx.fillStyle = "red";
+	ctx.fillRect(0, 0, 250, 100);
+
+	ctx.setTransform(1, 0.5, -0.5, 1, 30, 10);
+	ctx.fillStyle = "blue";
+	ctx.fillRect(0, 0, 250, 100);
+
+
+
+#Text
+############################################################
+#                      text property			   #
+############################################################
+ctx.font; - configura ou retorna a atual propriedade de fonte para o conteúdo de texto.
+Exemplo:
+	ctx.font = "30px Arial";
+	ctx.fillText("Hello World", 10, 50);
+
+
+ctx.textAlign; - configura ou retorna o atual alinhamento para o conteúdo do texto.
+Exemplo:
+	
+	// Create a red line in position 150
+	ctx.strokeStyle = "red";
+	ctx.moveTo(150, 20);
+	ctx.lineTo(150, 170);
+	ctx.stroke();
+
+	ctx.font = "15px Arial"; 
+
+	// Show the different textAlign values
+	ctx.textAlign = "start";      
+	ctx.fillText("textAlign=start", 150, 60);        
+	ctx.textAlign = "end";      
+	ctx.fillText("textAlign=end", 150, 80);                  
+	ctx.textAlign = "left";      
+	ctx.fillText("textAlign=left", 150, 100);
+	ctx.textAlign = "center";     
+	ctx.fillText("textAlign=center",150, 120);              
+	ctx.textAlign = "right";      
+	ctx.fillText("textAlign=right",150, 140);
+
+
+ctx.textBaseLine; - configura ou retorna a atual base de linha de texto usado quando desenhado o texto.
+Exemplo:
+	//Draw a red line at y = 100
+	ctx.strokeStyle = "red";
+	ctx.moveTo(5, 100);
+	ctx.lineTo(395, 100);
+	ctx.stroke();
+
+	ctx.font = "20px Arial"
+
+	//Place each word at y = 100 with different textBaseline values
+	ctx.textBaseline = "top";
+	ctx.fillText("Top", 5, 100);
+	ctx.textBaseline = "bottom";
+	ctx.fillText("Bottom", 50, 100);
+	ctx.textBaseline = "middle";
+	ctx.fillText("Middle", 120, 100);
+	ctx.textBaseline = "alphabetic";
+	ctx.fillText("Alphabetic", 190, 100);
+	ctx.textBaseline = "hanging";
+	ctx.fillText("Hanging", 290, 100); 
+
+
+############################################################
+#                      text method			   #
+############################################################
+ctx.fillText(); - desenha texto "preenchido" no canvas.
+Exemplo:
+	ctx.font = "20px Georgia";
+	ctx.fillText("Hello World!", 10, 50);
+
+	ctx.font = "30px Verdana";
+
+	// Create gradient
+	var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+	gradient.addColorStop("0"," magenta");
+	gradient.addColorStop("0.5", "blue");
+	gradient.addColorStop("1.0", "red");
+	// Fill with gradient
+	ctx.fillStyle = gradient;
+	ctx.fillText("Big smile!", 10, 90);
+
+
+ctx.strokeText(); - desenha texto no canvas (sem preenchimento).
+Exemplo:
+	ctx.font = "20px Georgia";
+	ctx.strokeText("Hello World!", 10, 50);
+
+	ctx.font = "30px Verdana";
+	// Create gradient
+
+	var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+	gradient.addColorStop("0", "magenta");
+	gradient.addColorStop("0.5", "blue");
+	gradient.addColorStop("1.0", "red");
+
+	// Fill with gradient
+	ctx.strokeStyle = gradient;
+	ctx.strokeText("Big smile!", 10, 90);
+
+
+ctx.measureText(); - retorna um objeto que contêm a largura do texto especificado.
+Exemplo:
+	ctx.font = "30px Arial";
+	var txt = "Hello World"
+	ctx.fillText("width:" + ctx.measureText(txt).width, 10, 50)
+	ctx.fillText(txt, 10, 100);
+
+
+#Image Drawing
+ctx.drawImage(); - desenha uma imagem, tela, ou video dentro do canvas.
+Exemplo:
+	window.onload = function() {
+	  var c = document.getElementById("myCanvas");
+	  var ctx = c.getContext("2d");
+	  var img = document.getElementById("scream");
+	  ctx.drawImage(img, 10, 10);
+}
+
+
+
+#Pixel Manipulation
+############################################################
+#                      pixel property			   #
+############################################################
+
+ctx.width; - retorna a largura de um objeto ImagemData.
+Exemplo:
+	alert("Width of imgData is: " + imgData.width);
+
+
+ctx.height; - retorna a altura de um objeto ImagemData.
+Exemplo:
+	alert("Height of imgData is: " + imgData.height);
+
+
+ctx.data; - retorna um objeto que contêm dados de imagem de um especificado objeto ImagemData.
+Exemplo:
+	var imgData = ctx.createImageData(100, 100);
+	var i;
+	for (i = 0; i < imgData.data.length; i += 4) {
+	  imgData.data[i + 0] = 255;
+	  imgData.data[i + 1] = 0;
+	  imgData.data[i + 2] = 0;
+	  imgData.data[i + 3] = 255;
+	}
+	ctx.putImageData(imgData, 10, 10); 
+
+
+############################################################
+#                      pixel method			   #
+############################################################
+
+ctx.createImageData(); - cria um novo, objeto imagemData branco.
+Exemplo:
+	var imgData = ctx.createImageData(100, 100);
+
+	var i;
+	for (i = 0; i < imgData.data.length; i += 4) {
+	  imgData.data[i+0] = 255;
+	  imgData.data[i+1] = 0;
+	  imgData.data[i+2] = 0;
+	  imgData.data[i+3] = 255;
+	}
+
+	ctx.putImageData(imgData, 10, 10);
+
+
+ctx.getImageData(); - retorna um objeto ImageData que copia o dado de pixel para o retângulo especificado no canvas.
+Exemplo:
+	ctx.fillStyle = "red";
+	ctx.fillRect(10, 10, 50, 50);
+
+	function copy() {
+	  var imgData = ctx.getImageData(10, 10, 50, 50);
+	  ctx.putImageData(imgData, 10, 70);
+	}
+
+
+ctx.putImageData(); - coloca o dado de imagem (para um especificado objeto ImageData) de volta fora do canvas.
+Exemplo:
+	ctx.fillStyle = "red";
+	ctx.fillRect(10, 10, 50, 50);
+
+	function copy() {
+	  var imgData = ctx.getImageData(10, 10, 50, 50);
+	  ctx.putImageData(imgData, 10, 70);
+	}
+
+
+
+#Compositing
+

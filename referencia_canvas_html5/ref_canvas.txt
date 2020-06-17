@@ -1,0 +1,2941 @@
+#########################################################
+#	anotações para organizar depois...
+#########################################################
+
+OBS: o ponto (x,y) do circulo é o centro do circulo.
+
+
+
+#########################################################
+#	desenhando uma linha 
+#########################################################
+ctx.moveTo(x, y); - usado para criar o ponto inicial do traço na tela.
+ctx.lineTo(); - usado para criar o traço da linha a partir do ponto criado.
+
+
+Exemplo:
+
+	// pega o id da tag canvas HTML
+	var canvas = document.getElementById('id-canvas');
+	// pega a tag canvas HTML e cria o contexto 2d do canvas
+	var ctx. = canvas.getContext('2d');
+
+	//desenha os passos da linha
+	ctx.beginPath(); // configura o estado do contexto para desenhar
+	ctx.strokeStyle = 'red'; // colore a linha
+	ctx.lineWidth = 10; // define a grossura da linha desenhada.
+	ctx.moveTo(30, 70); // cria o ponto inicial (x,y) da linha
+	ctx.lineTo(130, 70); // ponto final (x,y) da linha.
+	ctx.stroke(); // desenha no canvas.
+
+
+
+###########################################################
+#	Desenhando linhas complexas
+###########################################################
+
+
+// pega o id da tag canvas HTML
+var canvas = document.getElementById('id-canvas');
+// pega a tag canvas HTML e cria o contexto 2d do canvas
+var ctx. = canvas.getContext('2d');
+
+// o ponto inicial da linha + o primeiro traço da linha
+ctx.beginPath(); // configura o estado do contexto para desenhar
+ctx.moveTo(30, 30); // cria o ponto inicial (x,y) da linha
+ctx.lineTo(80 80); // cria o ponto inicial (x,y) da linha
+ctx.stroke(); // desenha no canvas.
+
+// a configuração dessa linha, começa no final da linha anteriormente configurada.
+ctx.beginPath(); // configura o estado do contexto para desenhar
+ctx.moveTo(80, 80); // cria o ponto inicial (x,y) da linha
+ctx.lineTo(130 30); // cria o ponto inicial (x,y) da linha
+ctx.stroke(); // desenha no canvas.
+
+// a configuração dessa linha, começa no final da linha anteriormente configurada.
+ctx.beginPath(); // configura o estado do contexto para desenhar
+ctx.moveTo(130, 30); // cria o ponto inicial (x,y) da linha
+ctx.lineTo(180 80); // cria o ponto inicial (x,y) da linha
+ctx.stroke(); // desenha no canvas.
+
+// a configuração dessa linha, começa no final da linha anteriormente configurada.
+ctx.beginPath(); // configura o estado do contexto para desenhar
+ctx.moveTo(180, 80); // cria o ponto inicial (x,y) da linha
+ctx.lineTo(230 30); // cria o ponto inicial (x,y) da linha
+ctx.stroke(); // desenha no canvas.
+
+OBS: cada PONTO FINAL de uma linha desenhada, é o PONTO DE INICIAL PARA A PRÓXIMA LINHA ser desenhada.
+
+
+
+############################################################
+#	Definindo o formato das pontas da(s) linha(s)
+############################################################
+ctx.lineCap = ''; - usado para dar formato ás bordas da(s) linha(s). 
+Há 3 tipos de valores para lineCap: 'butt', 'round' e 'square'.
+
+'butt' - é o padrão.
+'round' - deixa as pontas da linha um pouco maior nas pontas e arredonda as pontas das linhas.
+'square' - deixa as pontas da linha um pouco maior nas pontas e deixa quadrada as pontas das linhas.
+   
+
+// pega o id da tag canvas HTML
+var canvas = document.getElementById('id-canvas');
+// pega a tag canvas HTML e cria o contexto 2d do canvas
+var ctx. = canvas.getContext('2d');
+
+
+// Primeira Linha
+ctx.beginPath();
+ctx.lineCap = 'butt'; // o valor padrão para as pontas das linhas.
+ctx.strokeStyle = 'red';
+ctx.lineWidth = 10;
+ctx.moveTo(100, 100);
+ctx.lineTo(300, 100);
+ctx.stroke();
+
+// Segunda Linha
+ctx.beginPath();
+ctx.lineCap = 'round'; // deixa as pontas da linha um pouco maior nas pontas e arredonda as pontas das linhas.
+ctx.strokeStyle = 'blue';
+ctx.lineWidth = 10;
+ctx.moveTo(100, 125);
+ctx.lineTo(300, 125);
+ctx.stroke();
+
+
+// Terceira Linha
+ctx.beginPath();
+ctx.lineCap = 'square'; // deixa as pontas da linha um pouco maior nas pontas e deixa quadrada as pontas das linhas.
+ctx.strokeStyle = 'green';
+ctx.lineWidth = 10;
+ctx.moveTo(100, 150);
+ctx.lineTo(300, 150);
+ctx.stroke();
+
+
+
+###################################################################
+	modificando as bordas (das pontas) de cada curva da linha.
+###################################################################
+
+Os valores para o atributo ctx.lineJoin são: 'miter', 'bevel' e 'round'. 
+
+'mitter' é o valor padrão.
+
+var canvas = document.getElementById("id-canvas");
+var ctx = canvas.getContext("2d");
+
+
+// primeira linha
+ctx.beginPath();
+ctx.lineWidth = 20;
+ctx.linejoin = 'miter'; // miter é o valor padrão. 
+ctx.moveTo(30, 30);
+ctx.lineTo(130, 30);
+ctx.lineTo(130, 130);
+ctx.lineTo(30, 130);
+ctx.lineTo(30, 230);
+ctx.stroke();
+
+
+// Segunda linha
+ctx.beginPath();
+ctx.lineWidth = 20;
+ctx.strokeStyle = 'red';
+ctx.linejoin = 'bevel'; // corta as bordas (as pontas) de cada curva da linha.
+ctx.moveTo(60, 60);
+ctx.lineTo(160, 60);
+ctx.lineTo(160, 160);
+ctx.lineTo(60, 160);
+ctx.lineTo(60, 260);
+ctx.stroke();
+
+
+// Terceira linha
+ctx.beginPath();
+ctx.lineWidth = 20;
+ctx.strokeStyle = 'blue';
+ctx.linejoin = 'round'; // arredonda as bordas (das pontas) de cada curva da linha.
+ctx.moveTo(90, 90);
+ctx.lineTo(190, 90);
+ctx.lineTo(190, 190);
+ctx.lineTo(90, 190);
+ctx.lineTo(90, 290);
+ctx.stroke();
+
+
+#################################################################
+#	definindo sombras na(s) linha(s)
+#################################################################
+
+atributos shadow para o canvas:
+    
+    - shadowColor - a cor da sombra.
+    - shadowOffsetX - a posição X da sombra
+    - shadowOffsetY - a posição Y da sombra
+    - shadowBlur - a quantidade de borrado na sombra
+
+
+
+    var canvas = document.getElementById("id-canvas");
+    var ctx = canvas.getContext("2d");
+
+
+    ctx.beginPath();
+    ctx.strokestyle = 'blue';
+    ctx.lineWidth = 20;
+    ctx.shadowColor = 'black'; // define a cor da sombra
+    ctx.shadowOffSetX = '10'; // configura a posição x da sombra
+    ctx.shadowOffSetY = '10'; // configura a posição y da sombra
+    ctx.shadowBlur = 10; // a quantidade de borrado na sombra.
+    ctx.moveTo(100, 60);
+    ctx.lineTo(200, 60);
+    ctx.stroke();
+
+
+    // 2
+    ctx.beginPath();
+    ctx.strokestyle = 'green';
+    ctx.lineWidth = 20;
+    ctx.shadowColor = 'black'; // define a cor da sombra
+    ctx.shadowOffSetX = -10; // configura a posição x da sombra
+    ctx.shadowOffSetY = 10; // configura a posição y da sombra
+    ctx.shadowBlur = 10; // a quantidade de borrado na sombra.
+    ctx.moveTo(350, 60);
+    ctx.lineTo(450, 60);
+    ctx.stroke();
+
+
+    // 3
+    ctx.beginPath();
+    ctx.strokestyle = 'red';
+    ctx.lineWidth = 20;
+    ctx.shadowColor = 'yellow'; // define a cor da sombra
+    ctx.shadowOffSetX = 10; // configura a posição x da sombra
+    ctx.shadowOffSetY = -10; // configura a posição y da sombra
+    ctx.shadowBlur = 10; // a quantidade de borrado na sombra.
+    ctx.moveTo(100, 200);
+    ctx.lineTo(200, 200);
+    ctx.stroke();
+
+
+    // 4
+    ctx.beginPath();
+    ctx.strokestyle = 'brown';
+    ctx.lineWidth = 20;
+    ctx.shadowColor = 'black'; // define a cor da sombra
+    ctx.shadowOffSetX = -10; // configura a posição x da sombra
+    ctx.shadowOffSetY = -10; // configura a posição y da sombra
+    ctx.shadowBlur = 10; // a quantidade de borrado na sombra.
+    ctx.moveTo(350, 200);
+    ctx.lineTo(450, 200);
+    ctx.stroke();
+
+
+
+Vamos agora atribuir shadow em textos no canvas:
+
+    var canvas = document.getElementById("id-canvas");
+    var ctx = canvas.getContext("2d");
+
+    var text = 'This text will be shadowed!';
+
+  // FillText function
+    ctx.fillStyle = 'yellow';
+    ctx.font = 'normal 700 24px times';
+    ctx.shadowColor = 'red';
+    ctx.shadowOffsetX = 5;
+    ctx.shadowOffsetY = 5;
+    ctx.shadowBlur = 4;
+    ctx.fillText(text, 100, 100);
+
+  // StrokeText function
+    ctx.strokeStyle = 'magenta';
+    ctx.font = 'italic 400 48px monospace';
+    ctx.shadowColor = 'green';
+    ctx.shadowOffsetX = -5;
+    ctx.shadowOffsetY = -5;
+    ctx.shadowBlur = 4;
+    ctx.strokeText(text, 100, 400);
+
+
+O processo de shadow em texto(s) no canvas é o mesmo que aprendemos em lições anteriores (no sobreamento dos retângulos) com os mesmos atributos:
+
+    ctx.shadowColor = 'green';
+    ctx.shadowOffsetX = -5;
+    ctx.shadowOffsetY = -5;
+    ctx.shadowBlur = 4;
+
+
+Todos os atributos são os mesmos, e suas funcionalidades são as mesmas. Shadow É UM ATRIBUTO UNIVERSAL QUE VC PODE APLICAR EM QUALQUER TIPO DE DESENHO NO CANVAS. Nós podemos adicionar shadow em: linhas, objetos, textos, imagens, videos, em tudo. É um atributo bem universal para utilização. Uma vez aprendido, nós podemos utilizar em qualquer lugar no canvas.
+
+
+
+
+#################################################
+#	Desenhando formas complexas
+#################################################
+
+/* 
+    lineCap = butt|round|square
+    lineJoin = bevel|round|miter
+    shadowColor = cor da sombra
+    shadowBlur = quantidade de borrado da sombra.
+    shadowOffSetX = distância horizontal da sombra na forma desenhada no canvas.
+    shadowOffSetY = distância vertical da sombra na forma desenhada no canvas.    
+*/
+
+var canvas = document.getElementById("id-canvas");
+var ctx = canvas.getContext("2d");
+
+
+// First Z object
+ctx.beginPath();
+ctx.strokeStyle = 'red';
+ctx.lineWidth = 15;
+ctx.lineCap = 'butt'; // o valor padrão para as pontas das linhas.
+ctx.lineJoin = "miter" // miter é o valor padrão. 
+ctx.shadowColor = 'blue'; // define a cor para a sombra.
+ctx.shadowOffsetX = 10; // distância horizontal da sombra na forma desenhada. 
+ctx.shadowOffsetY = 10; // distânvcia vertical da sombra na forma desenhada.
+ctx.shadowBlur = 10; // quantidade de borrado na sombra.
+ctx.moveTo(60, 80);
+ctx.lineTo(160, 80);
+ctx.lineTo(80, 180);
+ctx.lineTo(180, 180);
+ctx.stroke();
+
+
+
+// Segundo Z object
+ctx.beginPath();
+ctx.strokeStyle = 'blue';
+ctx.lineWidth = 15;
+ctx.lineCap = 'round'; // deixa as pontas da linha um pouco maior nas pontas e arredonda as pontas das linhas.
+ctx.lineJoin = 'round'; // corta as bordas (as pontas) de cada curva da linha.
+ctx.shadowColor = 'yellow'; // define a cor para a sombra.
+ctx.shadowOffsetX = 10; // distância horizontal da sombra na forma desenhada. 
+ctx.shadowOffsetY = 10; // distânvcia vertical da sombra na forma desenhada.
+ctx.shadowBlur = 10; // quantidade de borrado na sombra.
+ctx.moveTo(340, 80);
+ctx.lineTo(240, 80);
+ctx.lineTo(340, 180);
+ctx.lineTo(240, 180);
+ctx.stroke();
+
+
+
+// Terceiro Z object
+ctx.beginPath();
+ctx.strokeStyle = 'green';
+ctx.lineWidth = 15;
+ctx.lineCap = 'square'; \\ deixa as pontas da linha um pouco maior nas pontas e deixa quadrada as pontas das linhas.
+ctx.lineJoin = 'bevel'; // corta as bordas (as pontas) de cada curva da linha.
+ctx.shadowColor = 'red'; // define a cor para a sombra.
+ctx.shadowOffsetX = 10; // distância horizontal da sombra na forma desenhada. 
+ctx.shadowOffsetY = 10; // distânvcia vertical da sombra na forma desenhada.
+ctx.shadowBlur = 10; // quantidade de borrado na sombra.
+ctx.moveTo(420, 80);
+ctx.lineTo(520, 80);
+ctx.lineTo(440, 180);
+ctx.lineTo(540, 180);
+ctx.stroke();
+
+
+
+########################################################
+#	desenhando arcos 
+########################################################
+
+os parametros para o arco são:
+    
+    arc(x, y, radius, startAngle, endAngle, invertePosiçãoDeDesenho);
+
+
+o (x,y) representa o ponto inicial ao qual será criado o circulo (o ponto (x,y) É O CENTRO do CIRCULO).
+
+O radius é o VALOR DO TAMANHO DO RAIO que será desenhado (o raio é desenhado a partir da posição (x,y) do arco).
+OBS: o desenho do arco é feito por padrão, no sentido horário.
+
+O startAngle define onde inicia o angulo. A posição inicial 0 do angulo começa do lado direito (começa na mesma linha do raio).
+
+O endAngle define onde termina o angulo. Somente por questões de referência, vou deixar abaixo alguns valores que desenha partes do circulo:
+
+    90 - desenha 1/4 do circulo no sentido horário.
+    180 - desenha 2/4 do circulo (ou seja, a metade do circulo) no sentido horário.
+    270 -  - desenha 3/4 do circulo no sentido horário.
+    360 - desenha o circulo inteiro no sentido horário.
+
+
+O invertePosiçãoDeDesenho recebe um valor true ou false. Se o desenho do circulo não tiver sido fechado totalmente, e vc definir o valor desse parâmetro invertePosiçãoDeDesenho para true, a parte do circulo DESENHADA FICA EM BRANCO, e A PARTE EM BRANCO do circulo FICA DESENHADA.
+
+
+um exemplo prático de um arco:
+
+    var canvas = document.getElementById("id-canvas");
+    var ctx = canvas.getContext("2d");
+
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = '10';
+    ctx.arc(100, 100, 50, 0, 180 * Math.PI, false);
+    ctx.stroke();
+
+
+
+Podemos também criar um circulo com um preenchimento interno (uma cor) utilizando os mesmos atributos utilizados para o preenchimento interno no retângulo.
+
+
+um exemplo prático de um arco com preenchimento:
+
+    var canvas = document.getElementById("id-canvas");
+    var ctx = canvas.getContext("2d");
+
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'red'; // define a linha já com a cor
+    ctx.lineWidth = 15; // define a largura da linha
+    ctx.fillStyle = 'orange'; // define cor de preenchimento do arco
+    ctx.arc(450, 300, 150, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
+    ctx.stroke(); // desenha o arco
+    ctx.fill(); // preenche o arco com a cor definida em fillStyle.
+
+
+
+Podemos também criar um círculo NÃO FECHADO.
+
+    Entendendo como o canvas desenha o circulo na tela.
+        
+        Primeiro, o canvas desenha o circulo entre o PONTO INICIAL e o PONTO FINAL do algulo (O PONTO INICIAL COMEÇA EM 0, (sempre as "3 horas" no sentido horário) e o ponto final do angulo TERMINA ONDE COMEÇA O ANGULO (tbm as "3 horas" no sentido horário)). É assim que o canvas desenha um circulo. Quando vc DEFINE UM PONTO INICIAL DIFERENTE de 0 NA CRIAÇÃO DO CIRCULO (como por exemplo, iniciando na posição 135), o circulo é desenhado no canvas faltando uma fatia desse circulo, isso pq o canvas desenha o circulo a partir da posição inicial definida.
+
+
+um exemplo prático de um arco NÃO FECHADO:
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 15;
+    ctx.fillStyle = 'orange';
+    ctx.arc(450, 300, 150, 135 * Math.PI / 180, 360 * Math.PI / 180, false); // definimos o ponto inicial no circo em 135 em: (135 * Math.PI / 180).
+    ctx.stroke();
+    ctx.fill();
+
+
+
+Para criar um circulo "sem bordas", defina a cor da borda com a mesma cor de preenchimento do círculo, caso contrário a borda receberá a cor padrão (que é preto).
+
+um exemplo prático de um arco "sem a borda":
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'orange'; // a cor da borda com a mesma cor de preenchimento do circulo.
+    ctx.lineWidth = 15;
+    ctx.fillStyle = 'orange'; // cor de preenchimento do círculo.
+    ctx.arc(450, 300, 150, 0 * Math.PI / 180, 360 * Math.PI / 180, false); // definimos o ponto inicial no circo em 135 no circulo.
+    ctx.stroke();
+    ctx.fill();
+
+
+OBS: SE O ARCO NÃO ESTIVER TOTALMENTE FECHADO, QUANDO PREENCHEMOS O ARCO (CIRCULO) COM UMA COR, AUTOMATICAMENTE O CANVAS FECHA O CIRCULO COM A COR A PARTIR DOS PONTOS DE ABERTURA E DE FECHAMENTO, EVITANDO QUE A COR VAZE DO CIRCULO ABERTO.   
+ 
+
+
+#########################################################
+#	Curvas quadraticas
+#####################################################
+
+Para desenhar curvas mais "flexiveis", devemos usar o método quadraticCurveTo(). Os parâmetros para esse metodo são:
+
+   quadraticCurveTo(controlX, controlY, endX, endY);
+
+
+Antes de usar o metodo quadraticCurveTo(), vc deve definir um ponto inicial na tela para desenhar a linha com o metodo moveTo(). Os controlX e controlY definem as coordenadas em que a linha será "puxada" na posição x,y na tela. endX e endY são as coordenadas do ponto final do caminho da linha, desenhada na posição x,y da tela.
+
+
+um exemplo prático de uma curva quadrática:
+
+    var canvas = document.getElementById("id-canvas");
+    var ctx = canvas.getContext("2d");
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'yellow';
+    ctx.lineWidth = '10';
+    ctx.moveTo(200, 250); // define o ponto inicial para desenhar a linha.
+    ctx.quadraticCurveTo(300, 100, 400, 250); // os dois primeiros parametros definem a CURVATURA DA LINHA nas posições x,y da tela, e os dois últimos parametros definem O PONTO FINAL ONDE A LINHA SERÁ DESENHADA na posição x,y da tela.
+    ctx.stroke(); 
+
+
+
+####################################################
+#	Curvas Bezier 
+####################################################
+
+A maior diferença entre quadraticCurveTo() para bezierCurveTo() é que curvas Bezier tem 2 pontos de controle. Isso significa que há 2 pontos de alongamento para fazer a curva da linha.
+
+    os parâmetros para esse método são:
+
+        bezierCurveTo(controlX1, controlY1, controlX2, controlY2, endX, endY);
+
+
+Antes de usar o metodo bezierCurveTo(), vc deve definir um ponto inicial na tela para desenhar a linha com o metodo moveTo().
+
+    Os primeiros 2 argumentos são as COORDENADAS DE CONTROLE DO PONTO 1.
+    Os 2 argumentos seguintes são as COORDENADAS DE CONTROLE DO PONTO 2.
+    Os 2 últimos argumentos são as COORDENADAS DO PONTO FINAL DO CAMINHO DA LINHA.
+
+
+um exemplo prático de uma curva Bezier:
+
+    var canvas = document.getElementById("id-canvas");
+    var ctx = canvas.getContext("2d");
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 10;
+    ctx.moveTo(200, 250); // define primeiramente o ponto inicial para desenhar na tela.
+    ctx.bezierCurveTo(100, 100, 500, 100, 400, 250);
+    ctx.stroke();
+
+
+
+############################################################
+#	desenhando retângulos
+############################################################
+
+---------------
+ctx.rect();   
+---------------
+
+método para definir um retângulo (SEM PREENCHIMENTO INTERNO) na tela:
+
+    ctx.rect(x, y, width, height);
+
+
+um exemplo prático de criação de um retângulo:
+
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 11; // define a largura da linha do retângulo.
+    ctx.lineJoin = 'round'; // arredonda as pontas da linha do retângulo.
+    ctx.fillStyle = 'blue'; // define uma cor para a linha do retângulo.
+    ctx.rect(50, 200, 200, 200); // cria a linha que demarca o retângulo.
+    ctx.stroke(); // esse método desenha a linha ao redor do quadrado, definido pelo método lineWidth
+    ctx.fill(); // preenche toda a parte interna do retângulo
+
+OBS: o método rect() NÂO necessita do método stroke() para que o retângulo seja desenhado na tela.
+
+
+------------------------------------------------------------------------------------
+
+------------------
+ctx.fillRect();
+------------------
+
+método para definir um retângulo (SEM BORDA) na tela.
+
+    ctx.fillStyle = 'green';
+    ctx.fillRect(300, 200, 200, 200);
+    
+
+
+------------------------------------------------------------------------
+
+------------------
+ctx.strokeRect();
+------------------
+
+método para definir um retângulo (SEM PREENCHIMENTO) na tela.
+
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'blue';
+    ctx.lineJoin = 'square'; // define as pontas da linha do retângulo para serem arredondadas.
+    ctx.strokeRect(550, 200, 200, 200);
+
+OBS: o método strokeStyle() não preenche com cor a área interna do quadrado.
+
+
+-------------------------------------------------------------------------
+
+-------------------
+ctx.clearRect();
+-------------------
+
+O método clearRect() é usado para APAGAR o que foi feito na tela do canvas. Você pode DETERMINAR UMA ÁREA ESPECÍFICA PARA SER APAGADA no canvas ou até mesmo para APAGAR TUDO O QUE FOI FEITO NA TELA do canvas, especificando as dimensões da tela do canvas nos parâmetros de clearRect().
+
+    Exemplo de como apagar uma determinada área do canvas:
+
+	 ctx.strokeStyle = 'red';
+         ctx.lineWidth = 11; // define a largura da linha do retângulo.
+         ctx.lineJoin = 'round'; // arredonda as pontas da linha do retângulo.
+         ctx.fillStyle = 'blue'; // define uma cor para a linha do retângulo.
+         ctx.rect(50, 200, 200, 200); // cria a linha que demarca o retângulo.
+         ctx.stroke(); // esse método desenha a linha ao redor do quadrado, definido pelo método lineWidth
+         ctx.fill();
+
+	 // apaga um pedaço do quadrado desenhado no canvas.
+	 ctx.clearRect(100, 100, 200, 200);
+	
+
+
+
+##########################################################################
+#	desenhando textos básicos no canvas
+##########################################################################
+
+--------------------
+ctx.fillText();
+--------------------
+
+O método fillText() é usado para inserir texto na tela do canvas, COM PREENCHIMENTO DE COR NAS LETRAS.
+
+    Os parâmetros para inserir texto na tela são:
+    
+        ctx.fillText(text, xCoord, yCoord, maxWidth);
+
+	OBS: o parâmetro maxWidth é opcional.
+
+
+Exemplo de como inserir texto na tela do canvas (COM PREENCHIMENTO DE COR NAS LETRAS):
+
+    var fText = 'Fill Text on Canvas';
+
+    // use o ctx.font = '25px Verdana'; para aumentar o tamanho da fonte do texto.
+    ctx.fillText(fText, 80, 100);
+
+
+
+-------------------
+ctx.strokeText();
+-------------------
+
+O método strokeText() é usado para inserir texto na tela do canvas, mas SEM PREENCHIMENTO DE COR NAS LETRAS.
+
+    Os parâmetros para inserir texto na tela são:
+
+        ctx.strokeText(text, xCoord, yCoord, maxWidth);
+
+	OBS: o parâmetro maxWidth é opcional.
+
+
+Exemplo de como inserir texto na tela (SEM O PREENCHIMENTO DE COR NAS LETRAS):
+
+    var sText = 'Stroke Text on Canvas';
+
+    // use o ctx.font = '15px Arial'; para aumentar o tamanho da fonte do texto.
+    ctx.strokeText(sText, 80, 200);
+
+
+
+O PARÂMETRO OPCIONAL maxWidth em fillText() e strokeText() define A LARGURA MÁXIMA DO TEXTO PARA SER EXIBIDO no canvas (ou seja, se o tamanho da frase do texto for maior que a largura definida em maxWidth, O TEXTO FICARÁ ENCOLHIDO NA LARGURA ESPECIFICADA em maxWidth).
+
+Exemplo de um texto grande ocupando a largura máxima DEFINIDA NO PARÂMETRO OPCIONAL maxWidth:
+    
+    var fText = 'Fill Text on Canvas for example on this exercise';
+
+    ctx.fillStyle = 'red';
+    ctx.font = '35px Arial';
+    ctx.fillText(fText, 80, 100, 280); // o tamanho da largura máxima aqui é: 280
+
+
+
+
+#########################################################
+#	Estilos para fonte de textos
+#########################################################    
+
+-------------------
+ctx.font = '';
+-------------------
+
+O atributo font = ''; é usado estilizar o texto inserido no canvas.
+
+    A sintaxe do atributo é:
+
+        ctx.font = 'font-style font-weight font-size font-family';
+
+
+    Os valores para o atributo font = ''; são:
+    
+	// font-style:
+    	    // normal (é o padrão)
+            // italic
+    	    // oblique
+    	    // inherit (style comes from the element parent)
+
+	
+	// font-weight:
+    	    // normal (é o padrão)
+    	    // bold
+    	    // bolder
+    	    // lighter
+    	    // 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 
+    	    // inherit (style comes from the element parent)
+
+
+	// font-size:
+    	    // xx-small | x-small | small | smaller | medium | large | larger | x-larger | xx-larger
+    	    // exact number in px (pixels), pt (points) or em (ems)
+    	    // inherit;
+
+	// font-family:
+    	    // family-name (like "times", "courier", "arial", ...)
+    	    // generic-family (like "serif", "sans-serif", "cursive", "fantasy", "monospace", ...)
+    	    // inherit (style comes from the  parent element)
+
+
+Exemplo prático de como usar:
+
+    var text = "This text will be styled!";
+
+    ctx.font = 'normal 800 xx-large times'; // fillText Style
+    ctx.fillText(text, 100, 100);
+
+    ctx.font = 'italic 400 48px monospace'; // strokeText Style
+    ctx.strokeText(text, 100, 150);
+
+
+
+Vc pode também utilizar a forma abreviada de valores para o ctx.font = '', atribuindo somente o tamanho da fonte e a familia da fonte.
+
+    A sintaxe do atributo com valor abreviado é:
+
+        ctx.font = 'font-size font-family';
+
+
+Exemplo prático de como usar:
+
+    var text = "This text will be styled!";
+
+    ctx.font = '20px Arial'; // fillText Style
+    ctx.fillText(text, 100, 100);
+
+    ctx.font = '20px Helvetica'; // strokeText Style
+    ctx.strokeText(text, 100, 150);
+
+
+
+###################################################
+#	Efeito 3D no(s) texto(s)
+###################################################
+
+Primeiro vamos ver O JEITO MENOS EFICAZ de criar efeitos 3D SOMENTE PARA ENTENDERMOS COMO FAZER ESSE EFEITO em um contexto 2D. No exemplo abaixo, cada Layer representa 1 "fatia" DA SOMBRA ATRÁS DO TEXTO original, é assim que conseguimos criar o efeito 3D em um contexto 2D.
+
+
+Exemplo de um texto 3D em um contexto 2D:
+
+    var text = 'This text will be in 3D';
+
+        ctx.font = 'normal 600 54px monospace';
+
+
+        // Layer1
+        ctx.fillStyle = 'yellow';
+        ctx.fillText(text, 99, 299);
+
+        // Layer2
+        ctx.fillText(text, 98, 298);
+
+        // Layer3
+        ctx.fillText(text, 97, 297);
+
+        // Layer4
+        ctx.fillText(text, 96, 296);
+
+
+        // Original text
+        ctx.fillStyle = 'violet';
+        ctx.fillText(text, 100, 300);
+
+
+
+Vamos agora criar o mesmo efeito, só que de uma forma mais otimizada e elegante, criando uma FUNÇÃO PERSONALIZADA para que sempre que quisermos criar um novo texto em 3D, basta somente chamar a função para isso:
+
+
+Explicando cada parâmetro da nossa função personalizada:
+
+	// text - insere o texto que será exibido na tela do canvas.
+	// x - posição x do texto na tela.
+	// y - posição y do texto na tela.
+	// style3D - define em uma string o tamanho da fonte e qual a fonte (Arial, Helvetica, monospace, ...) 
+	// color3D - define em uma string a cor do efeito 3D.
+	// size - define o tamanho do efeito 3D atrás do texto.
+	// colorText - define em uma string a cor do texto a ser exibido (o texto principal).
+
+
+
+    function draw3DText(text, x, y, style3D, color3D, size, colorText) {
+        ctx.font = style3D;
+        ctx.fillStyle = color3D;
+
+        for (var i = 0; i < size; i++) {
+	    // desenha o 3D ATRÁS DO TEXTO PRINCIPAL a cada loop
+            ctx.fillText(text, x - i, y - i);
+        }
+
+	// desenha no canvas o texto principal
+        ctx.fillStyle = colorText;
+        ctx.fillText(text, x, y);
+
+    }
+
+
+	
+    var txt = 'Minha frase no canvas uHuuu !!!';
+
+    draw3DText(txt, 40, 90, '80px Arial', 'skyBlue', 10, 'red');
+
+
+
+###########################################################################
+#	Posicionamento de Texto Horizontal com textAling 
+###########################################################################
+
+---------------------
+ctx.textAling = '';
+---------------------
+
+O atributo textAling = ''; é usada para alinhar o texto inserido no canvas horizontalmente.
+
+    a sintaxe do atributo textAlign é:
+    
+        ctx.textAling = 'valorDoAlinhamentoDoTextoNaTela';
+
+
+    os valores para textAlign são:
+
+	// center 
+	// end  
+	// left 
+	// right 
+	// start - é o valor padrão. 
+
+
+Exemplo de como o atributo textAlign funciona:
+
+    // Linha vertical de referência
+        ctx.strokeStyle = 'red';
+        ctx.moveTo(300, 20);
+        ctx.lineTo(300, 430);
+        ctx.stroke();
+
+    // Define um stilo
+        ctx.font = 'italic 400 18px monospace';
+
+    
+    // aplica o valor de textAlign
+        ctx.textAlign = 'start';  // o valor 'start' em texAlign denota que o texto em filltext() SERÁ INSERIDO NO CANVAS EXATAMENTE A PARTIR DA POSIÇÃO (x,y) DEFINIDA EM fillText() (ou seja, na posição 300 em x, e na posição 20 em y).
+        ctx.fillText('start', 300, 20);
+
+
+        ctx.textAlign = 'center';  // o valor 'center' em textAlign define que os valores (x,y) de fillText() SERÁ O CENTRO DA STRING definida em fillText().
+        ctx.fillText('center', 300, 50);
+
+
+	ctx.textAlign = 'left';  // o valor 'left' em textAlign define que o texto inserido em fillText() FICARÁ A ESQUERDA DA POSIÇÃO (x,y) ESPECIFICADA em fillText(). 
+	ctx.fillText('left', 300, 80);
+
+
+	ctx.textAlign = 'end';  // o valor 'end' em textAlign define que O FINAL DO TEXTO inserido em fillText() ACABE EXATAMENTE NA POSIÇÃO (x,y) ESPECIFICADA em fillText().
+	ctx.filltext('end', 300, 110);
+
+
+	ctx.textAlign = 'right';  // o valor 'right' em textAlign tem o mesmo comportamento do valor 'end', ou seja, o final do texto inserido em fillText() acabe exatamente na posição (x,y) especificada em fillText(). 
+  	ctx.fillText('right', 300, 140);
+
+
+
+###########################################################################
+#	Posicionamento de Texto Vertical com textBaseLine
+###########################################################################
+
+O atributo ctx.textBaseLine = ''; é usado para alinhar o texto verticalmente. 	   
+
+    a sintaxe do atributo textBaseLine é:
+
+	ctx.textBaseLine = 'nomeDoValorDoAtributo';
+
+
+    os valores para o atributo textBaseLine são:
+
+	// alphabetic - é o valor padrão.
+	// top  
+	// hanging  
+	// middle  
+	// ideographic  
+	// bottom  
+
+
+Todos os valores de textBaseLine tem diferentes efeitos no texto. O propósito desses valores são que diferentes linguagens de países, têm diferentes linhas de base para a escrita. 
+
+Por exemplo:
+
+    a baseline 'alphabetic': é usada em linguagens latinas
+
+    a baseline 'ideographic': é usada em linguagens Chinesa ou Japonesa. 
+
+    a baseline 'Hanging': é usada em linguagens da India.
+
+
+    Esses são os principais propósitos das baselines.
+
+
+
+Exemplo de como o atributo textBaseLine funciona:
+
+    // Linha Vertical de referência
+        ctx.strokeStyle = 'red';
+        ctx.moveTo(20, 300);
+        ctx.lineTo(580, 300);
+        ctx.stroke();
+
+    // aplicando valores de textBaseLine
+	ctx.textBaseLine = 'alphabetic'; // o valor 'alphabetic' é o padrão, usado para linguagens latinas.
+	ctx.filltext('alphabetic', 120, 300);
+
+
+	ctx.textBaseLine = 'top'; 
+	ctx.filltext('top', 220, 300);
+
+	ctx.textBaseLine = 'hanging'; // usado para linguagens da India.
+    	ctx.fillText('hanging', 320, 300);
+
+    	ctx.textBaseLine = 'middle'; // as letras ficam no meio do traço da linha. 
+    	ctx.fillText('middle', 420, 300);
+
+    	ctx.textBaseLine = 'ideographic'; // usado para linguagens Chinesa e Japosena
+    	ctx.fillText('ideographic', 520, 300);
+
+    	ctx.textBaseLine = 'bottom';
+    	ctx.fillText('bottom', 620, 300);
+
+
+
+####################################################
+#	Desenhando imagens no Canvas
+####################################################
+
+Para desenhar imagens no canvas usamos a função drawImage(). Essa função pode ser usada de 3 diferentes maneiras. A função drawImage() tem 3 diferentes configurações de argumentos:
+
+    a primeira forma de usar é:  
+        drawImage(img, dx, dy);
+
+    a segunda forma de usar é:
+    	drawImage(img, dx, dy, dw, dh);
+
+    e a terceira forma de usar é:
+	drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
+
+
+Nós iremos examinar todas essas 3 variantes, uma por uma. 
+
+
+Vamos começar pela PRIMEIRA VARIANTE:
+
+-----------------------------
+ctx.drawImage(img, dx, dy);
+-----------------------------
+
+
+    Esta primeira variante tem 3 parâmetros: 
+	drawImage(img, dx, dy);
+
+
+    o primeiro parâmetro (img) representa A IMAGEM A SER INSERIDA.
+
+    o segundo parametro (dx) representa a posição X ONDE SERÁ INSERIDA A IMAGEM no canvas (ou seja, (dx) é a coordenada do topo a esquerda da imagem).
+
+    o terceiro parametro (dy) representa a posição Y ONDE SERÁ INSERIDA A IMAGEM no canvas (ou seja, (dy) é a coordenada do topo a esquerda da imagem).
+
+
+
+Exemplo de como usar a PRIMEIRA VARIANTE de drawImage():
+
+    var canvas = document.getElementById('id-canvas');
+    var ctx = canvas.getContext('2d');
+
+    var img = new Image();
+    img.src = 'regularshow.png'; // insira uma imagem aqui
+
+    img.onload = function() {
+	ctx.drawImage(img, 250, 50); 
+
+    };
+
+--------------------------------------------------------------------------------------
+
+Vamos para a SEGUNDA VARIANTE: 
+
+------------------------------------
+ctx.drawImage(img, dx, dy, dw, dh);
+------------------------------------
+
+    Esta segunda variante tem 5 parâmetros:
+	drawImage(img, dx, dy, dw, dh);
+
+
+    o primeiro parâmetro (img) representa A IMAGEM A SER INSERIDA.
+
+    o segundo parametro (dx) define a posição X ONDE SERÁ INSERIDA A IMAGEM no canvas (ou seja, (dx) é a coordenada do topo a esquerda da imagem).
+
+    o terceiro parametro (dy) define a posição Y ONDE SERÁ INSERIDA A IMAGEM no canvas (ou seja, (dy) é a coordenada do topo a esquerda da imagem).
+
+    o quarto parâmetro (dw) define a largura da imagem.
+
+    o quinto parâmetro (dh) define a altura da imagem 
+
+
+
+Exemplo de como usar a SEGUNDA VARIANTE de drawImage(): 
+
+    var canvas = document.getElementById('id-canvas');
+    var ctx = canvas.getContext('2d');
+
+    var img = new Image();
+    img.src = 'regularshow.png'; // insira uma imagem aqui
+
+    img.onload = function() {
+	ctx.drawImage(img, 250, 50, 100, 100);
+
+    };
+
+----------------------------------------------------------------------------
+
+
+Vamos para a TERCEIRA VARIANTE:
+
+----------------------------------------------------
+ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
+----------------------------------------------------
+
+    Esta terceira variante possui 9 parâmetros:
+	drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
+
+	OBS: Se vc usar esta versão do método drawImage, PRIMEIRO, A IMAGEM SERÁ RECORTADA pelos parâmetros: 
+
+		(sx, sy, sw, sh)
+
+ e então A IMAGEM SERÁ DESENHADA NO CANVAS com os parâmetros: 
+
+		(dx, dy, dw, dh).
+
+
+Nessa variante de drawImage, nós PODEMOS DESENHAR TODA A IMAGEM no canvas, ou PARTE DESSA IMAGEM. Isso significa que podemos recortar a imagem e podemos posicionar essa parte recortada da imagem no canvas. Os parâmetros (sx) e (sy) são AS POSIÇÕES DO CANTO SUPERIOR ESQUERDO DA IMAGEM recortada, e (sw) e (sh) são a largura e a altura da imagem recortada.
+
+    o primeiro parâmetro (img) representa A IMAGEM A SER INSERIDA.
+
+    o segundo parâmetro (sx) define a posição inicial X dentro da imagem (que será recortado). 
+
+    o terceiro parâmetro (sy) define a posição inicial Y dentro da imagem (que será recortado).
+
+    o quarto parâmetro (sw) define a largura dentro da imagem (que será recortado).
+
+    o quinto parâmetro (sh) define a altura dentro da imagem  (que será recortado).
+
+    o sexto parâmetro (dx) define a posição X ONDE SERÁ INSERIDA A IMAGEM no canvas (ou seja, (dx) é a coordenada do topo a esquerda da imagem).
+
+    o sétimo parâmetro (dy) define a posição Y ONDE SERÁ INSERIDA A IMAGEM no canvas (ou seja, (dy) é a coordenada do topo a esquerda da imagem).
+
+    o oitavo parâmetro (dw) define a largura da imagem recortada (dentro do canvas).
+
+    o nono parâmetro (dh) define a altura da imagem recortada (dentro do canvas). 
+
+
+Exemplo de como usar a TERCEIRA VARIANTE de drawImage():
+
+  Exemplo1: 
+
+    var canvas = document.getElementById('id-canvas');
+    var ctx = canvas.getContext('2d');
+
+    var img = new Image();
+    img.src = 'regularshow.png'; // é necessário usar a imagem regularshow.jpg para funcionar corretamente.
+
+    img.onload = function() {
+	ctx.drawImage(img, 40, 100, 150, 250, 250, 50, 250, 400); // pega somente a área de recorte dentro da imagem
+
+    }; 
+
+
+
+Mais um exemplo de como funciona essa TERCEIRA VARIANTE:
+
+Exemplo2:
+
+window.onload = function() {
+
+    var canvas = document.getElementById('id-canvas');
+    var ctx = canvas.getContext('2d');
+
+
+    var img = new Image();
+    img.src = 'pokemon.jpg'; // é necessário usar a imagem pokemon.jpg para funcionar corretamente.
+
+    img.onload = function() {
+
+        // pokemon_1
+        ctx.drawImage(img, 50, 10, 210, 250, 0, 0, 200, 200);
+
+        // pokemon_2
+        ctx.drawImage(img, 290, 5, 220, 250, 201, 0, 200, 200);
+
+        // pokemon_3
+        ctx.drawImage(img, 530, 5, 220, 250, 402, 0, 200, 200);
+
+        // pokemon_4
+        ctx.drawImage(img, 770, 5, 220, 250, 604, 0, 200, 200);
+
+    };
+
+}   
+
+--------------------------------------------------------------------------------    
+
+########################################################################
+#	salvando e restaurando  o stado do canvas com save() e restore()
+########################################################################
+
+Vamos aprender a a como gerenciar os estados do canvas com save() e restore().
+
+    a sintaxe do método é:
+
+	// salva o estado do contexto do canvas.
+	// Esse método NÃO POSSUI parâmetros.
+        ctx.save(); 
+
+
+Quando fazemos desenhos mais complexos ou até mesmo quando criamos um jogo, nós precisamos de uma forma de reverter novamente o canvas á um estado anterior. Vc pode querer gerenciar o estado atual do canvas ou um estado anterior do canvas. Felizmente, o canvas nos fornece acesso para gerenciar o estado do contexto do canvas. Nós podemos salvar e restaurar o estado do contexto em uma pilha, ou seja, o canvas armazena os estados dele em uma PILHA DE ESTADOS.
+
+Quando um estado do canvas é salvo (com o método save()), esse estado é colocado em uma pilha. 
+
+    OBS: nós podemos salvar vários estados, e esses estados ficarão armazenados em uma pilha de estados, mas, não se esqueça, essa é uma estrutura de pilha de dados, e O ESTADO que foi SALVADO PRIMEIRO IRÁ APARECER NA PARTE INFERIOR da PILHA e O ESTADO SALVO MAIS RECENTEMENTE, irá APARECER NO TOPO da PILHA. A estrutura da pilha de dados é uma estrutura (LIFO, last-in, first-out), ou seja, o último estado salvo, é o primeiro estado a ser manipulado.
+
+
+Se vc quiser manipular o último estado salvo (que é o estado mais recentemente salvo na pilha de estados), vc deve usar o método restore().
+
+    a sintaxe do método é:
+
+	// restaura o estado a partir da pilha de estados.
+	// esse método NÃO POSSUI parâmetros.
+        ctx.restore(); 
+
+
+
+Exemplo de como funciona salvar e restaurar um estado do canvas:
+
+
+    var canvas = document.getElementById('id-canvas');
+    var ctx = canvas.getContext('2d');
+
+    // ret1
+    ctx.fillStyle = 'red';
+    ctx.fillRect(240, 100, 120, 120);
+    ctx.save(); // primeiro estado salvo da pilha de estados (O PRIMEIRO estado salvo FICA COMO ÚLTIMO A SER MANIPULADO NA PILHA de estados).
+
+    // ret2
+    ctx.fillStyle = 'green';
+    ctx.fillRect(390, 100, 120, 120);
+    ctx.save(); // segundo estado salvo da pilha de estados (O SEGUNDO estado salvo FICA COMO PENULTIMO A SER MANIPULADO NA PILHA de estados).
+
+    // ret3
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(540, 100, 120, 120);
+    ctx.save(); // último estado salvo da pilha de estados (O ÚLTIMO estado salvo FICA COMO PRIMEIRO A SER MANIPULADO NA PILHA de estados).
+
+
+
+
+    // ret4
+    ctx.restore(); // último estado salvo da pilha de estados (O ÚLTIMO estado salvo fica como PRIMEIRO A SER MANIPULADO na pilha de estados).
+    ctx.fillRect(240, 300, 120, 120);
+
+    // ret5
+    ctx.restore(); // penultimo estado salvo da pilha de estados (O SEGUNDO estado salvo fica como POSTERIOR AO ÚLTIMO A SER MANIPULADO na pilha de estados).
+    ctx.fillRect(390, 300, 120, 120);
+
+    // ret6
+    ctx.restore(); // primeiro estado salvo da pilha de estados (O PRIMEIRO estado salvo fica como ÚLTIMO A SER MANIPULADO NA PILHA de estados).
+    ctx.fillRect(540, 300, 120, 120);
+
+
+
+
+#####################################################################
+#	criando padrão de repetição de imagem com createPattern()
+#####################################################################
+
+O métod createPattern() é usado para ciar padrões de repetição de imagem.
+    
+    a sintaxe do método é:
+    
+        ctx.createPattern(img, repetition);
+
+
+    os valores para repetição de padrão são:
+
+        // repeat: repete para ambos os lados
+	// repeat-x: repete somente na posição horizontal da tela do canvas.
+	// repeat-y: repete somente na posição vertical da tela do canvas.
+	// no-repeat: NÃO REPETE A IMAGEM nem em x e nem em y (deixa somente a imagem original).
+
+
+Exemplo de como funciona o padrão de repetição de imagem com createPattern():
+
+
+    var canvas = document.getElementById(id-canvas);
+    var ctx = canvas.getContext('2d');   
+
+
+    var patternImage = new Image();
+    patternImage.src = 'apple.png';
+
+    patternImage.onload = function() {
+	var pattern = ctx.createPattern(patternImage, 'repeat');
+	ctx.fillStyle = pattern;
+	ctx.fillRect(0, 0, 900, 450); //
+    };
+
+
+
+
+######################################################################
+#	criando gradiente no canvas com createLinearGradient() e createRadialGradient()
+######################################################################
+
+---------------------------
+ctx.createLinearGradient()
+---------------------------
+
+O método createLinearGradient() é usado para dar aquele efeito degradê nos objetos do canvas.
+
+    a sintaxe do método createLinearGradient() é:
+
+        ctx.createLinearGradient(x1, y2, x2, y2);
+
+
+	- os parâmetros (x1, y2) define as coordenadas do ponto inicial da transição gradient. 
+
+	- os parãmetros (x2, y2) definem as coordenadas do ponto final da transição gradient.
+
+
+
+Exemplo de como se cria gradiente com createLinearGradiente():
+
+    var canvas = document.getElementById(id-canvas);
+    var ctx = canvas.getContext('2d'); 
+
+    var gradient = ctx.createLinearGradient(240, 40, 660, 680); // os 2 PRIMEIROS PARÂMETROS são as coordenadas do CANTO SUPERIOR ESQUERDO do canvas e os 2 ÚLTIMOS PARÂMETROS são do CANTO INFERIOR DIREITO do canvas.
+
+
+    gradient.addColorStop(0, 'red'); // usado para especificar uma cor para o gradient.
+    gradient.addColorStop(0.25, 'blue');
+    gradient.addColorStop(0.5, 'green');
+    gradient.addColorStop(0.75, 'orange');
+    gradient.addColorStop(1, 'white');
+
+
+    // criando o quadrado na tela
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = 4;
+    ctx.fillStyle = 'red';
+    ctx.rect(240, 40, 420, 420);
+    ctx.stroke();
+    ctx.fill();
+
+
+
+-----------------------------------------------------------------------	
+
+--------------------------
+createRadialGradient()	
+--------------------------
+
+O método createRadialGradient() é usado para dar o efeito degradê de forma circular á um objeto no canvas.
+
+    a sintaxe do método createRadialGradient() é:
+
+	ctx.createRadialGradient(x1, y1, r1, x2, y2, r2);
+
+
+	- os parâmetros (x1, y1) são as coordenadas inicio do circulo da transição gradient.
+
+	- o parametro (r1) é o raio do inicio do circulo.
+
+	- os parametros (x2, y2) são as coordenadas do final da transição gradient do circulo.
+
+	- o parâmetro (r2) é o raio do final do circulo.
+
+
+
+Exemplo de como se cria gradiente com createRadialGradient():
+
+    var canvas = document.getElementById(id-canvas);
+    var ctx = canvas.getContext('2d'); 
+
+
+    var radialGradient = ctx.createRadialGradient(570, 380, 300, 570, 300, 10);
+
+
+     radialGradient.addColorStop(0, 'red');
+     radialGradient.addColorStop(0.25, 'blue');
+     radialGradient.addColorStop(0.5, 'green');
+     radialGradient.addColorStop(0.75, 'orange');
+     radialGradient.addColorStop(1, 'white');
+
+
+    // criando o quadrado na tela
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = 4;
+    ctx.fillStyle = 'red';
+    ctx.rect(240, 40, 420, 420);
+    ctx.stroke();
+    ctx.fill();
+
+
+ 
+####################################################
+#	transformação no canvas com scale()
+####################################################
+
+O método scale é usado para escalar o contexto atual de desenhos no canvas para um tamanho maior ou menor de acordo com nossa definição. Se vc escalar o contexto uma vez, todos os futuros desenhos a partir do primeiro scale() serão escalados subsequentemente. A posição, o  tamanho, tudo, será tbm escalado.
+
+    a sintaxe do método scale() é:
+
+	ctx.scale(fatorDeEscalaHorizontal, fatorDeEscalaVertical); // escala o CONTEXTO DO CANVAS, não os objetos ou desenhos, ESCALA O CONTEXTO DO CANVAS.
+
+	
+    os valores para escalar o contexto (É EM PORCENTAGEM):
+
+	// fatorDeEscalaHorizontal - escala a LARGURA do desenho atual para o contexto EM TERMOS DE PORCENTAGEM (1=100%. 0.5=50%, 2=200%, etc.).
+	// fatorDeEscalaVertical - escala a ALTURA do desenho atual para o contexto EM TERMOS DE PORCENTAGEM (1=100%, 0.5=50%, 2=200%, etc.).
+	
+	OBS: o VALOR PADRÃO de escala do canvas para a LARGURA e a ALTURA é 1.
+
+
+Exemplo:
+
+
+    var canvas = document.getElementById(id-canvas);
+    var ctx = canvas.getContext('2d');
+
+    //red rectangle
+    ctx.fillStyle = 'red';
+    ctx.fillRect(50, 50, 100, 40);
+    ctx.fill();
+
+    
+    ctx.scale(2, 2); //O desenho seguinte a esse scale() será posicionado DUAS VEZES MAIS LONGE DA ESQUERDA e DO TOPO do canvas. Os parâmetros (2, 2) significa -> (200%, 200%).
+
+
+    //blue rectangle
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(50, 50, 100, 40);
+    ctx.fill();
+
+
+    // scale
+    ctx.scale(2, 2);//O desenho seguinte a esse scale() será posicionado DUAS VEZES MAIS LONGE DA ESQUERDA e DO TOPO DO DESENHO ANTERIOR no canvas. Os parâmetros (2, 2) significa -> (200%, 200%).
+
+
+    //green rectangle
+    ctx.fillStyle = 'green';
+    ctx.fillRect(50, 50, 100, 40);
+    ctx.fill();
+
+        OBS: se vc criar mais de um retângulo e definir os valor dos métodos scale assim: scale(1, 1) (que é o valor padrão), os desenhos (nesse caso, os retângulos) ficarão SOBREPOSTOS, (ou seja, FICARÃO UM EM CIMA DO OUTRO).
+
+
+Como vc pôde ver no exemplo acima, nós definimos todos os parâmetros dos retângulos com os mesmos valores, mas eles estão em locais totalmente diferentes. O que acontece é que nós ESCALAMOS O CONTEXTO e os valores iniciados pelos retângulos NÃO TEM MAIS O MESMO SIGNIFICADO, então o valor 50 dos retângulos seguintes ao primeiro retângulo não é mais o valor 50, o valor 100 dos retângulos seguintes ao primeiro retângulo não é mais o valor 100, todos os valores são aprimorados. Todos os retângulos possui o mesmo valor, porém em locais diferentes.
+
+
+Podemos tbm dimensionar nosso contexto para os valores menores que o estado inicial. 
+
+Vamos diminuir o valor da escala para menos que 1 e observar a diminuição do contexto:
+
+    
+    var canvas = document.getElementById(id-canvas);
+    var ctx = canvas.getContext('2d');
+
+
+    //red rectangle
+    ctx.fillStyle = 'red';
+    ctx.fillRect(250, 250, 400, 160);
+    ctx.fill();
+
+    // scale
+    ctx.scale(0.5, 0.5);
+
+    //blue rectangle
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(250, 250, 400, 160);
+    ctx.fill();
+
+    // scale
+    ctx.scale(0.5, 0.5);
+
+    //green rectangle
+    ctx.fillStyle = 'green';
+    ctx.fillRect(250, 250, 400, 160);
+    ctx.fill();
+
+
+	OBS: se vc criar mais de um retângulo e definir os valores dos métodos scale com o valor entre (0 e 1), por exemplo: scale(0.3, 0.3), os  desenhos (nesse caso, os retângulos) ficarão de tamanho cada vez menores.     
+
+
+#############################################################
+#	rotacionando o contexto do canvas com rotate()
+#############################################################
+
+O método rotate() é utilizado para rotacionar o contexto do canvas.
+
+    a sintaxe do método rotate() é:
+
+        ctx.rotate(radian);
+
+
+	// o valor de para inserir em radian é a quantidade de rotação desejada.
+
+	OBS1: os desenhos ANTES DA ROTAÇÃO do canvas NÃO IRÃO SER AFETADOS PELA FUNÇÃO rotate().
+
+	OBS2: a rotação irá somente afetar TODOS OS DESENHOS feitos DEPOIS QUE A ROTAÇÃO É FEITA com a função rotate(). 
+
+	OBS3: lembre-se que o ponto do radiano começa sempre no CANTO SUPERIOR ESQUERDO do canvas.
+
+Exemplo:
+
+    var canvas = document.getElementById(id-canvas);
+    var ctx = canvas.getContext('2d');
+
+
+    //Rotate
+    ctx.rotate(50 * Math.PI / 180);
+
+
+    // Retangulo
+    ctx.fillStyle = 'red';
+    ctx.fillRect(250, 250, 400, 160);
+    ctx.fill();
+
+
+
+
+###########################################################################
+#	transladando a origem de um ponto inicial do canvas com translate()
+###########################################################################
+
+O método translate() do canvas muda a origem de um ponto inicial de um desenho no canvas para um outro local no canvas.
+
+    a sintaxe do método é:
+
+	ctx.translate(x, y);
+
+    
+    // x - move a origem do ponto inicial do valor de x na horizontal.
+    // y - move a origem do ponto inicial do valor de y na vertical.
+
+
+	OBS: (x, y) são as coordenadas do novo ponto inicial no canvas.
+
+
+Exemplo:
+
+    var canvas = document.getElementById(id-canvas);
+    var ctx = canvas.getContext('2d');
+
+    // Original Rectangle
+    ctx.fillStyle = 'red';
+    ctx.fillRect(50, 50, 160, 160);
+    ctx.fill();
+
+
+    ctx.translate(300, 200); // o ponto inicial (x,y) do TRANSLATED RECTANGLE será a posição (300 em x, 200 em y) na tela do canvas. 
+
+
+    // quadradinho SOMENTE PARA MOSTRAR ONDE O NOVO PONTO DO CONTEXTO FOI TRANSLADADO. 
+    ctx.fillStyle = 'yellow';
+    ctx.fillRect(2, 2, 5, 5);
+    ctx.fill();
+
+
+    // Translated Rectangle
+    ctx.fillStyle = 'red';
+    ctx.fillRect(50, 50, 160, 160);
+    ctx.fill();
+
+
+Entenda que, como o contexto foi transladado para a posição (300 em x, 200 em y), OS NOVOS DESENHOS SERÃO INSERIDOS NO CANVAS BASEADO NESSA NOVA POSIÇÃO do translate (que é nesse caso, 300 em x, 200 em y), (ou seja, A NOVA POSIÇÃO INICAL (x, y) do canvas para INSERIR NOVOS OBJETOS NA TELA,  COMEÇA EM (300 em x, 200 em y)).
+
+
+
+#################################################################
+#	usando transform() e setTransform()
+#################################################################
+
+-------------------
+ctx.transform()
+-------------------
+
+O método transform() é usado para transformar a forma de como um objeto será desenhado no canvas. O método transform() transforma O CONTEXTO A PARTIR DO PONTO INICIAL DO CONTEXTO CONFIGURADO ANTERIORMENTE.
+
+    a sintaxe do método transform() é:
+
+	ctx.transform(escaleX, skewX, skewY, scaleY, translate_X, translate_Y);
+
+
+	// escaleX - valor que representa A ESCALA DA DISTÂNCIA EM PORCENTAGEM ( NA POSIÇÃO x) DO OBJETO no canvas (valores: 1 representa 100% da largura (padrão), 0.5 = 50%, 0.3 = 30%, 1.5 = 150%, etc.).
+	// skewX - valor que representa a INCLINAÇÃO HORIZONTAL DO OBJETO no canvas (INCLINA PARA CIMA ou PARA BAIXO na tela).
+	// skewY - valor que representa a INCLINAÇÃO VERTICAL  DO OBJETO no canvas (INCLINA PARA A ESQUERDA ou PARA A DIREITA na tela).
+	// scaleY - valor que representa A ESCALA DA DISTÂNCIA EM PORCENTAGEM (NA POSIÇÃO y) DO OBJETO no canvas (valores: 1 representa 100% da largura (padrão), 0.5 = 50%, 0.3 = 30%, 1.5 = 150%, etc.).
+	// translate_X - valor que representa POSIÇÃO X EM QUE O OBJETO SERÁ INSERIDO no canvas.
+	// translate_Y - valor que representa POSIÇÃO y EM QUE O OBJETO SERÁ INSERIDO no canvas.
+
+	OBS: a transformação SOMENTE IRÁ AFETAR DESENHOS FEITOS DEPOIS QUE O MÉTODO setTransform() FOR CHAMADO.
+
+
+Exemplo de como funciona o método transform():
+
+    var canvas = document.getElementById(id-canvas);
+    var ctx = canvas.getContext('2d');
+
+    
+    // red retangulo
+    ctx.fillStyle = 'red';
+    ctx.fillRect(150, 150, 200, 100);
+    ctx.fill();
+
+
+    // Scale Transform
+    ctx.transform(1.5, 0, 0, 1.5, 0, 0); // usando o método transform() como se fosse o método scale().
+
+
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(150, 150, 200, 100);
+    ctx.fill();
+
+
+    // Scale Transform
+    ctx.transform(1.5, 0, 0, 1.5, 0, 0); // usando o método transform() como se fosse o método scale().
+
+
+    ctx.fillStyle = 'green';
+    ctx.fillRect(150, 150, 200, 100);
+    ctx.fill();
+
+
+	OBS: a única diferença no código acima são os diferentes contextos dos desenhos, pq nós estamos usando o método transform() (ESTAMOS USANDO O MÉTODO transform() COMO SE FOSSE O MÉTODO scale()) para ESCALARMOS O CONTEXTO do canvas Á CADA MÉTODO transform() INSERIDO NO CÓDIGO acima. Repare que todos os retângulos possuem a mesma posição (x, y, largura, altura), mas o contexto é aprimorado, por isso, os retângulos estão em diferentes localidades no canvas. 
+
+
+Até agora, aprendemos os métodos scale(), rotate() e translate(). Todas essas funções são para manipular a matriz do contexto canvas (ou seja, para manipular os objetos criados na área da tela do canvas). Sempre que vc desenhar qualquer coisa na tela do canvas, seja formato de texto ou imagem, o navegador aplica a matriz de transfomação para o objeto que vc está desenhando. Quando vc usa as funções: scale(), translate() ou rotate(), vc está MUDANDO A TRANSFORMAÇÃO DA MATRIZ, portanto VC ESTÁ AFETANDO TODOS OS FUTUROS DESENHOS. Nós PODEMOS USAR AS MESMAS FUNCIONALIDADES DE scale(), translate() e rotate() EM UM SÓ MÉTODO, QUE É O MÉTODO transform(). A única razão de ter sido criado os métodos scale(), translate() ou rotate(), foi para diminuir a complexidade de edição da transformação da matriz no contexto.
+
+
+Com o método transform(), Nós podemos escalar o contexto da mesma forma que o método scale(sx,sy). 
+
+Exemplo:
+
+    usando o método scale():
+    
+	scale(sx,sy)
+
+
+    usando o método transform():
+
+	transform(sx, 0, 0, sy, 0, 0);
+
+
+
+
+Com o método transform(), Nós podemos transladar o contexto da mesma forma que o método rotate().
+
+Exemplo:
+
+    usando o método translate():
+
+	rotate(x, y);
+
+
+    usando o método transform():
+
+	transform(cosseno, seno, -seno, -cosseno, 0, 0):
+
+
+
+
+Com o método transform(), Nós podemos transladar o contexto da mesma forma que o método translate().
+
+Exemplo:
+
+    usando o método translate():
+
+	translate(x, y);
+
+
+    usando o método transform():
+
+	transform(1, 0, 0, 1, x, y):
+
+
+
+Com o método transform(), Nós podemos inclinar o contexto da mesma forma que o método skew(x, y).
+
+Exemplo:
+
+    usando o método rotate():
+
+	skew(x, y);
+
+
+    usando o método transform():
+
+	transform(1, x, y, 1, 0, 0):
+
+
+uma vez que vc usar o metodo transform(), a transformação da matriz será atualizada para um novo local na tela do canvas e se vc usar o método transform() novamente, atualizará novamente para um novo local e assim por diante.
+
+
+Então, essas são as funcionalidade que vc pode fazer com o método transform().
+
+
+----------------------------------------------------------------------
+
+--------------------
+ctx.setTransform()
+--------------------
+
+Se nós quisermos INICIAR A TRANSFORMAÇÃO DE CADA OBJETO A PARTIR DO INICIO DO CONTEXTO PARA CADA OPERAÇÃO, USAREMOS O MÉTODO setTransform(). 
+
+
+A diferença entre transform() e setTransform() é a abordagem da transformação.
+
+	o método transform() continua A PARTIR DO ATUAL CONTEXTO.
+
+	o método setTransform() continua A PARTIR DO INICIO DO CONTEXTO.
+
+
+Essa é a principal diferença entre transform() e setTransform().
+
+
+
+    a sintaxe do método setTransform() é:
+
+	setTransform(escaleX, skewX, skewY, scaleY, translate_X, translate_Y);
+
+
+         // escaleX - valor que representa A ESCALA DA DISTÂNCIA EM PORCENTAGEM ( NA POSIÇÃO x) DO OBJETO no canvas (valores: 1 representa 100% da largura (padrão), 0.5 = 50%, 0.3 = 30%, 1.5 = 150%, etc.).
+	// skewX - valor que representa a INCLINAÇÃO HORIZONTAL DO OBJETO no canvas (INCLINA PARA CIMA ou PARA BAIXO na tela).
+	// skewY - valor que representa a INCLINAÇÃO VERTICAL  DO OBJETO no canvas (INCLINA PARA A ESQUERDA ou PARA A DIREITA na tela).
+	// scaleY - valor que representa A ESCALA DA DISTÂNCIA EM PORCENTAGEM (NA POSIÇÃO y) DO OBJETO no canvas (valores: 1 representa 100% da largura (padrão), 0.5 = 50%, 0.3 = 30%, 1.5 = 150%, etc.).
+	// translate_X - valor que representa POSIÇÃO X EM QUE O OBJETO SERÁ INSERIDO no canvas.
+	// translate_Y - valor que representa POSIÇÃO y EM QUE O OBJETO SERÁ INSERIDO no canvas.
+
+
+Exemplo de como funciona o método setTransform():
+
+    var canvas = document.getElementById(id-canvas);
+    var ctx = canvas.getContext('2d');
+
+
+       // red retangulo
+       ctx.fillStyle = 'red';
+       ctx.fillRect(150, 150, 200, 100);
+       ctx.fill();
+
+
+       // Scale Transform
+       ctx.setTransform(1.5, 0, 0, 1.5, 0, 0); // usando o método setTransform() como se fosse o método scale().
+
+
+       ctx.fillStyle = 'blue';
+       ctx.fillRect(150, 150, 200, 100);
+       ctx.fill();
+
+
+       // Scale Transform
+       ctx.setTransform(1.5, 0, 0, 1.5, 0, 0); // usando o método setTransform() como se fosse o método scale().
+
+
+       ctx.fillStyle = 'green';
+       ctx.fillRect(150, 150, 200, 100);
+       ctx.fill();
+
+
+--------------------------------------------------------------------------
+
+----------------
+resetTransform();
+----------------
+
+A função resetTransform() reconfigura a atual matriz para a identidade da matriz.
+
+    OBS:nós podemos usar a função setTransform() dessa forma para reconfigurar a atual matriz para a identidade da matriz, assim:
+
+        setTransform(1, 0, 0, 1, 0, 0);
+
+usando o método setTransform() DA FORMA EXIBIDA LOGO ACIMA, o método setTransform() TERÁ O MESMO EFEITO QUE O MÉTODO resetTransform().
+
+
+    a sintaxe desse método resetTransform() é:
+
+	ctx.resetTransform(); // esse método não possui parâmetro(s).
+
+
+Exemplo de como funciona o método resetTransform():
+
+        var canvas = document.getElementById(id-canvas);
+        var ctx = canvas.getContext('2d');
+
+
+       
+       // red retangulo
+       ctx.fillStyle = 'red';
+       ctx.fillRect(150, 150, 200, 100);
+       ctx.fill();
+
+
+       // Scale Transform
+       ctx.resetTransform(1.5, 0, 0, 1.5, 0, 0); // usando o método transform() como se fosse o método scale().
+
+       // POR CAUSA DO MÉTODO resetTransform() ACIMA, esse retângulo azul FICARÁ SOBREPOSTO EM CIMA do retângulo vermelho.
+       ctx.fillStyle = 'blue';
+       ctx.fillRect(150, 150, 200, 100);
+       ctx.fill();
+
+
+       // Scale Transform
+       ctx.transform(1.5, 0, 0, 1.5, 0, 0); // usando o método transform() como se fosse o método scale().
+
+       // POR CAUSA DO MÉTODO transform() ACIMA, esse retângulo verde FICARÁ A UMA DISTÂNCIA de 150% em x, 150% em y, dos outros retângulos.
+       ctx.fillStyle = 'green';
+       ctx.fillRect(150, 150, 200, 100);
+       ctx.fill();
+
+       ctx.resetTransform(1.5, 0, 0, 1.5, 0, 0); // usando o método transform() como se fosse o método scale().
+
+       // POR CAUSA DO MÉTODO resetTransform() ACIMA, esse retângulo azul FICARÁ SOBREPOSTO EM CIMA DOS RETÂNGULOS azul e vermelho.
+       ctx.fillStyle = 'purple';
+       ctx.fillRect(150, 150, 200, 100);
+       ctx.fill();
+
+
+
+
+#################################################################   
+#	Fazendo Física com animações no canvas
+#################################################################
+
+Primeiramente, vamo aprender a como desenhar um objeto no canvas com esses 3 arquivos: index.html, ball.js e canvas.js.
+
+    Exemplo de como criar um objeto e desenhar no canvas:
+
+====================
+arquivo: index.html 
+====================
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            canvas {
+                border: 5px solid yellow;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="id-canvas" ></canvas>
+
+    <!-- Os OBJETOS criados em um arquivo externo javascript (como por exemplo, o arquivo ball.js) TEM SEMPRE QUE SER
+            INSERIDOS ANTES DO CÓDIGO PRINCIPAL do javascript (o código principal, no caso, é o canvas.js) -->
+        <script src="ball.js"></script>
+        <script src="canvas.js"></script>
+
+    </body>
+    </html>
+
+---------------------------------------------------------------------
+
+=====================
+arquivo: ball.js
+=====================
+
+    function Ball(radius, color) {
+
+        this.r = radius || 10;  // raio da bola
+        this.c = color || 'red'; // cor da bola
+        this.x = 0;  // x do objeto
+        this.y = 0;  // y do objeto
+        this.m = 0; // valor do momentum de colisão com outro objeto
+        this.vx = 0;  // velocidade da direção x da bola
+        this.vy = 0;  // velocidade da direção y da bola
+        // this.context = null; // contexto para desenhar a bola.
+
+        this.draw = function() {
+
+            ctx.beginPath();
+            ctx.fillStyle = this.c; // adiciona a cor
+            ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI); // cria o arco a partir dos atributos definidos na classe.
+            ctx.fill(); // preenche o circulo com a cor em ctx.fillStyle = this.c
+
+        }
+    };
+
+---------------------------------------------------------------------
+
+=====================
+arquivo: canvas.js
+=====================
+
+    var canvas, ctx;
+
+    canvas = document.getElementById('id-canvas');
+    canvas.width = 900; //window.innerWidth;
+    canvas.height = 600; //window.innerHeight;
+    ctx = canvas.getContext('2d');
+
+
+    // criamos uma instância da classe Ball
+    ball = new Ball(30, 'purple'); // definimos o raio da bola e a cor da bola.
+    ball.x = 400; // atribuimos o valor de x para a bola.
+    ball.y = 320; // atribuimos o valor de y para a bola.
+
+    ball.draw(); // desenha o círculo na tela do canvas.
+
+
+
+
+############################################################
+#	Adicionado velocidade em um objeto
+############################################################
+
+O que é velocidade?, velocidade é a TAXA DE MUDANÇA DE POSIÇÃO DE UM OBJETO. Velocidade tem um grau de intensidade e de direção.
+
+    Exemplo de como adicionar velocidade á um objeto com esses 3 arquivos: index.html, ball.js e canvas.js.
+
+====================
+arquivo: index.html 
+====================
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            canvas {
+                border: 5px solid yellow;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="id-canvas" ></canvas>
+
+    <!-- Os OBJETOS criados em um arquivo externo javascript (como por exemplo, o arquivo ball.js) TEM SEMPRE QUE SER
+            INSERIDOS ANTES DO CÓDIGO PRINCIPAL do javascript (o código principal, no caso, é o canvas.js) -->
+        <script src="ball.js"></script>
+        <script src="canvas.js"></script>
+
+    </body>
+    </html>
+
+---------------------------------------------------------------------
+
+=====================
+arquivo: ball.js
+=====================
+
+    function Ball(radius, color) {
+
+        this.r = radius || 10;  // raio da bola
+        this.c = color || 'red'; // cor da bola
+        this.x = 0;  // x do objeto
+        this.y = 0;  // y do objeto
+        this.m = 0; // valor do momentum de colisão com outro objeto
+        this.vx = 0;  // velocidade da direção x da bola
+        this.vy = 0;  // velocidade da direção y da bola
+        // this.context = null; // contexto para desenhar a bola.
+
+        this.draw = function() {
+
+            ctx.beginPath();
+            ctx.fillStyle = this.c; // adiciona a cor
+            ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI); // cria o arco a partir dos atributos definidos na classe.
+            ctx.fill(); // preenche o circulo com a cor em ctx.fillStyle = this.c
+
+        }
+    };
+
+---------------------------------------------------------------------
+
+=====================
+arquivo: canvas.js
+=====================
+
+
+    var canvas, ctx;
+
+    canvas = document.getElementById('id-canvas');
+    canvas.width = 900; //window.innerWidth;
+    canvas.height = 600; //window.innerHeight;
+    ctx = canvas.getContext('2d');
+
+
+    // criamos uma instância da classe Ball
+    ball = new Ball(30, 'purple'); // definimos o raio da bola e a cor da bola.
+    ball.x = 100; // atribuimos o valor de x para a bola.
+    ball.y = 150; // atribuimos o valor de y para a bola.
+
+    ball.draw(); // desenha o círculo na tela do canvas.
+
+    // Velocidade
+    ball.vel_x = 1; // aumenta a velocidade na posição x . Se vc definir um valor negativo, o objeto andará na posição contrária.
+    ball.vel_y = 1; // aumenta a velocidade na posição y . Se vc definir um valor negativo, o objeto andará na posição contrária.
+
+    // OBS: NÃO CONFUNDA velocidade com aceleração. VELOCIDADE é uma CONSTANTE, ACELERAÇÃO AUMENTA a VELOCIDADE ;D.
+
+    function animationLoop() {
+
+        //Limpa o canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        //Atualiza
+        // ball.x = ball.x + ball.vel_x;
+        ball.y = ball.y + ball.vel_y;
+
+        // Desenha
+        ball.draw();
+
+        // Animação
+
+
+        window.requestAnimationFrame(animationLoop);
+    }
+
+    animationLoop();
+
+
+
+##############################################################
+#	Adicionando aceleração a um objeto
+##############################################################
+
+O que é aceleração?, é a taxa de mudança de velocidade de um objeto com uma respectiva velocidade.
+
+Exemplo de como adicionar aceleração á um objeto com esses 3 arquivos: index.html, ball.js e canvas.js.
+
+====================
+arquivo: index.html 
+====================
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            canvas {
+                border: 5px solid yellow;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="id-canvas" ></canvas>
+
+    <!-- Os OBJETOS criados em um arquivo externo javascript (como por exemplo, o arquivo ball.js) TEM SEMPRE QUE SER
+            INSERIDOS ANTES DO CÓDIGO PRINCIPAL do javascript (o código principal, no caso, é o canvas.js) -->
+        <script src="ball.js"></script>
+        <script src="canvas.js"></script>
+
+    </body>
+    </html>
+
+---------------------------------------------------------------------
+
+=====================
+arquivo: ball.js
+=====================
+
+    function Ball(radius, color) {
+
+        this.r = radius || 10;  // raio da bola
+        this.c = color || 'red'; // cor da bola
+        this.x = 0;  // x do objeto
+        this.y = 0;  // y do objeto
+        this.m = 0; // valor do momentum de colisão com outro objeto
+        this.vx = 0;  // velocidade da direção x da bola
+        this.vy = 0;  // velocidade da direção y da bola
+        // this.context = null; // contexto para desenhar a bola.
+
+        this.draw = function() {
+
+            ctx.beginPath();
+            ctx.fillStyle = this.c; // adiciona a cor
+            ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI); // cria o arco a partir dos atributos definidos na classe.
+            ctx.fill(); // preenche o circulo com a cor em ctx.fillStyle = this.c
+
+        }
+    };
+
+---------------------------------------------------------------------
+
+=====================
+arquivo: canvas.js
+=====================
+
+    var canvas, ctx;
+
+    canvas = document.getElementById('id-canvas');
+    canvas.width = 900; //window.innerWidth;
+    canvas.height = 600; //window.innerHeight;
+    ctx = canvas.getContext('2d');
+
+    // criamos uma instância da classe Ball
+    ball = new Ball(20, 'green'); // definimos o raio da bola e a cor da bola.
+    ball.x = 100; // atribuimos o valor de x para a bola.
+    ball.y = 250; // atribuimos o valor de y para a bola.
+
+    ball.draw(); // desenha o círculo na tela do canvas.
+
+    // Velocidade
+    ball.vel_x = 1; // aumenta a velocidade na posição x. Se vc definir um valor negativo, o objeto andará na posição contrária.
+    ball.vel_y = 1; // aumenta a velocidade na posição y. Se vc definir um valor negativo, o objeto andará na posição contrária.
+    // OBS: NÃO CONFUNDA velocidade com aceleração. VELOCIDADE é uma CONSTANTE, ACELERAÇÃO AUMENTA a VELOCIDADE ;D.
+
+    // ACELERAÇÃO
+    var acc_x = 0.05; // aumenta a aceleração na posição x. Se vc definir um valor negativo, o objeto andará na posição contrária.
+    var acc_y = 0.05; // aumenta a aceleração na posição y. Se vc definir um valor negativo, o objeto andará na posição contrária.
+
+    function animationLoop() {
+
+        //Limpa o canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        //Atualiza
+            // aceleração horizontal
+            //ball.vel_x = ball.vel_x + acc_x;
+            //ball.x = ball.x + ball.vel_x;
+
+            // aceleração vertical
+            ball.vel_y = ball.vel_y + acc_y;
+            ball.y = ball.y + ball.vel_y;
+
+        // Desenha
+        ball.draw();
+
+        // Animação
+
+
+        window.requestAnimationFrame(animationLoop);
+    }
+
+    animationLoop();
+
+
+
+################################################################
+#	projeção vertical de um objeto
+################################################################
+
+
+====================
+arquivo: index.html
+====================
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            canvas {
+                border: 5px solid yellow;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="id-canvas" ></canvas>
+
+    <!-- Os OBJETOS criados em um arquivo externo javascript (como por exemplo, o arquivo ball.js) TEM SEMPRE QUE SER
+            INSERIDOS ANTES DO CÓDIGO PRINCIPAL do javascript (o código principal, no caso, é o canvas.js) -->
+        <script src="ball.js"></script>
+        <script src="canvas.js"></script>
+
+    </body>
+    </html>
+
+
+
+----------------------------------------------------------------
+
+===================
+arquivo: ball.js
+===================
+
+
+    function Ball(radius, color) {
+
+        this.r = radius || 10;  // raio da bola
+        this.c = color || 'red'; // cor da bola
+        this.x = 0;  // x do objeto
+        this.y = 0;  // y do objeto
+        this.m = 0; // valor do momentum de colisão com outro objeto
+        this.vx = 0;  // velocidade da direção x da bola
+        this.vy = 0;  // velocidade da direção y da bola
+        // this.context = null; // contexto para desenhar a bola.
+
+        this.draw = function() {
+
+            ctx.beginPath();
+            ctx.fillStyle = this.c; // adiciona a cor
+            ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI); // cria o arco a partir dos atributos definidos na classe.
+            ctx.fill(); // preenche o circulo com a cor em ctx.fillStyle = this.c
+
+        }
+    };
+
+
+
+------------------------------------------------------------------
+
+
+======================
+arquivo: canvas.js
+======================
+
+    var canvas, ctx;
+
+    canvas = document.getElementById('id-canvas');
+    canvas.width = 900; //window.innerWidth;
+    canvas.height = 600; //window.innerHeight;
+    ctx = canvas.getContext('2d');
+
+    // Gravidade
+    var grav = 0.098
+
+    // criamos uma instância da classe (ball 1)
+    ball1 = new Ball(20, 'blue'); // definimos o raio da bola e a cor da bola.
+    ball1.x = 100; // atribuimos o valor de x para a bola.
+
+    ball1.y = 80; // atribuimos o valor de y para a bola.
+    ball1.draw(); // desenha o círculo na tela do canvas.
+
+    // criamos uma instância da classe (ball 2)
+    ball2 = new Ball(20, 'green'); // definimos o raio da bola e a cor da bola.
+    ball2.x = 300; // atribuimos o valor de x para a bola.
+    ball2.y = 80; // atribuimos o valor de y para a bola.
+
+    ball2.draw(); // desenha o círculo na tela do canvas.
+
+    // criamos uma instância da classe (ball 3)
+    ball3 = new Ball(20, 'red'); // definimos o raio da bola e a cor da bola.
+    ball3.x = 500; // atribuimos o valor de x para a bola.
+    ball3.y = 500; // atribuimos o valor de y para a bola.
+
+    ball3.draw(); // desenha o círculo na tela do canvas.
+
+
+
+    // Velocidade
+    ball1.vel_y = 0; // velocidade na posição y. Se vc definir um valor negativo, o objeto andará na posição contrária.
+    ball2.vel_y = 2; // aumenta a velocidade na posição y. Se vc definir um valor negativo, o objeto andará na posição contrária.
+    ball3.vel_y = -10; // vai primeiro na posição em y negativo (velocidade contrária em y), depois POR CAUSA DO VALOR POSITIVO EM grav, COMEÇA A IR NA DIREÇÃO POSITIVA do eixo y.
+    // OBS: NÃO CONFUNDA velocidade com aceleração. VELOCIDADE é uma CONSTANTE, ACELERAÇÃO AUMENTA a VELOCIDADE ;D.
+
+
+    function animationLoop() {
+
+        //Limpa o canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        //Atualiza
+            // gravidade (vertical)
+            ball1.vel_y = ball1.vel_y + grav; // aqui estamos simulando a gravidade (SEM UMA VELOCIDADE INICIAL) no objeto bola1.
+            ball1.y = ball1.y + ball1.vel_y;
+
+            ball2.vel_y = ball2.vel_y + grav; // aqui estamos simulando a gravidade (COM UMA VELOCIDADE INICIAL) no objeto bola1.
+            ball2.y = ball2.y + ball2.vel_y;
+
+            ball3.vel_y = ball3.vel_y + grav; // aqui estamos simulando a gravidade (COM UMA VELOCIDADE INICIAL NEGATIVA, PARA DEPOIS IR PARA UMA VELOCIDADE POSITIVA) no objeto bola1.
+            ball3.y = ball3.y + ball3.vel_y;
+
+		// OBS: COMO PODEMOS VER NAS 3 BOLAS ACIMA, SIMULAMOS 3 PROJEÇÕES VERTICAIS DIFERENTES. ESTAS SÃO AS FÍSICAS BÁSICAS PARA MOVIMENTO VERTICAL COM GRAVIDADE.
+
+        // Desenha
+        ball1.draw();
+        ball2.draw();
+        ball3.draw();
+
+        // Animação
+
+
+        window.requestAnimationFrame(animationLoop);
+    }
+
+    animationLoop();
+
+
+
+
+###################################################################
+#	Projeção Horizontal e projeção angular
+###################################################################
+
+
+Exemplo de como funciona a PROJEÇÃO HORIZONTAL:
+
+
+====================
+arquivo: index.html
+====================
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            canvas {
+                border: 5px solid yellow;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="id-canvas" ></canvas>
+
+    <!-- Os OBJETOS criados em um arquivo externo javascript (como por exemplo, o arquivo ball.js) TEM SEMPRE QUE SER
+            INSERIDOS ANTES DO CÓDIGO PRINCIPAL do javascript (o código principal, no caso, é o canvas.js) -->
+        <script src="ball.js"></script>
+        <script src="canvas.js"></script>
+
+    </body>
+    </html>
+
+
+
+----------------------------------------------------------------
+
+===================
+arquivo: ball.js
+===================
+
+
+    function Ball(radius, color) {
+
+        this.r = radius || 10;  // raio da bola
+        this.c = color || 'red'; // cor da bola
+        this.x = 0;  // x do objeto
+        this.y = 0;  // y do objeto
+        this.m = 0; // valor do momentum de colisão com outro objeto
+        this.vx = 0;  // velocidade da direção x da bola
+        this.vy = 0;  // velocidade da direção y da bola
+        // this.context = null; // contexto para desenhar a bola.
+
+        this.draw = function() {
+
+            ctx.beginPath();
+            ctx.fillStyle = this.c; // adiciona a cor
+            ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI); // cria o arco a partir dos atributos definidos na classe.
+            ctx.fill(); // preenche o circulo com a cor em ctx.fillStyle = this.c
+
+        }
+    };
+
+
+
+------------------------------------------------------------------
+
+=======================
+arquivo: canvas.js
+=======================
+
+
+    var canvas, ctx;
+
+    canvas = document.getElementById('id-canvas');
+    canvas.width = 900; //window.innerWidth;
+    canvas.height = 600; //window.innerHeight;
+    ctx = canvas.getContext('2d');
+
+    // Gravidade
+    var grav = 0.098
+
+    // criamos uma instância da classe (ball 1)
+    ball1 = new Ball(20, 'blue'); // definimos o raio da bola e a cor da bola.
+    ball1.x = 90; // atribuimos o valor de x para a bola.
+
+    ball1.y = 50; // atribuimos o valor de y para a bola.
+    ball1.draw(); // desenha o círculo na tela do canvas.
+
+
+    // Velocidade
+    ball1.vel_x = 5;
+    ball1.vel_y = 0; // velocidade na posição y. Se vc definir um valor negativo, o objeto andará na posição contrária.
+       // OBS: NÃO CONFUNDA velocidade com aceleração. VELOCIDADE é uma CONSTANTE, ACELERAÇÃO AUMENTA a VELOCIDADE ;D.
+
+
+    function animationLoop() {
+
+        //Limpa o canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        //Atualiza
+            // gravidade
+            ball1.x = ball1.x + ball1.vel_x; // velocidade em x da bola1.
+            ball1.vel_y = ball1.vel_y + grav; // aqui estamos simulando a gravidade (SEM UMA VELOCIDADE INICIAL) no objeto bola1.
+            ball1.y = ball1.y + ball1.vel_y; // e atribuindo a gravidade no y da bola.
+            
+
+        // Desenha
+        ball1.draw();
+
+
+        // Animação
+
+
+        window.requestAnimationFrame(animationLoop);
+    }
+
+    animationLoop();
+
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+Exemplo de como funciona a PROJEÇÃO ANGULAR:
+
+
+====================
+arquivo: index.html
+====================
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            canvas {
+                border: 5px solid yellow;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="id-canvas" ></canvas>
+
+    <!-- Os OBJETOS criados em um arquivo externo javascript (como por exemplo, o arquivo ball.js) TEM SEMPRE QUE SER
+            INSERIDOS ANTES DO CÓDIGO PRINCIPAL do javascript (o código principal, no caso, é o canvas.js) -->
+        <script src="ball.js"></script>
+        <script src="canvas.js"></script>
+
+    </body>
+    </html>
+
+
+
+----------------------------------------------------------------
+
+===================
+arquivo: ball.js
+===================
+
+
+    function Ball(radius, color) {
+
+        this.r = radius || 10;  // raio da bola
+        this.c = color || 'red'; // cor da bola
+        this.x = 0;  // x do objeto
+        this.y = 0;  // y do objeto
+        this.m = 0; // valor do momentum de colisão com outro objeto
+        this.vx = 0;  // velocidade da direção x da bola
+        this.vy = 0;  // velocidade da direção y da bola
+        // this.context = null; // contexto para desenhar a bola.
+
+        this.draw = function() {
+
+            ctx.beginPath();
+            ctx.fillStyle = this.c; // adiciona a cor
+            ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI); // cria o arco a partir dos atributos definidos na classe.
+            ctx.fill(); // preenche o circulo com a cor em ctx.fillStyle = this.c
+
+        }
+    };
+
+
+
+------------------------------------------------------------------
+
+===================
+arquivo: canvas.js
+===================
+
+    var canvas, ctx;
+
+    canvas = document.getElementById('id-canvas');
+    canvas.width = 900; //window.innerWidth;
+    canvas.height = 600; //window.innerHeight;
+    ctx = canvas.getContext('2d');
+
+    // Gravidade
+    var grav = 0.098
+
+    // criamos uma instância da classe (ball 2)
+    ball2 = new Ball(20, 'green'); // definimos o raio da bola e a cor da bola.
+    ball2.x = 90; // atribuimos o valor de x para a bola.
+    ball2.y = 550; // atribuimos o valor de y para a bola.
+
+    ball2.draw(); // desenha o círculo na tela do canvas.
+
+    // Velocidade
+    ball2.vel_x = 4; // aumenta a velocidade na posição y. Se vc definir um valor negativo, o objeto andará na posição contrária.
+    ball2.vel_y = -9; // vai primeiro na velocidade contrária em y, depois por causa do valor positivo em grav, começa a ir na direção positiva do eixo y.
+    // OBS: NÃO CONFUNDA velocidade com aceleração. VELOCIDADE é uma CONSTANTE, ACELERAÇÃO AUMENTA a VELOCIDADE ;D.
+
+
+    function animationLoop() {
+
+        //Limpa o canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        //Atualiza
+            // gravidade
+            ball2.x = ball2.x + ball2.vel_x; // velocidade em x da bola2.
+            ball2.vel_y = ball2.vel_y + grav; // aqui estamos simulando a gravidade COM UMA VELOCIDADE INICIAL) no objeto bola1.
+            ball2.y = ball2.y + ball2.vel_y; // e atribuindo a gravidade no y da bola.
+
+        // Desenha
+        ball2.draw();
+        
+        // Animação
+
+
+        window.requestAnimationFrame(animationLoop);
+    }
+
+    animationLoop();
+
+
+
+
+############################################################
+#	Momentum em one direction
+############################################################
+
+Momentum é o produto da MASSA e da VELOCIDADE de um OBJETO. Isso é muito importante e precisa de ser conservado. O que eu quero dizer é que o momento total é sempre conservado: antes da colisão, durante a colisão e depois da colisão.
+
+    OBS: existe uma FORMULA PARA CALCULAR A MASSA de um objeto e existe uma FORMULA PARA CALCULAR A VELOCIDADE de um objeto.
+
+
+=====================
+arquivo: index.html
+=====================
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            canvas {
+                border: 5px solid yellow;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="id-canvas"></canvas>
+
+    <!-- Os OBJETOS criados em um arquivo externo javascript (como por exemplo, o arquivo ball.js) TEM SEMPRE QUE SER
+            INSERIDOS ANTES DO CÓDIGO PRINCIPAL do javascript (o código principal, no caso, é o canvas.js) -->
+
+        <script src="ball.js"></script>
+        <script src="canvas.js"></script>
+
+    </body>
+    </html>
+
+
+------------------------------------------------------------
+
+==========================
+arquivo: ball.js
+==========================
+
+
+function Ball(radius, color) {
+
+
+  // Specifications
+  this.r = radius || 10;         // ball radius
+  this.c = color || 'red';       // ball color
+  this.x = 0;                    // center x
+  this.y = 0;                    // center y
+  this.m = 0;                    // mass
+  this.vx = 0;                   // velocity of x direction of ball
+  this.vy = 0;                   // velocity of y direction of ball
+  //ball.context = null            // the drawing context of ball
+
+
+  this.draw = function () {
+
+
+      ctx.beginPath();
+      ctx.fillStyle = this.c;
+      ctx.arc(this.x, this.y,this.r, 0, 2 * Math.PI);
+      ctx.fill();
+  }
+}
+
+
+
+------------------------------------------------------
+
+======================
+arquivo: canvas.js
+======================
+
+
+  var canvas, ctx;
+
+  // Definitions
+  canvas = document.getElementById("id-canvas");
+  canvas.width = 900; //window.innerWidth;
+  canvas.height = 600; //window.innerHeight;
+  ctx = canvas.getContext("2d");
+
+  // Large Ball
+  var ball1 = new Ball(50, 'blue');  // definimos o raio da bola e a cor da bola.
+  ball1.x = 290; // atribuimos o valor de x para a bola.
+  ball1.y = 250; // atribuimos o valor de y para a bola.
+  ball1.m = 100; // massa (peso) do objeto.
+  ball1.draw(); // desenha o círculo na tela do canvas.
+
+  // Small Ball
+  var ball2 = new Ball(30, 'green');
+  ball2.x = 550; // atribuimos o valor de x para a bola.
+  ball2.y = 250; // atribuimos o valor de y para a bola.
+  ball2.m = 6; // massa (peso) do objeto.
+  ball2.draw(); // desenha o círculo na tela do canvas.
+
+
+
+  // Velocity
+  ball1.vel_x = 5;
+  ball2.vel_x = -10;
+
+  function animationLoop() {
+
+    // Clear Canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Update
+    ball1.x = ball1.x + ball1.vel_x; // atribui velocidade a posição x do objeto1.
+    ball2.x = ball2.x + ball2.vel_x; // atribui velocidade a posição x do objeto2.
+
+    // Detect Ball Collisions
+	// a DIFERENÇA DAS COORDENADAS x dos objetos DEVE SER MENOR QUE O TOTAL DOS RAIOS deles.
+    if(Math.abs(ball1.x - ball2.x) < ball1.r + ball2.r){
+      // New Velocity of Ball 1 After Collision
+      var v1 = ((ball1.m - ball2.m) * ball1.vel_x) / (ball1.m + ball2.m);
+          v1 += (2 * ball2.m * ball2.vel_x) / (ball1.m + ball2.m);
+
+      // New Velocity of Ball 2 After Collision
+      var v2 = ((ball2.m - ball1.m) * ball2.vel_x) / (ball2.m + ball1.m);
+          v2 += (2 * ball1.m * ball1.vel_x) / (ball1.m + ball2.m);
+
+      // atribui as novas velocidades aos objetos
+      ball1.vel_x = v1;
+      ball2.vel_x = v2;
+    }
+
+    // Detect Edge Collisions
+    if(ball1.x + ball1.r > canvas.width || ball1.x - ball1.r < 0){
+      ball1.vel_x *= -1;
+    }
+
+    if(ball2.x + ball2.r > canvas.width || ball2.x - ball2.r < 0){
+      ball2.vel_x *= -1;
+    }
+
+    // Draw
+    ball1.draw();
+    ball2.draw();
+
+    // Animate
+    window.requestAnimationFrame(animationLoop);
+  }
+
+animationLoop();
+
+
+
+----------------------------------------------------------
+
+################################################
+#	Momentum on 2 axes
+################################################
+
+
+======================
+arquivo: index.html
+======================
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            canvas {
+                border: 5px solid yellow;
+            }
+        </style>
+    </head>
+    <body>
+
+        <canvas id="id-canvas" width="700" height="600"></canvas>
+
+    <!-- Os OBJETOS criados em um arquivo externo javascript (como por exemplo, o arquivo ball.js) TEM SEMPRE QUE SER
+            INSERIDOS ANTES DO CÓDIGO PRINCIPAL do javascript (o código principal, no caso, é o canvas.js)
+    -->
+        <script src="ball.js"></script>
+        <script src="canvas.js"></script>
+
+    </body>
+    </html>
+
+
+------------------------------------------------------
+
+
+===========================
+arquivo: ball.js
+===========================
+
+
+
+
+function Ball(radius, color) {
+
+  // Specifications
+  this.r = radius || 10;         // this radius
+  this.c = color || 'red';       // this color
+  this.x = 0;                    // center x
+  this.y = 0;                    // center y
+  this.m = 0;                    // mass
+  this.vx = 0;                   // velocity of x direction of this
+  this.vy = 0;                   // velocity of y direction of this
+
+
+  this.draw = function () {
+
+      // Draw this
+      ctx.beginPath();
+      ctx.fillStyle = this.c;
+      ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+      ctx.fill();
+  }
+
+}
+
+
+---------------------------------------------------------
+
+=========================
+arquivo: canvas.js
+=========================
+
+
+  // Definitions
+  var canvas = document.getElementById("id-canvas");
+  var ctx = canvas.getContext("2d");
+
+  // gera números aleatórios 
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  }
+
+  // Cria a função que dará movimento aos objetos bola.
+  function move(ball) {
+    ball.x = ball.x + ball.vx;
+    ball.y = ball.y + ball.vy;
+    checkEdges(ball);
+  }
+
+  // Dá Movimeto á cada bola criada.
+  function moveBalls(){
+    for(var i = 0; i < numOfBalls; i++){
+      move(balls[i]);
+    }
+  }
+
+  // Dsenha as bolas
+  function drawBalls(){
+    for(var i = 0; i < numOfBalls; i++){
+      balls[i].draw();
+    }
+  }
+
+  function checkEdges(ball) {
+    if(ball.x + ball.r > canvas.width || ball.x - ball.r < 0){
+      ball.vx *= -1;
+    }
+
+    if(ball.y + ball.r > canvas.height || ball.y - ball.r < 0){
+      ball.vy *= -1;
+    }
+  }
+
+  function isCollided(ball1, ball2) {
+    return (Math.abs(ball1.x - ball2.x) < ball1.r + ball2.r) &&
+           (Math.abs(ball1.y - ball2.y) < ball1.r + ball2.r);
+  }
+
+  // checa as colisões das bolas das posições (x,y) da bola.
+  function checkBallCollisions(){
+    for(var i = 0; i < numOfBalls; i++){
+      var ball1 = balls[i];
+      for(var j = i + 1; j < numOfBalls; j++){
+        var ball2 = balls[j];
+
+        if(isCollided(ball1, ball2)){
+
+          // New Horizontal Velocity of Ball 1 After Collision
+          var vx1 = ((ball1.m - ball2.m) * ball1.vx) / (ball1.m + ball2.m);
+              vx1 += (2 * ball2.m * ball2.vx) / (ball1.m + ball2.m);
+
+          // New Horizontal Velocity of Ball 2 After Collision
+          var vx2 = ((ball2.m - ball1.m) * ball2.vx) / (ball2.m + ball1.m);
+              vx2 += (2 * ball1.m * ball1.vx) / (ball1.m + ball2.m);
+
+          ball1.vx = vx1;
+          ball2.vx = vx2;
+
+          // New Vertical Velocity of Ball 1 After Collision
+          var vy1 = ((ball1.m - ball2.m) * ball1.vy) / (ball1.m + ball2.m);
+              vy1 += (2 * ball2.m * ball2.vy) / (ball1.m + ball2.m);
+
+          // New Vertical Velocity of Ball 2 After Collision
+          var vy2 = ((ball2.m - ball1.m) * ball2.vy) / (ball2.m + ball1.m);
+              vy2 += (2 * ball1.m * ball1.vy) / (ball1.m + ball2.m);
+
+          ball1.vy = vy1;
+          ball2.vy = vy2;
+        }
+      }
+    }
+  }
+
+
+  // cria os objetos bola.
+  var numOfBalls = 10;
+  var balls = [];
+
+  for(var i = 0; i < numOfBalls; i++){
+    var radius = getRandomInt(10, 25);
+    var ball = new Ball(radius);
+    ball.x = getRandomInt(radius, canvas.width - radius);
+    ball.y = getRandomInt(radius, canvas.height - radius);
+    ball.m = radius;
+    // ball.context = context;
+    ball.vx = getRandomInt(0, 20) - 10;
+    ball.vy = getRandomInt(0, 20) - 10;
+    balls.push(ball);
+  }
+
+
+
+  function animationLoop() {
+
+    // Clear Canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Update
+    moveBalls();
+    checkBallCollisions();
+
+    // Draw
+    drawBalls();
+
+    // Animate
+    window.requestAnimationFrame(animationLoop);
+  }
+
+  // chama o loop do programa.
+  animationLoop();
+
+
+
+
+#######################################################
+#	Manipulando Eventos de Teclas do Teclado
+#######################################################
+
+Para manipularmos as teclas do teclado, utilizamos o método addEventListener() do objeto window. 
+
+
+    sintaxe do método addEventListener():
+
+	window.addEventListener('keydown', function(event) {
+		// codigo para ações de evento de teclas	
+	});
+
+
+O PARÂMETRO event DA FUNÇÃO ANÔNIMA, é um objeto que POSSUI VÁRIOS ATRIBUTOS, alguns deles são: 
+
+	event.type (tipo de evento: keydown, mousedown, mouseup, etc...)
+	event.key (tipo de tecla: k, w, h, z, p, etc...)
+	event.keyCode (número da tecla: 65 -> A, 83 -> S, 68 -> D, 87 -> W, etc...)
+
+
+O primeiro parâmetro do método addEventListener() recebe um argumento para eventos de teclas, uma das três opções são:
+
+	// keydown - executa uma ação somente quando a tecla for apertada.
+	// keypressed - executa uma ação somente quando a tecla fica pressionada.
+	// keyup - executa uma ação somente quando soltar a tecla.
+
+
+    OBS: para saber as teclas do teclado usando o console do navegador, utilize o seguinte código:
+
+	window.addEventListener('keydown', function(event) { console.log(event.keyCode)})
+
+
+Exemplo com o evento keydown:
+
+    window.addEventListener('keydown', function(event) {
+
+	if (event.keyCode === 65) {  // tecla A
+	    console.log('A pressed');
+	}
+
+	if (event.keyCode === 68) {  // tecla D
+	    console.log('D pressed');
+	}
+
+	if (event.keyCode === 83) {  // tecla S
+	    console.log('S pressed');
+	}
+
+	if (event.keyCode === 87) {  // tecla W
+	    console.log('W pressed');
+	}
+
+    });
+
+
+
+##################################################################
+#	Manipulando Eventos de mouse
+##################################################################
+
+Para manipularmos as teclas do mouse, utilizamos o método addEventListener() do objeto window. O primeiro parâmetro do método addEventListener() recebe um argumento para eventos de mouse, uma das SETE opções são:
+
+
+    sintaxe do método addEventListener():
+
+	window.addEventListener('click', function(event) {
+	    // codigo para ações de evento de teclas	
+	});
+
+
+O PARÂMETRO event DA FUNÇÃO ANÔNIMA, é um objeto que POSSUI VÁRIOS ATRIBUTOS, alguns deles são: 
+
+	event.type (tipo de evento: keydown, mousedown, mouseup, etc...)
+	event.key (tipo de tecla: k, w, h, z, p, etc...)
+	event.keyCode (número da tecla: 65 -> A, 83 -> S, 68 -> D, 87 -> W, etc...)
+
+
+O primeiro parâmetro do método addEventListener() recebe um argumento para eventos de clique, uma das sete opções são:
+
+	// mousedown - evento acionado quando o botão do mouse é clicado ou lançado sobre um elemento. 
+	// mouseup - evento acionado quando o botão do mouse é clicado ou lançado sobre um elemento.
+	// mouseover - evento acionado quando o ponteiro do mouse sobre um elemento ou fora de um elemento.
+	// mouseout - evento acionado quando o ponteiro do mouse sobre um elemento ou fora de um elemento.
+	// mousemove - evento acionado quando o ponteiro do mouse é passado sobre um elemento.
+	// click - evento acionado quando vc clica 1 vez em um elemento (faz a função mousedown e mouseup ao mesmo tempo).
+	// dblclick - evento acionado quando vc dá duplo clique em um elemento (faz a função mousedown e mouseup ao mesmo tempo bem rápido 2 vezes).
+
+
+Exemplo de evento mousedown / mouseup:
+
+    var canvas, ctx;
+
+    // Definitions
+    canvas = document.getElementById("id-canvas");
+    canvas.width = 900; 
+    canvas.height = 600; 
+    ctx = canvas.getContext("2d");
+
+
+    window.addEventListener('mousedown', function(event) {
+        console.log('mousedown');
+    });
+
+    window.addEventListener('mouseup', function(event) {
+        console.log('mouseup');
+    });
+
+
+----------------------------------------------------------------------------------------
+
+Exemplo de evento mousemove:
+
+    var canvas, ctx;
+
+    // Definitions
+    canvas = document.getElementById("id-canvas");
+    canvas.width = 900; 
+    canvas.height = 600; 
+    ctx = canvas.getContext("2d");
+
+
+    window.addEventListener('mousemove', function(event) {
+        console.log('mousemove');
+    });
+
+
+
+------------------------------------------------------------------------------------------
+
+Exemplo de evento click:
+
+    var canvas, ctx;
+
+    // Definitions
+    canvas = document.getElementById("id-canvas");
+    canvas.width = 900; 
+    canvas.height = 600; 
+    ctx = canvas.getContext("2d");
+
+
+    window.addEventListener('click', function(event) {
+        console.log('click');
+    });
+
+
+--------------------------------------------------------------------------------------------
+
+Exemplo de evento dblclick:
+
+    var canvas, ctx;
+
+    // Definitions
+    canvas = document.getElementById("id-canvas");
+    canvas.width = 900; 
+    canvas.height = 600; 
+    ctx = canvas.getContext("2d");
+
+
+    window.addEventListener('dblclick', function(event) {
+        console.log('dblclick');
+    });
+
+
+###################################################################################
+#
+###################################################################################

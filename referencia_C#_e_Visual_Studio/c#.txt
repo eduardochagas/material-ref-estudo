@@ -1,0 +1,2144 @@
+#######################################
+#
+#   Anotações sobre visual studio
+#
+########################################
+
+===========================
+ opções Visual studio
+===========================
+
+    Trocar idioma do visual studio:
+
+        Tools -> Options -> Enviroment -> International Settings -> Language
+
+
+    Quebra de linha nas chaves:
+
+        Tools -> Options -> Text Editor -> C# -> Code Estiling -> Formatting
+-> New Lines
+
+
+    Como reabrir um projeto?
+
+        abra o arquivo .sln
+
+
+======================================
+
+Atalhos Visual Studio
+
+======================================
+
+    Indentação de código automático = CTRL + K + D
+
+    Rodar o Programa = CTRL + F5
+
+    Alterar o tamanho da visualiza??o da fonte = CTRL + Scroll do mouse    
+
+
+------------------------------------------
+Atalhos para as janelas do Visual Studio
+------------------------------------------
+
+    Abre a janela Gerenciador de Soluções = CTRL + ALT + L
+
+    cria um novo projeto = CTRL + SHIFT + N
+
+=================================================================
+
+Anotações sobre o curso de C#
+
+=================================================================
+
+    C# - E uma linguagem de programa??o.
+
+
+    .NET - E a plataforma de desenvolvimento para criar
+diversos tipos de aplicação, podendo usar várias linguagens
+de programação (como C#, Visual Basic e F# (F Sharp)). O .NET possui
+3 componentes:
+
+
+    BCL (Base Class Library) - são as bibliotecas base para podermos
+criar as nossas aplicações.
+
+
+    CLR (common Language Runtime) (Máquina Virtual) - é uma máquina
+virtual que executa os programas feitos no .NET. Todos os programas feitos nas
+linguagens suportadas pela plataforma .NET são executadas na máquina virtual
+CLR.
+
+
+    .NET Standard - É a documentação que contêm a listagem e a descrição de
+quais operações e recursos que a plataforma .NET deve ter. Até o momento,
+existem 4 plataformas .NET, são elas:
+
+    - Microsoft .NET Framework (lançado em 2002)
+
+    - Mono (lan?ado em 2004)
+
+    - Xamarin (lan?ado em 2011)
+
+    - .NET Core (lan?ado em 2016)
+
+
+A plataforma (.NET Framework) cria aplicações do tipo:
+
+    ASP.NET - usado para criar aplicações Web.
+
+
+    Console - usado para criar aplicações do tipo telinha
+preta (aplicações parecidas com o Terminal do linux).
+
+
+    Windows Form - cria aplicações com interface gráfica.
+
+
+    WPF - cria aplicações com interface gráfica.
+
+    
+	OBS: a plataforma .NET Framework possui uma biblioteca básica chamada: .NET Framework BCL.
+
+
+A plataforma (.NET Core) cria aplicações do tipo:
+
+    ASP.NET Core - cria aplicações web.
+
+
+    Console - criar aplicações do tipo telinha preta (aplicações parecidas com o Terminal do linux).
+
+
+        OBS: a plataforma (.NET Core) possui uma biblioteca básica chamada: .NET Core BCL.
+
+
+A plataforma (Xamarin) cria aplicações do tipo:
+
+    android - cria aplicações para celulares Android.
+
+
+    mac Os - cria aplicações para computadores Apple (desktop).
+
+
+    iOS - cria aplicações para celulares Apple.
+
+
+
+	OBS: a plataforma (Xamarin) possui uma biblioteca básica chamada: Mono BCL.
+
+
+Em programação, quando escrevemos um programa, nós escrevemos
+o código-fonte. Programação é aquilo que o programador escreve
+utilizando uma linguagem de programação. E acontece que esse código
+de programação não é compreendido pelo computador, ele é compreendido
+pelos programadores, mas para o computador ter condição de executar esse
+código, esse código precisa ser transformado em código executável. Para
+isso, existe dois processos: Compilação e Interpretação. 
+
+    Exemplos de linguagem compilads: C, C++, etc...
+
+
+O compilador é um programa de computador que transforma um
+código-fonte escrito a partir de uma linguagem compilada, para
+uma linguagem de máquina, específica para um sistema
+operacional para que aí sim o código seja executado. Ou seja,
+se vc quiser rodar o mesmo programa em sistemas operacionais
+diferentes, vc precisará de um compilador
+dedicado (específico de cada sistema operacional) que faça essa
+"tradução de código" para cada sistema operacional.
+
+    Exemplo de linguagens interpretadas: PHP, JavaScript...
+
+
+Para linguagens interpretadas, usamos um software
+(em cada plataforma de Sistema Operacional) que é capaz
+de ler o software que o programador escreveu e ir convertendo
+gradualmente esse código-fonte em executavel para aí sim
+esse código ser executado.
+
+    Exemplo de linguagens pré-compiladas + máquina virtual: Java, C#...
+
+
+linguagens pré-compiladas geram um código pré-compilado
+chamado bytecode. Esse bytecode (no caso do C#) está em
+uma linguagem intermediária chamada:
+
+    Common Intermediated Language (CIL).
+
+
+Essa linguagem bytecode é "platform agnostic", ou seja, o mesmo
+código bytecode roda em plataformas diferentes. A vantagem de
+linguagens pré-compiladas é que elas já passaram por um processo
+de compilação, isso significa que temos a garantia que o código
+está correto sintaticamente (sintaxe correta) e não precisaremos
+de recompilar o código quando tivermos que rodar em plataformas
+diferentes.
+
+
+O processo de execução do C# é assim:
+
+    O código passa por um processo de compilação, gerando um código na
+    linguagem intermediária de nome: Common Intermediate Language (CIL),
+    esse código intermediário vai rodar na máquina virtual .NET de
+    nome: Common Language Runtime (CLI), que então será convertido em
+    linguagem de máquina para ser executado no computador.
+
+
+====================================
+Estrutura de uma aplicação
+=====================================
+
+Uma aplicação é composta por várias classes. Essas classes podem ser
+agrupadas por Namespaces.
+
+    OBS: Namespaces são agrupamentos lógicos de classes relacionadas. Por
+    exemplo, numa aplicação, eu tenho classes que podem representar
+    entidades de negócio, como por exemplo:
+
+	entidades de negócio: produtos, pedidos, clientes...
+
+
+    OBS2: Entidades de negócios são representações abstratas de sua 
+    estrutura de negócios. Uma entidade de negócios pode conter subentidades 
+    como: 
+     
+	departamentos, unidades de negócios ou locais geográficos. 
+
+
+    A estrutura de entidade que você cria depende de suas necessidades de negócios.
+    ou seja, são as entidades que representam o seu negócio e tbm os
+    dados que o sistema deve armazenar. Então, essas entidades podem ser 
+    organizadas ou agrupadas em um Namespace por exemplo, de nome: Entidades.
+
+    Da mesma forma, podemos ter outras classes que representam os serviços do 
+    sistema. Então essas classes que representam os serviços do nosso sistema 
+    poderiam ser inseridas em um Namespace chamado: Services.
+
+
+========================================
+O que é Assembly ?
+========================================
+
+O assembly é um (DLL ou EXE), ele é o responsável por fazer o agrupamento
+dos Namespaces que contêm as classes relacionadas (o assembly é como uma
+caixa que armazena todos os Namespaces). Por exemplo, eu tenho um sistema enorme, e
+eu vou dividir esse sistema em sub-sistemas, então vamos supor que eu tenho
+um módulo desse sistema chamado Financeiro, então tudo do seu sistema que
+for relacionado ao financeiro eu posso agrupar ao assembly financeiro. Da
+mesma forma, vamos supor que temos o módulo Grafico, então podemos criar um
+sub-sistema chamado Graficos e dentro desse assembly Graficos eu posso
+criar outros Namespaces e dentro desses Namespaces criar outras classes.
+
+
+=========================================
+O que é aplicação?
+=========================================
+
+Aplicação é o agrupamento de assemblies relacionados.
+
+    Em resumo a estrutura segue assim:
+
+        1 - Criamos o conjunto de classes e atribuimos a um Namespace.
+
+        2 - o Conjunto de Namespaces atribuimos ao assembly (fica agrupado no assembly).
+
+        3 - O conjunto de assemblies atribuimos a aplicação (a aplicação já é o sistema 
+finalizado).
+
+
+	OBS: dentro do Visual Studio, a aplicação é chamada de: Solution, e
+        o assembly é chamado de: Project. Então, dentro do Solution (aplicação)
+
+
+    podemos ter vários assemblies (projetos).
+
+
+================================================
+Estrutura de Arquivos do Visual Studio
+================================================
+
+    Arquivo.sln - é o arquivo solution da aplicação. Inclusive é por esse 
+     arquivo que o Visual Studio abre o projeto.
+
+
+    .vs - é uma pasta oculta que o Visual Studio usa para manter algumas
+     configurações dele (nós não mexemos nunca nessa pasta).
+
+
+    Arquivo.csproj - é um arquivo de configuração do projeto. A gente só
+    mexe nesse arquivo quando precisar acrescentar alguma dependência (mais
+    pra frente no curso nós vamos mexer com isso).
+
+
+    Program.cs - é o arquivo da linguagem C# que estamos trabalhando no projeto.
+
+
+    Classe principal.cs -
+
+
+    Subpasta obj e subpasta bin - subpasta onde o Visual Studio guarda 
+     os arquivos compilados (é nessas pastas onde o Visual Studio guarda
+     os arquivos compilados quando rodamos o programa usando o CTRL + F5).
+
+
+======================================================
+Estrutura básica do código C-Sharp
+======================================================
+
+    using System;
+
+
+    namespace PrimeiroProjeto
+
+    {
+
+	class Program {
+
+
+            static void Main(string[] args)
+
+            {
+
+		Console.WriteLine("Hello World!");
+
+            }
+
+
+
+        }
+
+
+
+    }
+
+
+---------------------------------------------------------
+Entendendo como funciona cada linha do código acima
+---------------------------------------------------------
+
+using System; - é um namespace padrão do .NET que contêm funcionalidades
+ básicas (ou seja, um conjunto de classes) para a criação de programas.
+
+    OBS: Namespaces contêm um conjunto de classes.
+
+    OBS2: Por exemplo, a classe: Console.Writeline("Hello World") pertence
+    ao namespace System.
+
+    OBS3: caso alguma palavra no código estiver com um tracejado vermelho
+    ondulado embaixo, significa que algo está errado no código. Ao passar
+    com o mouse em cima da palavra com tracejado ondulado, o Visual Studio
+    nos dá uma lista de possíveis soluções para esse erro. Clique em
+    uma dessas possíveis soluções, e o Visual Studio aplicará essa possível 
+    solução escolhida.
+
+
+namespace nomeDoProjeto - é a declaração do namespace do nosso arquivo C#, Todas 
+as classes criadas dentro do Namespace pertencem a esse Namespace. E para chamar 
+uma classe dentro do Namespace funciona assim:
+
+    Primeiro definimos o nome do namespace no começo do arquivo:
+
+        using nomeDoNamespace;
+
+
+    Depois, chamamos a classe dentro no namespace, assim:
+
+        nomeDoNamespace.nomeDaClasse.método()
+
+
+class Program - é a declaração da classe. Todo código-fonte que
+escrevermos na linguagem C# deve ser inserido dentro de uma classe. A classe 
+é a unidade básica da orientação a objetos (veremos mais sobre isso mais pra
+frente no curso).
+
+    OBS: por convensão, colocamos sempre o nome da nossa classe com o
+    mesmo nome do arquivo C# criado, ex:
+
+	se o nome do arquivo é: arquivo.cs, então o nome da classe será: arquivo.
+	Não é obrigatório, mas ajuda a identificar qual classe pertence a qual arquivo.
+
+
+static void Main(string[] args) - indica onde a aplicação começa a ser executada.
+
+
+
+
+
+===================================================
+Tipos de dados built-in do C#
+===================================================
+
+-----------------------------------------------------
+
+| C# Type .Net Framework Types Bytes Possible Values |
+                                                     |
+| sbyte System.SByte Yes 1 -128 a 127                |
+                                                     |
+| short System.Int16 Yes 2 -32768 a 32767            |
+                                                     |
+| int System.Int32 Yes 4 -2^31 a 2^31 - 1            |
+                                                     |
+| long System.Int64 Yes 8 -2^63 a 2^63 - 1           |
+                                                     |
+| byte System.Byte No 1 0 a 255                      |
+                                                     |
+| unshort System.Uint16 No 2 0 a 65535               |
+                                                     |
+| uint System.Uint32 No 4 0 a 2^32 - 1               |
+                                                     |
+| ulong System.Uint64 No 8 0 a 2^64 - 1              |
+                                                     |
+| float System.Single Yes 4                          |
+                                                     |
+| double System.Double Yes 8                         |
+                                                     |
+| decimal System.Decimal Yes 12                      |
+                                                     |
+| char System.Char N/A 2 Any Unicode character       |
+                                                     |
+| bool System.Boolean N/A 1/2 true or false          |
+------------------------------------------------------
+
+OBS: Os 8 primeiros tipos definidos na tabela (de sbyte até ulong)
+são tipos para NÚMEROS INTEIROS.
+
+OBS2: Se a variável de um determinado tipo ultrapassar o limite
+do valor que aquele tipo pode armazenar, a variável receberá
+o seu valor inverso, exemplo:
+
+    se a variável do tipo sbyte tiver um valor MAIOR que 127, o
+    seu valor será -128 (que é a faixa de valores que a variável
+    do tipo sbyte pode armazenar).
+
+    se a variável do tipo byte tiver um valor MAIOR que 255, o 
+    seu valor será 0 (que é a faixa de valores que a variável 
+    do tipo byte pode armazenar).
+
+    se a variável do tipo short tiver um valor MAIOR que 32767, o 
+    seu valor será -32768 (que é a faixa de valores que a variável 
+    do tipo sbyte pode armazenar).
+
+
+
+OBS: Ao usar variáveis do tipo: long, é recomendado que
+insira o caratere L maiúsculo no final do número para
+facilitar a identificação de que é um valor
+do tipo long, exemplo:
+
+    long x = 2147483648L;
+
+
+Variáveis do tipo char tem que receber o valor sempre dentro de aspas simples, exemplo:
+
+    char genero = 'F';
+
+
+OBS: vc tbm pode definir um valor unicode para uma variável do tipo char, exemplo:
+    
+    char genero = '\u0041';
+
+        OBS: é necessário inserir o \u antes do código unicode.
+	Os caracteres: \u significa unicode. Para saber mais sobre códigos unicode, 
+	consulte o link: https://unicode-table.com/pt/
+
+
+Variáveis do tipo string devem ser declaradas com aspas duplas, exemplo:
+
+    string nome = "eduardo";
+
+
+Variáveis do tipo float tem que receber um caractere f no final no número, exemplo:
+
+    float num = 4.5f;
+
+	OBS: variáveis do tipo float suportam até 7 casas decimais 
+        depois da virgula.
+
+
+Variáveis do tipo double são parecidas com o tipo float, a diferença é 
+que RECEBEM O CARACTERE d no final do valor, exemplo:
+
+    double num = 4.3d;
+
+	OBS: variáveis do tipo double suportam até 16 casas decimais 
+        depois da virgula.
+
+
+Variáveis do tipo decimal são parecidas com o tipo float e double, a
+diferença é que RECEBEM O CARACTERE m no final do valor, exemplo:
+
+    decimal num = 4.7m;
+
+	OBS: variáveis do tipo decimal suportam até 29 casas decimais depois da virgula.
+
+
+Os tipos pré-definidos (built-in) do C#, como por exemplo: sbyte, char, bool, int, etc... não 
+dependem da lib System do C#. Já os tipos definidos no Framework .NET, como por 
+exemplo: System.SByte, System.Int16, System.Double, etc..., Dependem da lib System do C#. 
+Para ficar mais claro, todo tipo de dado que vem com um nome seguido de um ponto depende
+de uma lib.
+
+
+Todos os tipos de dados (int, float, decimal, etc...) possuem uma propriedade .MaxValue e .MinValue, exemplo:
+
+    int x = int.MinValue; //atribui o valor mínimo que a variável do tipo int pode receber.
+
+    int x = int.MaxValue; //atribui o valor máximo que a variável do tipo int pode receber.
+
+
+
+======================================================
+Convenções para nomes no C#
+======================================================
+
+    nomeDaVariavel (escrito em: CamelCase) - utilizado em: parâmetros de métodos,
+    variáveis dentro de métodos)
+
+
+    NomeDaVariável (escrito em: PascalCase) - utilizado em: nomes de namespaces,
+    nomes de classes, nomes de properties, nomes de métodos)
+
+
+    _lastName (utilizando um underscore como primeiro caractere, usado em: atributos ou 
+    propriedades de uma classe) - utilizados para definir atributos ou propriedades internos 
+    da classe.
+
+
+Exemplo de código que ilustra as convenções de nomes no C#:
+
+    namespace Curso //PascalCase
+    {
+
+        class ContaBancaria //PascalCase
+        {
+
+	
+            public string Titular { get; set;}
+
+	    private double _saldo; //atributo interno da classe
+
+	    
+	    //nome do método em PascalCase
+	    public void Deposito(double quantia) 
+	    {
+
+		_saldo += quantia;
+
+	    }
+
+	    //nome do método em PascalCase
+	    public double GetSaldo()
+	    {
+
+	        return _saldo;
+
+	    }
+
+        }
+
+    }
+
+
+
+
+
+=======================================================
+Comandos de impressão de dados na tela no C#
+=======================================================
+
+Console.WriteLine(valor);
+
+    OBS: o comando Console.WriteLine() gera uma quebra de linha para o 
+    próximo comando, o Console.Write() não.
+
+
+Console.Write(valor);
+
+    Para imprimir um valor double controlando a quantidade de casas
+    decimais, usamos o método ToString(), definindo dentro dos parêntes uma string
+    com F maiúsculo seguido do número de casas decimais que queremos que seja
+    exibido (no caso desse exemplo, exibimos com somente duas casas 
+    decimais), assim:
+
+        double saldo = 10.35789;
+
+
+Console.WriteLine(saldo.ToString("F2"));
+
+    Para imprimir um valor decimal (com casas depois da vírgula) com o
+    sinal ponto (.) no lugar da vírgula, devemos primeiramente importar
+    importar a biblioteca, assim:
+
+        using System.Globalization;
+
+
+    Agora, inserimos: CultureInfo.InvariantCulture, como segundo
+    parâmetro do método ToString(), assim:
+
+	double saldo = 10.35789;
+
+
+Console.WriteLine(saldo.ToString("F2", CultureInfo.InvariantCulture));
+
+
+==================================================================
+Placeholders, Interpolação e Concatenação de strings em C#
+==================================================================
+
+    -----------------------
+    Placeholders em C#
+    -----------------------
+
+    Placeholders são valores de variáveis que vc quer armazanar dentro de
+    uma string, exemplo:
+
+        using System;
+
+	int idade = 32;
+
+	double saldo = 10.35784;
+
+	string nome = "Maria";
+
+
+	Console.WriteLine("{0} tem {1} anos e tem saldo igual a {2:F2} reais", nome, idade, saldo);
+
+
+	OBS: o placeholder {2:F2} foi feito assim pq foi configurado para que seja exibido somente 
+	duas casas decimais após a virgula (é bem parecido com python, não é mesmo?!).
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+--------------------------
+Interpolação em C#
+--------------------------
+
+    Interpolação é uma outra forma de exibir valores dentro de uma string.
+
+    Exemplo:
+
+	using System;
+
+	int idade = 32;
+
+	double saldo = 10.35784;
+
+	string nome = "Maria";
+
+
+	Console.WriteLine($"{nome} tem {idade} anos e tem saldo igual a {saldo:F2} reais");
+
+	    OBS: o placeholder {saldo:F2} foi feito assim pq foi configurado para que
+	    seja exibido somente duas casas decimais após a virgula.
+
+
+----------------------------
+
+Concatenação de Strings
+
+----------------------------
+
+Concatenação de strings é a forma mais antiga de exibir dados com strings.
+
+    Exemplo:
+
+	using System;
+	using System.Globalization;
+
+	int idade = 32;
+
+	double saldo = 10.35784;
+
+	string nome = "Maria";
+
+
+	Console.WriteLine(nome + " tem " + idade + " anos e tem saldo igual a " + saldo.ToString("F2", CultureInfo.InvariantCulture));
+
+	    OBS: Se vc quiser formatar casa decimais com concatenação de strings, é necessário importar 
+	    a biblioteca: System.Globalization no inicio do arquivo, e inserir: CultureInfo.InvariantCulture como 
+	    segundo parâmetro do método .ToString(), assim:
+
+		variável.ToString("F2", CultureInfo.InvariantCulture)
+
+
+=====================================
+Operadores aritméticos
+=====================================
+
+Os operadores aritméticos são: +, -, *, /
+
+    OBS: a ordem de precedência de cálculo dos operadores são:
+
+	1 - potênciação e raiz quadrada.
+
+	2 - multiplicação e divisão.
+
+	3 - soma e subtração.
+
+	
+
+Se vc armazenar o cálculo de divisão que retorna um número quebrado (como por exemplo: 10 / 8) 
+em uma variável do tipo double, o seu 
+resultado será um número inteiro, mesmo que a variável seja do tipo double. Para resolver esse problema, existem duas formas:
+
+    a primeira é seguir a estrutura abaixo:
+
+	double num = (double) 10 / 8;
+
+
+nesse exemplo, o nome double entre os parênteses está convertendo 
+o número 10 no formmato double.
+
+
+    a segunda forma é essa abaixo:
+
+	double num = 10.0 / 8;
+
+
+nesse exemplo, transformamos o número que será dividido (que no
+caso é o número 10) em um número quebrado (em 10.0).
+
+
+----------------------------------------
+Operadores de atribuição
+----------------------------------------
+
+
+
+ ---------------------------------------------------
+|                                                   |
+
+| Operador | Exemplo | Significado                  |
+
+|---------------------------------------------------|
+
+| = | a = 10; | a RECEBE 10                         |
+
+|---------------------------------------------------|
+
+| += | a += 2; | a RECEBE a + 2;                    |
+
+|---------------------------------------------------|
+
+| -= | a -= 2; | a RECEBE a - 2;                    |
+
+|---------------------------------------------------|
+
+| *= | a *= 2; | a RECEBE a * 2;                    |
+
+|---------------------------------------------------|
+
+| /= | a /= 2; | a RECEBE a / 2;                    |
+
+|---------------------------------------------------|
+
+| %= | a %= 3; | a RECEBE a % 3;                    |
+
+|---------------------------------------------------|
+
+
+OBS: O operador + (sinal de mais) tbm é usado para "somar"
+strings, esse processo é chamado de concatenação, exemplo:
+
+    string nome = "josé";
+
+    string sobrenome = "da silva";
+
+
+    Console.WriteLine(nome + sobrenome);
+
+
+-------------------------------------------
+
+Operadores aritméticos de atribuição
+
+-------------------------------------------
+
+
+
+ ---------------------------------------------------
+|                                                   |
+
+| Operador | Exemplo | Significado                  |
+
+|---------------------------------------------------|
+
+| ++ | a++; ou ++a; | a = a + 1;                    |
+
+|---------------------------------------------------|
+
+| -- | a--; ou --a; | a = a - 1;                    |
+
+|---------------------------------------------------|
+
+
+
+
+
+OBS: Se vc pegar uma variável (por exemplo, a variável: a;), e
+inserir essa variável com O OPERADOR DE INCREMENTO DEPOIS DO NOME
+DA VARIÁVEL, ASSIM: (a++), como valor para outra
+variável (por exemplo: b = a++;), no caso, a variável b recebe
+o valor normal da variável a (que no caso, é 10), e só depois de
+imprimir na tela com: Console.WriteLine(b), que o valor é
+incrementado.
+
+    int a = 10;
+
+    int b = a++; // continua sendo o valor 10, o valor não é
+    incrementado.
+
+
+    Console.WriteLine(a);
+
+    Console.WriteLine(b); // o valor é incrementado, ficando com o
+    valor 11
+
+
+Agora, Se vc pegar uma variável (por exemplo, a variável: a;), e
+inserir essa variável com o operador de incremento ANTES DO NOME
+DA VARIÁVEL, ASSIM: (++a), como valor para outra
+variável (por exemplo: b = ++a;), no caso, a variável b recebe
+o valor da variável a JÁ INCREMENTADO (que no caso, é 11), e
+imprimir na tela com: Console.WriteLine(b) o valor incrementado,
+
+    exemplo:
+
+	int a = 10;
+
+	int b = ++a; // o valor da variável b já recebe o valor
+	incrementado.
+
+
+	Console.WriteLine(a);
+
+        Console.WriteLine(b);
+
+
+
+==========================================================
+conversão implicita de dados e casting
+==========================================================
+
+
+
+--------------------------------------
+Conversão implicita
+--------------------------------------
+
+
+
+Conversão implicita de dados é quando UM CONTEÚDO DE UM CERTO TIPO
+pode ser naturalmente atribuido PARA UMA VARIÁVEL DE OUTRO TIPO.
+
+por exemplo, uma variável do tipo float (que ocupa 4 Bytes na memória
+do computador) pode ser armazenada em uma variável do tipo double
+(que ocupa 8 Bytes na memória do computador).
+
+    OBS: a quantidade de Bytes de variáveis do tipo double (que é de
+    8 Bytes) é duas vezes maior que variaveis do tipo float (que é de 4 Bytes),
+    por isso que conseguimos armazenar dados de variáveis do tipo float em variáveis
+    do tipo double.
+
+    OBS2: não confunda quantidade de casas decimais de cada tipo de
+    dado (como: float, double, decimal), com quantidade de Bytes de
+    cada tipo. Quantidade de casas decimais refere-se á ATE QUANTOS 
+    NÚMEROS DEPOIS DA VÍRGULA CADA TIPO DE DADO PODE EXIBir. Quantidade 
+    de Bytes refere-se a QUANTIDADE DE ESPAÇO QUE CADA TIPO
+    DE DADO OCUPA NA MEMÓRIA DO COMPUTADOR.
+
+
+O exemplo de códgio abaixo mostra um exemplo de conversão implicita
+dos dados, ou seja, mostra
+que o dado do tipo float foi convertido implicitamente para o dado do
+tipo double.
+
+
+    ex:
+	using System;
+
+
+	namespace Course {
+
+	    class Program {
+
+		static void Main(string[] args) {
+
+		    float x = 4.5f; //o dado do tipo float ocupa 4 Bytes na
+		    memória do computador
+
+		    double y = x; //o dado do tipo double ocupa 8 Bytes na
+	            memória do computador
+
+
+		    Console.WriteLine(y); //será imprimido o valor 4.5
+		    normalmente.
+
+		}
+	    }
+	}
+
+
+---------------------
+Casting
+---------------------
+
+Casting E A COVERSÃO EXPLICITA ENTRE TIPOS DIFERENTES DE DADOS. Se vc
+tentar inserir um tipo de dado double (que é de 8 Bytes) em um tipo de dado float (que é de 4
+Bytes), será gerado um erro,
+pq um tipo de dado double (que é de 8 Bytes) NÃO PODE SER
+IMPLICITAMENTE CONVERTIDO PARA UM TIPO
+DE DADO que tem uma CAPACIDADE MENOR DE BYTES (por exemplo, o tipo
+float, que possui 4 Bytes).
+
+
+Mas há uma forma de atribuirmos uma variável de maior quantidade de
+Bytes (por exemplo, uma variável
+do tipo double, que é de 8 Bytes) em uma variável de menor quantidade
+de Bytes (como por exemplo, em
+uma variável do tipo float, que é de 4 Bytes), para isso, usamos o
+casting.
+
+    OBS: como mostra o exemplo de código abaixo, atribuimos a 
+    variável A (que é do tipo double, ou seja, 8 Bytes) com o nome 
+    do tipo de dados float entre parênteses antes do nome da variavel,
+    assim:
+
+	float B = (float)A
+
+    esse float com os parênteses em volta antes da variável A, é o
+    chamado: casting. Com o casting estamos dizendo ao C# que nós 
+    nos responsabilizamos caso haja perda de dados (pq estamos
+    armazenando um tipo de variável de 8 Bytes em uma variável de 4
+    Bytes, com isso pode haver perda de dados).
+
+
+Exemplo de código usando o casting:
+
+    using System;
+
+
+    namespace Course {
+
+	class Program {
+
+	    static void Main(string[] args) {
+
+	        double A = 5.1; //o dado do tipo double ocupa 8 Bytes na
+		memória do computador
+
+		float B = (float)A; //o dado do tipo double USANDO O
+		CASTING e sendo atribuido a variável b, que é do tipo float.
+
+		
+		Console.WriteLine(B); //será imprimido o valor de B, que é 5,1
+
+	    }
+
+	}
+
+    }
+
+
+Agora vamos supor que eu troque o tipo da variável B para o tipo int,
+isso irá gerar 2 problemas:
+
+    O primeiro problema é que variáveis do tipo int são de 4 Bytes, e
+    variáveis do tipo double são de 8 Bytes, ENTÃO NÃO DÁ PARA FAZER A CONVERSÃO IMPLICITA de dados.
+
+    O segundo problema é que valores de variáveis do tipo double podem
+    ter números quebrados (como por exemplo: (1.50, 2.30, 1.35, etc...), e variáveis do tipo int
+    são números inteiros, ou seja, se vc inserir um número quebrado, ele não vai pegar os números
+    depois da vírgula.
+
+    
+Para fazermos variáveis do tipo int (que é de 4 Bytes) receber variáveis do tipo double (que é de
+8 Bytes), devemos usar o casting.
+
+    OBS: repare que ao rodar o código abaixo, o código será executado
+    normalmente, mas há um detalhe, o código não imprime o valor 5.1, somente o valor 5. Isso acontece
+    pq variáveis do tipo int só armazenam valores inteiros, eliminando os valores depois da vírgula.
+
+        ex:
+
+	    using System;
+
+	    namespace Course {
+
+		class Program {
+
+		    static void Main(string[] args) {
+
+			double A = 5.1; //o dado do tipo double ocupa 8 Bytes na
+			memória do computador
+
+			int B = (int)A;
+
+
+			Console.WriteLine(B); //será imprimido o valor 5, sem o
+			valor depois da vírgula.
+
+		    }
+
+		}
+
+	    }
+
+
+Vamos ver um exemplo de casting em calculos matemáticos.
+
+    se criarmos duas variáveis do tipo int, e fizermos um calculo que
+    gere um valor quebrado, o resultado será um valor inteiro, pq?, porque o C# entende que se
+    os tipos de dados definidos no programa são inteiros, então o calculo deve gerar um valor inteiro.
+
+	ex:
+
+	    using System;
+
+
+	    namespace Course {
+
+		class Program {
+
+		    static void Main(string[] args) {
+
+			int a = 5; //o dado do tipo int ocupa 4 Bytes na memória
+			do computador
+
+			int b = 2;
+
+			double resultado = a / b; //o valor dessa conta é 2.5, mas será exibido somente o valor 2.
+
+
+			Console.WriteLine(resultado); //será imprimido o valor 5, sem o valor depois da vírgula.
+
+
+		    }
+
+		}
+
+	    }
+
+
+mas, se quisermos que o programa exiba tbm os números depois da
+virgula, devemos usar o casting na variável, assim: 
+
+    double resultado = (double)a / b;
+
+
+    ex:
+
+	using System;
+
+
+	namespace Course {
+
+	    class Program {
+
+		static void Main(string[] args) {
+
+		    int a = 5; //o dado do tipo int ocupa 4 Bytes na memória do computador
+
+		    int b = 2;
+
+		    double resultado = (double)a / b; //o valor dessa conta
+		    é 2.5, e será exibido com o número depois da vírgula.
+
+
+		    Console.WriteLine(resultado); //será imprimido o valor
+		    5, sem o valor depois da vírgula.
+
+
+		}
+	    }
+
+	}
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+==========================================
+Entrada de Dados em C#
+===========================================
+
+----------------------------------
+Entrada de dados no Console
+----------------------------------
+
+Console.ReadLine(); - comando usado para entrada de dados do
+usuário, retornando os dados lidos no formato string.
+
+    ex:
+	using System;
+
+	namespace Course {
+
+	    class Program {
+
+
+	        static void Main(string[] args) {
+
+		    string frase = Console..ReadLine();
+
+
+		    Console.WriteLine(frase);
+
+
+		}
+
+	    }
+
+	}
+
+
+------------------------------------------------------------------
+Entrada de dados no Console
+usando o método .Split() no código
+--------------------------------------------------------------------
+
+.Split(param1) - usado para fatiar uma string a partir de um
+determinado caractere.
+
+    OBS: o tipo string[] em uma variável significa que a variável
+     está sendo definida com o tipo array.
+
+
+    ex:
+
+
+	using System;
+
+
+	namespace Course {
+
+
+	    class Program {
+
+
+	        static void Main(string[] args) {
+
+
+		    string s = Console.ReadLine();
+
+		    string[] v = s.Split(' ');
+
+		    string a = v[0];
+
+		    string b = v[1];
+
+		    string c = v[2];
+
+
+		    Console.WriteLine(a);
+
+		    Console.WriteLine(b);
+
+		    Console.WriteLine(c);
+
+
+	        }
+
+	    }
+
+        }
+
+
+=============================================
+Conversão de dados com o método .Parse()
+=============================================
+
+    int n1 = int.Parse("8") //Converte o dado do tipo string para o tipo
+    inteiro.
+
+
+    string n2 = string.Parse(20) //Converte o dado do tipo inteiro para o
+    tipo string.
+
+
+    float n3 = float.Parse(10) //Converte o dado do tipo inteiro para o
+    tipo float.
+
+
+
+===================================
+Operadores Comparativos
+===================================
+
+    > sinal maior que
+
+    < sinal menor que
+
+    >= sinal maior igual
+
+    <= sinal menor igual
+
+    != sinal de diferente
+
+
+===========================
+Operadores Lógicos
+===========================
+
+    && - operador E (O operador E necessita que UMA das DUAS CONDIÇÕES
+    sejam FALSE, para ser FALSO)
+
+    || - operador OU (O operador OU necessita que UMA das DUAS CONDIÇÕES
+    sejam TRUE, para ser VERDADEIRO)
+
+    ! - operador de negação - Se a variável é VERDADEIRA, se torna FALSE,
+    Se a variável é FALSE, se torna VERDADEIRA.
+
+
+	OBS: A ordem de precedência dos operadores lógicos são:
+
+
+	    ! - o operador de negação será executado primeiro.
+
+	    && - o sinal de E será executado em segundo.
+
+	    || - o sinal de OU será executado em terceiro (será
+	    executado por último).
+
+
+	OBS2: Caso queira, podemos usar parênteses para criar as condições
+        lógicas.
+
+
+
+==================================
+Estrutura Condicional
+==================================
+
+Estrutura Condicional - if
+
+
+	if (condicao) {
+
+	    comando1
+
+	    comando2
+
+	}
+
+
+Estrutura Condicional - if/else if
+
+    if (condicao1) {
+
+	comando1
+
+	comando2
+
+    }
+
+    else if (condica2) {
+
+	comando3
+
+	comando4
+
+    }
+
+
+Estrutura Condicional - if/else if/else
+
+
+    if (condicao1) {
+
+	comando1
+
+	comando2
+
+    }
+
+    else if (condicao2) {
+
+	comando3
+
+	comando4
+
+    }
+
+    else {
+
+	comando5
+
+    }
+
+
+=======================================
+Escopo de variável
+e inicialização de variável
+=======================================
+
+--------------------------------
+Inicialização de Variável
+--------------------------------
+
+  Uma variável não pode ser usada se não for iniciada (ou seja, a
+  variável deve ser declarada sempre com um valor, para aí sim podermos utiliza-la).
+
+    Exemplo de uma variável declarada da forma CORRETA:
+
+	ex1:
+
+
+	    int x = 10;
+
+	    Console.WriteLine(x);
+
+
+    Exemplo de uma variável declarada da forma INCORRETA:
+
+	ex2:
+
+	    int x; // variável declarada de forma incorreta.
+
+	    Console.WriteLine(x);
+
+
+--------------------------
+Escopo de variável
+---------------------------
+
+  Escopo de variável é a região do programa onde a variável é válida
+para uso, ou seja, onde ela pode ser declarada para ser utilizada na classe.
+
+    Nesse código abaixo, temos um exemplo de variável declarada em um
+     escopo INCORRETO:
+
+    OBS: repare que a variável (double desconto) está definida no
+    escopo (no espaço) incorreto do código (ou seja, foi definida somente
+    dentro da condição if), isso significa que a variável pertence somente ao
+    escopo (ao espaço) da condição if, e por isso ela NÃO PODE SER ACESSADA
+    DE FORA DO ESCOPO DA CONDIÇÃO if.
+
+
+	ex2:
+
+	    using System;
+
+	    namespace Course {
+
+		class Program {
+
+		    static void Main (string[] args) {
+
+		        double preco = double.Parse(Console.ReadLine());
+
+		        if (preco > 100.0) {
+
+		            double desconto = preco * 0.1 // somente no escopo da condição if.
+		        }
+
+		        Console.WriteLine(desconto); // gerará um erro
+
+
+		    }
+
+	        }
+
+	    }
+
+
+Por isso que devemos declarar primeiramente as variáveis no escopo
+(ou seja, dentro das chaves) da função Main() {}, assim podemos manipular
+as variáveis em qualquer escopo da classe.
+
+
+    Exemplo de escopo de variável declarada da forma CORRETA:
+
+	OBS: repare que a variável (double desconto) está definida no
+        escopo (no espaço) correto do código, e por isso ela pode ser utilizada
+	dentro da classe.
+
+
+	    ex1:
+
+		using System;
+
+		namespace Course {
+
+		    class Program {
+
+			static void Main (string[] args) {
+
+			    double preco = double.Parse(Console.ReadLine());
+
+			    double desconto = 0.0; // variável declarada no 
+			    escopo (no espaço) correto.
+
+
+			    if (preco > 100.0) {
+
+				desconto = preco * 0.1 // variável double desconto podendo 					ser manipulada tbm dentro do escopo da condição if.
+
+			    }
+
+			    Console.WriteLine(desconto);
+
+
+			}
+
+
+		    }
+
+
+		}
+
+
+==============================
+Exemplo de função em C#
+==============================
+
+Exemplo de como é a estrutura de uma função em C#
+
+    static int Maior(int num1, int num2, int num3) {
+
+	int m;
+
+	if (num1 > num2 && num1 > num3) {
+
+	    m = num1
+
+	}
+
+	else if (num2 > num3) {
+
+	    m = num2
+
+	}
+
+	else {
+
+	    m = num3
+
+	}
+
+
+    }
+
+
+======================================
+Estrutura While em C#
+======================================
+
+    while ( condição )
+    {
+	comando1
+
+	comando2
+    }
+
+    OBS: Enquanto a condição for Verdadeira, essa estrutura While será
+    executada, quando a condição for Falsa, sai da estrutura.
+
+
+
+================================
+Estrutura For em C#
+================================
+
+    int num = 3;
+
+    for (int i = 1; i <= num; i++)
+    {
+	comando1
+
+	comando2
+    }
+
+    OBS: A estrutura For em C# segue o mesmo padrão da estrutura For do
+javascript.
+
+
+
+=================================================
+Explicando a Estrutura de uma classe em C#
+=================================================
+
+     //Importa a biblioteca.
+    using System;
+
+     /*E o nome que usamos para acessar todo o código desse arquivo
+     quando queremos usar esse código dentro de outro arquivo.*/
+    namespace Course {
+
+         // E o nome da nossa classe nesse arquivo
+        class Triangulo {
+
+
+        /* São as propriedades da classe.
+
+        OBS: a palavra reservada (public) indica que as propriedades podem ser usados 
+        em outros arquivos. */
+
+	    public double A;
+
+	    public double B;
+
+	    public double C;
+
+
+        /* São os métodos da classe. */
+
+
+	OBS: a palavra reservada (public) indica que
+	os métodos podem ser usados em outros arquivos. */
+
+	public double Area() {
+
+	    double p = (A + B + C) / 2.0;
+
+	    return Math.Sqrt(p * (p - A) * (p - B) * (p - C));
+
+
+	}
+
+
+    }
+
+}
+
+
+=============================
+Construtores em C#
+=============================
+
+O construtor é uma operção da classe, que executa só e somente só, no
+momento da instânciação da classe.
+
+
+    ex:
+
+	NomeDaClasse variavel = new NomeDaClasse();
+
+
+	OBS: Quando a classe não possuir um construtor, vc pode
+        instânciar a classe como se ela tivesse um construtor padrão, o código
+	irá funcionar normalmente:
+
+
+    ex:
+
+	NomeDaClasse variavel = new NomeDaClasse();
+
+
+	E possível especificar mais de um construtor na mesma classe, isso é
+	chamado de sobrecarga de construtores.
+
+
+    ex:
+
+	namespace Course {
+
+
+	    class Produto {
+
+
+	        public string Nome;
+
+		public double Preco;
+
+		public int Quantidade;
+
+
+	     // Construtor Padrão (o construtor padrão não possui parâmetros)
+	    public Produto() {
+
+	    }
+
+	     // Construtor Personalizado
+	    public Produto(string nome, double preco, int quantidade) {
+
+		Nome = nome;
+
+		Preco = preco;
+
+		Quantidade = quantidade;
+
+	    }
+
+
+	}
+
+    }
+
+
+==========================
+Sobrecarga
+==========================
+
+
+E um recurso que uma classe possui de oferecer mais de uma operação
+com o mesmo construtor, porém com diferentes quantidades de itens de parâmetros.
+
+
+
+==========================================
+Sintaxe alternativa para
+inicializar valores de um objeto
+==========================================
+
+
+     // Alternativa 1
+    Produto p = new Produto {
+
+        Nome = "TV",
+
+        Preco = 900.00,
+
+        Quantidade = 0
+
+    };
+
+
+     // Alternativa 2
+    Produto p2 = new Produto() {
+
+	Nome = "TV",
+
+	Preco = 900.00,
+
+	Quantidade = 0
+
+    };
+
+
+OBS: Repare que em Alternativa1, o construtor new Produto NÃO
+POSSUI parênteses no nome Produto. Já em Alternativa2, o construtor new
+Produto POSSUI parênteses no nome Produto, ou seja, fazendo em qualquer
+um dos dois jeitos estará certo.
+
+
+========================================================
+uso da palavra this
+no construtor da classe
+========================================================
+
+  A palavra chave this é usada para diferenciar atributos da classe,
+  de variáveis locais da classe.
+
+  Repare no construtor abaixo que, tanto os parâmetros quanto as
+  propriedades possuem
+
+  os mesmos nomes (Nome e Preço) e estão escritos exatamente da mesma
+  forma (com o primeiro caractere da
+  palavra em maiúsculo). Nesse
+  caso, o uso da palavra this é importante, pq diferencia os nomes (Nome e
+  Preço) dos ATRIBUTOS do construtor, dos nomes (Nome e Preço) dos
+  PARÃMETROS do construtor.
+
+    ex:
+
+	public Produto(string Nome, double Preco) {
+
+	    this.Nome = Nome;
+
+	    this.Preco = Preco;
+
+	    quantidade = 0; //variável local
+
+        }
+
+
+  Tbm podemos criar construtores com atributos SEM A PALAVRA CHAVE
+  this, porém definimos os atributos da classe COM O PRIMEIRO CARACTERE DA
+  PALAVRA EM MAIÚSCULA, e os parâmetros do construtor COM AS PALAVRAS TUDO EM MINÚSCULA.
+
+    ex:
+
+	public Produto(string nome, double preco) {
+
+	    this.Nome = nome;
+
+	    this.Preco - preco;
+
+	    quantidade = 0; //variável local
+
+	}
+
+
+===================================
+Referenciando outro construtor
+em um construtor
+===================================
+
+  Se em uma classe temos mais de um construtor definido, podemos
+  referenciar um construtor, em um outro
+  construtor na própria classe.
+
+    ex:
+
+	using System.Globalization;
+
+	namespace Course {
+
+	    class Produto {
+
+		public string Nome;
+
+		public string Preco;
+
+		public int Quantidade;
+
+
+	    public Produto() {
+
+		Quantidade = 0
+
+	    }
+
+
+    	    /*construtor recebendo outro construtor
+    	    o this() representa o construtor Produto sem parâmetros*/
+
+    	    public Produto(string nome, double preco, int quantidade) : this() {
+
+		Quantidade = quantidade;
+
+    	    }
+
+
+    	    /*construtor recebendo outro construtor
+    	    o this(nome, preco) representa o construtor
+    	    Produto com parâmetros*/
+
+    	    public Produto(string nome, double preco, int quantidade) : this(nome, preco) {
+
+		Quantidade = quantidade;
+
+    	    }
+
+
+	}
+
+    }
+
+
+=============================
+Palavras reservadas do C#
+=============================
+
+  public - permite que um ATRIBUTO, PROPRIEDADE ou METODO DE UMA CLASSE
+  possa ser acessado
+  de fora da classe (por um outro arquivo).
+
+
+  private - faz com que um ATRIBUTO, PROPRIEDADE ou METODO DE UMA
+  CLASSE seja usado somente dentro da classe criada.
+
+    OBS: atributos privados possuem uma notação com um underscore antes
+    do nome definido:
+
+      ex:
+	private _nome;
+	private _idade;
+
+
+  override - palavra usada para quando vc quer sobreescrever uma
+  propriedade ou metodo já existente em uma classe.
+
+
+  void - é usado nos métodos quando o método não retorna dados.
+
+
+
+=================================
+Como funcionam as
+propriedades no C#
+=================================
+
+  As propriedades funcionam de forma diferente no C# em comparação com
+  outras linguagens de programação.
+
+  Vc pode criar propriedades diretamente na classe e usa-las para que
+  elas possam obter um valor e/ou
+  trocar um valor pré-definido:
+
+    ex1:
+
+	public string nomeDoCarro { get; set;}
+
+  Ou podemos criar as propriedades para manipular o dado dos atributos:
+
+    OBS: esse segundo exemplo mostra que usamos o atributo name dentro
+    da propriedade (no parâmetro get)
+    para retornar o valor definido nesse atributo, e usamos o mesmo
+    atributo (no parametro set)
+    para definir que o valor já definido nesse atributo name possa ser
+    trocado por um novo valor.
+
+
+    ex2:
+
+	//atributo da classe
+        private string nomeDoCarro = "Fiat 147";
+
+	// propriedade da classe
+	public string NomeDoCarro = { get {return name}; set {name = value}}
+
+
+	    OBS: eu particularmente prefiro a sintaxe do ex1, acho mais simples a
+implementação.
+
+
+
+-----------------------------
+Como funciona a
+AutoProperty no C#
+-----------------------------
+
+  Autoproperty é uma forma simplificada de declarar propriedades que
+  não necessitam de
+  implementações de códigos particulares para as operações: get e set.
+
+  No exemplo abaixo, definimos uma propriedade que pode obter um
+  valor (com o: get), mas
+  que não pode receber um novo valor (com o: private set).
+
+
+    ex:
+        public double Preco {get; private set;}
+
+
+  Agora vamos ver um exemplo de uma propriedade que NÃO PODE SER
+  USADA como AutoProperty, pq essa propriedade possui um código de 
+  verificação no atributo set:
+
+    OBS: não é possivel usar AutoProperty quando há um códido de
+verificação dentro do get ou do set.
+
+      ex:
+
+	class Course {
+
+	    // atributo
+	    string _nome;
+
+	    // propriedade da classe
+	    public string Nome {
+	        get { return _nome;}
+		set { if (value != null && value.lenght > 1) {
+		    _nome = value; }
+	    }
+
+	}
+
+
+
+-----------------------------
+Ordem sujerida para
+implementação de membros
+da classe
+-----------------------------
+
+- atributos privados
+
+    ex:
+	private string _nome;
+
+
+- Propriedades autoimplementadas
+
+    ex:
+	public double Preco { get; set;}
+
+
+- Construtores
+
+    ex:
+	public Produto() {
+
+    }
+
+
+- Propriedades customizadas
+
+    ex:
+
+	public string Nome {
+	    get { return _nome;}
+	    set { if (value != null && value.lenght > 1) {
+		_nome = value;
+	    }
+	}
+
+
+- Outros métodos da Classe
+
+que são os métodos que geram as ações na classe.
+
+
+
+==================================
+
+==================================
+
+
+
+
+
+
+
+
+
+===========================================
+Debuggin Visual Studio
+===========================================
+
+----------------------
+Telas para debuggin
+----------------------
+
+F9 - marcar/desmarcar breakpoint
+F5 - iniciar/continuar o debug
+f10 - executa linha por linha o código, mas caso haja uma função, o
+Visual Studio pula a função
+f11 - executa linha por linha o código, mas caso haja uma função, o
+Visual Studio executa a função linha a linha tbm.
+
+SHIFT + F11 - sair do método em execução
+SHIFT + F5 - parar debug
+
+
+----------------------------
+Janelas
+----------------------------
+
+Watch (express 玫 es personalizadas)
+Auto - exibe as variáveis que o Visual Studio considera importantes.
+
+Locals - exibe todas as variáveis locais pertencente ao escopo onde o
+código está sendo executado.
+
+
+
+====================================
+Projeto de uma classe em (UML)
+====================================
+
+---------------------
+| Triangulo | ----> Nome da Classe
+|-------------------|
+| |
+|- A : double | ----
+|- B : double | | ---> Propriedades da Classe
+|- C : double | ----
+|-------------------|
+| |
+| + Area() : double | ---> Método da Classe
+| |
+|-------------------|
+
+
+####################################################
+
+Lista de Comandos aprendidos nesse Curso
+
+####################################################
+
+==================================================
+Propriedades e Métodos da Classe Object no C#
+==================================================
+
+Toda classe no C# é uma subclasse da Classe Object
+
+OBS: Os métodos da classe Object é equivalente
+aos métodos built-in do python.
+
+
+Alguns métodos da classe Object:
+
+GetType - retorna o tipo do objeto.
+
+Equals - compara se o objeto é igual a outro.
+
+GetHashCode - retorna um código hash do objeto.
+
+ToString - converte o objeto para string.
+
+
+
+================================
+
+métodos de string
+
+
+================================
+
+
+"amizade".IndexOf(caractere) - retorna o índice de um caractere
+da string, retorna -1 se não encontrar nada.
+
+
+
+"1024".ToString() - Faz a conversão do dado para o tipo string.
+
+
+
+"panamericano".ToUpper() - Converte todos os caracteres da
+string para maiúscula.
+
+
+
+"panamericano".ToLower() - Converte todos os caracteres da
+string para minúscula.
+
+
+
+" joao e o pé de feijão ".Trim() - remove somente os caracteres
+vazios do inicio e do final da string.
+
+
+
+" joao e o pé de feijão ".TrimStart() - remove somente o
+caractere vazio no começo da string.
+
+
+
+" joao e o pé de feijão ".TrimEnd() - remove somente o
+caractere vazio do final da string.
+
+
+
+"Coma muita banana".replace("banana", "maçã") - faz a troca de uma palavra dentro da string por outra.
+
+
+
+String.Empty - usado para ser atribuido como valor para uma
+variável (é o mesmo que: string n = "").
+
+
+
+================================
+
+métodos de array
+
+
+================================
+
+
+================================
+
+
+Comandos da lib System
+
+
+================================
+
+
+Console.ReadLine(); - comando usado para entrada de
+dados do usuário, retornando os dados
+
+lidos no formato string.
+
+
+
+Console.WriteLine(param1); - exibe na tela o valor inserido
+no parâmetro.
+
+
+
+===================================
+
+
+Comandos System.Globalization;
+
+
+===================================
+
+
+CultureInfo.InvariantCulture - atribui o caractere
+(.) em números que contêm a virgula.
+
+
+
+============================
+
+
+Comandos System.Math
+
+
+============================
+
+
+Abs(x) - Fornece o valor absoluto de x.
+
+    ex:
+	Abs(-4.5) = 4.5;
+
+
+Ceiling(x) - Arredonda o valor inserido em x, para cima.
+
+    ex:
+
+	Ceiling(4.1) = 5; //arredondando para cima.
+
+	Ceiling(-4.1) = -4; //arredondando para baixo.
+
+
+PI - Obtem o valor de PI.
+
+
+
+    ex:
+
+	PI = 3.14
+
+
+Floor(x) - Arredonda o valor inserido em x, para baixo.
+
+    ex:
+
+	Floor(2.9) = 2; //arredondando para cima.
+
+	Floor(-2.9)) = -3; //arredondando para baixo.
+
+
+Max(x, y) - Obtém o maior valor entre dois números.
+
+    ex:
+
+	Max(2.46,2.56) = 2.56;
+
+	Max(-2.46,-2.56) = 2.46;
+
+
+Min(x, y) - Obtém o menor valor entre dois números.
+
+    ex:
+
+	Min(1.92,1.89) = 1.89;
+
+	Min(-1.92,-1.89) = 1.92;
+
+
+Pow(x, y) - Obtém o valor de x elevado na y.
+
+    ex:
+
+	Pow(2,4) = 16
+
+
+Round(x, y) - Arredonda x para y casas decimais.
+
+    ex:
+
+	Round(7.6758549,4) = 7.6759
+
+
+sqrt(x) - Obtém a raiz quadrada de x.
+
+    ex:
+
+	Sqrt(169) = 13
+
+
+=====================================================================
+
+comandos da lib System.Data.SqlClient; (lib para Banco de Dados)
+
+=====================================================================
+
+

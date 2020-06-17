@@ -1,0 +1,504 @@
+####################################################
+#
+#	tipos primitivos de dados
+#
+####################################################
+
+Os tipos primitivos dos bancos de dados possuem sub-divisões em seus tipos:
+
+    tipo numéricos: Inteiro, Real, Lógico.
+
+	// Inteiro - TinyInt, SmallInt, Int, MediumInt, BigInt
+
+	// Real - Decimal, Float, Double, Real
+
+	// Lógico - Bit, Boolean
+    
+--------------------------------------------------------------------
+
+    tipo data/tempo: Date, DateTime, TimeStamp, Time, Year.
+
+	// Date - é somente uma data.
+
+	// DateTime - data, hora, e algumas informações.
+
+	// TimeStamp - data, hora, e algumas informações.
+
+	// Time - somente a hora.
+
+	// Year - somente o ano.
+
+--------------------------------------------------------------------
+    
+    tipo literal: Caractere, Texto, Binário, Coleção.
+
+	Caractere:
+
+	   // Char - atribui um valor fixo para a quantidade de caracteres que serão inseridas no campo (se o valor digitado no campo for menor que a quantidade de espaços definido no campo, O BANCO DE DADOS CONTARÁ ESSES ESPAÇOS NÃO PREENCHIDOS COMO PREENCHIDOS, se O VALOR DIGITADO NO CAMPO for MAIOR que a QUANTIDADE DE ESPAÇOS definido no campo, gerará um erro).
+
+	    Varchar - atribui um valor para a quantidade de caracteres que serão inseridos no campo (se o valor digitado no campo for menor que a quantidade de espaços definido no campo, O BANCO DE DADOS DEIXARÁ COMO DISPONÍVEL ESSES ESPAÇOS que não foram preenchidos, se O VALOR DIGITADO NO CAMPO for MAIOR que a QUANTIDADE DE ESPAÇOS definido no campo, gerará um erro).
+
+
+	
+	Texto:
+
+	    // TinyText - 
+
+	    // Text - o tipo text é usado para guardar textos longos, como por exemplo uma descrição para alguma coisa, quando vc quer guardar um texto longo no banco de dados. 
+	    OBS: Quando vc quiser quardar um nome, um endereço, um telefone, ou alguma coisa desse tipo, vc usa ou Char ou Varchar. 
+
+	    MediumText - 
+
+	    LongText - 
+
+
+	
+	Binário: 
+
+	    // TinyBlob -
+
+	    // Blob - permite quardar qualquer coisa em binário, como por exemplo, uma imagem.
+	    OBS: NÃO É recomendado quardar imagens em banco de dados, MAS É SIM POSSÍVEL GUARDAR IMAGENS em banco de dados.
+
+	    MediumBlob -
+
+	    LongBlob -
+
+
+
+	Coleção:
+	
+	    Enum - Usado para configurar quais são os valores permitidos em uma inserção. Na hora de fazer um cadastro, o campo vai somente aceitar esse valor permitido.
+
+	    Set - Usado para configurar quais são os valores permitidos em uma inserção. Na hora de fazer um cadastro, o campo vai somente aceitar esse valor permitido.
+
+    
+	Espacial: 
+
+	    Geometry -
+
+	    Point -
+
+	    Poligon -
+
+	    Multipolygon - 
+
+
+
+===============================
+ Descrição dos tipos de dados
+===============================
+
+DATE - configura o campo da tabela para receber uma data.
+
+ENUM('val1', 'val2') - configura o campo da tabela para RECEBER SOMENTE OS VALORES QUE FORAM CONFIGURADOS DENTRO DOS PARÊNTESES do comando enum (os valores são separado por vírgula).
+
+DECIMAL(5,2) - configura o campo da tabela para receber um valor numério com 5 números, sendo que, o número depois da vírgula (nesse caso, o número 2) indica a quantidade de casas (números) que ficarão depois da vírgula.
+
+
+
+===================================================================
+
+OBS: A estrutura básica do banco de dados é: 
+    BANCOS DE DADOS contêm TABELAS, TABELAS contêm CAMPOS, CAMPOS contêm DADOS.
+
+OBS2: lembre-se, o que indica o final do comando no SQL é o ponto e virgula (;).
+
+====================================================================
+
+
+
+#####################################################
+#
+#	Comandos SQL
+#
+#####################################################
+
+
+CREATE DATABASE nomeDoBancoDeDados; - cria um banco de dados no mySQL.
+
+
+CREATE TABLE nomeDaTabela; - cria uma tabela dentro do banco de dados selecionado.
+
+
+INSERT INTO - usado para inserir dados na(s) coluna(s) da tabela.
+
+    ex:
+	INSERT INTO nomeDaTabela
+	(nome, idade, cpf, rg) # colunas da tabela
+	VALUES
+	('eduardo', 30, 333444555-66, 45777888-5); # valores da tabela.
+
+
+	OBS: Podemos tbm inserir mais de uma linha de valores (que são todos os valores que estão entre os parênteses de cada linha no exemplo) e atribuirmos á tabela (os conjuntos de valores são separados por uma virgula, depois do parênteses em cada linha), e o comando todo é finalizado com o ponto e vírgula no final do último parênteses.
+
+    ex2:
+
+	INSERT INTO nomeDaTabela
+	(nome, nascimento, sexo, peso, altura, nacionalidade) #Campos da tabela
+	VAlUES 
+	('Ana', '1975-12-22', 'F', '52.3', '1.45', 'EUA'),  #Valores para a tabela.
+	('Pedro', '2000-07-15', 'M', '52.3', '1.45', 'Brasil'),  #Valores para a tabela.
+	('Maria', '1999-05-30', 'F', '75.9', '1.70', 'Portugal');  #Valores para a tabela.
+
+
+
+
+USE nomeDaTabela; - usado para selecionar uma tabela.
+
+DESCRIBE nomeDaTabela; - exibe a estrutura da tabela (mostrando OS CAMPOS DA TABELA e OS TIPOS DE DADOS QUE FORAM DEFINIDOS EM CADA CAMPO da tabela)
+
+SHOW DATABASES; - exibe os banco de dados criados no MySQL.
+
+SHOW CREATE DATABASE nomeDoBancoDeDados; - exibe as configurações de como o banco de dados foi criado. 
+
+STATUS; - exibe qual é o banco de dados que está sendo usado no momento atual.
+
+SHOW TABLES; - usado para exibir quais são as tabelas do banco de dados atualmente selecionado.
+
+SHOW CREATE TABLE nomeDaTabela; - usado para exibir como foi criada a estrutura de uma tabela (faz o mesmo que o comando DESCRIBE nomeDaTabela). 
+
+DROP DATABASE nomeDoBancoDeDados; - usado para excluir um banco de dados.
+
+
+VALUES - usado para inserir os valores definidos entre parênteses nos campos da tabela.
+
+    ex:
+        INSERT INTO nomeDaTabela
+        (nome, nascimento, sexo, peso, altura, nacionalidade) #Campos da tabela
+	VAlUES 
+        ('Adalgiza', '1930-11-2', 'F', '63.2', '1.75', 'Brasil'); #Valores para a tabela.
+
+
+SELECT * FROM nomeDaTabela - exibe todos os dados que foram inseridos na tabela.
+
+    ================================================
+    usando o comando SELECT para selecionar colunas 
+    ================================================
+
+        SELECT * FROM nomeDaTabela ORDER BY colunaDaTabela; - exibe os dados de uma tabela ordenando os dados inseridos na coluna especificada, em ordem alfabética (de A até Z).
+
+        SELECT * FROM nomeDaTabela ORDER BY colunaDaTabela DESC; - exibe os dados de uma tabela ordenando os dados inseridos na coluna especificada, em ordem alfabética (de Z até A).
+
+	SELECT coluna1, coluna2, coluna3 FROM nomeDaTabela ORDER BY coluna1; - exibe somente os dados das colunas especificadas em (coluna1, coluna2 e coluna3) exibindo os dados ordenados inseridos na coluna1 (ORDER BY coluna1), em ordem alfabética.
+
+	SELECT coluna1, coluna2, coluna3 FROM nomeDaTabela ORDER BY coluna1, coluna3; - exibe somente os dados das colunas especificadas em (coluna1, coluna2 e coluna3) exibindo os dados ordenados inseridos na coluna1 e na coluna 3 (ORDER BY coluna1, coluna3), em ordem alfabética.
+
+
+    ===============================================
+    usando o comando SELECT para selecionar linhas
+    ===============================================
+
+	OBS1: quando vc utiliza o parâmetro (ORDER BY colunaDaTabela), vc está dizendo ao MySQL: ordene em ordem alfabética os dados inseridos nessa coluna para que o DBA (a pessoa que está fazendo a consulta no Banco de Dados) possa usar essa coluna como referência de ordem alfabética para procurar o que ele precisa no Banco de Dados. 
+
+	OBS2: o MySQL tbm utilza os operadores relacionais: >, <, >=, <=, ==, !=
+
+
+	SELECT * FROM nomeDaTabela WHERE colunaDaTabela = 'valorDaColuna' ORDER BY colunaDaTabela; - seleciona todos os dados da linha da tabela nomeDaTabela onde o valor da coluna da tabela é 'valorDaColuna'.
+
+	SELECT coluna1, coluna2 FROM nomeDaTabela WHERE nomeDaColuna <= 'valorDaColuna' ORDER BY coluna1; - seleciona as colunas (coluna1 e coluna2) da tabela nomeDaTabela, onde colunaDaTabela tem o valor 'valorDaTabela', ordenando os dados da coluna nomeDaColuna para exibição.
+
+	SELECT coluna1, coluna2 FROM nomeDaTabela WHERE colunaDaTabela BETWEEN 'umValorDaColunaDaTabela' AND 'outroValorDaColunaDaTabela'; - seleciona aa colunas (coluna1 e coluna2) da tabela nomeDaTabela, onde os valores de colunaDaTabela esteja entre 'umValorDaColunaDaTabela' e 'outroValorDaColunaDaTabela'.
+
+	Select coluna1, coluna2, coluna3 FROM nomeDaTabela WHERE colunaDaTabela IN ('umValorDaColuna', 'outroValorDaColuna') ORDER BY colunaDaTabela; - usado para pegar todos os valores de (coluna1, coluna2 e coluna3) que estiver entre ('umValorDaColuna' e 'outroValorDaColuna') ordenando em ordem alfabética os dados da coluna colunaDaTabela.
+
+	SELECT coluna1, coluna2, coluna3 FROM nomeDaTabela WHERE colunaDaTabela > 'valorDaTabela' AND colunaDaTabela < 'valorDaTabela'; - seleciona (coluna1, coluna2 e coluna3) da tabela nomeDaTabela onde colunaDaTabela seja maior que 'valorDaTabela' e colunaDaTabela seja menor que 'valorDaTabela'.
+
+  
+
+
+
+	   
+
+
+ALTER TABLE nomeDaTabela - usado para alterar dados de uma tabela.
+
+    ex:
+        ALTER TABLE nomeDaTabela
+	ADD COLUMN nomeDaColuna
+
+
+ADD COLUMN nomeDaColuna - usado para adicionar uma coluna na tabela (coluna(s) em MySQL é o nome do(s) campo(s) que a gente define na tabela para receber valores).
+
+    ex:
+	ALTER TABLE nomeDaTabela
+	ADD COLUMN nomeDaColuna
+
+
+DROP COLUMN nomeDaColuna - remove a coluna da tabela ( coluna(s) em MySQL é o nome do(s) campo(s) que a gente define na tabela para receber valores).
+
+    ex:
+	ALTER TABLE nomeDaTabela
+	DROP COLUMN nomeDaColuna
+
+
+FIRST nomeDaColuna - usado para adicionar uma coluna para ser a primeira coluna da tabela.
+
+    ex:
+	ALTER TABLE nomeDaTabela
+	ADD COLUMN nomeDaColuna FIRST
+
+	OBS1: Sempre que quisermos inserir uma coluna APÓS A PRIMEIRA COLUNA definida na tabela, utilizamos o comando AFTER, ex:
+	
+	    ex:
+		ALTER TABLE nomeDaTabela
+		ADD COLUMN nomeDaColuna AFTER; colunaJáExistenteNaTabela
+
+	OBS2: caso queira inserir uma coluna no final de uma tabela, faça assim:
+
+	    ex:
+		ALTER TABLE nomeDaTabela
+		ADD COLUMN nomeDaColuna;
+
+
+MODIFY nomeDoCampo - usado para modificar o tipo de dado (não é o dado, É O TIPO DE DADO) de uma coluna .
+
+    ex:
+	ALTER TABLE nomeDaTabela
+	MODIFY COLUMN nomeDaColuna tipoDeDadoQueAColunaRecebe;
+
+	OBS: o tipoDeDado representado no exemplo SÃO OS TIPOS DE DADOS QUE A coluna PODE REPRESENTAR, por exemplo: int, float, char, varchar, etc...
+
+
+CHANGE nomeDaAntigaColuna novoNomeDaColuna - usado para MUDAR O NOME DA COLUNA e/ou O NOME DA CONSTRAINTS em uma tabela.
+
+    ex:
+	ALTER TABLE nomeDaTabela
+	CHANGE nomeDaAntigaColuna novoNomeDaColuna tipoDeDadoQueAColunaRecebe 
+
+
+RENAME TO novoNomeDaTabela - usado para renomear uma tabela.
+
+    ex:
+	ALTER TABLE nomeDaTabela
+	RENAME TO novoNomeDaTabela
+
+
+IF NOT EXISTS - usado para criar tabelas no banco de dados somente se não existir uma tabela de mesmo nome no banco de dados.
+
+    ex:
+	CREATE TABLE IF NOT EXISTS nomeDaTabela (
+	nome varchar(30) NOT NULL,
+	descricao text,
+	carga int,
+	totaulas int,
+	ano year
+    ) DEFAULT CHARSET = utf8;
+
+
+PRYMARY KEY - usado para inserir uma chave primária em uma coluna da tabela.
+
+    ex:
+	ALTER TABLE nomeDaTabela
+	ADD PRIMARY KEY (nomeDaColuna);
+ 
+
+DROP TABLE - usado para deletar uma tabela inteira do banco de dados.
+
+    ex:
+	DROP TABLE IF EXISTS nomeDaTabela;
+
+
+DROP DATABASE - usado para deletar um banco de dados inteiro.
+
+    ex:
+	DROP DATABASE IF EXISTS nomeDoBancoDeDados
+
+
+UPDATE - usado para atualizar/modificar um dado dentro de uma tabela.
+
+    ex:
+	UPDATE nomeDaTabela
+	SET campoDaTabela = 'novoValor'
+	WHERE idDaTabela = 'valorIdDaTabela';
+
+    OBS: podemos tbm alterar mais de um valor (ao mesmo tempo) na mesma linha, ATRIBUINDO OS ATRIBUTOS DA TABELA COM SEUS NOVOS VALORES, separando os com virgula, assim:
+	
+	ex:
+	    UPDATE nomeDaTabela
+	    SET atributoDaTabela = 'novoValor', atributoDaTabela = 'novValor'
+	    WHERE idDaTabela = 'valorIdDaTabela';
+
+
+SET - usado para configurar um novo valor para um determinado campo da tabela.
+
+    ex:
+	UPDATE nomeDaTabela
+	SET campoDaTabela = 'novoValor'
+	WHERE campoDaTabela = 'valorDoCampoNaTabela';
+	
+
+LIMIT - quando vc altera VALORES DE COLUNAS DE UMA MESMA LINHA, esse comando RESTRINGE PARA QUE SOMENTE A LINHA ESPECIFICADA SEJA ALTERADA com os novos valores, EVITANDO A ALTERAÇÃO DE UMA OUTRA LINHA qualquer (caso tenha errado o comando).   
+
+    ex:
+	UPDATE nomeDaTabela
+	SET campoDaTabela = 'novoValor'
+	WHERE campoDaTabela = 'valorDoCampoNaTabela'
+	LIMIT 1; 
+
+
+DELETE - usado para deletar uma linha completa de dados inseridos na tabela.
+
+    ex:
+	DELETE FROM nomeDaTabela
+	WHERE idDaTabela = 'valorIdDaTabela';
+
+    OBS: para deletar mais de uma linha de dados de dentro da tabela, vc precisa primeiro de desbilitar a opção "safe updates" na aba edit > SQL Editor, e em seguida, utilizar o comando LIMIT especificando (com um número), a quantidade de linhas que vc deseja apagar.
+
+        ex:
+	    DELETE FROM nomeDaTabela
+	    WHERE campoDaTabela = 'valorDoCampoNaTabela'
+	    LIMIT 2;
+
+
+TRUNCATE nomeDaTabela - usado para apagar todos os registros (todos os dados) inseridos dentro da tabela.
+
+    ex:
+	TRUNCATE nomeDaTabela;
+
+
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+=======================
+Constraints
+=======================
+
+    constraints são regras que a gente define no banco de dados.
+
+
+DEFAUT CHARACTERE SET - faz a configuração do tipo de caractere padrão (ex: utf-8, etc...)
+
+DEFAULT 'valor' - atribui um valor (o valor fica entre aspas) como padrão.
+
+	ex:
+	    CREATE TABLE IF NOT EXISTS nomeDaTabela (
+	    nome varchar(30) NOT NULL UNIQUE,
+	    descricao text,
+	    carga int UNSIGNED, 
+	    totaulas int,
+	    ano year DEFAULT '2016' #foi usado aqui 
+        ) DEFAULT CHARSET = utf8; 
+
+
+NOT NULL - configura o campo da tabela para obrigatóriamente ser inserido um valor.
+
+AUTO_INCREMENT (id) - usado para incrementar automaticamente os identificadores na tabela.
+
+UNIQUE - usado para NÃO DEIXAR INSERIR DOIS REGISTROS COM O MESMO NOME (o comando UNIQUE não deixa que dois registros com o mesmo nome seja inserido na tabela. O comando PRYMARY KEY, além de fazer o mesmo que o comando UNIQUE, tem tbm mais funcionalidades. o comando UNIQUE é diferente do comando PRIMARY KEY)
+
+    ex:
+	CREATE TABLE IF NOT EXISTS nomeDaTabela (
+	nome varchar(30) NOT NULL UNIQUE, # foi usado aqui
+	descricao text,
+	carga int,
+	totaulas int,
+	ano year
+    ) DEFAULT CHARSET = utf8;
+
+
+UNSIGNED - usado em campos que contêm o tipo de dados do tipo inteiro para FORÇAR O USUÁRIO Á NÃO INSIRERIR NÚMEROS NEGATIVOS.
+
+	ex:
+	    CREATE TABLE IF NOT EXISTS nomeDaTabela (
+	    nome varchar(30) NOT NULL UNIQUE,
+	    descricao text,
+	    carga int UNSIGNED, #foi usado aqui
+	    totaulas int,
+	    ano year
+        ) DEFAULT CHARSET = utf8;
+
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+========================
+Collate
+========================
+
+DEFAULT COLLATE utf8_general_ci -
+
+
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+==============================
+ Exportando o Banco de Dados
+==============================
+
+ Para exportar um banco de dados, vá até a aba "Server" e clique em "Data Export", abrirá uma janela onde vc verá NA ÁREA QUADRICULADA Á ESQUERDA, em "Tables to Export" os Banco(s) de dado(s) (TBM CHAMADOS DE SCHEMAS) criados no MySQL (selecione um ou mais Banco de Dados para a exportação). E na área quadriculada á direita (em "Tables to Export"), VC VERÁ AS TABELAS DO BANCO DE DADOS SELECIONADO, (vc pode selecionar uma, ou mais de uma tabela para a exportação).
+
+ ABAIXO DA ÁREA QUADRICULADA DE SELEÇÃO DAS TABELAS DO BANCO SELECIONADO, há um campo com 3 tipos de seleção:
+
+	Dump Estructure and Data - usado para FAZER UM BACKUP TANTO DA ESTRUTURA DAS TABELAS, COMO TAMBÉM DOS DADOS INSERIDOS na(s) tabela(s).
+
+	Dump Data Only - usado para FAZER O BACKUP SOMENTE DOS DADOS INSERIDOS na(s) tabela(s). 
+
+	Dump Estructure Only - usado para FAZER O BACKUP SOMENTE DA ESTRUTURA DA(S) TABELA(S) (SEM OS DADOS INSERIDOS NA(S) TABELA(S)).
+
+
+ Mais abaixo, em "Export Options" vc tem 2 opções de exportação de backup (Dump):
+
+	Export to Dump Project Folder - exporta a pasta com o projeto inteiro do banco de dados.
+
+	Export to Self-Contained File - exporta um arquivo único do banco de dados.
+
+
+ após isso, selecione a opção include create schema: 
+
+	Include Create Schema - é usada icluir a criação do banco de dados.
+
+	OBS: caso vc não selecione a opção Include Create Schema, ao fazer a importação do backup (que é o Dump), essa importação não virá com o banco de dados, forçando a primeiramente criarmos um banco de dados, para depois fazer a importação do Dump (caso vc importe um arquivo Dump sem um banco de dados, gerará um erro).
+
+------------------------------------------------------------------------------------
+
+==============================
+ Importando o Banco de Dados
+==============================
+
+ vá na aba "Tools" e clique em "Data Import", abrirá uma janela de administração do data import. Em "Import Options", haverá 2 opções:
+
+	Import from Dump Project Folder - importa a pasta de um projeto de banco de dados inteiro (CLIQUE NA CAIXINHA COM OS TRÊS PONTOS (...) PARA PROCURAR PELA PASTA DO PROJETO DO BANCO DE DADOS. NORMALMENTE FICA EM UMA PASTA CHAMADA DUMP QUE O PROPRIO MYSQL CRIA QUANDO EXPORTAMOS O ARQUIVO).
+.
+
+	Import from Self-Contained File - importa um arquivo do banco de dados  (CLIQUE NA CAIXINHA COM OS TRÊS PONTOS (...) PARA PROCURAR PELO ARQUIVO. NORMALMENTE FICA EM UMA PASTA CHAMADA DUMP QUE O PROPRIO MYSQL CRIA QUANDO EXPORTAMOS O ARQUIVO).
+
+ Em seguida, clique em: Start Import.
+
+	 
+ 
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+"Anotações"
+
+comandos Data Definition Language (DDl)
+
+    CREATE DATABASE
+    CREATE TABLE
+    ALTER TABLE
+    DROP TABLE
+
+
+comandos Data Manipulation Language (DML)
+
+    INSERT INTO
+    UPDATE
+    DELETE
+    TRUNCATE
+
+
+ Ao manipular linhas em um banco de dados, não há como manipular várias linhas ao mesmo tempo. UM COMANDO MANIPULA UMA LINHA, mas É POSSÍVEL MEXER DENTRO DE UMA LINHA, VÁRIAS COLUNAS (que são os atributos da tabela (NÃO CONFUNDA ATRIBUTOS COM OS VALORES DOS ATRIBUTOS, OK!?)) ao mesmo tempo.
+
+
+Dump - é um termo usado para fazer uma cópia (backup) do banco de dados (o backup de um banco de dados, é chamado de dump).
+
+
+  
+
+
+

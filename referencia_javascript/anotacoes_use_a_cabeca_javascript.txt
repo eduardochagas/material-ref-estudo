@@ -1,0 +1,840 @@
+#opreradores aritméticos
+	+ mais 
+	- menos
+	* vezes
+	/ dividir
+
+
+#operadores relacionais
+	>   maior que 
+	<   menor que
+	>=  maior igual
+	<=  menor igual
+	==  igual
+	=== igual do mesmo tipo
+	!=  diferente
+	!variavel   sinal de negação (true se torna false e false se torna true)
+
+
+#operador ternário
+	o operador ternário funciona assim:
+		
+		teste ? true : false
+
+	no campo teste, é o campo onde será inserido a condição a ser testada.
+	no campo true, é o campo onde será ativado se a condição for true.
+	no campo false, é o campo onde será ativado se a condição for false.
+
+
+	Exemplo:
+	    var num = 10:
+
+	        num > 10 ? "green" : "red" 
+
+
+	essa operação ternária acima quer dizer o seguinte: 
+
+	    se a variavel num for maior que 10, então a cor será "green", senão a cor será "red".
+
+
+#comentários em javascript
+	//   comentário de linha única
+	/**/ comentário para várias linhas
+
+
+#caracteres de escape para strings
+	\t - usado para inserir tabulação em uma string.
+	\n - usado para quebra de linha (para o conteudo inserido após o \n ir para a linha seguinte)
+	\\ - usado usado para inserir uma barra invertida.
+	
+	OBS: um lugar onde os caracteres de escape podem ser usados com eficiência é ao formatar o texto exibido em uma caixa de alerta. Você pode usar \t e \n para alinhar o texto usando tabulações e controlar como ele flui nas novas linhas.
+
+
+#########################
+#Como definir variaveis #
+#########################
+
+#criar variavel
+var nomeDaVariavel;
+OBS: ao criar uma variável, procure sempre inserir um valor, como: "" (tipo texto), 0 (tipo numérico), true (boleano), false (boleano).
+OBS2: caso o valor da variável apareça como undefined, significa que a variável não foi criada usando a palavra-chave ( var ) ou que a variável foi criada, mas que não foi atribuida um valor.
+OBS3: ao definir o valor null em uma variável, indica que a variável foi criada, mas não possui nenhum valor atribuido.  
+
+
+#criar variável com valor constante
+const nomeDaVariavelConstante;
+OBS: ao criar uma variável constante, procure sempre inserir um valor, como: "" (tipo texto), 0 (tipo numérico), true (boleano), false (boleano).
+
+
+
+###########################################
+#         variaveis global e local        # 
+###########################################
+
+var x = 0; - variável global, pode ser acessada por todo o documento.
+
+function façaAlgo() {
+
+	var y = 0; - variável local, fica restrita somente na função onde foi criada.
+}
+
+
+
+##################################################
+#                   metodosGlobal                #
+##################################################
+parseInt(); - converte um número no formato string retornando um número inteiro.
+OBS: a string deve conter somente número(s). Se a string com número contiver caracteres tbm, o parseInt() não consegue fazer a conversão (gerará um erro).
+
+parseFloat(); - converte um número no formato string retornando um número de ponto flutuante.
+OBS: a string deve conter somente número(s). Se a string com número contiver caracteres tbm, o parseFloat() não consegue fazer a conversão (gerará um erro).
+
+String(); - converte para string (faz o mesmo que o str() do python).
+
+Number(); - converte para número (faz o mesmo que o int() do python). 
+
+isNaN(); - verifica se um valor é diferente de um número. Se sim, retorna true, senão retorna false.
+OBS: muito usado para verificar dados em campos de entrada do tipo input HTML dentro do javscript.
+
+
+
+#################################################
+#               metodos de String               #
+#################################################
+.indexOf("palavra"); - verifica se existe a palavra digitada entre as aspas no parametro, dentro de uma string.
+
+
+
+################################################
+#               metodos para números           #
+################################################
+.toFixed(); - converte o número decimal para ponto flutuante.
+   
+
+
+
+
+################################################
+#tomadas de decisão (Estruturas Condicionais)  #
+################################################
+if/
+
+	if (condicao) {
+	    faça algo;
+
+if / else
+
+	if (condicao) {
+	    faça algo;
+	} else {
+	    faça isso;
+	}
+
+
+if / else if / else
+
+	if (condicao) {
+	    faça algo;
+	} else if {
+	    faça isso;
+	} else {
+	    faça isso;
+	}
+
+
+switch / case / default 
+OBS: essa estrutura escolhe entre mais de duas opções ao percorrer a estrutura.
+OBS2: a estrutura switch / case / default não pode ser uma expressão, TEM QUE SER um FRAGMENTO de dados, pq ESSA ESTRUTURA NÃO AVALIA true ou false. 
+
+	switch (condicao);
+		case condicao == "valor1": ------> cada condição termina com dois pontos (:).
+		    faça algo;
+		    break; -------> a instrução break impede que o código execute em outros desvios de decisão.
+	
+		case condicao == "valor2":
+		    faça algo;
+		    break;
+
+		case condicao == "valor3":
+		    faça algo;
+		    break;
+
+		default: -----------> o desvio opciona default contém um código a ser executado se nada mais for executado.
+		    faça algo;
+		    break;
+
+
+#######################################
+#           Funções Javascript        #
+#######################################
+================================
+função sem parametros
+================================
+function soma() {
+    var x = 1;
+    var y = 1;
+
+    alert('A soma de x + y é :' + ' ' + ( x + y));
+    }
+
+
+================================
+função com parametros
+================================
+function soma(num1, num2) {
+    var x = num1;
+    var y = num2;
+
+    alert('A soma de x + y é :' + ' ' + (x + y) );
+    }
+
+
+================================
+função que retornam um valor
+================================
+function numero() {
+    var num = prompt("Digite um número: ");
+    
+    if (num === 5) {
+        return 5;
+    }
+}
+
+
+================================
+função que não retornam um valor
+================================
+function numero() {
+    var num = prompt("Digite um número: ");
+
+    if (num === 5) {
+        return 5;
+    }
+    else {
+        return;
+    }
+}
+OBS: você pode usar a instrução return sem nenhum valor de retorno como um MEIO DE SAIR DE UM IMPASSE de uma FUNÇÃO.
+
+
+=========================================
+Função Anônima atribuída a uma variável
+=========================================
+As Funções Anônimas são muito usadas para serem atribuidas aos manipuladores de eventos javascript (por exemplo: onclick, onload, etc.. quando inserimos o código javascript em um arquivo separado no documento quando atribuimos um arquivo.js a tag <link> no HTML), mas também podemos utilizar as funções anônimas em uma variável. 
+Por incrivel que pareça, as funções (todos os tipos de funções) são como variáveis, a diferença é que O CORPO DA FUNÇÃO É O VALOR, enquanto O NOME DA FUNÇÃO É O NOME DA VARIÁVEL. 
+
+
+ var nomeDaFuncao = function () {
+    alert('Olá rapaziada');
+}
+OBS: as funções anonimas tbm PODEM RECEBER PARÂMETROS como qualquer outra função.
+
+
+=========================================
+Função Anônima atribuida á um evento   
+=========================================
+As Funções Anônimas são muito usadas para serem atribuidas aos manipuladores de eventos javascript (por exemplo: onclick, onload, etc.. quando inserimos o código javascript em um arquivo separado no documento quando atribuimos um arquivo.js a tag <link> no HTML). 
+
+
+window.onload = function () {
+    alert('Olá rapaziada');
+}
+
+
+===================================================
+Usando Referência de Função 
+para atribuir a eventos 
+===================================================
+Definir um manipulador de evento estritamente em código Javascript envolve a atribuição de uma referência de função (ou seja, O NOME da FUNÇÃO) a uma propriedade de evento (ou seja, window.onclick, window.onload, etc...). No caso desse código (com o evento window.onload), a atribuição de referencia de função faz com que a função nomeDaFuncao seja chamada quando o evento for desencadeado.
+
+window.onload = nomeDaFuncao; 
+
+
+========================================================
+função Anonima com parâmetro usada em um evento onclick 
+para chamar outra função 
+========================================================
+É atribuida uma FUNÇÃO ANÔNIMA COM PARAMETRO á propriedade de evento onclick, que é utilizada para chamar outra função que tbm contêm parâmetro.
+
+
+document.getElementById("img").onlick = function(parametro) { 
+	nomeDaFuncao(parametro); // a função anonima chama esta função...
+}
+
+OBS:função literal é a mesma coisa que função anonima.
+
+
+
+###################################
+# DOM HTML (Document Object Model)
+###################################
+
+#Entendimento rápido sobre a arvore DOM
+
+Através da arvore do DOM, uma página parece uma hierarquia de elementos na forma de uma árvore. Cada "folha" dessa arvore é um nó, que se relaciona diretamente a cada elemento em uma página. Quando um nó aparece sob outro nó na árvore, ele é considerado um filho desse nó.
+
+	document (o nó superior em uma arvore HTML que representa o documento em sí e aparece logo acima do elemento html).
+	OBS: a maioria das interações com o DOM começa com o objeto document,que é o nó mais superior na árvore de nós de um documento.
+
+	element (qualquer elemento HTML que corresponde a uma tag no código HTML).
+
+	atributo (um atrinuto de um elemento, acessível através de um nó do elemento, mas não presente diretamente na árvore DOM).
+	OBS: embora os atributos sejam acessíveis usando o DOM, eles não são vistos como nó na árvore de uma página, eles são somente atributos de um nó das tag(s) de uma página.  
+
+	conteúdo_de_texto (o conteúdo do texto para um elemento, sempre armazenado como um nó-filho sob um elemento). 
+
+
+
+=======================
+document
+=======================
+
+	document.getElementById('meuH1') - usado para selecionar uma tag pelo id="meuH1" para a manipulação dessa tag.
+
+	document.getElementsByTagName('img') - usado para obter todos os elementos de uma página ( ou seja, as tags) de mesmo tipo (esse método gera um array. Essas tags devem ser acessadas como se acessa um array).
+
+	document.createElement('p') - cria um elemento (ou seja, uma tag) no documento HTML.
+
+	document.createTextNode('uma mensagem qualquer') - cria um nó de texto para o elemento HTML.
+
+	document.getElementById("myP").width;
+	OBS: a propriedade width (se não atribuido um valor) pegará toda a largura da página, caso atribua um valor, a largura da página será o valor definido.
+
+
+
+
+======================
+element
+====================== 
+	
+	#propriedades
+
+	element.style = usado para usar atributos CSS em uma tag HTML.
+	Exemplo1:
+		document.getElementById("myH1").style.color = "red";
+
+	Exemplo2:
+		document.getElementById("myH1").style.background-color = "green";
+	
+	
+	element.clientWidth; - pega a largura de um elemento, incluindo o padding.
+	Exemplo:
+		var elmnt = document.getElementById("myDIV");
+		var txt = "Height with padding: " + elmnt.clientHeight + "px<br>";
+		txt += "Width with padding: " + elmnt.clientWidth + "px"; 
+
+
+	element.clientHeight; - pega a  altura de um elemento, incluindo o padding.
+	Exemplo:
+		var elmnt = document.getElementById("myDIV");
+		var txt = "Height with padding: " + elmnt.clientHeight + "px<br>";
+		txt += "Width with padding: " + elmnt.clientWidth + "px"; 
+
+
+	element.innerHTML - usado para acessar todo o conteúdo armazenado em uma tag HTML ou usado para atribuir um novo conteúdo para a tag HTML (na realidade, innerHTML é para definir o conteúdo de elementos como: div, span, p e outros elmentos que agem como contêineres de conteúdo).
+	OBS: vc pode concatenar o conteúdo existente em innerHTML com um novo conteúdo, assim: element.innerHTML += " esse novo conteúdo";
+
+	element.nodeValue - acessa o valor do nó (pode ser o texto atribuido a uma tag ou o valor de um atributo de uma tag).	
+	OBS: vc pode mudar o valor de um nó se o valor desse nó for somente texto. caso o valor do nó tenha um nó-filho (como por exemplo, uma tag em volta de uma palavra ou frase), será gerado erros estranhos. 
+
+	element.nodeType - retorna o tipo de nó do elemento.
+		se o nó é do tipo elemento, será retornado o número 1.
+		se o nó é do tipo atributo, será retornado o número 2.	
+		se o nó é do tipo texto, será retornado o número 3.
+		se o nó é do tipo commentado, será retornado o número 8.
+
+	element.childNodes - obtêm um array de nós filhos de um elemento.
+
+	element.lastChild - obtêm o último nó filho de um elemento.
+
+	element.firstChild - obtêm o primeiro nó filho de um elemento.
+
+	element.className = "nomeDaClasse" - acessa o nome de uma classe definida no CSS. 
+
+	
+
+
+	#métodos
+	
+	element.createTextNode('novo texto') - insere um texto á um elemento.
+	OBS: funciona somente para inserção de texto, nada mais do que texto. 
+
+	element.appendChild() - adiciona um nó como o último nó filho, da arvore de elementos (o nó pode ser uma tag ou um texto).
+
+	element.removeChild() - remove um nó filho da arvore de elementos (esse nó pode ser uma tag ou um texto).
+
+	element.focus() - define o foco de entrada para um campo na página.
+
+	element.select() - seleciona o valor armazenado em um elemento de texto.
+
+
+========================
+objeto location
+========================
+	
+	#propriedades  
+
+
+	#funções
+	location.reload(); - é usado para recarregar o atual documento.
+
+
+
+
+##############################################
+#EventosDOM_HTML (usados no Javascript)      #
+##############################################
+
+===============================
+objeto window                 
+===============================
+	#propriedades#
+	window.onload - executa algo quando a página HTML é carregada.
+
+	
+	#metodos
+	window.alert('um texto qualquer'); - mostra uma janela pop-up exibindo informações para o usuário na tela.
+
+	window.setTimeout(function(), 5 * 60); - executa uma função  somente 1 vez no tempo deteminado no segundo parâmetro (nesse caso, depois de 5 min. (5 * 60) ).
+	
+	window.setInterval(function(), 3 * 60); - executa várias vezes no tempo determinado no segundo parâmetro (nesse caso, depois de 3 min. (3 * 60) ).
+
+	window.clearInterval(window.setInterval()) - usado para parar a execução repetida pela função window.setInterval(), Basta inserir a função window.setInterval() como parâmetro de window.clearInterval().
+	OBS: se tiver duvidas, acesse a referência em www.w3schools.com.
+
+
+
+#############################
+#formulários HTML
+#############################
+
+==========================
+ Um exemplo de formulário
+==========================
+
+<form name="orderform" action="bannerocity.php" method="POST">
+      <div class="field">
+        Enter the banner message:
+        <input id="message" name="message" type="text" size="40"
+          onblur="validateLength(1, 32, this, document.getElementById('message_help'))" />
+        <span id="message_help" class="help"></span>
+      </div>
+      <div class="field">
+        Enter ZIP code of the location:
+        <input id="zipcode" name="zipcode" type="text" size="5"
+          onblur="validateNonEmpty(this, document.getElementById('zipcode_help'))" />
+        <span id="zipcode_help" class="help"></span>
+      </div>
+      <div class="field">
+        Enter the date for the message to be shown:
+        <input id="date" name="date" type="text" size="10"
+          onblur="validateNonEmpty(this, document.getElementById('date_help'))" />
+        <span id="date_help" class="help"></span>
+      </div>
+      <div class="field">
+        Enter your name:
+        <input id="name" name="name" type="text" size="32"
+          onblur="validateNonEmpty(this, document.getElementById('name_help'))" />
+        <span id="name_help" class="help"></span>
+      </div>
+      <div class="field">
+        Enter your phone number:
+        <input id="phone" name="phone" type="text" size="12"
+          onblur="validateNonEmpty(this, document.getElementById('phone_help'))" />
+        <span id="phone_help" class="help"></span>
+      </div>
+      <div class="field">
+        Enter your email address:
+        <input id="email" name="email" type="text" size="32"
+          onblur="validateNonEmpty(this, document.getElementById('email_help'))" />
+        <span id="email_help" class="help"></span>
+      </div>
+      <input type="button" value="Order Banner" onclick="placeOrder(this.form);" />
+    </form>
+
+	OBS: o campo <input> pode somente receber 32 caracteres de entrada de dados.
+	OBS2: todo campo do formulário é acessível como um objeto javascript.
+
+
+===============================================
+#alguns atributos de eventos para formulários
+===============================================
+
+	onfocus="myFunction()" - executa uma função javascript quando um campo de entrada (um campo input) recebe foco.
+
+	onchange="myFunction()" - executa a função após retirar o foco do campo de entrada de dados (após tirar o foco do campo input).
+
+	onblur="function()" - executa a função javascript quando o usuário deixa o campo de entrada (o campo input).
+	OBS: a diferença entre onchange e onblur é que o atributo onblur é iniciado sempre que o campo input perde o foco (quando saímos de um campo input, mesmo que dados não tenham sido inseridos nesse input).
+	OBS2: em uma função de validação de dados definida em um input, para inserir-mos o próprio campo input, utilizamos a palavra this, que referencia que é o próprio campo input que deve ser acionado.
+
+<span></span> - pode ser utilizada para auxiliar na exibição de uma mensagem de verificação de dados do elemento input.
+Exemplo: 
+	<input id="phone" name="phone" type="text" size="12" 
+		onblur="validateNotEmpty(this, document.getElementById('phone_help'))" />
+	
+	<span id="phone_help"></span> 
+	OBS: a função validadeNotEmpty() do tag <input> usa a tag <span> para exibir uma mensagem de ajuda sobre os dados inseridos em uma tag <input>.
+
+
+
+########################################
+# Expressões Regulares
+########################################
+
+/ Expressão / - as Expressões Regulares iniciam e terminam com barra.
+
+================================
+alguns metacaracteres mais 
+usados em Expressões Regulares
+================================
+As Expressões Regulares são utilizadas para procurar por padrões de string em uma string, como por exemplo em um campo de entrada de dados da tag <input>.
+
+. - coincide com qualquer caractere, exceto uma nova linha.
+
+\s - coincide com um caractere de espaço em branco (o espaço em branco inclui os espaços, tabulações, novas linhas e retornos).
+
+\d - coincide com qualquer digito numério.
+
+\w - coincide com qualquer caractere alfanumérico (pode ser letra ou número).
+
+^ - a string deve iniciar com o padrão (a string coincidida não pode ter nenhum texto antes do padrão).
+
+$ - a string deve coincidir com o padrão (o padrão deve ser os últimos caracteres da string).
+ 
+
+* - o subpadrão precedente deve aparecer 0 ou mais vezes (o subpadrão é opcional e pode aprarecer qualquer quantidade de vezes).
+
++  - o subpadrão precedente deve aparecer 1 ou mais vezes (o subpadrão é requerido e pode aparecer qualquer quantidade de vezes).
+
+?  - o subpadrão precedente deve aparecer 0 ou 1 vez (o subpadrão é opcional, mas poderá aparecer apenas uma vez, se aparecer).
+
+{n} - o subpadrão precedente deve aparecer exatamente n vezes em uma linha (controla exatamente quantas vezes um subpadrão pode aparecer).
+
+{min, max} - o subpadrão deve aparecer min vezes, porém não mais do que max vezes (controla quantas vezes um subpadrão pode aparecer como uma faixa minima e máxima).
+
+() - agrupe os caracteres e/ou metacaracteres em um subpadrão (embora não sejam tecnicamente um quantificador, os parenteses são usados para agrupar tantos subpadrões quantas expressões matemáticas você agrupar).
+
+| - metacaractere alternativo (o pipe), faz o mesmo papel que o operador OR javascript, só que em Expressão Regular.
+
+[] -  os colchetes em Expressão Regular, é chamado de Classe do Caractere, que é um conjunto de regras de expressão regular para coincidir com um único caractere. Dentro de uma Classe do Caractere todo caractere listado é considerado legal para a coincidência de caracteres, como um tipo de alternação entre os metacaracteres que permite construir uma lista de subpadrões alternativos. 
+
+OBS: em Expressões Regulares, caracteres especiais como: *, $, +, etc..., são usados com a barra invertida, seguido do caractere especial, assim: \$, \*, \+ 
+
+
+.test() - método javascript usado para testar uma string para obter um padrão da Expressão Regular.
+Exemplo:
+	var regex = /^\d{5}$/;
+
+	if (!regex.test(inputField.value))
+		// faça algo
+
+OBS: o métod .test() é chamado no objeto da expressão regular.
+
+
+
+##################################################
+# POO (Programação Orientada a Objeto) javascript
+##################################################
+
+Quando as variáveis são colocadas dentro de um objeto, elas são referidas como Membro do Objeto. Mais especificamente, as variáveis são chamadas de Propriedades do Objeto e as funções são chamadas de Métodos do Objeto.
+
+Para acessar as propriedades e os métodos de um objeto, utilizamos o operador ponto (.)
+Exemplo1:
+	Objeto.propriedade
+
+Exemplo2:
+	Objeto.metodo()
+
+
+
+Para usar-mos um objeto em Javascript como se fosse uma classe, definimos as propriedade(s) e os método(s) com prototype, assim:
+Exemplo:
+	nomeDoObjeto.prototype.propriedade 
+
+Exemplo:
+	nomeDoObjeto.prototype.metodo()
+
+
+OBS: Para usar as propriedades do objeto para serem trabalhados nos métodos do próprio objeto, é necessário utilizar a palavra this.   
+
+
+
+
+------------------------------------
+#função construtora ( com métodos )
+------------------------------------
+
+O serviço do construtor é estabelecer as propriedades de um objeto, junto com seus valores iniciais. Para criar uma propriedade em um construtor, você definirá a propriedade usando uma palavra-chave Javascript chamada (this). A palavra-chave this atribui a posse da propriedade ao objeto e também define seu valor inicial ao mesmo tempo. A palavra faz, literalmente o que indica - você está criando uma propriedade que pertence a "este" (this) objeto, em oposição a ser apenas uma variável local dentro do construtor.
+
+
+	// FUNÇÃO CONSTRUTORA (para a criação de objetos em Javascript)
+
+	function Person(name, age, color) {
+	    this.name = name;
+	    this.age = age;
+	    this.color = color;
+
+	};
+	
+
+
+Para criar objetos em Javascript que se comporte como uma classe com propriedades e métodos, (onde as instâncias herdam as propriedades e os  métodos dessa classe), é necessário utilizar a palavra prototype nos métodos, assim:
+  	    
+	    // Para criar um método de uma classe em Javascript, utiliza-se o próprio nome da classe (nesse caso, Person), seguido da palavra prototype, seguido do nome que vc quer definir para o método (que nesse caso, é getName)
+	    Person.prototype.getName = function() {
+	        return "Name : " + this.name;
+	    };
+
+
+
+Para criar um novo objeto (ou seja, para criar um novo objeto baseado em um objeto personalizado (ou seja, para criar uma instância)), vc usará o operador new, que CRIA O NOVO OBJETO e ao mesmo tempo INICIA O CONSTRUTOR do objeto.
+
+OBS: PARA QUEM NÃO SABE, INSTÂNCIA É UM NOME DADO A CRIAÇÃO DE UM NOVO OBJETO QUE HERDA AS PROPRIEDADES E MÉTODOS DE UM OBJETO EXISTENTE. ESSE OBJETO PODE SER PERSONALIZADO (OBJETO QUE FOI CRIADO PELO PROGRAMADOR, OU PODE SER UM OBJETO NATIVO DA LINGUAGEM JAVASCRIPT).
+
+
+	// O OPERADOR new CRIA UM NOVO OBJETO E AO MESMO TEMPO INICIA O CONSTRUTOR PARA ESSE NOVO OBJETO.
+	var pai = new Person("benedito", 28, "verde");
+
+
+
+baseado na função Person criada, vamos agora criar duas instâncias dessa função Person (com os nomes father e mother).
+
+	// primeira instancia da função Person criada (de nome father)
+	var father = new Person("john", 50, "brown");
+
+
+	// segunda instancia da função Person criada (de nome mother)
+	var mother = new Person("Ana", 50, "black");
+
+
+a partir de agora, tanto a instância father, quanto a instância mother, herdam as propriedades e metodos da função Person.
+
+
+------------------------------------------
+#métodos da classe e métodos da instância
+------------------------------------------
+ 
+vamos agora dar uma olhada em toda a nossa função Person:
+
+	function Person(name, age, color) {
+		    this.name = name;
+		    this.age = age;
+		    this.color = color;
+
+	    Person.prototype.getName = function() {
+	        return "Name : " + this.name;
+	    };
+	};
+
+
+Para entendermos a diferença entre métodos da classe para métodos da instância, vamos criar uma instância da função Person (o nome da instância será child) e vamos adicionar um método para essa instância.
+
+	// criando uma nova instância
+	var child = new Person('alex', 5, 'yellow');
+
+	//
+	child.getName = function() {
+	    return "(test) Name : " + this.name;
+	};
+
+
+Repare que, ao definirmos um novo método para a instância com o nome getName() (que é o método que faz a mesma coisa que o método de mesmo nome definido na classe Person), esse método getName() da instância sobreescreve o método definido na classe Person (essa é só uma forma de exemplificar que os métodos criados em uma instância de um objeto, pertencem somente a instância desse objeto, e caso um método criado em uma instância tenha o mesmo nome de um método de uma classe, o método da instância sobreescreve o método criado na classe). Já os métodos de uma classe pode ser usado por qualquer instância.
+
+
+
+------------------------------
+# criação de Objetos literais
+------------------------------
+
+existe uma outra forma de se criar objetos em Javascript, chamada Objeto literal. Porém, essa estrutura é utilizada para criar objetos únicos em Javascrip, ou seja, essa estrutura não pode ser reutilizada (ou seja, não pode ser usada como base para a criação de outros objetos do mesmo tipo). Se faz assim:
+	
+	var Convite = {
+	    who: 'eduardo',
+	    what: 'festa na piscina',
+	    when: '25/03',
+	    where: 'Havai',
+	    
+	    // CRIANDO UM METODO PARA O OBJETO
+	    comparecer() {
+		console.log( this.who + 'vai comparecer !!!' )
+	    }
+	};
+
+
+
+-------------------------------------------------
+#simulando classes em javascript (com prototype)
+-------------------------------------------------
+
+prototype é uma propriedade built-in javascript usada para criar PROPRIEDADES e MÉTODOS "de fábrica" em um objeto, ou seja, ao criar um novo objeto (criar instancia(s) desse objeto), esse(s) objeto(s) instanciado(s) herdarão esses métodos como se fossem métodos nativos da linguagem Javascript.
+
+OBS: TODO OBJETO JAVASCRIPT TEM UMA PROPRIEDADE PROTOTYPE QUE PERMITE ADICIONAR PROPRIEDADES E MÉTODOS NO NÍVEL DA CLASSE.
+ 
+
+// FUNÇÃO CONSTRUTORA
+function Pessoa(nome, idade) {
+    
+    // PROPRIEDADES CRIADAS COM PROTOTYPE, 
+    // FAZENDO COM QUE ESSAS PROPRIEDADES AJA COMO SE FOSSE NATIVA DA LINGUAGEM JAVASCRIPT
+    prototype.nome = nome;
+    prototype.idade = idade;
+
+};
+
+// MÉTODO CRIADO COM A PROPRIEDADE PROTOTYPE, 
+// FAZENDO COM QUE ESSE MÉTODO PAREÇA COMO SE FOSSE NATIVO DA LINGUAGEM JAVASCRIPT
+Pessoa.prototype.falar = function (palavras) {
+    console.log(this.nome + 'diz: ' + palavras);
+};
+
+// MÉTODO CRIADO COM A PROPRIEDADE PROTOTYPE, 
+// FAZENDO COM QUE ESSE MÉTODO PAREÇA COMO SE FOSSE NATIVO DA LINGUAGEM JAVASCRIPT
+Pessoa.prototype.envelhecer = function (anos) {
+    this.idade += anos || 1;
+    console.log(this);
+};
+
+// CRIANDO UM OBJETO HERDANDO "DA CLASSE" PESSOA 
+const vinicius = new Pessoa('Vinicius', 25);
+
+// CHAMANDO O MÉTODO DO OBJETO CRIADO (vinicius)
+vinicius.envelhecer();
+vinicius.envelhecer();
+
+
+OBS: vc pode tbm criar um método personalizado e inserir em um objeto Javascript nativo, utilizando a propriedade prototype. 
+
+
+
+==============================
+Objetos Built-in Javascript
+==============================
+
+#Objeto Date()
+
+Para usar o objeto Date(), vc faz assim:
+
+	var data = new Date();
+
+---------------------------
+#metodos do objeto Date() 
+---------------------------
+
+Date().setMonth() - retorna o mês da data como um número entre 0 (janeiro) e 11 (dezembro)
+
+Date().setYear() - 
+
+Date().getDate() - retorna o dia do mês como um número entre 1 e 31.
+
+Date().getDay() - 
+
+Date().getFullYear() - retorna o ano com 4 digitos.
+
+Date.toString() - 
+OBS: todo objeto em javascript possui um método .toString().
+
+
+---------------------------
+#metodos de String
+---------------------------
+
+String.lenght - retorna o número da quantidade de caracteres de uma string.
+
+String.indexOf() - pesquisa para saber se a string contêm uma substring, caso não exista a substring, será retornado -1.
+
+String.charArt() - descobre onde certo caractere está localizado na string (pesquisa somente 1 caractere).
+
+String.toLowerCase() - converte a string em letras minusculas.
+
+String.toUpperCase() - converte a string em letras maiúsculas.
+
+
+----------------------
+#metodos Math
+----------------------
+
+Math.round() - arredonda um número ponto flutuante para inteiro. Por exemplo, 
+	se o número ponto flutuante for 5.4, o Math.floor arredonda para cima (ou seja, arredonda para 5).
+	se o número ponto flutuante for 5.6, o Math.floor arredonda para baixo (ou seja, arredonda para 6).
+
+Math.ceiling() - arredonda PARA CIMA um numero ponto flutuante para obter um numero inteiro.
+
+Math.floor() - arredonda PARA BAIXO um numero ponto flutuante para obter um numero inteiro.
+
+Math.random() - gera um número aleatório entre 0 e 1.
+
+Math.min() -
+
+Math.max() - 
+
+Math.abs() - retorna um numero positivo, não importanto o numero fornecido.
+
+Math.PI - a constante matemática que é: 3.14
+
+
+
+
+##############################
+#tags e atributos de tags HTML
+##############################
+
+	#tags HTML
+
+
+
+
+	#atributos HTML
+	style="" - usado para inserir atributos CSS. Vc pode inserir mais de um atributo CSS dentro dos parênteses do style.
+
+	value = "1"; - usado para exibir um valor em um botão (usado como atributo da tag <buttom></buttom>).
+
+	name="" -
+ 
+
+
+	#atributos de eventos
+	onload="" - onload é mais frequentemente udado com o elemento <body> para executar um script uma vez que a página web é completamente carregada todo o conteúdo (incluindo imagens, arquivos de script, arquivos CSS, etc...). Contudo, pode ser usado em outros elementos também.
+
+	onclick="myFunction()" - ao inserir uma função de clique, depois dos parenteses da função inserida, colocar ; (o ponto e virgula).
+
+	onfocus="myFunction()" - executa uma função javascript quando um campo de entrada (um campo input) recebe foco.
+
+	onchange="myFunction()" - executa a função após retirar o foco do campo de entrada de dados (após tirar o foco do campo input).
+
+	onblur="function()" - executa a função javascript quando o usuário deixa o campo de entrada (o campo input).
+	OBS: a diferença entre onchange e onblur é que o atributo onblur é iniciado sempre que o campo input perde o foco (quando saímos de um campo input, mesmo que dados não tenham sido inseridos nesse input).
+	OBS2: em uma função de validação de dados definida em um input, para inserir-mos o próprio campo input, utilizamos a palavra this, que referencia que é o próprio campo input que deve ser acionado.
+
+	onresize="function();" - executa a função javascript quando a janela do navegador e redimensionada.
+
+	onmouseover="" - usado para quando passar o ponteiro do mouse em cima de alguma coisa na página.
+	OBS: um exemplo para chamada de um evento onmouseover:
+		onmouseover="this.className = 'decisionhover'"  
+
+	onmouseout="" - usado para quando retirar o ponteiro do mouse em cima de alguma coisa na página.
+	OBS: um exemplo para chamada de um evento onmouseout:
+		onmouseover="this.className = 'decision'"  
+
+
+
+##########################
+# XMLHttpRequest
+##########################
+	
+	XMLHttpRequest.readyState - retorna o estado numérico da solicitação: 0 (não inicializado), 1 (aberto), 2 (enviado), 3 (recebendo), 4 (carregado).
+
+	XMLHttpRequest.status - retorna o código de status HTTP da solicitação como, por exemplo, 404 (não encontrado) ou 200 (OK).
+
+	XMLHttpRequest.onreadystatechange - uma referência para a função que é chamada quando o estado da solicitação muda.
+
+	XMLHttpRequest.responseText - os dados da resposta retornados do servidor, como uma string de texto comum.
+
+	XMLHttpRequest.responseXML - os dados da resposta retornados do servidor, como um objeto consistindo em uma arvore de nós XML.
+
+	XMLHttpRequest.abort() - cancela a solicitação.
+	OBS: esse método será usado somente se a solicitação ajax precisa ser cancelada.
+
+	XMLHttpRequest.open() - Prepara uma solicitação especificando seu tipo e URL, entre outras coisas.
+
+	XMLHttpRequest.send() - Envia a solicitação para o servidor para o processamento.	  

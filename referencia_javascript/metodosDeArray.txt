@@ -1,0 +1,22 @@
+#métodos de Array
+
+.toString() - converte um array para uma string única com vírgulas separando as palavras.
+
+.join(" ") - junta todos os elementos de um array em uma string única com o valor definido entre as aspas do método separando as palavras na string.
+
+.pop() - remove o último elemento do array.
+
+.push("elemento") - insere um elemento especificado no parâmetro ao final do array (se o array.push("elemento") for atribuido a uma variável, essa variável armazenará o valor inserido no array (ou seja, o valor inserido no array)).
+
+.shift() - remove o primeiro elemento do array (se o array.shift() for atribuido a uma variável, essa variável armezena o valor removido do array (ou seja, o valor removido do array)).
+
+.unshift("string") - adiciona o elemento definido como argumento no começo do array.
+
+.splice(addIndexPosicaoArray, quantElementoRemover,quantElementosSeparadosPorVirgula ) - adiciona itens ao array e ao mesmo tempo (se quiser, é claro) já remove itens do array tbm. No primeiro parâmetro definimos a posição onde o(s) elemento(s) do array serão inseridos, o segundo parâmentro define quantos elementos serão removidos (caso não queira remover nenhum, coloque o valor 0 (zero)) e o terceiro parâmetro inserimos a quantidade de strings que quisermos (separando essas strings com virgula, é claro).
+OBS: podemos usar o metodo de array .splice() para remover-mos elementos do array sem deixar buracos no array, assim: array.splice(0, 1).
+
+.concat(array2) - usado para concatenar array.
+OBS: vc pode concatenar dois arrays diferentes com um outro array, assim: array.concat(array2, array3).
+
+.slice(quantItemfatiados) - fatia a quantidade de item(s) de array definidas no parâmetro.
+OBS: vc pode definir uma faixa de fatiamento com o método slice assim: .slice(1, 3), (ou seja, nesse exemplo, fatiará do primeiro item do array, até o terceiro item do array).  
