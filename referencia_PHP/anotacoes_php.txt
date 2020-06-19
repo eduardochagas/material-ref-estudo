@@ -1,0 +1,1932 @@
+################################
+#
+#  métodos php
+#
+################################
+
+  ============================
+   comentários em PHP
+  ============================
+  
+    // para uma única linha
+
+    /**/ para multiplas linhas
+
+
+
+  =========================
+   operadores aritméticos
+  =========================
+  
+    adição +
+
+    subtração -
+
+    multiplicação *
+
+    divisão /
+
+    módulo (resto da divisão) %
+
+    potenciação **
+
+
+      -----------------------------
+      ordem de precedência dos 
+      operadores matemáticos:
+      -----------------------------
+
+	1 - raiz quadrada e potenciação
+
+	2 - divisão e multiplicação
+	
+	3 - soma e subtração
+
+
+
+
+  ===========================
+   operadores de Comparação
+  ===========================
+
+    == compara um valor com outro.
+
+    !=, <> diferente de...
+
+    === compara se os valores são do mesmo valor e do mesmo tipo
+
+    !== compara se os valores são  diferente e do mesmo tipo
+
+    <  sinal menor que
+
+    >  sinal maior que  
+
+    <= sinal menor ou igual
+
+    >= sinal maior ou igual
+
+
+
+
+  ==========================
+   Operadores lógicos
+  ==========================
+
+    && - é o operador and 
+
+    || - é o operador or 
+
+    XOR - usado exclusivamente para, se SOMENTE UMA das mais de uma condição 
+          for verdadeira, aí retornará verdadeiro. Se SE MAIS DE UMA CONDIÇÃO for 
+          VERDADEIRO, então RETORNARÁ False. 
+
+
+
+
+  =========================
+   Estruturas condicionais
+  =========================
+
+    if - condicional para somente uma condição.
+
+
+    if/elseif - condicional para mais de uma condição.
+
+
+    if/ elseif/ else - condicional para mais de uma condição, com uma condição final.
+
+
+    ----------------------------------
+     switch / case / break / default
+    ----------------------------------
+
+    switch/ case/ break/ default - usado para criar vários casos a partir de uma condição.
+       A estrutura switch é assim:
+
+          ex:
+              switch(caso): 
+                case 1:
+      //code...
+                  break;
+    case 2:
+      //code...
+      break;      
+                default:
+      //code..
+
+
+    -----------------------
+     operador ternario
+    -----------------------
+      
+      Exemplo de uso do operador ternário:
+  
+        echo ($media >= 7) ? "aprovado" : "reprovado";
+
+
+
+
+  ============================
+   Estruturas de repetição
+  ============================
+
+   while -
+
+
+   Do while -
+
+
+   for - ultiliza uma variável contadora, uma condição, e o incremento da 
+   variável contadora (é a mesma estrutura do javascript). 
+
+
+   foreach - utilizado para percorrer itens de um array.
+       A estrutura do foreach é assim:
+ 
+         ex1:
+            foreach($array as $itens) {
+              echo $itens . "<br/>";
+            }
+
+
+       usando o foreach exibindo chave,valor do array.
+
+          ex2:
+            foreach($array as $key => $value) {
+              echo $key . $value . "<br/>";
+           }
+
+
+
+
+  =========================
+   tipos de dados em PHP
+  =========================
+
+    string - dados do tipo texto.
+
+    int - dados do tipo número inteiro.
+
+    float - dados do tipo número quebrado (1,5, 2,76, etc...)
+
+    boolean - dados True ou False.
+
+    array() - dados do tipo lista.
+
+    Class NomeDaClasse() - dado do tipo classe.
+
+    Null - dado do tipo que não possui atribuição de dado.
+
+
+ 
+
+  =========================
+   variáveis em PHP
+  =========================
+
+    Variaveis em PHP começam sempre com o caractere $.
+
+      ex:
+	       $nome, $idade, $email, etc...
+
+
+
+
+  =============================
+   pré-incremento e 
+   pós-incremento de variáveis
+  =============================
+
+    Exemplo de PRÉ-INCREMENTO de valor na variável:
+
+      ex:
+        $valor = 20;
+      	echo ++$valor; // já incrementa mais 1 ao valor, e exibe na página.
+
+ 
+    Exemplo de PÓS-INCREMENTO de valor na variável:
+
+      ex:
+      	$valor = 20;
+      	echo $valor++; // retorna o valor SEM INCREMENTAR !!!
+      	echo "<br/>";
+      	echo $valor; // retorna o valor incrementado.
+
+
+  =============================
+    pré-decremento e 
+    pós-decremento
+  =============================
+
+	  Exemplo de PRÉ-DECREMENTO de valor na variável:
+
+            ex:
+              $valor = 20;
+              echo --$valor; // já decrementa mais 1 ao valor, e exibe na página.
+
+
+          Exemplo de PÓS-DECREMENTO de valor na variável:
+
+            ex:
+              $valor = 20;
+              echo $valor--; // retorna o valor SEM DECREMENRAR !!!
+              echo "<br/>";
+              echo $valor; // retorna o valor DECREMENTADO.
+
+
+
+
+  ===========================
+   variáveis dinâmicas em PHP
+  ===========================
+
+    O PHP possui um recurso de variáveis dinâmicas, ou seja, o valor de uma variável 
+    pode receber um valor. Para usarmos este recurso, usamos dois caracteres de 
+    cifrão ($$) antes do nome da primeira variável criada.
+
+      ex:
+      	$refrigerante = "dolly"; // o valor dolly se torna uma variável.
+      	$$refrigerante = "pepsi";
+
+      	echo '$dolly'; // exibirá o valor pepsi
+
+
+
+
+  =============================
+   escopo de variáveis
+  =============================
+
+    variável global - são as variáveis que são criadas FORA de uma função ou 
+    fora de uma classe.
+
+    variavel local - são as variáveis que são criadas DENTRO de uma função ou classe.
+      OBS: para usar uma variável global dentro de uma função, usamos a palavra
+      reservada do php chamada: global.
+ 
+        ex:
+          $nome ="Eduardo";         
+ 
+	  function nomeDaFuncao() {
+              global $nome;
+	      echo $nome; // exibirá o valor inserido na variável global.  
+          }
+
+          nomeDaFuncao(); // aqui a função é chamada
+
+
+
+
+  =========================
+   constantes em PHP
+  =========================
+
+    para definirmos constantes em PHP, usamos o método define().
+
+      ex:
+    	  define("PRECO", "1.49");
+
+
+
+
+  =============================
+   aspas simples e aspas duplas
+  =============================
+
+    '' (aspas simples) - são literais, ou seja, se houver uma variável
+    dentro da string, essas variáveis não são interpretadas.
+    
+      ex:
+        $nome = 'Eduardo';
+        echo 'olá, o meu nome é $nome'; // será imprimido: olá o meu nome é $nome
+
+          para imprimirmos o valor de uma variável com o texto em aspas simples, devemos
+          usar o sinal de concatenação (que é o sinal de ponto)
+
+	    ex:
+	      $nome = 'Eduardo';
+	      echo 'olá, o meu nome é '.$nome
+
+
+    "" (aspas duplas) - são interpretativas, ou seja, se vc inserir uma variável com o 
+    texto em aspas duplas, será exibido o valor da variável.
+
+      ex:
+      	$nome = 'Weverton';
+      	echo "olá, o nome do meu amigo é $nome"; // será imprimido: olá o meu nome é Weverton
+
+
+
+
+  ============================
+   array e seus métodos
+  ============================
+
+    Em PHP, definimos um array assim:
+
+       $a = array();
+
+
+    Existem dois tipos de array em PHP: array indexado e array associativo.
+
+      Exemplo de array indexado:
+
+        $a = array("nome1", "nome2", "nome3"); // é um array normal.
+	      OBS: para inserir dados no final do array indexado, faça assim:
+
+	         $a[] = "nome4";
+	  
+      
+      Exemplo de array associativo:
+
+        $b = array("nome"=>"Eduardo", "idade"=>"31", "sexo"=>"Masculino");
+
+    
+      ----------------------------
+       Array implicito e
+       Array explicito
+      ----------------------------
+
+        Exemplo de array implicito (isso é para os arrays indexados):
+
+          ex1:
+              $a = array("Eduardo", "We", "Alex"); #array de valores implicito
+
+          ex2:
+              $b = array(0=>"Eduardo", 1=>"We", 2=>"Alex"); #array de valores explicito.
+
+
+    -----------------------
+     array multidimensional
+    -----------------------
+
+      Exemplo de um array multidimensional em PHP:
+
+      	ex:
+      	  $times = array("cariocas"=>array("vasco", "flamengo", "botafogo"),
+                           "paulistas"=>array("santos", "sao paulo", "palmeiras"));
+          
+
+      Exemplo de loop com array multidimensional em PHP:
+
+      	ex:
+      	  foreach($times["cariocas"] as $indice => $valor) {
+      	      echo $indice.":".$valor."<br/>";
+      	  }
+
+
+   ---------------------------
+     array especial $GLOBALS[]
+   ---------------------------
+
+      O array $GLOBALS[] é um array ASSOCIATIVO que usa o nome da variável global
+      como A CHAVE do array.
+
+        ex:
+          $a = 1;
+          $b = 2;
+          $c = 3;
+
+          function nomeDaFuncao() {
+              echo $GLOBALS['a'] + $GLOBALS['b'] + $GLOBALS['c'];
+          }
+
+          nomeDaFuncao(); // aqui a função é chamada
+
+
+
+
+###################################
+#
+#  métodos PHP
+#
+###################################
+
+
+    is_string() - verifica se uma variável é do tipo string.
+
+
+    is_float() - verifica se uma variável é do tipo float.
+
+
+    is_int() - verifica se uma variável é do tipo inteiro.
+
+
+    is_bool() - verifica se uma variável é do tipo boleano.
+
+
+    is_array() - verifica se uma variável é um array.
+
+
+    is_object() - verifica se uma variável é do tipo classe.
+
+
+    gettype() - retorna o tipo de dado armazenado na variavel.
+
+
+    print_r() - usado para exibir variáveis do tipo array.
+
+
+    count() - retorna o número da quantidade de itens de um array.
+
+
+    htmlspecialchars() - usado para anular código html dentro de input(s). 
+
+
+
+  ========================
+    métodos para array
+  ========================
+
+    in_array(valor, array) - verifica se encontra um dado no array. se 
+    o dado for encontrado, retorna 1 (verdadeiro), senão retorna 0 (falso). 
+
+    
+    array_keys(array) - retorna um novo array contendo somente os indices do array 
+    passado no parâmetro.
+
+
+    array_values() - retorna um novo array contendo somente os valores do array 
+    passado no parâmetro.
+
+
+    array_merge(array1, array2) - junta os dados de dois arrays formando um array só.   
+
+
+    array_pop(array) - remove o último item do array.
+
+
+    array_shift() - remove o primeiro item do array.
+
+
+    array_unshift(array, valores) - adiciona um ou mais valores em um array no 
+    INICIO do array.
+
+
+    array_push(array, valores) - adiciona um ou mais valores em um array no 
+    FINAL do array.
+
+
+    array_combine(arrayKeys, arrayValues) - junta dois arrays formando um único array onde 
+    os valores do array inserido no PRIMEIRO PARAMETRO será as CHAVES do novo array, e
+    os valores do array inserido no SEGUNDO PARAMETOR será os VALORES do novo array.
+
+
+    array_sum(array) - retorna a soma de todos os valores dentro do array. 
+
+
+    explode() - transforma uma string em array.
+
+        ex:
+          $frase = "meu nome não é jhonny";
+          $array = explode(" ", $frase);
+          print_r($array);
+
+
+    implode() - transforma um array em string.
+
+        ex:
+          $nomes = array("Rodrigo", "Carlos", "Neusa", "Talita");
+          $string = implode(", ", $nomes);
+          echo $string;
+
+
+
+  -------------------------
+   métodos de string
+  -------------------------
+      
+    strtoupper(string) - transforma a string em letras maiúsculas.
+
+
+    strtolower(string) - transforma a string em letras minúsculas.
+
+
+    substr(string, numCaractereInicialDaSubstring, numLarguraDaSubstring) - 
+    retira uma substring a partir de uma string.
+
+        parâmetros do método substr():
+
+          string - insira uma string.
+
+          numCaractereInicialDaSubstring - insira um número representando o 
+                índice do caractere na string.
+
+        	  parâmetro(s) opcional(is):
+
+        	      numLarguraDaSubstring - insira um número representando a 
+                      quantidade de caracteres que vc quer da string para gerar a
+                      substring.
+
+
+
+      str_pad(string, numQuantCaractere, caractere, STR_PAD_LEFT) - determina a 
+      quantidade de caracteres em uma string.
+
+          parâmetros do método str_pad():
+
+              string - insira uma string.
+
+      	      numQuantCaractere - insira um número representando o índice do 
+                    caractere na string.
+
+              caractere - insira um caractere qualquer. Esse caractere será 
+              usado para preencher os espaços vazios da string caso o número 
+              inserido no parâmetro numQuantCaractere for maior que a 
+              quantidade de caractere no parâmetro string.
+              
+                parâmetro(s) opcional(is):
+
+      	          STR_PAD_LEFT - muda o lado dos caracteres que foram usados para 
+                    preencher os espaços vazios da string para a esquerda.
+
+                  STR_PAD_RIGHT - muda o lado dos caracteres que foram usados para
+                    preencher os espaços vazios da string para a direita.
+
+            		  STR_PAD_BOTH - distribui os caracteres que foram usados para
+                    preencher os espaços vazios da string para ambos os 
+                    lados da string (ou seja, para o lado direito e 
+                    esquerdo da string).
+
+
+
+      str_repeat(string, num) - usado para repetir uma string.
+
+          parâmetros do método str_repeat():
+
+            string - é a string á qual será repetida.
+
+            num - o número que é a quantidade de vezes que a string será repetida.
+
+
+
+      strlen() - retorna a quantidade de caracteres de uma string.
+
+
+
+      str_replace(palavra1, Palavra2, string) - faz a troca de uma palavra por outra 
+      palavra dentro de uma string.
+
+        parâmetros do método str_replace():
+
+          palavra1 - palavra dentro do texto da string.
+
+          palavra2 - palavra que substituirá a palavra1 dentro do texto da string.
+
+          string - o texto que será usado para a troca das palavras.
+
+
+
+      str_pos(string, palavra) - exibe a posição de uma palavra dentro de uma string.
+
+        parâmetros do método str_pos():
+
+          string - texto que será usado para saber a posição da palavra.
+
+          palavra - palavra dentro do texto da string.
+
+
+
+  ---------------------
+   métodos para números
+  --------------------- 
+
+    number_format(numero, numCasaDecimal, separadorDecimal, separadorDeMilhar) - usado para 
+    formatação de numeros.
+
+      ex:
+        $numero = 1234.56;
+        $preco = number_format($numero, 2, ",", ".");
+        echo "o valor do produto é $preco";
+
+
+    round() - arredonda um valor ponto flutuante.
+
+
+    ceil() - arredonda sempre o valor para cima.
+
+
+    floor() - arredonda sempre o valor para baixo.
+
+
+    rand(valor1, valor2) - gera números aleatórios entre o valor1 e o valor2.
+
+
+
+
+  -------------------------------------
+    métodos para senha (criptografia)
+  -------------------------------------
+
+    md5() - usado para criptografar senha.
+
+      OBS: se vc criptografar a senha em uma tabela no banco de dados, vc deve 
+      inserir a variável que recebe o valor do campo senha criptografado do banco 
+      de dados dentro da função PHP md5(), assim:
+
+        ex:
+          md5($senha);
+
+
+    base64_encode() - usado para CRIPTOGRAFAR uma senha.
+
+        Exemplo de como criptografar um dado usando base64_encode():
+          
+          <?php 
+
+            $senha = "123456";
+            $novaSenha = base64_encode($senha);
+            echo "senha criptografada com o método base64_encode():". $senha. "<br/>";
+          ?>
+
+
+    base64_decode() - usado para DESCRIPTOGRAFAR senhas criptografadas com 
+    o método base64_encode().
+
+        Exemplo de como criptografar um dado usando base64_decode():
+          <?php 
+
+            $senha = "123456";
+            $novaSenha = base64_encode($senha);
+            echo "senha criptografada com o método base64_encode():". $senha. "<br/>";
+            echo "senha descriptografada com o método base64_decode():". base64_decode($senha); 
+          ?>
+
+
+    sha1() - criptografa um dado gerando um hash de 41 caracteres.
+
+        ex:
+          <?php 
+
+            $senha = "123456";
+            echo "criptografia com sha1(): ". sha1($senha);
+
+        ?>
+
+
+    password_hash(senha, PASSWORD_DEFAULT) - gera um hash único de criptografia.
+
+      o método password_hash() possui dois parâmetros:
+
+          senha - é a senha que voce deseja inserir.
+
+          PASSWORD_DEFAULT - palavra reservada do PHP que gera o hash único para a senha. 
+
+
+      Exemplo de como funciona o método password_hash():
+        <?php
+
+          $senha = "123456";
+
+          $senhaSegura = password_hash($senha, PASSWORD_DEFAULT);
+          echo $senhaSegura;
+
+        ?>
+
+
+
+  ----------------------------
+    método para data no PHP
+  ----------------------------
+
+    date() - usado para retornar data.
+
+
+        d - retorna o dia.
+          ex:
+            echo date('d'); // a saida é assim: 02
+
+
+        m - retorna o mês.
+          ex:
+            echo date('m'); // a saida é assim: 05
+
+
+        y - retorna o ano (com 2 digitos).
+          ex:
+            echo date('y'); // a saida é assim: 20
+
+
+
+        D - retorna o dia no formato textual (com 3 digitos).
+          ex:
+            echo date('D'); // a saida é assim: Wed
+
+
+        l - retorna o dia da semana no formato textual (nome completo do dia da semana).
+          ex:
+            echo date('l'); // a saida é assim: Wednesday
+
+
+        M - retorna o mês no formato textual.
+          ex:
+            echo date('D'); // a saida é assim: May
+
+
+        Y - retorna o ano (com 4 digitos).
+          ex:
+            echo date('Y'); // a saida é assim: 2020
+
+
+        h - retorna a hora (com 2 digitos) no formato 12 horas.
+          ex:
+            echo date('h'); // a saida da hora é essa: 08
+
+
+        H - retorna a hora (com 2 digitos) no formato 24 horas.
+          ex:
+            echo date('H'); // a saida da hora é essa: 16
+
+
+        i - retorna os minutos.
+          ex:
+            echo date('m'); // a saida dos minutos é essa: 55
+
+
+        s - retorna os segundos.
+          ex:
+            echo date('s'); // a saida dos segundos é essa: 32
+
+
+        A - exibe o AM do relogio.
+          ex:
+            echo date('A'); // a saida da hora é essa: 08
+
+
+
+        Exemplos de como exibir datas com o método date() no PHP:
+
+            <?php
+
+              echo date('d/m/Y'); // a saída é: 02/05/2018
+
+              echo date('l'); // a saida é assim: Wednesday
+
+
+                OBS: antes de configurar a hora no PHP, devemos configurar o timezone com 
+                a função: date_default_timezone_set('America/Sao_Paulo'):
+
+                  echo date_default_timezone_set('America/Sao_Paulo');
+                  echo date('d/m/Y H:i:s'); // a saida é assim: 02/05/2018 20:56:29
+            ?>
+
+
+
+        Exemplos de como inserir datas no banco de dados:
+
+            <?php
+
+              // se a coluna do banco de dados for do tipo date...
+              $date = date('Y-m-d');;
+
+              // se a coluna do banco de dados for do tipo datetime...
+              $datetime = date('Y-m-d H:i:s');
+
+            ?>
+
+
+
+      time() - retorna a quantidade de tempo em segundos desde 1 de janeiro de 1970.
+        OBS: para formatar a quantidade de segundos em um formato data, usamos o metodo date():
+
+          ex:
+            $time = time();
+            echo date('d/m/Y', $time); // a saida desse comando converte para o formato de data.
+
+
+      mk_time(numHora, numMinuto, numSegundo, numMes, numDia, numAno) - cria uma data e hora.
+        OBS: para formatar a data feita no método mktime(), usamos o metodo date():
+
+          ex:
+            $data_pagamento = mktime(15, 30, 00, 02, 15, 2023);
+            echo date('d/m - j:i', $data_pagamento); // a saída será: 15/02 - 03:30. 
+
+
+      date_default_timezone_set('America/Sao_paulo') - usado para configurar o 
+      timezone da sua região. 
+        OBS: antes de configurar a hora dentro do método date(), devemos configurar 
+        o timezone da nossa região com: 
+
+            ex:
+              date_default_timezone_set('America/Sao_paulo');
+              $datetime = date('Y-m-d H:i:s');
+              echo $datetime;
+
+
+    -----------------------------------------------------------
+    Convertendo dados do tipo (date e datetime) registrados no 
+    banco de dados e convertendo para o formato data do PHP
+    -----------------------------------------------------------
+      
+      strtotime() - retorna SOMENTE OS NÚMEROS DA DATA (dos tipos de dados: date e 
+      datetime), vindo do banco de dados ou do formulário HTML.
+
+        OBS: junto com o método strtotime(), usamos o método date() para a 
+        formatação da data do PHP.  
+
+          // conversão de dado do tipo date do banco de dados
+          $data = '2019-04-10';
+          $strtotime = strtotime($data);
+          echo date('d/m/Y', $data); // a saida será assim: 10/04/2019
+
+
+          // conversão de dado do tipo datetime do banco de dados
+          $data = '2019-04-10 13:30:00';
+          $strtotime = strtotime($data);
+          echo date('d/m/Y', $data); // a saida será assim: 10/04/2019 13:30:00
+
+
+
+  -------------------------
+   métodos para trabalhar 
+   com formulários 
+  -------------------------
+
+    isset() - verifica se o dado existe no PHP.
+      OBS: usado para verificar se existe um valor em um array ou variavel.
+
+
+    unset() - deleta o valor armazenado na variável
+      OBS: usado para deletar o valor do array ou variável.
+
+
+    ini_set('display_errors', 1); - exibe o erro do código php.
+      OBS: use esse método caso o php não exiba o erro do código. 
+
+
+    header() - Faz o Redirecionamento para uma página.
+      OBS: esse método é usado assim:
+
+          header("Location: pagina.extensao");
+
+
+    empty() - verifica se uma variável é vazia.
+
+
+    exit() - usado para parar a execução da aplicação.
+      OBS: esse método é muito usado em estruturas condicionais para o encerramento
+      da execução da aplicação.
+
+        ex:
+          try {
+
+              $pdo = PDO("mysql:host=127.0.0.1;dbname=bd_cadastro","root", ""); 
+
+          }
+          catch (PDOException) {
+
+              echo $e->getMessage(); // método de retorno de erro de PDOEXception.
+              exit();
+
+          } 
+
+    
+    count() - retorna o número da quantidade de itens de uma variável ou array.
+
+
+    setcookie(string1, string2, tempoEmSegundos) - configura o cookie do navegador.
+        
+        o método setcookie() possui três parâmetros:
+
+          string1 - insere uma string no primeiro parâmetro.
+
+          variavel - insere uma string no segundo parâmetro.
+
+          tempoEmSegundos - é a quantidade de tempo (em segundos) que o cookie deve 
+          permanecer válido. 
+
+
+
+    mail(email, assunto, corpo, cabecalho) - usado para enviar email a partir do PHP.
+      
+        o método mail() possui quatro parametros:
+        
+          email - é onde inserimos o email ao qual será enviado a mensagem.
+
+          assunto - é o titulo dizendo do que se trata a mensagem.
+
+          corpo - é a estrutura de envio de mensagem de um email, pode ser em html ou txt.
+
+              ex:
+                $corpo = "<strong> Mensagem de contato</strong><br/><br/>";
+                $corpo .= "<strong> Nome: </strong> $nome";
+                $corpo .= "<br/> <strong> Telefone: </strong> $fone";
+                $corpo .= "<br/> <strong> Email: </strong> $email";
+                $corpo .= "<br/> <strong> Mensagem: </strong> $msg";
+
+
+          header - define o tipo do conteúdo do email.
+          
+              ex:
+                $header .= "Content-Type: text/html; charset= utf-8\n";   
+                $header = "From: $email Reply-to: $email\n";
+
+
+
+
+
+############################
+#
+#    Funções em PHP
+#
+############################
+
+
+  return - palavra reservada para funções usada para retornar um valor.
+    OBS: para que o valor seja exibido na tela, usamos o comando: echo nomeDaFuncao.
+ 
+  Para criarmos uma função no PHP usamos a palavra reservada: function.
+
+    ex:
+      function nomeDaFuncao() {
+        //code...
+      }
+
+   
+  ----------------------
+   função sem parâmetro
+  ----------------------
+
+    ex:
+      function exibirNome() {
+        echo 'meu nome é $nome';
+      }
+      
+
+  ------------------------
+   função com parâmetro
+  ------------------------
+
+    ex:
+      function calcularMedia($nome, $num1, $num2, $num3, $num4) {
+        $media = ($num1, $num2, $num3, $num4) / 4;
+        if($media >= 7) {
+          echo "$nome foi aprovado com a média $media.";
+        }
+        else{
+          echo "$nome foi reprovado";
+        }        
+      }
+
+
+  ---------------------------
+   função com parâmetros que 
+   possuem valores padrão
+  ---------------------------
+
+    Se não especificarmos um valor para o parâmetro na função, será usado o valor padrão 
+    do parâmetro.
+    
+      ex:
+        function nomeDaFuncao($param1 = 30) {
+          echo "O número do apartamento é $param1";
+        }
+
+        nomeDaFuncao(); // será exibido: O número do apartamento é 30.
+
+
+
+    Se especificarmos um novo valor para o parametro da função que já possui um 
+    valor padrão, será exibido o novo valor passado no parâmetro.
+
+      ex:
+        function nomeDaFuncao($param1 = 30) {
+          echo "O número do apartamento é $param1";
+        }
+
+        nomeDaFuncao(55); // será exibido: O número do apartamento é 55.
+
+
+
+#########################
+#
+#  Variáveis SuperGlobais
+#
+#########################
+
+  As variáveis superglobais são arrays que podem ser usados em qualquer lugar de um arquivo PHP.
+
+  // Superglobais
+
+  /*
+    $GLOBALS
+    $_SERVER 
+    $_REQUEST
+    $_POST
+    $_GET
+    $_FILES
+    $_ENV
+    $_COOKIE
+    $_SESSION
+  */
+
+    ----------------------
+      GLOBALS
+    ----------------------
+
+      GLOBALS - usada para variáveis globais em escopos locais.
+
+        ex:
+          $x = 10;
+          $y = 15;
+
+          function soma() {
+            echo GLOBALS['x'] + GLOBALS['y'];
+          }
+
+          soma(); // executa a função.
+
+            OBS: GLOBALS['x'] - permite que a variável $x do escopo global possa ser 
+            acessada dentro do escopo da função.
+
+            GLOBALS['y'] - permite que a variável $y do escopo global possa ser 
+            acessada dentro do escopo da função.
+
+
+
+    --------------------
+      $_SERVER
+    --------------------
+
+      $_SERVER - contêm informações sobre cabeçalhos, caminhos e locais 
+      de script. O array $_SERVER possui por padrão vários índices 
+      pré-definidos pela linguagem PHP.
+
+        lista de alguns indices pré-definidos:
+
+          PHP_SELF - executa a pŕopria página.
+          SERVER_NAME - retorna o nome do servidor onde o arquivo PHP está rodando.
+          SCRIPT_FILE_NAME - retorna o caminho absoluto do escript em execução.
+          DOCUMENT_ROOT - retonra o diretório raiz do script em execução.
+          SERVER_PORT - retorna a porta do servidor web.
+          REMOTE_ADDR - retorna o endereço ip de onde o usuário está visualizando a página.
+
+
+
+        ex:
+          echo $SERVER[PHP_SELF];
+
+
+
+    ---------------------
+      $_POST
+    ---------------------
+    $_GET[] - envia dados que são visíveis na URL. (exibe as informações na URL).
+      OBS: o nome GET é inserido dentro do parâmetro method="" do formulário html.
+
+      $_POST - usado para pegar dados do formulário de uma página html. Envia dados 
+      que não são visíveis ao usuário. (não exibe as informações na URL).
+        
+        OBS: Devemos usar o $_POST quando criamos sistema de acesso restrito, com sessões. 
+        OBS2: o nome POST é inserido dentro do parâmetro method="" do formulário html. 
+        OBS3: para conseguirmos pegar os dados do formulario html, devemos definir o atributo: 
+        name="nome" e name="email", nos inputs do formulário.
+
+          exemplo do formulário no arquivo html:       
+
+            <form action="arquivo_php.php" method="POST">
+              <input type="text" name="nome"><br/>
+              <input type="text" name="email"><br/>
+              <input type="submit" name="enviar">
+            </form>
+
+        exemplo do código no: arquivo_php.php:
+          
+            $nome = $_POST['nome'];
+            $email = $_POST['email'];
+
+            echo "seu nome é $nome e seu email é $email";
+
+
+
+    ----------------------
+      $_GET
+    ----------------------
+
+      $_GET - envia dados que são visíveis na URL. (exibe as informações na URL). O $_GET é 
+      usado quando queremos passar as informações dos campos input de um formulário para 
+      um arquivo PHP através de variáveis de url.
+
+        OBS: o nome GET é inserido dentro do parâmetro method="" do formulário html. 
+
+
+        exemplo de como funciona a url com o método GET:
+
+            caminhoAtéoArquivoPHP/arquivoPHPDefinidoNoAtributoActionDoFormulario?nome="valorDoCampoNomeDoFormulario"&email="valorDoCampoEmailDoFormulario".
+
+
+            explicando a url por partes:
+
+              caminhoAtéoArquivoPHP/arquivoPHPDefinidoNoAtributoActionDoFormulario - é todo 
+              o caminho do servidor até o arquivo PHP que executará os dados 
+              do formulário (esse arquivo fica no atributo action="arquivo_php.php" do formulario).
+
+              ? - o sinal de interrogação na url indica que após ele é que serão 
+              inseridas as variáveis na url.
+
+              nome="valorDoCampoNomeDoFormulario" - é a variável inserida na url.
+                OBS: o nome da variavel inserida na url VAI DEPENDER DO NOME QUE FOI 
+                INSERIDO DENTRO DO ATRIBUTO name="" do(s) input(s) DO FORMULÁRO HTML, 
+                ou seja, OS NOMES DAS VARIÁVEIS NA URL são os nomes inseridos como 
+                valor no atributo name="" do formulário, e OS VALORES DESSAS VARIÁVEIS 
+                NA URL são os valores que o usuario digitou nos input(s) do formulário.
+
+
+        exemplo do formulário no arquivo html:       
+
+            <form action="arquivo_php.php" method="GET">
+              Nome:<input type="text" name="nome"><br/>
+              Email:<input type="text" name="email"><br/>
+              <input type="submit" name="enviar">
+            </form>
+
+        exemplo do código no: arquivo_php.php:
+          
+            $nome = $_GET['nome'];
+            $email = $_GET['email'];
+
+            echo "seu nome é $nome e seu email é $email";   
+
+
+        ao executar o código, será exibido na página:
+
+            seu nome é valorDoInputNome e seu email é valorDoInputEmail"
+
+
+        e a url ficará parecida com isso:
+
+            cursoPHP/arquivo_php.php?nome="valorDoCampoNomeDoFormulario"&email="valorDoCampoEmailDoFormulario".
+
+
+
+    --------------------
+     $_REQUEST
+    --------------------
+
+      $_REQUEST - permite que os dados inseridos em um formulário apareça na URL e 
+      ao mesmo tempo armazena esses mesmos dados nas variáveis de seus respectivos 
+      campos no PHP.
+
+
+
+    ----------------------
+      $_SESSION
+    ----------------------
+
+      $_SESSION - array superglobal usado para armazenar dados da sessão do usuário.
+
+      Sessão é um recurso do PHP que permite que vc salve valores (no 
+      array superglobal $_SESSION) para serem usados ao longo da visita do usuário em 
+      um site. Os valores salvos na superglobal $_SESSION[] podem ser usados em qualquer 
+      parte       do script, mesmo em outras páginas do site. O array 
+      superglobal $_SESSION[] possui funções auxiliares, como por exemplo:
+
+        session_destroy(), session_start(), session_unset(), etc....
+
+      Não existe limite de informações para serem salvas nessa variável 
+      superglobal $_SESSION, vc pode salvar a quantidade de informações que quiser,
+      lembrando que A SESSÃO É PESSOAL PARA CADA USUÁRIO QUE ACESSA O SITE.
+
+      Se o usuário acessa o site pela conta (login e senha), todas as informações
+      relacionadas a esse usuário lá no banco de dados fica armazenada na sessão 
+      do usuário.
+
+      Quando um visitante acessa o site, é gerado um ID único de sessão. Esse ID 
+      unico de sessão é importante para descobrir todas as informações daquela
+      sessão. 
+      
+
+        Exemplo de como usar o array superglobal $_SESSION para criar a sessão do usuário
+        quando o usuário logar no site.
+
+            $_SESSION['logado'] = true;
+            $_SESSION['id_usuario'] = 'valorDoIdDoUsuarioNaTabelaDoBancoDeDados';
+
+
+        Exemplo de como ENCERRAR A SESSÃO em um site:
+
+            <?php
+
+              session_start(); // temos que iniciar a sessão
+              session_unset(); // limpar a sessão
+              session_destroy(); // destruir a sessão
+              header('Location: pagina.php');
+            ?>
+
+
+        session_start() - usado para iniciar a sessão. (Antes de usar o array 
+        superglobal $_SESSION em um arquivo, é necessário iniciar a sessão com 
+        o método: session_start()).
+
+          OBS: toda página de login e senha usada para acessar um site ou servidor 
+          é necessário que vc insira um código PHP que verifica se há algum usuário 
+          logado antes de efetuarmos o nosso login.
+
+            ex:
+              <?php
+
+                require_once 'conexao.php';
+
+                // inicia o array superglobal $_SESSION
+                session_start();
+
+                // verifica se existe um usuário logado no site...
+                if(!isset($_SESSION['logado'])) {
+                  header('Location: index.php');
+                }
+              ?>
+
+
+        session_start() - inicia uma sessão para o usuário logado na aplicação web.
+
+        session_unset() -
+
+        session_destroy() - destroi todas as sessões logadas na aplicação web.
+
+        session_id() - gera um código ID para a sessão criada.
+
+        
+
+
+
+######################################
+#
+#  Validações e Sanitização de dados
+#
+######################################
+
+  ============================
+    Filter Validate
+  ============================
+
+    Os filtros de validação são usados para confirmar se o dado é realmente de um determinado tipo.
+
+      filter_input(tipo_de_input, 'valorDoAtributoNameDoInputDoFormulario', filtro_de_validacao) - faz 
+      o filtro de entrada de dados em um formulário.
+
+        lista de alguns tipos_de_input:
+
+          INPUT_POST
+
+
+        lista de alguns filtros_de_validacao:
+
+          FILTER_VALIDATE_INT - faz a validação de dados do tipo inteiro.
+          FILTER_VALIDATE_EMAIL - faz a validação de dados do tipo email.
+          FILTER_VALIDATE_FLOAT - faz a validação de dados do tipo float.
+          FILTER_VALIDATE_IP - faz a validação de dados do tipo ip.
+          FILTER_VALIDATE_URL - faz a validação de dados do tipo url.
+
+      OBS: existem mais argumentos de filtro para as funções filter_input() e filter_var(), basta consultar a documentação PHP.
+    */
+
+
+        Exemplo de como funciona a função filter_input() com filtros de validação:
+
+          <?php 
+
+            if(isset($_POST['enviar-formulario'])) {
+
+              // a função filter_input() retorna: true ou false...
+
+              // filtro para dado do tipo inteiro.
+              if($idade = filter_input(INPUT_POST, 'idade', FILTER_VALIDATE_INT)) {
+                echo 'é um inteiro';
+              }
+
+              // filtro para dado do tipo email.
+              if($email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)) {
+                echo 'o email é válido';
+              }
+
+
+              // filtro para dado do tipo float.
+              if($peso = filter_input(INPUT_POST, 'peso', FILTER_VALIDATE_FLOAT)) {
+                echo 'é um numero float';
+              }
+
+
+              // filtro para dado do tipo emailipPOST, 'ip', FILTER_VALIDATE_EMAIL)) {
+                echo 'numero de ip válido';
+              }
+
+
+              // filtro para dado do tipo url.
+              if($url= filter_input(INPUT_POST, 'url', FILTER_VALIDATE_EMAIL)) {
+                echo 'url válida';
+              }
+            }
+          ?>
+
+          <form action="<?php echo $_POST['PHP_SELF']?>" method="POST">
+            Idade: <input type="text" name="idade">
+            Email: <input type="text" name="email">
+            Peso: <input type="text" name="peso">
+            Ip: <input type="text" name="ip">
+            URL: <input type="text" name="url">
+
+            <button type="submit" name="enviar-formulario"> Enviar <button><br>
+          </form>
+
+
+
+  ==============================
+   Filter Sanitize (sanitização) 
+  ==============================
+
+    Os filtros de sanitização são os filtros de limpeza de dados digitados em um campo input.
+
+      filter_input(tipo_de_input, 'valorDoAtributoNameDoInputDoFormulario', filtro_de_sanitizacao) - faz a limpeza de dados digitados de forma incorreta no(s) campo(s) de input no HTML.
+
+        lista de alguns tipos_de_input:
+
+            INPUT_POST
+
+
+        lista de alguns filtros_de_sanitização:    
+          
+            FILTER_SANITIZE_SPECIAL_CHARS - filtro usado para anular código HTML digitados 
+            dentro do input.
+            FILTER_SANITIZE_NUMBER_INT - filtro usado para remover todo caractere que não 
+            seja número digitados dentro do input.
+            FILTER_SANITIZE_EMAIL - remove caracteres digitados dentro do input que não 
+            compõem um endereço de email.
+            FILTER_SANITIZE_URL - remove caracteres que não são permitidos em uma url, 
+            como por exemplo, um caractere vazio.
+          
+
+        Exemplo de como funciona a função filter_input() com filtros de sanitização:
+
+            <?php 
+
+              if(isset($_POST['enviar-formulario'])) {
+
+                $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+                echo $nome."<br/>"; 
+
+                // remove qualquer caractere digitado, deixando somente os números digitados...
+                $idade = filter_input(INPUT_POST, 'idade', FILTER_SANITIZE_NUMBER_INT);
+                echo $idade."<br/>";
+
+                $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+                echo $email."<br/>";
+
+                $url = filter_input(INPUT_POST, 'url', FILTER_SANITIZE_URL);
+                echo $url."<br/>";
+
+              }
+            ?>
+
+
+            <form action="<?php echo $_POST['PHP_SELF']?>" method="POST">
+              Nome: <input type="text" name="nome">
+              Idade: <input type="text" name="idade">
+              Email: <input type="text" name="email">
+              URL: <input type="text" name="url">
+
+              <button type="submit" name="enviar-formulario"> Enviar <button><br>
+            </form>
+
+
+
+    ================================
+      Filter Validate (para 
+      filtrar dados de variáveis)
+    ================================
+
+      filter_var(tipo_de_input, 'valorDoAtributoNameDoInputDoFormulario', filtro_de_validacao) - usado para filtrar dados de variáveis.
+
+        lista de alguns tipos_de_input:
+
+          INPUT_POST
+
+
+        lista de alguns filtros_de_validacao:
+
+          FILTER_VALIDATE_STRING - verifica se o dado é do tipo string.
+          FILTER_VALIDATE_INT - verifica se o dado é do tipo inteiro.
+          FILTAER_VALIDATE_EMAIL - verifica se o dado está no formato email.
+          FILTER_VALIDATE_URL - verifica se o dado está no formato URL.
+
+
+
+        Exemplo de como funciona a função filter_input() com filtros de validação para variáveis:
+
+          <?php 
+
+            if(isset($_POST['enviar-formulario'])) {
+
+              // remove qualquer caractere digitado, deixando somente os números digitados...
+              $idade = filter_input(INPUT_POST, 'idade', FILTER_SANITIZE_NUMBER_INT);
+              // verifica se o dado inserido na variável $idade é um dado do tipo inteiro...
+              if(filter_var($idade, FILTER_VALIDATE_INT)) {
+                echo " o valor é um inteiro";
+
+              }
+
+              // remove caracteres digitados dentro do input que não compõem um endereço de email.
+              $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+              // verifica se o email foi inserido corretamente...
+              if(filter_var($email, FILTER_VALIDATE_EMAIL) {
+                echo " o email foi digitado corretamente";
+
+              }
+
+              // remove caracteres que não são permitidos em uma url, como por exemplo, 
+              um caractere vazio.
+              $url = filter_input(INPUT_POST, 'url', FILTER_SANITIZE_URL);
+              // verifica se a url foi inserida corretamente...
+              if(filter_var($url, FILTER_VALIDATE_URL) {
+                echo " a url foi digitada corretamente";
+
+              }
+
+            }
+
+
+
+
+  #############################
+  #
+  #  criptografia no PHP
+  #
+  #############################
+
+    ------------------------------
+      Criptografia: base64_encode e
+      base64_decode
+    ------------------------------
+
+      Criptografia base64_encode e base64_decode é uma CRIPTOGRAFIA DE MÃO DUPLA, ou seja, 
+      vc envia um dado criptografado (usando: base64_encode()), e a pessoa que recebe o 
+      dado deve descriptografar (usando: base64_decode()). 
+
+        base64_encode() - usado para CRIPTOGRAFAR uma senha.
+
+          Exemplo de como criptografar um dado usando base64_encode():
+            
+            <?php 
+
+              $senha = "123456";
+              $novaSenha = base64_encode($senha);
+              echo "senha criptografada com o método base64_encode():". $senha. "<br/>";
+            ?>
+
+
+        base64_decode() - usado para DESCRIPTOGRAFAR senhas criptografadas com o 
+        método base64_encode().
+
+          Exemplo de como criptografar um dado usando base64_decode():
+            <?php 
+
+              $senha = "123456";
+              $novaSenha = base64_encode($senha);
+              echo "senha criptografada com o método base64_encode():". $senha. "<br/>";
+              echo "senha descriptografada com o método base64_decode():". base64_decode($senha); 
+            ?>
+
+
+    -------------------------
+      Criptografia: md5
+    -------------------------
+
+      md5() - criptografa um dado gerando um hash de 32 caracteres.
+
+        ex:
+          <?php 
+
+              $senha = "123456";
+              echo "criptografia com md5(): ". md5($senha);
+
+          ?>
+
+
+      -----------------------
+        criptografia: sha1
+      -----------------------
+
+        sha1() - criptografa um dado gerando um hash de 41 caracteres.
+
+          ex:
+            <?php 
+
+              $senha = "123456";
+              echo "criptografia com sha1(): ". sha1($senha);
+
+          ?>
+
+      OBS: hash é uma combinação de letras e números usado em criptografia para esconder dados.
+
+      OBS2: As criptografias: base64_encode(), base64_decode(), md5() e sha1(), são 
+      vulneráveis pq todas as senhas de mesmo valor possui a mesma combinação de hash, 
+      por exemplo, se uma pessoa define uma senha como: 123456, e criptografa essa senha, 
+      será gerado uma numeração de hash de criptografia, se outra pessoa definir a 
+      mesma senha: 123456, e criptografa, em um mesmo site ou até mesmo em um outro site, 
+      gerará a mesma numeração de hash. 
+
+      Sabendo disso, Hackers já possui uma espécie de dicionário de hashs para descobrir senhas 
+      criptografadas.
+
+      Então, a opção, é usar a criptografia: password_hashs().
+
+
+
+      ---------------------------------
+        criptografia: password_hash()
+      ---------------------------------
+
+        password_hash(senha, PASSWORD_DEFAULT) - gera um hash único de criptografia.
+
+          OBS: normalmente o metodo passwd_hash() gera um hash de 60 caracteres, mas 
+          pode acontecer de a quantidade dos caracteres gerados ser maior que 60, por isso,
+          a documentação do PHP recomenda que lá no banco de dados o campo da tabela seja
+          configurado como varchar(255).
+
+
+          o método password_hash() possui dois parâmetros:
+
+              senha - é a senha que voce deseja inserir.
+
+              PASSWORD_DEFAULT - palavra reservada do PHP que gera o hash único para a senha. 
+
+
+          Exemplo de como funciona o método password_hash():
+            <?php
+
+              $senha = "123456";
+
+              $senhaSegura = password_hash($senha, PASSWORD_DEFAULT);
+              echo $senhaSegura;
+
+            ?>
+
+
+        E Para verificar a senha lá do banco de dados configurada com password_hash(), usamos
+        o método password_verify():
+
+          password_verify(senha, senhaDoBanco) - usado para saber se a senha digitada é 
+          igual a senha definida no banco de dados.
+
+            o método password_verify() possui 2 parametros:
+
+              senha - é a senha que será usada para comparação com a senha do banco de dados.
+
+              senhaDoBanco - é a senha definida lá no banco de dados.
+
+
+            Exemplo de como usar o método password_verify():
+
+              <?php
+
+                $senha = "123456";
+                $senha_do_bd = '$2v$10$EZaCIie8AKgx6w/0Gjbnv08eKGzSF4vk5I9MCckYvSpNIKRNGT98m';
+
+                if(password_verify($senha, $senha_do_bd)) {
+                  echo "senha válida";
+                }
+                else {
+                  echo "senha inválida";
+                }
+              ?>
+
+
+
+
+  ===========================
+   métodos de depuração PHP
+  ===========================
+  
+    print_r() - imprime os dados de uma variável do tipo array, na tela. 
+
+    var_dump() - imprime os dados de uma variável na tela, só
+    que com mais detalhes, como por exemplo, o tipo do dado e
+    a quantidade de caracteres possui no valor da variável.
+
+
+
+  ============================
+   importando arquivos no PHP
+  ============================ 
+
+    Os métodos include, include_once, require e require_once são usados para importar conteúdo de 
+    um arquivo, para outro arquivo.
+
+      Diferenças entre: include, include_once e require, require_once.
+
+        Se os métodos include e include_once não conseguirem importar um arquivo, 
+        será gerado um erro, porém, esses métodos CONTINUAM A EXECUÇÃO DO CÓDIGO depois do erro.
+
+        Se os métodos require e require_once não conseguirem importar um arquivo, 
+        será gerado um erro, porém, esses métodos PARAM A EXECUÇÃO DO CÓDIGO onde foi gerado o erro.   
+
+
+
+    include ''; - importa o conteúdo de um arquivo para outro arquivo.
+  
+        OBS: se vc incluir o mesmo arquivo 2 vezes com include, o conteúdo do arquivo 
+        será incluido 2 vezes.
+        OBS2: o include pode ser chamado várias vezes. o include é útil quando vc quer 
+        incluir mais de um arquivo.
+
+
+    include_once ''; - importa o conteúdo de um arquivo para outro arquivo somente uma vez.
+       
+
+    require ''; - importa o conteúdo de um arquivo para outro arquivo.  
+      
+        OBS: se vc incluir o mesmo arquivo 2 vezes com require, o conteúdo do arquivo será 
+        incluido 2 vezes.
+        OBS2: o include pode ser chamado várias vezes. o require é útil quando vc quer incluir 
+        mais de um arquivo.
+
+
+    require_once ''; - importa o conteúdo de um arquivo para outro arquivo somente uma vez.
+      
+
+
+
+###############################
+#
+#  métodos MySQL (para o php)
+#
+###############################
+  
+  mysqli_connect() - faz a conexão com o banco de dados.
+  Esse método possui 4 parâmetros:
+      
+      servername - o nome do servidor.
+
+      username - o nome do usuário.
+
+      password - a senha do usuário.
+
+      db_name - nome do banco de dados.  
+
+
+  mysqli_connect_error() - método que verifica se ocorreu um erro de conexão 
+  com o banco de dados.
+
+
+  mysqli_escape_string() - usada para inserir no banco de dados os dados 
+  digitados pelo usuário em um formulário.
+
+
+  mysqli_real_escape_string($conexao, $_POST['inputDoFormulario']) - usada para 
+  inserir no banco de dados os dados digitados pelo usuário em um formulário. A 
+  diferença é que esse método protege os campos de entrada do formulário 
+  contra ataques de sql injection.
+
+
+  mysqli_query($conexao, $onsultaSQL) - faz uma consulta nos dados do banco de 
+  dados.
+
+
+  mysqli_set_charset() - configura o tipo de codificação utf-8 para a conexão 
+  do banco de dados no arquivo php.  
+
+  
+  mysqli_num_rows() - verifica uma consulta mysql_query($conexao, $consultaSQL),
+  caso a consulta esteja correta, retorna 1, senão retorna 0.
+
+
+
+
+
+####################################
+#
+#  Classe PDO e seus métodos
+#
+####################################  
+
+    $pdo = PDO("mysql:host=127.0.0.1;dbname=bd_cadastro","root"); - usada para 
+    fazer a conexão do php com o banco de dados.
+      OBS: a classe PDO possui um quarto parâmetro opcional, usado para inserir 
+      comandos de tratamento de erros que aconteceram internamente na classe, 
+      como por exemplo, erro de código SQL, configuração de charset, etc.... 
+      O recomendado é que utilizemos nesse quarto parâmetro um array(), 
+      pq assim podemos definir  mais de um tipo de tratamento de erro que 
+      a classe pode gerar.
+
+      	ex:
+      	  $pdo = PDO("mysql:host=127.0.0.1;dbname=bd_cadastro","root",array(
+                 PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, 
+                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+      
+
+    PDO.prepare() - usado para preparar o comando da consulta SQL usando variáveis
+    dentro do comando de consulta SQL.
+
+      ex:
+	       $pdo.prepare("INSERT INTO pessoa(nome, telefone, email) values(:n, :t, :e)");
+
+
+    PDO.execute(); - usado para executar toda a estrutura de código montada com PDO.prepare() 
+    e PDO.bindparam() ou com PDO.prepare() e PDO.bindValue().
+
+      ex:
+	       $pdo.prepare("INSERT INTO pessoa(nome, telefone, email) values(:n, :t, :e)");
+	       $pdo.execute();
+
+
+    PDO.query() - usado para executar um comando SQL normalmente.
+
+      ex:
+	       $pdo->query("INSERT INTO pessoa(nome, telefone, email) VALUES('Mirian','000000', 'teste@gmail.com')");
+
+
+
+    PDO.bindParam(); - aceita somente atribuir variáveis ás strings de 
+    referência dentro do VALUES de um comando SQL.
+
+      ex:
+      	$nome = "Mirian";
+      	$telefone = "000000";
+      	$email = "Mirian@gmail.com";
+
+        $res = $pdo->prepare("INSERT INTO pessoa(nome, telefone, email) values(:n, :t, :e)");
+	      $res->bindParam(":n", $nome);
+        $res->bindParam(":t", $telefone);
+        $res->bindParam(":e", $email);
+
+
+
+    PDO.bindValue(); - aceita tanto variáveis quanto tipos primitivos como uma
+    string ou um número diretamente no parâmetro, quanto variáveis no parametro tbm.
+
+      ex:
+
+        $email = "Mirian@gmail.com";
+
+        $res = $pdo->prepare("INSERT INTO pessoa(nome, telefone, email) values(:n, :t, :e)");
+        $res->bindValue(":n", "Mirian");
+        $res->bindValue(":t", 000000);
+        $res->bindValue(":e", $email);
+
+
+
+    PDO.fetch_all() - retorna ao mesmo tempo o resultado da estrutura de um array associativo e 
+    um array indexado.
+      OBS: para retornar somente o resultado da estutura associativa, faça:
+	
+      	ex:
+      	  PDO.fetch_all(PDO::FETCH_ASSOC); retorna o resultado de um array associativo. 
+
+
+
+###############################
+#
+#  métodos PDOException
+#
+###############################    
+
+    Exception.getMessage() - Retorna uma mensagem de erro dizendo o que ocorreu de errado.
+
+
+    Exception.getPrevious() - 
+
+
+    Exception.getCode() - retorna um número referente ao tipo de erro ocorrido.
+    OBS: no PHP, existem números que representam um tipo de erro:
+
+      ex:
+        2002 - servidor desconhecido (host unknown).
+	1049 - banco de dados desconhecido (database unknown).
+	1044 - usuário desconhecido (user unknown).
+	1045 - senha desconhecida (password unknown).
+	etc...
+
+
+        Poderiamos simplesmente retornar o número referente ao erro:
+
+	  ex:
+	    try {
+                $pdo = PDO("mysql:host=127.0.0.1;dbname=bd_cadastro","root", "");
+            }
+            catch(PDOException) {
+	    
+		$e->getCode();
+
+	    }
+
+
+	Ou, Poderiamos tratar esses erros de uma forma personalizada com 
+        uma estrutura switch/case/default se quisessemos:
+
+	  ex:
+	    try {
+		$pdo = PDO("mysql:host=127.0.0.1;dbname=bd_cadastro","root", "");
+	    }
+	    catch(PDOException) {
+		
+		switch ($e->getCode()) {
+		  case 2002:
+		    echo 'Erro no servidor, Host não encontrado';
+		    break;
+
+		  case 1049:
+		    echo 'Erro no servidor, banco não encontrado';
+		    break;
+
+		  case 1044:
+		    echo 'Erro no servidor, usuário não encontrado';
+		    break;
+
+		  case 1045:
+        echo 'Erro no servidor, erro de senha';
+		    break;
+
+		  case 0:
+          echo 'Erro no servidor, conexão não encontrada';
+			    break;
+
+		  default:
+		    // não tem nada aqui...
+		    
+		}
+	    exit(); // caso ocorra alguma exceção, pára a execução do código nessa linha. 
+	    } 
+
+
+    Exception.getFile() - 
+
+
+    Exception.getLine() - 
+
+
+    Exception.getTrace() -
+
+
+    Exception.getTraceAsString() -
+
+
+    Exception.__toString() - 
+
+
+    Exception.__clone() - 
+
+
+
+################################
+#
+# Orientação a objtetos com PHP
+#
+################################
+
+  =====================================
+    Exemplo básico de uma classe em PHP
+  =====================================
+
+    class Pessoa {
+
+      // atributos da classe
+      public $nome; 
+      public $idade; 
+
+      public function Falar() {
+        echo $this->nome."de".$this->idade." acabou de falar";
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##################################
+#
+#  Comandos básicos SQL para 
+#  consulta no Banco de dados
+#
+##################################
+
+  SELECT campoDaTabela FROM nomeDaTabela WHERE campoDaTabela = 'valor';
+
+  SELECT * FROM nomeDaTabela WHERE campoDaTabela = 'valor' AND outroCampoDaTabela = 'valor';
+
+
+
+  
+
+    
+    
+
+
+
+
+  
+ 
+    
