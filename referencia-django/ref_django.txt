@@ -2,6 +2,15 @@
 	Curso Django
 #############################
 
+
+	********************
+		Curso básico
+	********************
+
+		Essa parte do curso está sendo feita com o intuito de deixar vc
+		familiarizado (de forma prática) com os conceitos básicos do
+		framework django. 
+
 	=========================================
 	Preparando o ambiente de desenvolvimento
 	=========================================
@@ -13,7 +22,7 @@
 		- ambiente virtual (utilizaremos o programa: venv, que ja vem com o python3)
 		    OBS: existem outros programas para a criação de ambientes virtuais, como por
 		    exemplo o famoso: virtualenv, mas como o python3 já possui um programa para 
-		    a criação de ambientes virtuais (o venv), por padrão, é melhor utilizarmos ele. 
+		    a criação de ambientes virtuais (o programa: venv), por padrão, é melhor utilizarmos ele. 
 		
 		-pip (usado para a instalação do django)
 		    OBS: o pip é o instalador de pacotes do python, é com ele que instalamos os
@@ -35,10 +44,10 @@
 
 
 	agora, dentro da pasta do projeto, crie o ambiente virtual (venv) para desenvolver 
-	a aplicação django (é assim que criamos vários projetos de forma individual, 
-	sem que um interfira no outro).
+	a aplicação django (é assim que criamos vários projetos de forma individual, usando 
+	ambientes virtuais).
 
-	   	python3 -m venv nomeDoAmbienteVirtual
+	   	python3 -m venv nomeDoAmbienteVirtual 
 
 	   	    OBS: caso o comando não funcione, instale o programa de ambiente virtual 
 	   	    do python chamado: venv, com o comando:
@@ -46,7 +55,7 @@
 	   	    	sudo apt-get install python3.x-venv 
 
 
-	após criar o ambiente virtual, vamos ATIVAR O AMBIENTE VIRTUAL com o comando source:
+	após criar o ambiente virtual, vamos ATIVAR O AMBIENTE VIRTUAL com o comando: source
 
 	   	no linux:
 
@@ -57,7 +66,9 @@
 
 			source nomeDoAmbienteVirtual/Scripts/activate
 
-	    OBS: repare que após usar o comando source para ativar o ambiente virtual, aparecerá no começo da linha no terminal entre parênteses o nome do ambiente virtual. Isso indica que o ambiente virtual foi ativado com sucesso e já está funcionando.
+	    OBS: repare que após usar o comando source para ativar o ambiente virtual, aparecerá no 
+	    começo da linha no terminal entre parênteses o nome do ambiente virtual. Isso indica que o 
+	    ambiente virtual foi ativado com sucesso e já está funcionando.
 
 	    OBS2: para desativar o ambiente virtual, basta digitar no terminal a palavra: deactivate.
 
@@ -65,19 +76,20 @@
 	e pronto, todo o ambiente necessário para a utilização do django foi criado. \0/
 
 
+
 	====================
 	Instalando o django
 	====================
 
-	agora, DENTRO DO AMBIENTE VIRTUAL criado, e com O AMBIENTE VIRTUAL ATIVADO,
-	vamos instalar o django no ambiente virtual:
+	agora, com O AMBIENTE VIRTUAL ATIVADO, vamos instalar o django:
 
 	   	na versão python3: 
 
 	   		pip3 install django
 
 	---------------------------------------------------
-	caso queira saber se realmente o django foi instalado, use o comando abaixo, que será mostrado no terminal a versão do django instalada:
+	caso queira saber se realmente o django foi instalado, use o comando abaixo, que será mostrado no 
+	terminal a versão do django instalada:
 
 	    django-admin --version
 
@@ -146,7 +158,7 @@
 	    O arquivo manage.py é o arquivo que utilizaremos para usar os comandos do django.
 
 	    	
-	    	veja os comandos existentes para o comando django-admin:
+	    	veja os comandos existentes para o comando manage.py:
 
 	    		check -
 				compilemessages -
@@ -174,14 +186,496 @@
 				testserver -
 
 
-	    A pasta nomeDoProjeto é o nosso projeto.
+	    A pasta nomeDoProjeto é o nosso projeto. É dentro dela que criaremos os módulos (chamados de 
+	    app pelo django), onde cada app representa uma parte da aplicação django.  
 
-			OBS: PODEMOS TER VÁRIAS APLICAÇÕES EM UM MESMO PROJETO, MAS NUNCA VÁRIOS PROJETOS EM UMA MESMA APLICAÇÃO !!!
+			OBS: PODEMOS TER VÁRIAS APLICAÇÕES EM UM MESMO PROJETO !!!
 
-
-			OBS2: QUANDO OS APPS FOREM CRIADOS, É NECESSÁRIO CRIAR DENTRO DA PASTA DO APP UMA PASTA TEMPLATES COM UMA PASTA DENTRO DE MESMO NOME DO APP, EXEMPLO:
+			OBS2: QUANDO OS APPS FOREM CRIADOS, É NECESSÁRIO CRIAR DENTRO DA PASTA DO APP UMA PASTA TEMPLATES COM UMA PASTA DENTRO, DE MESMO NOME DO APP, EXEMPLO:
 
 		    	nomeDoApp/templates/nomeDoApp
 
 		A pasta nomeDoApp dentro de templates será usada para inserir as páginas html da aplicação.
+
+
+
+	============================================================
+	conhecendo os arquivos iniciais de um projeto django 
+	gerado pelo comando: django-admin startproject nomeDoProjeto
+	============================================================
+
+		Dentro da pasta "nomeDoProjeto", teremos os arquivos...
+
+			__init__.py - arquivo que indica que a pasta nomeDoProjeto é um pacote python.
+
+			settings.py - arquivo que fazemos as configurações do projeto django.
+
+				dentro do aquivo settings.py temos:
+
+					BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) - guarda o
+					caminho do seu projeto no sistema operacional.
+
+
+					SECRET_KEY = '1c8@wsr+gyau^5=e1_gq^a=smh!@d#3r3l8m0-sd88gxuzwa3&' - usado para 
+					criptografar dados do sistema django, como: senhas, etc...
+
+
+					DEBUG = True - usado para ativar ou desativar o modo de desenvolvimento 
+					do projeto. Se DEBUG estiver com valor True, então está no modo desenvolvimento
+					do projeto.
+
+
+					ALLOWED_HOSTS = [] - usado para inserir o(s) dominio(s) da aplicação django.
+
+
+					INSTALLED_APPS = [] - usado para listar as aplicações instaladas. É aqui que INSERIMOS
+					AS APLICAÇÕES QUE CRIAMOS no django para que o django possa usa-las.
+
+						por padrão, o django já vem com algumas aplicações, veja abaixo:
+
+					        'django.contrib.admin',
+					        'django.contrib.auth',
+					        'django.contrib.contenttypes',
+					        'django.contrib.sessions',
+					        'django.contrib.messages',
+					        'django.contrib.staticfiles',
+
+
+					MIDDLEWARE = [] - usado para validação de sessão do usuário, validação de 
+					segurança, etc..., no django.
+
+						por padrão, o django já vem com algumas validações, veja abaixo:
+
+							'django.middleware.security.SecurityMiddleware',
+				    	    'django.contrib.sessions.middleware.SessionMiddleware',
+				    	    'django.middleware.common.CommonMiddleware',
+				    	    'django.middleware.csrf.CsrfViewMiddleware',
+				    	    'django.contrib.auth.middleware.AuthenticationMiddleware',
+				    	    'django.contrib.messages.middleware.MessageMiddleware',
+				    	    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
+
+				   	ROOT_URLCONF = 'projeto1.urls' - configura o arquivo inicial por onde o django começará 
+				   	a pegar as urls do projeto.
+
+
+				   	TEMPLATES = [] - lugar onde é feita as CONFIGURAÇÕES para uso de templates.
+
+				   		por padrão, o django já vem com a configuração praticamente pronta, veja abaixo:
+
+				   			[
+						        {
+						            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+						            'DIRS': [],
+						            'APP_DIRS': True,
+						            'OPTIONS': {
+						                'context_processors': [
+						                    'django.template.context_processors.debug',
+						                    'django.template.context_processors.request',
+						                    'django.contrib.auth.context_processors.auth',
+						                    'django.contrib.messages.context_processors.messages',
+						                ],
+						            },
+						        },
+						    ]
+
+
+						WSGI_APPLICATION = 'projeto1.wsgi.application' - a aplicação django será 
+						executada por esse arquivo quando colocarmos a aplicação pronta, em
+						um servidor na web.
+
+
+						DATABASES = {} - configura o banco de dados da aplicação.
+
+							por padrão, o django já vem com uma configuração de banco de dados, e
+							com o banco de dados: sqlite3 (que é do python), mas podemos configurar
+							outros bancos de dados como: mysql, postgreSQL, oracle, etc...
+
+								{
+						    	    'default': {
+						    	        'ENGINE': 'django.db.backends.sqlite3',
+						    	        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+						    	    }
+						    	}
+
+
+						AUTH_PASSWORD_VALIDATORS = [] - armazena configurações de validação de senhas.
+
+							por padrão, o django já vêm com essas validações de senhas.
+
+								[
+						    	    {
+						    	        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+						    	    },
+						    	    {
+						    	        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+						    	    },
+						    	    {
+						    	        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+						    	    },
+						    	    {
+						    	        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+						    	    },
+						    	]
+
+
+
+
+						LANGUAGE_CODE = 'en-us' - muda o idioma do projeto django.
+
+						TIME_ZONE = 'UTC' - muda o timezone da aplicação.
+
+						USE_I18N = True - 
+
+						USE_L10N = True - 
+
+						USE_TZ = True - 
+
+						STATIC_URL = '/static/' - url onde iremos inserir os arquivos estáticos da 
+						aplicação, como por exemplo: css, javascript, etc...
+
+
+
+			urls.py - arquivo onde será inserida as urls de cada aplicação do nosso projeto.
+
+				por padrão, esse arquivo vem assim:
+
+					from django.contrib import admin
+				    from django.urls import path
+				    
+				    urlpatterns = [
+				        path('admin/', admin.site.urls),
+				    ]
+
+
+
+			wsgi.py - arquivo que será executado quando colocarmos a aplicação pronta, em 
+			um servidor na internet.
+
+
+		Agora, fora da pasta "nomeDoProjeto", teremos o arquivo:
+
+			manage.py - arquivo usado para o gerenciamento do projeto, como por exemplo: criar 
+			superusuario, criar migrações (makemigrations e migrate), rodar o servidor local 
+			do django, etc...
+
+
+
+	==================================
+	criando o primeiro app do projeto
+	==================================
+
+		Dentro do nosso projeto, vamos criar um app para controle de gastos. basicamente o
+		nosso app terá um formulário onde será mostrado:
+
+			- a catergoria da despesa 
+			- o valor da despesa
+			- e a data da despesa
+
+		quando clicarmos em salvar, esses dados irão para o banco de dados, e então 
+		criaremos uma tela de listagem dos nossos gastos, será um app bem simples mesmo!!!
+
+
+		Dentro da pasta "nomeDoProjeto", com o ambiente virtual ativado, digite o comando:
+
+			python3 manage.py startapp nomeDoApp
+				
+				OBS: no nosso caso, o nome do nosso app será: contas
+
+
+		Após digitar o comando acima, será criado uma pasta (essa pasta é a do nosso app),
+		e dentro dessa pasta, por padrão, terá os arquivos:
+
+			- migrations - é uma pasta que armazenará versões de migração (feitos com 
+			o comando migrate) ao inserir classes no arquivo models.py.
+
+			- __init__.py - arquivo que indica que o app é um pacote python.
+
+			- admin.py - registra nossa aplicação dentro do admin.
+
+			- apps.py - 
+
+			- models.py - arquivo onde inseriremos as classes que se tornarão 
+			as tabelas no banco de dados.
+
+			- tests.py - 
+
+			- views.py - arquivo onde vamos inserir as funções que serão executadas 
+			pelo arquivo urls.py.
+
+
+	Sempre que criamos um app, a primeira coisa que devemos fazer é ir até o 
+	arquivo: settings.py DO NOSSO PROJETO (que fica dentro da pasta nomeDoProjeto) e
+	inserir o nome do nosso app (seguido de uma virgula, assim: nomeDoApp,) como 
+	último item do array de nome: INSTALLED_APPS, para que o django saiba que o 
+	app que criamos tbm é um app do projeto nomeDoProjeto. 
+
+
+	Vamos agora, criar o banco de dados da nossa aplicação.
+
+		na janela do terminal, digite o comando:
+
+			python3 manage.py migrate
+
+
+	com o comando acima, o django criará todas as tabelas padrão que vem no 
+	django, lá no banco de dados do django.
+
+	
+	Vamos agora rodar o servidor local do django, para saber se a nossa aplicação
+	está funcionando corretamente.
+
+		na janela do terminal, digite o comando:
+
+			python3 manage.py runserver
+
+
+	com o comando acima acionado, digite no navegador o link: 
+
+		http://127.0.0.1:8000/
+
+
+	se vc ver a imagem de um foguete do django, significa que a aplicação está 
+	funcionando corretamente, parabéns !!!, continuando...
+
+
+	Vamos agora criar um usuario para logar na aplicação django.
+
+		pare de rodar o servidor local com as teclas: CTRL + C
+
+
+	em seguida, para criarmos um usuário para logarmos na aplicação, digite
+	o comando:
+
+		python3 manage.py createsuperuser
+
+
+	será acionado um prompt no terminal pedindo para configurar um nome de 
+	usuário, assim:
+
+		Username (leave bank to use 'django'): 
+
+
+	escolha o nome que quiser, caso deixe em branco, o nome padrão será: django
+
+
+	em seguida, o prompt pedirá para inserir um email (podemos deixar em branco)
+
+		Email address:
+
+
+	em seguida, o prompt pedirá para configurar uma senha:
+
+		Password: 
+
+
+	em seguida, o prompt pedirá para confirmar a senha digitada:
+
+		Password (again):
+
+
+	e pronto, um usuário foi criado para logar na aplicação, parabens!!! \0/
+
+
+	Para podermos usar o login e a senha criadas, vamos novamente rodar o servidor local
+
+		na janela do terminal, digite o comando:
+
+			python3 manage.py runserver
+
+
+	Agora, vá até o navegador e digite na barra de endereço o link:
+
+		http://127.0.0.1:8000/admin
+
+			OBS: esse /admin é um endereço de url criado por padrão pelo django, 
+			configurado no arquivo: urls.py, em nomeDoProjeto.
+
+
+	se vc digitar o login e a senha criados	pelo comando: python3 manage.py createsuperuser,
+	vc conseguirá entrar na área administrativa do app do django.
+
+
+
+	===============================
+	Entendendo o arquivo urls.py
+	===============================
+
+		Antes de entendermos o padrão MVT (Model, View, Template) do django, TEMOS QUE
+		ENTENDER COMO FUNCIONA O ARQUIVO: urls.py, do projeto: "nomeDoProjeto", pq é ele que 
+		se comunica com o arquivo: views.py.
+
+			OBS: o arquivo views.py é o responsável por mostrar os templates 
+			do django (isso será explicado mais a frente neste documento).
+
+		o arquivo urls.py, é o arquivo RESPONSÁVEL POR DEFINIR AS urls DE CADA APLICAÇÃO 
+		CRIADA NO PROJETO django, e responsável por chamar as funções criadas no 
+		arquivo: views.py.
+
+			por padrão, o arquivo urls.py vem assim:
+
+
+				from django.contrib import admin
+			    from django.urls import path
+			    
+			    urlpatterns = [
+			        path('admin/', admin.site.urls),			        
+			    ]
+
+
+		É dentro do array urlpatterns = [], onde definimos dentro da função path() o CAMINHO
+		DA url ENTRE ASPAS NO PRIMEIRO PARÂMETRO (como por exemplo: 'admin/'), e definimos
+		a FUNÇÃO QUE SERÁ EXECUTADA E LINKADA Á URL, DEFINIDA NO SEGUNDO PARÂMETRO do 
+		método path().
+
+			OBS: a função: admin.site.urls é a única função QUE NÃO VÊM DO ARQUIVO views.py
+
+			OBS2: as funções definidas no segundo parâmetro do método path(), são criadas 
+			no arquivo: views.py). 
+
+		isso significa que, ao digitarmos o caminho da url no navegador, A FUNÇÃO LINKADA Á
+		URL (DEFINIDA NO SEGUNDO PARÂMETRO DO MÉTODO path(), lá no arquivo: urls.py), será 
+		executada, e mostado o conteúdo dessa função no navegador. 
+
+
+
+	==============================
+	entendendo o arquivo views.py
+	==============================
+
+		o arquivo views.py é o responsável por mostrar os templates do django,
+		ou seja, é no arquivo views.py que criamos funções para que as páginas 
+		html DA(S) NOSSA(S) APLICAÇÃO(ÇÕES) sejam exibidas no navegador.
+
+
+	=======================
+	definindo novas urls 
+	no arquivo urls.py
+	=======================
+
+		vamos agora no arquivo urls.py DA APLICAÇÃO contas, DEFINIR UMA NOVA url 
+		para uma NOVA PÁGINA, o código ficará assim:
+
+			from django.contrib import admin
+		    from django.urls import path
+
+		    # definindo o caminho até o arquivo views.py e importando a função home
+		    from contas.view import home 
+		    
+		    urlpatterns = [
+		        path('admin/', admin.site.urls),
+		        path('contas/', home),	#criando a url e chamando a função home em views.py		        
+		    ]
+
+
+		e no arquivo views.py, defina a função home, assim:
+
+			from django.http import HttpResponse
+			import datetime
+
+			def home(request):
+				now = datetime.datetime.now()
+				html = "<html><body>It is now %s.</body></html>" % now
+				return HttpResponse(html)
+
+
+		agora, execute o servidor local, com o comando:
+
+			python3 manage.py runserver
+
+
+		e insira o link abaixo no navegador:
+
+
+			http://127.0.0.1:8000/contas/
+
+
+		e veja o resultado abaixo: \0/
+
+			It is now 2020-06-19 15:47:44.353516.
+
+
+
+	============================
+	Retornando um template
+	============================
+
+		devemos agora, DENTRO DA NOSSA APLICAÇÃO (no nosso caso, tem o nome de: contas), criar 
+		uma pasta de nome: templates (tem que ser exatamente esse nome: templates), e dentro 
+		desta pasta templates, criarmos uma pasta com o mesmo nome da aplicação (ou seja, 
+		com o nome: contas) para inserirmos as páginas html.
+
+			o caminho das pastas ficará assim:
+
+				contas/templates/contas
+
+
+		Vamos ALTERAR O CONTEÚDO DO ARQUIVO urls.py (arquivo da pasta "nomeDoProjeto"),
+		na mesma função home(), configurando a função home() para retornar um 
+		template (template é um arquivo de pagina html).
+
+		a função home() no arquivo urls.py ficará assim:
+
+
+			# importando o método render
+			from django.shrotcuts import render
+			import datetime
+
+			def home(request):
+				
+				return render(request, 'contas/home.html')
+
+
+		agora, lá na pasta contas (pasta que está DENTRO DA PASTA templates, NA 
+		NOSSA APLICAÇÂO: contas) vamos inserir um arquivo chamado: home.html
+
+		o arquivo home.html ficará assim:
+
+		 	<!DOCTYPE html>
+			<html lang="en">
+			<head>
+				<meta charset="UTF-8">
+				<title>Document</title>
+			</head>
+			<body>
+
+				<h1>Seja bem-vindo</h1>
+				
+			</body>
+			</html>
+
+
+		agora, execute o servidor local, com o comando:
+
+			python3 manage.py runserver
+
+
+		e insira o link abaixo no navegador:
+
+
+			http://127.0.0.1:8000/home/
+
+
+		e aparecerá o texto definido na tag <h1> da página:
+
+			Seja bem-vindo
+
+
+
+	===============================
+	Entendendo o arquivo models.py
+	===============================
+
+
+
+		aula 11 - Curso Django 2.0 - Aprendendo os conceitos fundamentais 
+
+
+
+
+
+
+
+
 
