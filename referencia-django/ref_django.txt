@@ -667,9 +667,209 @@
 	Entendendo o arquivo models.py
 	===============================
 
+		o arquivo models.py é o arquivo responsável por armazenar as classes que 
+		serão usadas para gerar as tabelas no banco de dados. 
+
+		na nossa aplicação contas, no arquivo models.py, criar uma classe 
+		chamada: Categoria, que será usada para a separação de gastos.
+
+		a estrutura da classe ficará assim:
+			
+			from django.db import models
 
 
-		aula 11 - Curso Django 2.0 - Aprendendo os conceitos fundamentais 
+			class Categoria(models.Model):
+
+				nome = models.CharField(max_lenght=100)
+				dt_criacao = models.DateTimeField(auto_now_add=True)
+
+
+
+			OBS: para a criação dos campos das classes, o django possui uma 
+			variedade de campos (fields) criados pela classe: model.Model, 
+			para serem usados em classes. É com esses fields que vc deve 
+			configurar os atributos da(s) classe(s). Procure na documentação 
+			do django sobre fields:
+
+				https://docs.djangoproject.com/en/3.0/ref/models/fields/#field-types
+
+
+			OBS2: todas as classes no arquivo models.py tem que receber uma
+			herança de models.Model nos parênteses. 
+
+
+		agora, vamos digitar o comando abaixo:
+
+			python3 manage.py makemigrations
+
+
+		o que o comando makemigrations faz?, verifica todas as alterações feitas no 
+		arquivo models.py e CRIA UM ARQUIVO (parecido com esse nome: 0001_initial.py) DENTRO 
+		DA PASTA migrations (essa pasta fica DENTRO DA APLICAÇÃO, que DESCREVE COMO 
+		O DJANGO DEVE CRIAR AS TABELAS no banco de dados.
+
+			OBS: a pasta migrations dentro dos apps, armazena arquivos descrevendo 
+			como o django deve criar as tabelas no banco de dados. toda vez que vc 
+			roda o comando: python3 manage.py makemigrations, é gerado um novo 
+			arquivo (parecido com esse nome: 0001_initial.py), onde cada arquivo desse, 
+			se torna uma espécie de histórico, onde podemos saber quais foram as MUDANÇAS 
+			FEITAS ANTERIORMENTE NO ARQUIVO models.py, para serem aplicadas no banco de dados.
+			 
+
+		após o comando makemigrations, digitamos o comando abaixo:
+
+			python3 manage.py migrate	
+
+
+		o que o comando migrate faz?, IMPLEMENTA TODAS AS ALTERAÇÕES (feitas A
+		PARTIR DO ÚLTIMO ARQUIVO GERADO NA PASTA migrations), com o 
+		comando: python3 manage.py makemigrations, criando as tabelas no 
+		banco de dados.
+
+
+		DICA: para testar (e visualizar) se as tabelas foram criadas no banco de 
+		dados, podemos IMPORTAR O ARQUIVO models.py (que fica dentro da aplicação)
+		PARA O ARQUIVO admin.py (que fica dentro da aplicação tbm).
+
+		o código no arquivo admin.py ficará assim:
+
+			from django.contrib import admin
+			from .models import Categoria
+
+
+			admin.site.register(Categoria)
+
+
+		vamos agora, rodar o servidor local:
+
+			python3 manage.py runserver
+
+
+		e digitar o link abaixo no navegador:
+
+			127.0.0.1/admin/
+
+
+		e veremos no setor: contas, a classe: Categoria. 
+
+
+		Se clicarmos em categoria, podemos adicionar uma nova categoria
+		de gastos, como por exemplo: Despesas Gerais. Apos a adição da 
+		categoria, o django já lista as opções de categorias cadastradas
+		no banco. No caso dessa aplicação simples que fizemos, PODEMOS SOMENTE 
+		ALTERAR e DELETAR as categorias criadas, e estamos fazendo
+		isso, diretamente no banco de dados. \0/
+
+
+		vamos agora implemantar a classe Transação no arquivo models.py.
+
+		a estrutura da classe ficará assim:
+
+			class Transacao(models.Model):
+
+				data = models.DateTimeField()
+				descricao = models.Charfield(max_lenght=200)
+				valor = models.DecimalField(max_digits=7, decimal_places=2)
+				categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+				observacoes = models.TextField(null=True, blank=True)
+
+				# classe usada para exibir o nome de um campo da classe no plural
+				class Meta:
+					verbose_name_plural = 'Transacoes'
+
+				# funcao usada para exibir um atributo da classe
+				def __str__(self):
+					return self.descricao
+
+
+		Veja como o arquivo models.py deve ficar por completo:
+
+			from django.db import models
+
+
+			class Categoria(models.Model()):
+
+			 	nome = models.CharField(max_lenght=100)
+			 	dt_criacao = models.DateTimeField(auto_now_add=True)
+
+			 	# funcao usada para exibir um atributo da classe
+			 	def __str__(self):
+			 		return self.nome 
+
+
+			class Transacao(models.Model):
+
+				data = models.DateTimeField()
+				descricao = models.CharFIeld(max_length=200)
+				valor = models.DecimalField(max_digits=7, decimal_places=2)
+				categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+				observacoes = models.TextField(null=True, blank=True)
+
+				# classe usada para exibir o nome de um campo da classe no plural
+				class Meta:
+					verbose_name_plural = 'Transacoes'
+
+				# funcao usada para exibir um atributo da classe
+				def __str__(self):
+					return self.descricao
+
+
+		vamos agora preparar as alterações feitas no arquivo models.py,
+		(para depois aplicarmos essas alterações no banco de dados), usando o 
+		comando abaixo:
+
+			python3 manage.py makemigrations
+
+
+		agora, vamos aplicar essas alterações preparadas do arquivo manage.py, no banco 
+		de dados, usando o comando abaixo:
+
+			python3 manage.py migrate
+
+
+		e por último, vamos agora no arquivo admin.py (da aplicação) e registramos
+		a classe Transacao á área de administrador.
+
+		insira as linhas abaixo no arquivo admin.py:
+			
+			from .models import Categoria
+
+
+			admin.site.register(Categoria)
+
+
+		Veja como o arquivo admin.py deve ficar por completo:
+
+			from django.contrib import admin
+			from .models import Categoria
+			from .models import Transacao
+
+			admin.site.register(Categoria)
+			admin.site.register(Transacao)
+
+
+		vamos agora executar o servidor local:
+
+			python3 manage.py runserver
+
+
+		digite o endereco abaixo no navegador:
+
+			127.0.0.1/admin
+
+
+		e vc verá que as classes criadas no banco de dados aparecem na página de
+		administrador da aplicação.  \0/
+
+
+
+	========================
+
+	========================
+
+
+
+		aula 13- Curso Django 2.0 - Aprendendo os conceitos fundamentais 
 
 
 
