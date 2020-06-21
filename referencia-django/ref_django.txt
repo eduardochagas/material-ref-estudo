@@ -3,13 +3,17 @@
 #############################
 
 
-	********************
-		Curso básico
-	********************
+	***********************************
+		Primeiros passos 
+	    (documentação para praticar)
+	***********************************
 
-		Essa parte do curso está sendo feita com o intuito de deixar vc
+		Essa documentação está sendo feita com o intuito de deixar vc
 		familiarizado (de forma prática) com os conceitos básicos do
 		framework django. 
+
+		Ligue o computador e execute tudo que está nesse documento !!!!  
+
 
 	=========================================
 	Preparando o ambiente de desenvolvimento
@@ -22,7 +26,8 @@
 		- ambiente virtual (utilizaremos o programa: venv, que ja vem com o python3)
 		    OBS: existem outros programas para a criação de ambientes virtuais, como por
 		    exemplo o famoso: virtualenv, mas como o python3 já possui um programa para 
-		    a criação de ambientes virtuais (o programa: venv), por padrão, é melhor utilizarmos ele. 
+		    a criação de ambientes virtuais (ou seja, o programa: venv), por padrão, é melhor 
+		    utilizarmos ele. 
 		
 		-pip (usado para a instalação do django)
 		    OBS: o pip é o instalador de pacotes do python, é com ele que instalamos os
@@ -43,9 +48,9 @@
 	    	cd nomeDaPastaDoProjeto 
 
 
-	agora, dentro da pasta do projeto, crie o ambiente virtual (venv) para desenvolver 
-	a aplicação django (é assim que criamos vários projetos de forma individual, usando 
-	ambientes virtuais).
+	agora, dentro da pasta do projeto, crie o ambiente virtual (usando o programa: venv) para 
+	desenvolver a aplicação django (é assim que criamos vários projetos de forma individual, 
+	usando ambientes virtuais).
 
 	   	python3 -m venv nomeDoAmbienteVirtual 
 
@@ -138,6 +143,7 @@
 			runserver -
 
 
+
 	Para criarmos o nosso primeiro projeto, utilizamos o comando:
 
 	    django-admin startproject nomeDoProjeto .
@@ -187,15 +193,16 @@
 
 
 	    A pasta nomeDoProjeto é o nosso projeto. É dentro dela que criaremos os módulos (chamados de 
-	    app pelo django), onde cada app representa uma parte da aplicação django.  
+	    app pelo django), onde cada app representa uma parte (ou seja, um módulo) da aplicação django.  
 
 			OBS: PODEMOS TER VÁRIAS APLICAÇÕES EM UM MESMO PROJETO !!!
 
-			OBS2: QUANDO OS APPS FOREM CRIADOS, É NECESSÁRIO CRIAR DENTRO DA PASTA DO APP UMA PASTA TEMPLATES COM UMA PASTA DENTRO, DE MESMO NOME DO APP, EXEMPLO:
+			OBS2: QUANDO OS APPS FOREM CRIADOS, É NECESSÁRIO CRIAR DENTRO DA PASTA DO APP UMA PASTA templates 
+			COM UMA PASTA DENTRO, DE MESMO NOME DO APP, EXEMPLO:
 
 		    	nomeDoApp/templates/nomeDoApp
 
-		A pasta nomeDoApp dentro de templates será usada para inserir as páginas html da aplicação.
+		A pasta nomeDoApp (QUE ESTÁ DENTRO DE templates) será usada para inserir as páginas html da aplicação.
 
 
 
@@ -288,7 +295,7 @@
 
 						DATABASES = {} - configura o banco de dados da aplicação.
 
-							por padrão, o django já vem com uma configuração de banco de dados, e
+							por padrão, o django já vem com uma configuração de banco de dados, é
 							com o banco de dados: sqlite3 (que é do python), mas podemos configurar
 							outros bancos de dados como: mysql, postgreSQL, oracle, etc...
 
@@ -339,13 +346,13 @@
 
 			urls.py - arquivo onde será inserida as urls de cada aplicação do nosso projeto.
 
-				por padrão, esse arquivo vem assim:
+				por padrão, o arquivo urls.py vem assim:
 
 					from django.contrib import admin
 				    from django.urls import path
 				    
 				    urlpatterns = [
-				        path('admin/', admin.site.urls),
+				        path('admin/', admin.site.urls), #url da área admin do djando...
 				    ]
 
 
@@ -357,8 +364,8 @@
 		Agora, fora da pasta "nomeDoProjeto", teremos o arquivo:
 
 			manage.py - arquivo usado para o gerenciamento do projeto, como por exemplo: criar 
-			superusuario, criar migrações (makemigrations e migrate), rodar o servidor local 
-			do django, etc...
+			superusuario, criar migrações (usando os comandos: makemigrations e migrate), rodar o 
+			servidor local do django, etc...
 
 
 
@@ -396,19 +403,19 @@
 
 			- apps.py - 
 
-			- models.py - arquivo onde inseriremos as classes que se tornarão 
+			- models.py - arquivo onde INSERIMOS AS CLASSES que se tornarão 
 			as tabelas no banco de dados.
 
 			- tests.py - 
 
-			- views.py - arquivo onde vamos inserir as funções que serão executadas 
+			- views.py - arquivo onde vamos INSERIR AS FUNÇÕES que serão executadas 
 			pelo arquivo urls.py.
 
 
 	Sempre que criamos um app, a primeira coisa que devemos fazer é ir até o 
 	arquivo: settings.py DO NOSSO PROJETO (que fica dentro da pasta nomeDoProjeto) e
-	inserir o nome do nosso app (seguido de uma virgula, assim: nomeDoApp,) como 
-	último item do array de nome: INSTALLED_APPS, para que o django saiba que o 
+	inserir o nome do nosso app, seguido de uma virgula (assim: nomeDoApp,) como 
+	último item do array: INSTALLED_APPS, para que o django saiba que o 
 	app que criamos tbm é um app do projeto nomeDoProjeto. 
 
 
@@ -420,7 +427,9 @@
 
 
 	com o comando acima, o django criará todas as tabelas padrão que vem no 
-	django, lá no banco de dados do django.
+	django, lá no banco de dados do django (PQ ATÉ AGORA NÃO CRIAMOS NENHUMA
+	CLASSE NO ARQUIVO: models.py. Quando criarmos as nossas classes no 
+	arquivo: models.py, AS NOSSAS CLASSES SE TORNARÃO TBM TABELAS no banco de dados).
 
 	
 	Vamos agora rodar o servidor local do django, para saber se a nossa aplicação
@@ -440,19 +449,19 @@
 	funcionando corretamente, parabéns !!!, continuando...
 
 
-	Vamos agora criar um usuario para logar na aplicação django.
+	pare de rodar o servidor local com as teclas: 
 
-		pare de rodar o servidor local com as teclas: CTRL + C
+		CTRL + C
+	
+
+	e vamos agora criar um usuario para logar na aplicação django, 
+	digitando o comando:
+
+			python3 manage.py createsuperuser
 
 
-	em seguida, para criarmos um usuário para logarmos na aplicação, digite
-	o comando:
-
-		python3 manage.py createsuperuser
-
-
-	será acionado um prompt no terminal pedindo para configurar um nome de 
-	usuário, assim:
+	ao digitar o comando acima, será acionado um prompt no terminal pedindo para 
+	configurar um nome de usuário, assim:
 
 		Username (leave bank to use 'django'): 
 
@@ -478,9 +487,8 @@
 	e pronto, um usuário foi criado para logar na aplicação, parabens!!! \0/
 
 
-	Para podermos usar o login e a senha criadas, vamos novamente rodar o servidor local
-
-		na janela do terminal, digite o comando:
+	Para podermos usar o login e a senha criadas, vamos novamente rodar o servidor local,
+	digitando o comando:
 
 			python3 manage.py runserver
 
@@ -493,8 +501,8 @@
 			configurado no arquivo: urls.py, em nomeDoProjeto.
 
 
-	se vc digitar o login e a senha criados	pelo comando: python3 manage.py createsuperuser,
-	vc conseguirá entrar na área administrativa do app do django.
+	se vc digitar o login e a senha que acabou de criar, vc conseguirá entrar na área 
+	administrativa do app do django.
 
 
 
@@ -502,16 +510,16 @@
 	Entendendo o arquivo urls.py
 	===============================
 
-		Antes de entendermos o padrão MVT (Model, View, Template) do django, TEMOS QUE
-		ENTENDER COMO FUNCIONA O ARQUIVO: urls.py, do projeto: "nomeDoProjeto", pq é ele que 
-		se comunica com o arquivo: views.py.
+		Antes de entendermos o padrão MTV (Model, Template, View) do django, TEMOS QUE
+		ENTENDER COMO FUNCIONA O ARQUIVO: urls.py, do projeto: "nomeDoProjeto", pq é ele 
+		que se comunica com o arquivo: views.py.
 
-			OBS: o arquivo views.py é o responsável por mostrar os templates 
-			do django (isso será explicado mais a frente neste documento).
+			OBS: o arquivo views.py é o responsável por MOSTRAR OS TEMPLATES 
+			DO DJANGO (isso será explicado mais a frente neste documento).
 
 		o arquivo urls.py, é o arquivo RESPONSÁVEL POR DEFINIR AS urls DE CADA APLICAÇÃO 
-		CRIADA NO PROJETO django, e responsável por chamar as funções criadas no 
-		arquivo: views.py.
+		CRIADA NO PROJETO django, e responsável por CHAMAR AS FUNÇÕES CRIADAS 
+		NO ARQUIVO: views.py.
 
 			por padrão, o arquivo urls.py vem assim:
 
@@ -529,9 +537,10 @@
 		a FUNÇÃO QUE SERÁ EXECUTADA E LINKADA Á URL, DEFINIDA NO SEGUNDO PARÂMETRO do 
 		método path().
 
-			OBS: a função: admin.site.urls é a única função QUE NÃO VÊM DO ARQUIVO views.py
+			OBS: a funcionalidade: admin.site.urls é a única funcionalidade QUE NÃO VÊM 
+			DO ARQUIVO views.py
 
-			OBS2: as funções definidas no segundo parâmetro do método path(), são criadas 
+			OBS2: as funções definidas (no segundo parâmetro do método path()), são criadas 
 			no arquivo: views.py). 
 
 		isso significa que, ao digitarmos o caminho da url no navegador, A FUNÇÃO LINKADA Á
@@ -539,14 +548,11 @@
 		executada, e mostado o conteúdo dessa função no navegador. 
 
 
+			OBS: o arquivo views.py é o responsável por mostrar os templates do django,
+			ou seja, é no arquivo views.py que criamos funções para que as páginas 
+			html DA(S) NOSSA(S) APLICAÇÃO(ÇÕES) sejam exibidas no navegador.
 
-	==============================
-	entendendo o arquivo views.py
-	==============================
 
-		o arquivo views.py é o responsável por mostrar os templates do django,
-		ou seja, é no arquivo views.py que criamos funções para que as páginas 
-		html DA(S) NOSSA(S) APLICAÇÃO(ÇÕES) sejam exibidas no navegador.
 
 
 	=======================
@@ -601,9 +607,9 @@
 	Retornando um template
 	============================
 
-		devemos agora, DENTRO DA NOSSA APLICAÇÃO (no nosso caso, tem o nome de: contas), criar 
-		uma pasta de nome: templates (tem que ser exatamente esse nome: templates), e dentro 
-		desta pasta templates, criarmos uma pasta com o mesmo nome da aplicação (ou seja, 
+		devemos agora, DENTRO DA NOSSA APLICAÇÃO (que no nosso caso, tem o nome de: contas), 
+		criar uma pasta de nome: templates (tem que ser exatamente esse nome: templates), e 
+		dentro desta pasta templates, criarmos uma pasta com o mesmo nome da aplicação (ou seja, 
 		com o nome: contas) para inserirmos as páginas html.
 
 			o caminho das pastas ficará assim:
@@ -670,7 +676,7 @@
 		o arquivo models.py é o arquivo responsável por armazenar as classes que 
 		serão usadas para gerar as tabelas no banco de dados. 
 
-		na nossa aplicação contas, no arquivo models.py, criar uma classe 
+		na nossa aplicação contas, no arquivo models.py, vamos criar uma classe 
 		chamada: Categoria, que será usada para a separação de gastos.
 
 		a estrutura da classe ficará assim:
@@ -689,7 +695,7 @@
 			variedade de campos (fields) criados pela classe: model.Model, 
 			para serem usados em classes. É com esses fields que vc deve 
 			configurar os atributos da(s) classe(s). Procure na documentação 
-			do django sobre fields:
+			do django sobre fields, no link abaixo:
 
 				https://docs.djangoproject.com/en/3.0/ref/models/fields/#field-types
 
@@ -713,7 +719,7 @@
 			roda o comando: python3 manage.py makemigrations, é gerado um novo 
 			arquivo (parecido com esse nome: 0001_initial.py), onde cada arquivo desse, 
 			se torna uma espécie de histórico, onde podemos saber quais foram as MUDANÇAS 
-			FEITAS ANTERIORMENTE NO ARQUIVO models.py, para serem aplicadas no banco de dados.
+			FEITAS ANTERIORMENTE NO ARQUIVO models.py, que foram aplicadas no banco de dados.
 			 
 
 		após o comando makemigrations, digitamos o comando abaixo:
@@ -721,15 +727,15 @@
 			python3 manage.py migrate	
 
 
-		o que o comando migrate faz?, IMPLEMENTA TODAS AS ALTERAÇÕES (feitas A
-		PARTIR DO ÚLTIMO ARQUIVO GERADO NA PASTA migrations), com o 
-		comando: python3 manage.py makemigrations, criando as tabelas no 
+		o que o comando migrate faz?, IMPLEMENTA TODAS AS ALTERAÇÕES (todas as 
+		alterações feitas A PARTIR DO ÚLTIMO ARQUIVO GERADO NA PASTA migrations, 
+		ao usar o comando: python3 manage.py makemigrations), criando as tabelas no 
 		banco de dados.
 
 
 		DICA: para testar (e visualizar) se as tabelas foram criadas no banco de 
 		dados, podemos IMPORTAR O ARQUIVO models.py (que fica dentro da aplicação)
-		PARA O ARQUIVO admin.py (que fica dentro da aplicação tbm).
+		PARA O ARQUIVO admin.py (arquivo que fica dentro da aplicação tbm).
 
 		o código no arquivo admin.py ficará assim:
 
@@ -740,7 +746,8 @@
 			admin.site.register(Categoria)
 
 
-		vamos agora, rodar o servidor local:
+
+		Vamos agora, rodar o servidor local:
 
 			python3 manage.py runserver
 
@@ -750,18 +757,18 @@
 			127.0.0.1/admin/
 
 
-		e veremos no setor: contas, a classe: Categoria. 
+		e veremos no setor: contas (contas é o nosso app), a classe: Categoria. 
 
 
 		Se clicarmos em categoria, podemos adicionar uma nova categoria
 		de gastos, como por exemplo: Despesas Gerais. Apos a adição da 
 		categoria, o django já lista as opções de categorias cadastradas
-		no banco. No caso dessa aplicação simples que fizemos, PODEMOS SOMENTE 
-		ALTERAR e DELETAR as categorias criadas, e estamos fazendo
+		no banco. No caso dessa aplicação simples que fizemos, PODEMOS 
+		SOMENTE ALTERAR e DELETAR as categorias criadas, e estamos fazendo
 		isso, diretamente no banco de dados. \0/
 
 
-		vamos agora implemantar a classe Transação no arquivo models.py.
+		vamos agora implemantar a classe Transação no arquivo: models.py.
 
 		a estrutura da classe ficará assim:
 
@@ -782,7 +789,8 @@
 					return self.descricao
 
 
-		Veja como o arquivo models.py deve ficar por completo:
+		Veja como o arquivo models.py deve ficar por completo, ao inserir 
+		a classe Transacao:
 
 			from django.db import models
 
@@ -821,21 +829,21 @@
 			python3 manage.py makemigrations
 
 
-		agora, vamos aplicar essas alterações preparadas do arquivo manage.py, no banco 
-		de dados, usando o comando abaixo:
+		agora, vamos aplicar essas alterações (preparadas do arquivo manage.py), no 
+		banco de dados, usando o comando abaixo:
 
 			python3 manage.py migrate
 
 
-		e por último, vamos agora no arquivo admin.py (da aplicação) e registramos
+		e por último, vamos agora no arquivo admin.py (do nosso app: contas) e registramos
 		a classe Transacao á área de administrador.
 
-		insira as linhas abaixo no arquivo admin.py:
-			
-			from .models import Categoria
+			insira as linhas abaixo no arquivo admin.py:
+				
+				from .models import Categoria
 
 
-			admin.site.register(Categoria)
+				admin.site.register(Categoria)
 
 
 		Veja como o arquivo admin.py deve ficar por completo:
@@ -846,6 +854,7 @@
 
 			admin.site.register(Categoria)
 			admin.site.register(Transacao)
+
 
 
 		vamos agora executar o servidor local:
@@ -863,13 +872,166 @@
 
 
 
-	========================
+	==============================
+	entendendo o arquivo views.py
+	==============================
 
-	========================
+		o arquivo views.py é o responsável por mostrar os templates do django, 
+		ou seja, é no arquivo views.py que CRIAMOS FUNÇÕES para que AS PÁGINAS 
+		html DA(S) NOSSA(S) APLICAÇÃO(ÇÕES) sejam exibidas no navegador.
+
+		vamos agora, dar uma olhada em exemplos do que PODE SER FEITO NAS 
+		FUNÇÕES CRIADAS NO ARQUIVO: views.py.
+
+			ex1:
+
+				from django.shortcuts import render
+				import datetime
+
+
+				def home(request):
+					data = {}
+
+					data['now'] = datetime.datetime.now()
+					return render(request, 'contas/home.html', data)
+
+
+		quando a gente cria variáveis (que no nosso caso, o valor é um dicionario) em 
+		uma função no arquivo views.py, e inserimos essa variável (no terceiro 
+		parâmetro) da função render(), NÓS TEREMOS ACESSO Á ESSAS VARIÁVEIS NO NOSSO 
+		ARQUIVO DE template (que é o arquivo html que foi inserido no segundo parâmetro da 
+		função render(), que no nosso caso, é o arquivo: home.html).
+
+		isso é possível pq o django disponibiliza pra gente, uma linguagem interna do 
+		django chamada: djinja. Essa linguagem possui uma série de sintaxe(s) que 
+		possibilita que a gente: 
+
+			- leia variáveis
+			- crie loops (for e while)
+			- crie if/elif/else
+			- etc...
+
+		
+		entre outras coisas, que ainda serão mostradas mais adiante.
+			
+			OBS: link da documentação djinja: https://jinja.palletsprojects.com/en/2.11.x/
+
+
+		depois de inserida a função home() que criamos no ex1, no arquivo: views.py, 
+		vamos inserir o código abaixo, no arquivo: home.html (arquivo que fica na
+		pasta conta, DENTRO DA PASTA templates):
+
+			<!DOCTYPE html>
+			<html lang="en">
+			<head>
+				<meta charset="UTF-8">
+				<title>Document</title>
+			</head>
+			<body>
+				
+				<h1>Seja bem vindo</h1>
+
+				<p>Agora são: {{ now }}</p> # sintaxe djinja
+			
+			</body>
+			</html>
+
+
+		repare que, no arquivo home.html, INSERIMOS ENTRE CHAVES DUPLAS, UMA CHAVE DE 
+		UM DICIONÁRIO:
+
+			essa é a sintaxe djinja para variáveis: {{ now }}
+
+
+		é assim que declaramos chaves de um dicionário (isso serve para variáveis tbm) em
+		um documento html usando a sintaxe djinja.
 
 
 
-		aula 13- Curso Django 2.0 - Aprendendo os conceitos fundamentais 
+		Vamos agora para um segundo exemplo de código, mostrando como exibir dados de 
+		um array, usando a sintaxe djinja:
+
+			ex2:
+
+				from django.shortcuts import render
+				import datetime
+
+
+				def home(request):
+					data = {}
+					data['transacoes'] = ['t1', 't2', 't3']
+
+					data['now'] = datetime.datetime.now()
+					return render(request, 'contas/home.html', data)
+
+
+		depois de inserida a função home() que criamos no ex2, no arquivo: views.py, 
+		vamos inserir o código abaixo, no arquivo: home.html:
+
+			<!DOCTYPE html>
+			<html lang="en">
+			<head>
+				<meta charset="UTF-8">
+				<title>Document</title>
+			</head>
+			<body>
+				
+				<h1>Seja bem vindo</h1>
+
+				<p>Agora são: {{ now }}</p>
+
+				# exibindo um array com um loop for
+				{% for transacao in transacoes %}
+					{{ transacao }}
+				{% endfor %}
+			
+			</body>
+			</html>
+
+
+		repare que, no arquivo home.html inserimos um loop for. Essa estrutura do 
+		loop for, foi feita com a sintaxe da linguagem djinja.
+
+			essa é a sintaxe djinja para loops for:
+
+				{% for transacao in transacoes %}
+					{{ transacao }}
+				{% endfor %}
+
+
+		ainda no ex2, no arquivo home.html, podemos criar uma lista html, com
+		as tags html: <ul><li></li></ul>, usando o mesmo loop for, da sintaxe do djinja:
+
+			OBS: cole o código abaixo por cima do loop for, no arquivo: home.html 
+
+				<ul> 
+					{% for transacao in transacoes %}
+						<li> {{ transacao }} </li>
+					{% endfor %}
+				</ul> 
+
+
+		ou, ainda no ex2, no arquivo home.html, podemos criar uma lista html, com
+		um loop for, e dentro desse loop for, definirmos condicionais: if/else, usando
+		a linguagem djinja:
+
+			<ul> 
+				{% for transacao in transacoes %}
+
+					{% if transacao == "t1" %}
+						<li><b>{{ transacao }}</b></li> #aqui ficará em negrito
+					{% else %}
+						<li> {{ transacao }} </li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+
+
+
+
+
+		material retidado do Curso: Django 2.0 - Aprendendo os conceitos fundamentais,
+		na sessão 2: primeiros passos no django. 
 
 
 
