@@ -91,6 +91,10 @@
 	   	na versão python3: 
 
 	   		pip3 install django
+			
+		    OBS: para desinstalar uma biblioteca do python com o camando pip3, use:
+		
+	                pip3 uninstall nomeDaBiblioteca
 
 	---------------------------------------------------
 	caso queira saber se realmente o django foi instalado, use o comando abaixo, que será mostrado no 
