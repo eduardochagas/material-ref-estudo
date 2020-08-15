@@ -59,7 +59,7 @@ class Player(pygame.sprite.Sprite):
 		if self.rect.bottom == HEIGHT:
 			self.quant_pulos = 0
 
-		if self.quant_pulos < self.quant_pulos_player: # o valor de self.limite_quant_pulos é: 2
+		if self.quant_pulos < self.quant_pulos_player: # o valor de self.quant_pulos_player é: 2
 			self.quant_pulos += 1 # conta quantos pulos o player deu...
 			self.jumping = True
 			if self.jumping == True:
