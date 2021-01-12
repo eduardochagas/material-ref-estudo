@@ -1,0 +1,218 @@
+#########################################
+#
+# O Conhecimento Fundamental sobre Vetores
+#
+#########################################
+
+-------------------------------------------------------------
+Calculando a magnitude (ou seja, o comprimento) de um vetor
+-------------------------------------------------------------
+
+    Para calcularmos a magnitude de um vetor, devemos utilizar a formula do teorema de pitágoras, como mostra a formula abaixo:
+
+		c**2 = a**2 + b**2
+		
+    	OBS: a formula acima se lê: C ao quadrado é igual ao valor de A ao quadrado mais o valor de B ao quadrado.
+	OBS2: a formula acima é uma raiz quadrada, por isso, em programação, utilizamos o metodo: math.sqrt( (a**2) + (b**2)  )
+
+	Vamos a um exemplo prático de como calcular a magnitude de um vetor:
+
+			(X, Y)
+		vetor = (3, 4)
+
+		# calculo do vetor usando a formula do teorema de pitagoras...
+		c = math.sqrt( (3**2) + (4**2) )
+		c = 9 + 16
+		c = 25 
+
+
+
+----------------------
+Vetor normalizado
+----------------------
+
+    Um vetor normalizado é um vetor que possui o seu comprimento (ou seja, que possui a sua magnitude) com o valor de 1. Para normalizarmos um vetor, devemos dividir o X e o Y do vetor, pela MAGNITUDE do próprio vetor, assim:
+
+	#(magnitude é o comprimento do vetor)
+
+	X / magnitude 
+  	Y / magnitude
+
+	OBS: para acharmos o comprimentoDoVetor, devemos usar a fórmula do TEOREMA DE PITÁGORAS. A formula do teorema de pitágoras é:
+
+		novoVetor = math.sqrt( (x**x) + (y**y) )
+
+		OBS: quando normalizamos um vetor, é gerado um novoVetor que possui a sua magnitude (ou seja, possui o seu comprimento) com valor 1.
+
+
+	Vamos a um exemplo prático de como normalizar um vetor:
+
+		# o valor da magnitude do vetor é: 5, porque: 3**2 é 9, e 4**4 é 16. 
+		vetorA = (3, 4) = 5
+
+		vetorA.x / 5 = 0.6
+		vetorA.y / 5 = 0.8
+
+		OBS: se vc inserir esses valores (0.6 no eixo Y e 0.8 no eixo X) no plano cartesiano, vc vai ver que o valor da magnitude desse vetorA tem o valor de 1, ou seja, esse vetor está normalizado.
+
+
+-------------------------
+Vetor Nulo/Zero
+-------------------------
+
+	O vetor nulo (também conhecido como VETOR ZERO), é um vetor que NÃO POSSUI SEGMENTO DE RETA E NÃO POSSUI DIREÇÃO, mas ainda sim é um vetor. 
+
+	OBS: O vetor zero É DESENHADO COM O SINAL DE PONTO (.) 
+
+	Em jogos, vc tem que pensar em vetor nulo como AUSENCIA DE DESLOCAMENTO. Por exemplo: quando o jogador PÁRA DE MOVIMENTAR O PERSONAGEM, o deslocamento tem que ser (0, 0). 
+
+	OBS: O vetor nulo fica demarcado na posição (0, 0) do plano cartesiano. 
+
+
+------------------
+Vetor Negado
+------------------
+
+	O vetor negado É UM VETOR NÃO NULO que SE SOMADO a OUTRO VETOR NÃO NULO, PRODUZ um VETOR NULO. 
+
+	Exemplo: (3, 2) + (-3, -2) = (0, 0)
+
+		OBS: exemplos de vetores não nulo: (3, 2) e (-3, -2). Vetor nulo é o vetor: (0, 0)
+
+
+----------------
+Vetor Inverso
+----------------
+
+	Quando FAZEMOS O CALCULO DA INVERSÃO do vetor, o TAMANHO da MAGINITUDE PERMANECE O MESMO, o que MUDA É A DIREÇÃO DESSE VETOR.
+
+	OBS: sempre que vc precisar de INVERTER A DIREÇÃO de um DESLOCAMENTO, MULTIPLIQUE os COMPONENTES: X e Y, por -1, assim:
+
+	x * -1
+  	y * -1
+
+	Exemplo: 
+		vamos usar como exemplo, o vetor: (4, 5), onde a posição X do vetor vale: 4, e a posição Y do vetor vale: 5. Então É SÓ MULTIPLICARMOS o X e o Y do nosso vetor COM O VALOR: -1, assim:
+
+			(X, Y)
+		vetor = (4, 5)
+		
+		4 * -1
+		5 * -1
+
+		A inversão do deslocamento gerará um vetor NA DIREÇÃO INVERSA a direção original, mantendo O MESMO TAMNANHO DA MAGNITUDE. 
+
+
+--------------------
+Soma de Vetores
+--------------------
+
+	Regras para fazer a soma de vetores:
+
+		- Os vetores a ser somados DEVEM POSSUIR A MESMA DIMENSÃO, ou seja, vc SÓ PODE SOMAR: vetor 2D com vetor 2D, vetor 3D com vetor 3D, etc...
+
+		- A SOMA DOS VETORES gera UM ÚNICO VETOR de MESMA DIMENSÃO.
+
+		- NAO IMPORTA se vc SOMAR o VETOR A com o VETOR B ou o VETOR B com o VETOR A, de ambas as formas está correto.
+			OBS: vc só tem que lembrar de fazer o calculo de X com X dos vetores e de Y com Y.
+
+		- Não se soma vetores com números escalares, ou seja, vc SÓ PODE SOMAR UM NÚMERO DE DENTRO DE UM VETOR, com UM NÚMERO que estiver DENTRO DE OUTRO VETOR.
+			OBS: números escalares são números que não pertencem a um vetor, ex:
+			# números escalares: 5, 54, 0.9, 0.3, 21, 89, etc...				
+			# números de um vetor: (3, 4), (2, 1), (5, 10), etc...
+				
+
+		- a soma dos vetores é feita somando os componentes dos vetores, ou seja, somando: o X e Y de um vetor com o X e Y de outro vetor, ex:
+
+				 (X, Y)
+			vetorA = (5, 3)
+			vetorB = (2, 3)
+
+			vetorC = (7, 6)
+
+	OBS: a soma de vetores feita em provas escolares se faz pegando A BASE do (vetorB) e INSERINDO NA PONTA DO vetor (vetorA). Após isso, pegamos uma régua e FAZEMOS UMA LINHA pegando DA BASE DO PRIMEIRO VETOR até A PONTA DO SEGUNDO VETOR. Essa LINHA FEITA COM A RÉGUA REPRESENTA O NOSSO TERCEIRO VETOR (no nosso caso, o vetorC). Lembrando que, A REGRA DIZ que no plano cartesiano, movemos sempre A BASE do SEGUNDO VETOR na ponta do PRIMEIRO VETOR.
+
+	OBS2: a soma da magnitude do vetorA com a magnitude do vetorB NÃO REPRESETA O TAMANHO DA MAGNITUDE DO vetorC. CADA vetor POSSUI SEU PROPRIO TAMANHO DE MAGNITUDE, ex:
+
+				# a magnitude é feita usando a formula do TEOREMA DE PITÁGORAS
+				a magnitude do vetorA é: (5**5 + 3**3) = 34
+				a magnitude do vetorB é: (2**2 + 3**3) = 13
+				a magnitude do vetorC é: (7**7 + 7**7) = 49  
+
+	OBS3: lembrando que, vetores NÃO POSSUI POSIÇÃO, possuem SOMENTE COMPRIMENTO e DIREÇÃO.
+
+
+-------------------------
+Escalonamento de Vetor
+--------------------------
+
+	Escalonar um vetor significa AUMENTAR ou DIMINUIR o COMPRIMENTO DO VETOR (ou seja, AUMENTAR ou DIMINUIR a MAGNITUDE do vetor), a DIREÇÃO vai PERMANECER A MESMA. 
+	
+	Para AUMENTAR O COMPRIMENTO do vetor, devemos MULTIPLICAR CADA COMPONENTE do vetor por um VALOR ESCALAR, ex:
+
+		x * 15
+		y * 15
+
+	Para DIMINUIR O COMPRIMENTO do vetor, devemos DIVIDIR CADA COMPONENTE do vetor por um VALOR ESCALAR, ex:
+
+		x / 15
+		y / 15
+
+		OBS: nesses exemplos acima, o VALOR ESCALAR é o número: 15, mas PODERIA SER QUALQUER NÚMERO, como por exemplo: 2, 200, 30, 0.5, 0.9, 7, 50, etc....
+
+	OBS: os COMPONENTES de um vetor são OS EIXOS de um vetor: (x, y, etc... ).
+	OBS2: VALOR ESCALAR é um NÚMERO qualquer QUE NÃO ESTEJA DENTRO de um vetor.
+
+
+---------------------
+Subtração de vetores
+---------------------
+
+		Regras para fazer a subtração de vetores:
+
+		- Os vetores a ser subtraidos DEVEM POSSUIR A MESMA DIMENSÃO, ou seja, vc SÓ PODE SUBTRAIR: vetor 2D com vetor 2D, vetor 3D com vetor 3D, etc...
+
+		- A SUBTRAÇÃO DOS VETORES gera UM ÚNICO VETOR de MESMA DIMENSÃO.
+
+		- A ORDEM DOS VETORES PARA A SUBTRAÇÃO IMPORTA, ou seja, SE A ORDEM DE SUBTRAÇÃO DOS VETORES FOR: A - B, VC NÃO PODE FAZER A SUBTRAÇÃO INVERTENDO OS VETORES, ou seja, VC NÃO PODE SUBTRAIR FAZENDO: B - A.
+			OBS: vc só tem que lembrar de fazer o calculo de X com X dos vetores e de Y com Y.
+
+		- Não se subtrai vetores com números escalares, ou seja, vc SÓ PODE SUBTRAIR UM NÚMERO DE DENTRO DE UM VETOR, com UM NÚMERO que estiver DENTRO DE OUTRO VETOR.
+			OBS: números escalares são números que não pertencem a um vetor, ex:
+			# números escalares: 5, 54, 0.5, 21, 89,  etc...				
+			# números de um vetor: (3, 4), (2, 1), (5, 10), etc...
+			
+
+		- a subtração dos vetores é feita subtraindo os componentes dos vetores, ou seja, subtraindo: o X e Y de um vetor com o X e Y de outro vetor, ex:
+
+			jeito correto:                              jeito errado:
+										                                         			         (X, Y)                                    (X, Y)
+			vetorA = (5, 3)                           vetorB = (5, 3)
+			vetorB = (2, 4)                           vetorA = (2, 4)
+
+			vetorC = (3, -1)                          vetorC = (-3, 1)
+
+		OBS: em subtração de vetores, o vetor resultante (que no nosso caso, é o vetorC), POSSUI O TAMANHO (ou seja, a magnitude) DA DISTÂNCIA entre o vetorA e o vetorB.
+
+	OBS2: a subtração da magnitude do vetorA com a magnitude do vetorB NÃO REPRESETA O TAMANHO DA MAGNITUDE DO vetorC. CADA vetor POSSUI SEU PROPRIO TAMANHO DE MAGNITUDE, ex:
+
+		# a magnitude é feita usando a formula do TEOREMA DE PITÁGORAS
+		a magnitude do vetorA é: (5**5 + 3**3) = 34
+		a magnitude do vetorB é: (2**2 + 4**4) = 20
+		a magnitude do vetorC é: (3**3 + -1**-1) = 8 
+
+	OBS3: lembrando que, vetores NÃO POSSUI POSIÇÃO, possuem SOMENTE COMPRIMENTO e DIREÇÃO.
+
+
+
+
+
+
+
+
+			 
+
+
+
+
+
