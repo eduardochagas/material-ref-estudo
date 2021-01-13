@@ -205,14 +205,82 @@ Subtração de vetores
 
 
 
+##############################################
+#
+# EXEMPLO DE CLASSE VETOR BÁSICA CRIADA NO PYTHON
+#
+##############################################
 
 
+class Vector2:
 
+	def __init__(self, x=0, y=0):
 
+		self.x = x
+		self.y = y
 
-			 
+	##############################################
+	# faz a soma dos valores de x e y dos vetores
+	def add(self, vector):
 
+		self.x += vector.x
+		self.y += vector.y
 
+	################################################
+	# faz a subtração dos valores de x e y dos vetores
+	def sub(self, vector):
+
+		self.x -= vector.x
+		self.y -= vector.y
+
+	##############################################
+	# lembre que a magnitude é o comprimento do vetor
+	def magnitude(self):
+
+		###########################################
+		# fazemos o calculo ao quadrado de self.x e self.y,
+		# e já somamos o resultado das potências de: self.x e self.y
+		self.valor = self.x**2 + self.y**2
+
+		################################################
+		# a formula para fazer a raiz quadrada de 
+		# um número qualquer, usamos a formula: valor ** (1/2)
+		self.raizDoValor = self.valor**(1/2)
+
+		#########################################
+		# devemos retornar o resultado da raiz 
+		return self.raizDoValor
+
+	##############################################
+	# faz o nosso vetor ter o tamanho 1.  
+	def normalize(self):
+
+		###################################
+		# antes de normalizarmos o vetor, 
+		# devemos pegar o valor da magnitude do vetor,
+		# para depois podermos normalizar o vetor
+		magnitude = self.magnitude()
+
+		#################################
+		# para fazermos a normalização de um vetor,
+		# devemos DIVIDIR o valor de x e de y do vetor,
+		# com a MAGNITUDE do vetor
+		self.x /= magnitude
+		self.y /= magnitude
+
+		# ################################################
+		# # após DIVIDIR o valor de x e de y do vetor
+		return Vector2(self.x, self.y)
+
+	##########################################################
+	# faz o escalonamento do vetor, ou seja, 
+	# aumenta o tamanho do vetor
+	def scale(self, x, y):
+
+		self.x *= x
+		self.y *= y
+
+		return self.x, self.y
 
 
 
