@@ -1,0 +1,7 @@
+#Lista de pessoas da familia do Neri:
+
+ *Neri
+*Lisiane
+*Giulia
+%Isso não deve ser impresso
+*Gustavo

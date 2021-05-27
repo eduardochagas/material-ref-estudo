@@ -1,0 +1,25 @@
+OPERADORES
+
++  operador de adição
+
+-  operador de subtração
+
+*  operador de multiplicação
+
+/  operador de divisão
+
+=  operador de atribuição
+
+==  operador de comparação de igualdade
+
+!=  operador diferente de.
+
+>  operador maior que.
+
+<  operador menor que.
+
+>= operador maior igual a.
+
+<= operador menor igual a.
+
+num ** num - um número elevado a outro número

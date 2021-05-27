@@ -1,0 +1,567 @@
+======================================
+    Decorators Python
+======================================
+
+Decorators nada mais é do que adicionar alguma coisa que faça uma coisa mais 
+atrativa ou apresentavel, essa é a definição adequada de decorations.
+
+Na vida real, nós usamos muito a palavra decorator, não é?. Por exemplo,
+nós queremos decorar a nossa casa, por que?, porque queremos que a nossa 
+casa fique mais atrativa, mais apresentavel. 
+
+Nós normalmente decoramos a nós mesmos com acessórios, maquiagem, etc..., pq?, para 
+ficarmos mais apresentavel, mais atrativo.
+
+Da mesma forma, se eu quero dar um presente para o meu amigo, o que eu irei 
+fazer? eu irei na loja comprar um relógio e EMBRULHAREI o relógio EM UMA 
+CAIXA para que FIQUE MAIS APRESENTÁVEL, para dar de presente para o meu 
+amigo. 
+
+É exatamente isso que os decoradores python fazem, eles criam uma função e 
+adiciona algumas funcionalidades e retorna essas funcionalidades.
+
+Decoradores python é qualquer objeto python chamavel que é usado para 
+modificar uma função ou uma classe.
+
+    Mas antes de sabermos como criarmos decorators, devemos saber a diferença entre: 
+
+        Chamada de função e Referência de função.
+
+
+==============================================================
+    Diferenças entre chamada de função e referência de função 
+==============================================================
+
+A diferença é simples, quando criamos uma função e queremos chama-la, digitamos o nome da função, seguido dos caracteres de parênteses, assim:
+
+    ex:
+        def nomeDaFuncao():
+            print('hello world')
+
+
+        nomeDaFuncao() #chamando a função.
+
+
+Quando queremos somente a REFERÊNCIA DA FUNÇÃO, usamos SOMENTE O NOME DA FUNÇÃO, assim:
+
+    ex:
+        def nomeDaFuncao():
+            return 'hello world'
+
+        txt = nomeDaFuncao #atribuimos a REFERÊNCIA DA FUNÇÃO nomeDaFuncao, á uma variável txt.
+        print(txt) #e imprimimos na tela o valor retornado pela função nomeDaFuncao.
+
+
+    OBS: REFERENCIA DE FUNÇÃO é muito utilizado quando queremos RETORNAR O MESMO LUGAR ONDE A FUNÇÃO FOI ARMAZENADA NA MEMÓRIA DO COMPUTADOR, PARA OUTRA ÁREA DA MEMÓRIA DO COMPUTADOR, por exemplo, armazenando a referência da função, em uma variável (toda variável criada é armazenada em uma área diferente da memória do computador).
+
+   
+    Agora sim estamos prontos para aprendermos sobre decorators.
+
+=======================================
+    Criando nossos próprios decorators
+=======================================
+
+    ----------------------------------------------------------------------
+    Criando DECORADORES para FUNÇÕES QUE SERÃO DECORADAS (que NÃO POSSUI PARÂMETROS) 
+    ----------------------------------------------------------------------
+
+    Para criar um decorator, é necessário CRAIR UMA FUNÇÃO que RETORNE UMA FUNÇÃO INTERNA, ou seja, criar uma função que RETORNE OUTRA FUNÇÃO.
+
+        OBS: toda função decoradora, ao ser criada, DEVE TER UM PARÂMETRO. É esse parâmetro que a função decoradora usará para ARMAZENAR A FUNÇÃO que será decorada.
+
+        OBS2: para ativar a função decoradora, insira o caractere de arroba, seguido do nome da função decoradora, assim: @nomeDaFuncaoDecoradora, em cima da função que vc deseja que seja decorada.
+
+        OBS3: A FUNÇÃO QUE SERÁ DECORADA NESSE EXEMPLO, É A FUNÇÃO: texto().
+
+        OBS4: CASO TENHA DIFICULDADES EM ENTENDER COMO O PYTHON LÊ ESSE CÓDIGO, USE O DEBUGADOR DO IDLE-PYTHON, ASSIM VC CONSEGUE ACOMPANHAR LINHA A LINHA COMO O CÓDIGO FUNCIONA.  
+
+        ex:            
+            def funcaoDecoradora(func):
+
+                def funcaoInterna():
+                    txt = func() #inserindo o texto 'hello world' retornado pela CHAMADA DA FUNÇÃO que foi inserida no parâmetro func (que É A FUNÇÃO texto()), para a variável txt.
+                    return txt.upper() 
+                return funcaoInterna #retornando SOMENTE A REFERÊNCIA DA FUNÇÃO funcaoInterna NA MEMÓRIA DO COMPUTADOR.
+
+
+            @funcaoDecoradora #aplicando a função decoradora
+            def texto(): # função decorada SEM PARÂMETROS
+                return 'hello world'
+
+            upperText = texto() #inserindo o texto 'HELLO WORLD' modificado pela @funcaoDecoradora, na variável upperText.
+
+            print(upperText) #imprimindo o texto 'HELLO WORLD' em maiúsculo que foi aplicado dentro da funcaoInterna, na funçãoDecoradora.
+
+
+    -----------------------------------------------------------------------------
+    criando DECORADORES para FUNÇÕES QUE SERÃO DECORADAS (que POSSUI PARÂMETROS) 
+    -----------------------------------------------------------------------------
+
+    Nessa sessão, vamos ver como decoramos funções que possui parâmetros.
+
+        OBS: toda função decoradora, ao ser criada, DEVE TER UM PARÂMETRO. É esse parâmetro que a função decoradora usará para ARMAZENAR A FUNÇÃO que será decorada.
+
+        OBS2: Nesse exemplo de código, o nome da função decoradora é: div_decorator.
+
+        OBS3: Nesse exemplo de código, o nome da função interna é: inner.
+
+        OBS4: para ativar a função decoradora, insira o caractere de arroba, seguido do nome da função decoradora, assim: @nomeDaFuncaoDecoradora, em cima da função que vc deseja que seja decorada.
+
+        OBS5: A FUNÇÃO QUE SERÁ DECORADA NESSE EXEMPLO, É A FUNÇÃO: soma().
+
+
+
+        ex:            
+            def div_decorator(func):
+
+                def inner(x, y): #se a função que queremos decorar possuir parâmetros, é na função interna que devemos inserir os parâmetros.
+                    if y == 0:
+                        return "insira um valor diferente de zero"
+                    return func(x, y)
+                return inner #lembre-se, aqui não estamos chamdando a função, e sim USANDO A REFERÊNCIA DA FUNÇÃO (estamos pegando a referencia na memória do computador onde a função esta armazenada).
+
+            @div_decorator #inserindo a função decoradora
+            def soma(x, y):
+                return 'o valor de {0} + {1} é = {2}'.format(x, y, x+y)
+
+            #para exibir valores retornados de uma função, precisamos de usar o print().
+            print(soma(5, 6))
+
+
+                OBS: Quando criamos um decorator, nós precisamos de lembrar Três coisas:
+
+                    1 - precisamos de definir um parâmetro na função decoradora para armazenar a função que será decorada.
+
+                    2 - precisamos de adicionar uma funcionalidade na função decoradora para que seja inserido na função que será decorada.
+
+                    3 - a função decoradora precisa de retornar outra função dentro dela.
+
+
+    -----------------------------------
+    decoradores que recebem argumentos
+    -----------------------------------
+
+    Decoradores que recebem argumentos são decoradores que são construidos para receber dados, ou seja, quando o decorador for aplicado a função, esse decorador recebe dados para decorar a função que será decorada. 
+
+        ex:
+
+            def outer(expr):
+                def upper_d(func):
+                    def inner():
+                        return func() + expr
+                    return inner
+                return upper_d
+
+
+            @outer('eduardo') #decorador que recebe dados
+            def ordinary():
+                return "good morning"
+
+
+            print(ordinary())
+
+
+
+    ----------------------------------------------------------
+    decoradores que recebem qualquer quantidade de argumentos
+    ----------------------------------------------------------
+
+    A única diferença desse decorador para os outros é que ele pode receber uma quantidade qualquer de parâmetros.
+
+
+        ex:
+
+            def div_decorator(func):
+                def inner(*args): #é o parametro *args que possibilita inserir quantidades variádas de dados.
+                    list1 = []
+                    list1 = args[1:] #pega dados do indice 1 da lista (lembrando que listas começam no índice 0), até o final da lista.
+
+                    for i in list1:
+                        if i == 0:
+                            return "retorne um valor diferente de zero !!!"
+                    return func(*args)
+                return inner
+
+
+            @div_decorator
+            def div1(a, b):
+                return a/b
+
+            @div_decorator
+            def div2(a, b, c):
+                return a/b/c
+
+
+            print(div(10, 5))
+            print(div(10, 0, 5))
+
+
+
+===========================================
+    Multiplos decorators
+===========================================
+
+    ---------------------------------------
+    multiplos decoradores 
+    ---------------------------------------
+    
+
+    OBS: a ordem de funcionamento dos decoradores empilhados em uma função é sempre do decorador mais próximo da função decorada, ou seja, executa o primeiro mais próximo da função decorada, depois o segundo mais próximo da função decorada, e assim por diante...
+    
+
+        ex1:
+
+            def upper_d(func):
+                def inner():
+                    str = func()
+                    return str1.upper()
+                return inner
+
+            def split_d(func):
+                def wrapper():
+                    str2 = func()
+                    return str2.split()
+                return wrapper
+
+
+            @split_d #o segundo decorador mais próximo da função
+            @upper_d #o primeiro decorador mais pŕóximo da função
+            def ordinary():
+                return "good morning"
+
+
+        print(ordinary())
+
+------------------------------------------------------------------------------
+
+        ex2:
+
+            def upper_d(func):
+                def inner():
+                    return "first " + func() + " first"
+                return inner
+
+            def split_d(func):
+                def wrapper():
+                    return "second " + func() + " second"
+                return wrapper 
+
+
+            @upper_d
+            @split_d
+            def ordinary():
+                return "good morning"
+
+
+            print(ordinary())
+
+
+
+=========================================================
+    Criando decoradores (NÃO built-in) 
+    para aplicar em métodos de classe
+=========================================================
+
+    #assistir video-aula decorators part-3 amul-academy do youtube#
+
+    O código abaixo está um exemplo de como criar decoradores para métodos de classe. Para criar métodos de classe, criamos a função decoradora fora da classe, e depois atribuimos a função decoradora á um método dentro da classe, como qualquer outro decorador.
+
+        ex:
+
+            def check_name(method):
+                def inner(name_ref): #o parâmetro name_ref recebe o parâmetro self da função print_name(self).
+                    if name_ref.name == "amulya": #essa condição está comparando se o valor do atributo de instância é o mesmo que a string "amulya".
+                        print("Hey my name ie also same !!!")
+                    else:
+                        return method(name_ref) #é chamado o método que está sendo decorado (ou seja, é chamado o método da classe de nome print_name(self))
+
+
+
+            class Printing:
+
+                def __init__(self, name):
+                    self.name = name
+
+                @check_name
+                def print_name(self):
+                    print("the user name is: ", self.name)
+
+
+            p = Printing("amulya")
+            p.print_name()
+
+
+
+
+==========================================
+    Decoradores (built-in) do Python
+==========================================
+
+
+    -------------------------------------
+    Decorador: @classmethod
+    -------------------------------------
+
+    Antes de tudo, precisamos de entender a diferença entre (VARIÁVEIS e MÉTODOS DE INSTÃNCIA) e (VARIÁVEIS e MÉTODOS DE CLASSE).
+
+        OBS: propriedades ou atributos de uma classe, também são conhecidos como: variáveis de classe
+
+
+        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        variáveis e métodos de INSTÃNCIA
+        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+            Quando criamos uma classe, todas as PROPRIEDADES e MÉTODOS que FOREM DEFINIDAS COM A PALAVRA (self), significa que PERTENCEM A INSTÂNCIA, ou seja, significa que SÓ PODEMOS ACESSAR QUANDO CRIAMOS UMA INSTÂNCIA DA CLASSE.
+
+                ex:
+                    class Pessoa:
+
+                        def __init__(self, nome, idade):
+                            self.nome = nome
+                            self.idade = idade
+                            self.sexo = 'Masculino'
+                            self.comidaPreferida = 'lasanha'
+
+
+                    du = Pessoa('Eduardo', 30) #instanciando a classe Pessoa()
+                    #acessando todas as propriedades da classe instanciada
+                    print(du.nome) 
+                    print(du.idade) 
+                    print(du.sexo)
+                    print(du.comidaPreferida)
+
+
+            Agora se, com a classe instanciada (ou seja, e = Pessoa('Eduardo', 30, 'M')), tentarmos acessar por exemplo, uma PROPRIEDADE DA CLASSE que NÃO POSSUI o self (como por exemplo, a propriedade: estiloMusical = 'Hip-Hop', será gerado um erro, dizendo: 
+
+                AttributeError: 'Pessoa' object has no attribute 'estiloMusical'
+
+            
+            isso significa que A CLASSE INSTANCIADA NÃO PODE ACESSAR A PROPRIEDADE estiloMusical, pq estiloMusical NÃO POSSUI O self, POR ISSO NÃO PODE SER ACESSADO PELA INSTÂNCIA. 
+
+                ex:
+
+                    class Pessoa:
+
+                        def __init__(self, nome, idade, sexo):
+                            self.nome = nome
+                            self.idade = idade
+                            self.sexo = sexo
+                            self.comida = 'lasanha'
+                            estiloMusical = 'Hip-Hop' #repare que essa propriedade NÃO POSSUI O self, por isso NÃO PODE SER ACESSADA
+
+
+                    du = Pessoa('Eduardo', 30, 'M')
+                    print(du.nome) 
+                    print(du.idade) 
+                    print(du.sexo)
+                    print(du.comida) 
+                    print(du.estiloMusical) #sera gerado um erro, pq estiloMusical NÃO TEM O self, por isso não pode ser acessado pela instância.
+
+
+
+        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        variáveis e métodos de CLASSE
+        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+            Quando criamos uma classe, TODAS AS PROPRIEDADES que forem DEFINIDAS SEM O self e TODOS OS MÉTODOS que forem DEFINIDOS COM A PALAVRA (cls), significa que PERTENCEM SOMENTE A CLASSE EM SI.
+
+                OBS: PROPRIEDADES DE CLASSE que NÃO POSSUI O self e MÉTODOS DE CLASSE QUE POSSUI A PALAVRA (cls) PODEM SER ACESSADOS diretamente PELO NOME DA CLASSE, ou podem ser acessados PELA INSTÂNCIA DA CLASSE.
+
+                OBS2: MÉTODOS DE CLASSE utilizam o decorador: @classmethod, e POSSUEM COMO PRIMEIRO PARÂMETRO O (cls). O nome (cls) representa a própria classe, ou seja, (cls) É A PRÓPRIA CLASSE Animal(), só que dentro de um método, na própria classe. Isso significa que agora esse método possui as mesmas caracteristicas da classe Animal().
+
+                OBS3: métodos de classe (que são definidos com o decorador: @classmethod) NÃO ACESSAM PROPRIEDADES E MÉTODOS DEFINIDOS COM O self NA CLASSE, métodos de classe SOMENTE ACESSAM VARIÁVEIS DE CLASSE (ou seja, AS PROPRIEDADES QUE NÃO POSSUEM O self) e os MÉTODOS DE CLASSE (ou seja, OS MÉTODOS QUE SÃO DEFINIDOS COM O DECORADOR: @classmethod).
+
+                ex:
+
+                    class Animal:
+
+                        #variáveis da classe
+                        nome = 'pluto'
+                        idade = 3
+                        corDosOlhos = 'verde'
+                        latido = 'AUAU!'
+
+
+                        #AS VARIÁVEIS DEFINIDAS DENTRO DA FUNÇÃO __init__ e E QUE TEM O self são chamadas de variáveis de instância, ou seja, SÓ PODEM SER ACESSADAS SE A CLASSE Animal() FOR INSTANCIADA.
+                        def __init__(self):
+                            self.corDoPelo = 'laranja'
+                            self.raca = 'Pit-Bull' 
+
+
+                        @classmethod
+                        def andar(cls):
+                            return cls.nome + ' está andando e tem a cor do olhos ' + cls.corDosOlhos + 'e o som do latido é ' + cls.late()
+
+                        @classmethod
+                        def parar(cls):
+                            return cls.nome + ' parou de andar, sua idade é de: ' + str(cls.idade) + ' anos.'
+
+                        @classmethod
+                        def late(cls):
+                            return cls.latido
+
+
+                    # acessando os métodos da classe DIRETAMENTE PELO NOME DA CLASSE, sem instanciar.
+                    print(Animal.andar())
+                    print(Animal.parar())
+
+
+                    # acessando os métodos da classe COM A CLASSE INSTÂNCIADA.
+                    dog = Animal() #classe Animal() instânciada.
+                    print(dog.nome) # acessando variáveis da classe (variáveis que não possuem o self) com a classe Animal() instânciada. 
+                    print(dog.andar()) #acessando métodos de classe (métodos com o decorador: @classmethod, e que possuem o (cls) com a classe Animal() instânciada.
+
+
+                        OBS: as INSTÂNCIAS DE CLASSE podem acessar PROPRIEDADES E MÉTODOS QUE POSSUEM O self e tbm VARIÁVEIS E MÉTODOS DA CLASSE (varíáveis de classe são as propriedades que não possuem o self e métodos de classe são os métodos definidos com o decorador: @classmethod).
+
+
+                        OBS2: Quando a classe é chamada por uma INSTÃNCIA DA CLASSE, essa classe instanciada é armazenada em um espaço na memória do computador (ou seja, estamos pegando o molde da classe para criarmos alguma coisa). Quando a classe é chamada pelo próprio nome (ou seja, sem criar uma instancia), estamos acessando a classe em sí (ou seja, estamos acessando o molde em si da classe).  
+
+         
+                Outro exemplo de código sobre métodos de classe:
+
+                    OBS: no código abaixo da classe Pizza(), é mostrado de forma mais clara como os métodos de classe (que são os métodos com o decorador: @classmethod) funcionam. os métodos de classe utilizam a própria estrutura da classe Pizza (ou seja, o próprio molde da classe Pizza), e atribui como um método na classe (usando o decorador: @classmethod e atribuindo o (cls) como primeiro parâmetro). Com isso podemos usar as mesmas configurações da própria classe, em um método na própria classe. Essa configuração de método é muito utilizada em padrões de projetos do tipo: Factory.
+
+                        OBS: lembrando que métodos de classe (que são os métodos que usam decorador: @classmethod e que atribui o (cls) como primeiro parâmetro no método) PODEM SER ACESSADOS tanto por uma INSTÂNCIA DA CLASSE quanto PELO PRÓPRIO NOME DA CLASSE.
+
+                    ex:
+
+                        class Pizza:
+
+                            def __init__(self, ingredients):
+                                self.ingredients = ingredients
+
+                            def __repr__(self):
+                                return 'Pizza(self.ingredients)'
+
+                            @classmethod
+                            def margherita(cls):
+                                return cls(['cheese', 'tomatoes', ])
+
+                            @classmethod
+                            def prosciutto(cls):
+                                return cls(['cheese', 'tomatoes', 'ham', 'mushrooms'])
+
+
+                        #nesse caso, estamos acessando os métodos da classe PELO NOME DA CLASSE.
+                        print(Pizza.margherita())
+                        print(Pizza.prosciutto())
+
+
+
+
+
+    -------------------------------------
+    Decorador: @staticmethod
+    -------------------------------------
+
+    Antes de tudo, precisamos de saber as características dos métodos decoradorados com: @staticmethod
+
+        métodos estáticos NÃO POSSUI PARAMETRO DE REFERÊNCIA (como: self ou cls), 
+
+        métodos estáticos são métodos que podem ser chamados COM A INSTÂNCIA da classe ou SEM A INSTÂNCIA da classe.
+
+        métodos estáticos não tem acesso a classe e nem aos objetos de instância (objetos de instância são as propriedades e métodos da classe com o self).
+
+
+    Métodos estáticos NÃO PERTENCEM NEM AOS METODOS DA CLASSE EM SÍ (pq não referência o nome (cls) como primeiro parâmetro no método) E NEM AOS MÉTODOS DE INSTÂNCIA (pq não referência o nome (self) como primeiro parâmetro no método).
+
+    Métodos estáticos são usados para RESOLVER OPERAÇÕES INTERNAR DENTRO DA CLASSE, como por exemplo, criar um método estático que FAÇA O CALCULO DO TAMANHO DA AREA DA PIZZA, e atribuir esse método estático DENTRO DE UM MÉTODO NA CLASSE, para FAZER O CÁLCULO e RETORNAR O VALOR.
+
+
+        OBS: antes de fazer o calcudo do circulo, precisamos saber o nome das coisas que compôem o circulo:
+
+            a linha que faz o contorno do circulo (ou seja, A LINHA DO CIRCULO) é chamado de: circunferência.
+
+            a linha que vai de uma ponta a outra dentro do circulo (que é a LARGURA DO CIRCULO) é chamada de: diâmetro.
+
+            a linha que vai DO MEIO DO CIRCULO até A LATERAL DO CIRCULO é chamada de: raio.
+
+
+
+        ex:
+            class Pizza:
+
+                def __init__(self, radius, ingredients):
+                    self.ingredients = ingredients
+                    self.radius = radius
+
+                def __repr__(self):
+                    return 'Pizza(self.ingredients)'
+
+                def area(self):
+                    return self._circle_area(self.radius)
+
+                @staticmethod
+                def _circle_area(r):
+                    return r ** 2 * math.pi
+
+
+            #chamando pelo nome da classe
+            print(Pizza(4.5, ['Calabresa']).area()) 
+
+            #chamando pela instância da classe
+            calabresa = Pizza(4.5, ['Calabresa'])
+            print(calabresa)
+
+
+
+    --------------------------------------------
+    Decorador: @property
+    --------------------------------------------
+
+    Quando vc transforma um método dentro da classe em uma propriedade, (se faz isso com o: @property),
+    vc NÃO CONSEGUE ATRIBUIR UM NOVO VALOR DE FORA DA CLASSE, (ex: p.corDosOlhos = 'Azul').
+
+    ex:
+
+        class Pessoa:
+
+            def __init__(self, nome):
+                self.nome = nome
+                self._corDosOlhos = 'Verde'
+
+            @property
+            def corDosOlhos(self):
+                return self._corDosOlhos
+
+        p = Pessoa('Eduardo')
+        p.corDosOlhos = 'Azul'
+        print(p.corDosOlhos)
+
+
+
+    ---------------------------------
+    # decorador .setter
+    ---------------------------------
+
+    Para ATRIBUIR UM NOVO VALOR de fora da classe a um MÉTODO QUE VIROU UMA PROPRIEDADE DENTRO DA CLASSE, utilize em cima do método da classe o decorador: @nomeDaFunçãoQueVirouPropriedade.setter. Dessa forma,
+    quando escrevermos objeto.propriedade = valor, esse método será chamado
+    para efetuar as alterações.
+
+    ex:
+
+    class Pessoa:
+
+        def __init__(self, nome):
+            self.nome = nome
+            self._corDosOlhos = 'Verde'
+
+        @property
+        def corDosOlhos(self):
+            return self._corDosOlhos
+
+        # nome da função que virou propriedade seguido do (.setter).
+        @corDosOlhos.setter
+        def corDosOlhos(self, corDosOlhos):
+            self._corDosOlhos = corDosOlhos
+
+    p = Pessoa('Eduardo')
+    # ATRIBUINDO UM NOVO VALOR ao método que
+    # virou propriedade DE FORA DA CLASSE...
+    p.corDosOlhos = 'Azul'
+       
+
+
+
+

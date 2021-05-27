@@ -1,0 +1,46 @@
+# tipos de execução do arquivo (segundo parametro do open() )
+
+'r' - abre o arquivo em somente modo leitura.
+'w' - abre o arquivo para esquita.
+'x' - abre o arquivo para criação exclusiva, falhando se o arquivo já existe.
+'a' - abre o arquivo para escrita, adicionando conteúdo ao final do arquivo se já existir conteúdo.
+'b' - modo binário (byte)
+'t' - modo texto (default)
+'+' - abre um arquivo no disco rigido para atualização (leitura e escrita)
+
+
+
+#Metodos da função open() (função de manipulação de arquivos python)
+
+
+buffer()
+close() - fecha o arquivo.
+closed()
+detach()
+encodings()
+errors()
+fileno()
+flush()
+isatty()
+line_buffering()
+mode() - retorna o modo em que o arquivo está (se o modo é 'r' (leitura), 'w' (escrita), 'a' (adicionar conteúdo ao final do conteúdo já existente no arquivo))
+name - retorna/mostra o nome do arquivo. #É uma propriedade da função
+newlines()
+read() - retorna o texto do arquivo. você pode definir quantos caracteres você quer ler definindo o
+número como parametro ex: read(50), lerá os 50 primeiros caracteres. #usado somente se o arquivo é do tipo 'r' (leitura).
+readable() - verifica se o arquivo está no modo leitura e retorna 'True' se o arquivo está no modo leitura.
+readline() - retorna a primeira linha do texto do arquivo, e a cada inserção do readline(), retorna a
+linha seguinte do texto do arquivo. 
+readlines() - retorna o texto do arquivo em um array dividindo em strings onde encontrar quebra de linha (o caractere '\n').
+seek() - reinicia o ponteiro de leitura no programa na linha seguinte após o uso desse metodo. também usado para manipular a posição do ponteiro de leitura nos arquivos. reinicia o ponteiro de leitura de arquivo para o inicio do arquivo caso esse metodo seja usado com valor 0 no parametro, ou insira um número diferente de 0 para definir em qual caractere você quer que comece a leitura do arquivo.
+seekable()-
+tell() - mostra algo, ex:mostra o valor de uma varialvel, mostra em qual indice do caractere do texto está o ponteiro de leitura do arquivo..., etc...
+truncate()
+writable()
+write() - usado para escrever um conteúdo dentro de um arquivo. #usado somente se o arquivo é do tipo 'w' (escrita). 
+writelines()
+
+
+# outra forma de abrir arquivos open() (com a palavra chave 'with').
+ with open('arquivo.txt', 'r') as f:
+     

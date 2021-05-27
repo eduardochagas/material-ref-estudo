@@ -1,0 +1,21 @@
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# entendendo o funcionamento da função lambda
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+# lambda é uma função que não tem nome, e que RETORNA um valor, sendo assim, 
+# vc deve criar a função lambda, e atribuir essa função a uma variável para que 
+# ela (a função lambda) possa ser chamada.
+
+#sintaxe da função lambda
+lambda argumentos: return
+
+
+# uma função comum...
+def dobro(num):
+    return num*2
+    
+# a mesma função acima, só que no formato função lambda
+f = lambda num: num*2
+
+OBS: Para que a função lambda possa ser chamada, vc deve atribui-la a
+um nome (no caso, o nome f) para que a função possa ser chamada.
