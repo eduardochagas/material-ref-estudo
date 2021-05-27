@@ -1,9 +1,0 @@
-meu nome é Eduardo, tenho 28 anos, natural de são paulo,
-
- estou curtindo bastante aprender sobre programação, é bem interessante,
-
- eu já tenho uma boa noção do básico da linguagem python, embora
-
- ainda não tenha aprendido a parte prática, tenho que treinar
-
- bastante para poder criar apps e colaborar com a galera no github.
