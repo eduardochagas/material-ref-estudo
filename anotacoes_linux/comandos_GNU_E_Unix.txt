@@ -1,0 +1,541 @@
+==================== Comandos Bash ====================================
+
+------------------- 10. Aula 103.1 shell, bash, echo, type, PATH -------------------------------------------
+date - exibe o dia da semana, o mês, o dia do mês, a hora, min, seg, fuso horário, ano.
+
+echo - exibe o que for digitado após o comando echo (também exibe os valores
+das variáveis internas do bash, por exemplo, o valor da variável $PATH).
+
+OBS_avulsa: caso vc esteja utilizando um outro shell que não seja o bash, e queira usar o bash, 
+é só digitar: bash
+
+type nomeDoComando - usado para saber se um comando é interno (que faz parte do bash), ou se é externo (que foi instalado no linux). 
+    Se o resultado for builtin, o comando é interno do bash.
+
+    Se o resultado for diferente do acima, então é externo.
+
+$PATH - variável que armazena e localiza os diretórios que o shell deve consultar para encontrar os programas externos instalados no linux.
+
+OBS_avulsa: caso o programa não seja interno do shell e não está localizado na variável $PATH, para executá-lo, vc deve digitar o caminho absoluto (digitar desde a raiz '/') ou relativo (relativo ao seu diretório atual até o programa).
+
+pwd - exibe o diretório atual que vc está.
+
+cd - muda de diretório.
+
+ls - lista o diretório atual.
+
+OBS_avulsa: para executar um programa .sh, utilize ./nome_do_programa.sh.
+
+
+------------------------------ 10. Aula 103.1 variáveis de ambiente -------------------------------
+OBS_avulsa: para criar uma variável (localmente) no shell bash tem que ser assim: NOME_VARIAVEL=VALOR (sem espaços entre o nome da variável e do valor). O sistema só reconhece as variáveis locais criadas na sessão do bash á qual foram criadas. Para que todos os processos subsequentes do bash ao qual as variáveis foram criadas consigam "encherguar" a(s) mesma(s), utilizamos o comando: export nome_da_variável, (após exportar cada variável, todas as variáveis se tornam global (no mesmo esquema de uma linguagem de programação)). Só não será possível acessar essas variáveis em uma outra janela bash por exemplo, somente na janela em que foram criadas e em seus processos subsequentes.
+
+export nomeDaVariavel - usado para exportar todas as variáveis criadas em uma sessão para que todos os processos subsequentes "encherguem" essas variáveis.
+OBS:vc não precisa criar a variável para depois exportar, já pode exportar assim que cria as variáveis usando o mesmo comando)
+
+OBS_avulsa: o bash é um processo, a execução de um programa (como ./Script_Variavel.sh) é um subprocesso do processo shell.
+
+cat nomeDoArquivo- é um comando que mostra o texto de um arquivo.
+
+OBS_avulsa: para iniciar um novo processo bash, digite: bash, no terminal, isso abrirá um novo processo bash, ou seja, será um novo processo bash (processo filho do bash anterior). Para voltar ao bash pai, digite: exit, isso matará o processo bash filho e retornará ao bash anterior.
+
+------------------------ comandos para visualizar as variáveis declaradas e do proprio bash ----------------------------
+set|less - exibe todas as variáveis (locais e  exportadas (globais)) declaradas nesse bash 
+OBS:por ser um comando builtin, esse comando encherga as variáveis locais e globais.
+
+env|less - exibe apenas as variáveis que são globais.
+OBS:por ser um comando externo, esse comando só encherga as variáveis globais.
+OBS2:vc pode alterar o valor de uma variável global ou local somente em uma execução de um programa em específico usando: env nomeDaVariavel=valor ./nomeDoArquivo.sh, isso não altera o valor da variável no ambiente bash, o valor será alterado somente na execução daquele programa em específico. 
+
+unset nomeDaVariavel - usado para remover uma variável do ambiente bash.
+
+
+--------------- variáveis pré-definidas -----------------------
+importante saber algumas das variáveis pré-definidas do bash...
+
+HISTFILE=/home/lpi1/.bash_history - mostra onde está o caminho do arquivo do histórico dos comandos digitados na sessão bash.
+
+HISTFILESIZE=2000 - mostra o tamanho máximo do arquivo.
+
+HISTSIZE=1000 - mostra a quantidade de linhas máximas desse arquivo.
+
+HOME=/home/lpi1 - mostra o home do meu usuário local.(a variável lpi1 muda comforme o nome do usuário que logou.)
+
+HOSTNAME=Linux - mostra o nome da máquina.
+
+LOGNAME=lpi1 - mostra o nome do usuário que fez o login nessa sessão.
+
+PWD=/home/lpi1/Exercicios - exibe o diretório que vc está agora.
+
+SHELL=/bin/bash - exibe qual o shell que vc está usando agora.
+
+TERM=xterm - exibe o tipo de interface que vc está usando, se o valor for xterm, significa 
+que vc está usando uma interface gráfica, se o valor for só tty, vc está usando somente o 
+terminal.
+
+USER=lpi1 - exibe o nome do usuário.
+
+DISPLAY: Indica às aplicações gráficas onde as janelas deverão ser exibidas. Será estudado no Tópico 106.
+
+PATH: Diretórios em que o Linux irá procurar por arquivos executáveis
+
+PS1: Aparência do prompt do shell.
+
+PWD: Diretório atual
+
+OLDPWD: Diretório anterior
+
+------------------------- variáveis de ambiente definidas dinamicamente -----------------------
+OBS_avulsa: PID - Process IDentifier
+echo $$ - exibe o PID do processo atual(o shell é um processo, então esse comando exibe o PID desse processo).
+
+echo $! - exibe o PID do último processo que foi executado em background.
+
+echo $? - exibe o exit code (codigo de retorno do último processo que vc executou), se retornar 0, significa que o codigo de retorno foi executado com sucesso, se o valor for 1 ou 2, significa que o codigo de retorno pode ser considerado um erro, em outros casos, retornará um código específico daquele erro.
+
+echo ~ - retorna o home do usuário.
+
+------------------------ trabalhando com linhas de comando - comandos sequenciais -------------------------
+; - usado digitar mais de um comando ao mesmo tempo na mesma linha do terminal, vc tem que 
+usar o ; (ponto e virgula) entre cada comando, ex: clear ; date ; ls, isso pra quantos 
+comandos vc quiser, não importa se um comando anterior foi executado com sucesso ou não, 
+os comandos serão executados todos em sequência.
+
+
+&& - usado para digitar mais de um comando na mesma linha do terminal (faz o mesmo que 
+o comando acima) a diferença é que o comando seguinte SOMENTE é executado se o comando 
+anterior for executado com sucesso, ex: ls /tmp/teste && echo Linux, supondo que o diretório /tmp não possua um diretório chamado teste, geraria um erro e o comando echo Linux seria executado.
+
+|| - usado para digitar mais de um comando ao mesmo tempo na mesma linha do terminal, (faz 
+o mesmo que os comandos acima), a diferença é que o comando seguinte só é executado se o 
+comando anterior não for executado, ou seja, se o primeiro comando for executado, todos os 
+comandos seguintes não serão, ex: ls /tmp || echo Linux, nesse caso o segundo comando 
+definido na linha do terminal não será executado pq o primeiro comando está correto, 
+outro exemplo: ls /tmp/teste || echo Linux, (assumindo que não exista nenhuma pasta 
+chamada teste no diretório /tmp), o segundo comando será executado pq o primeiro comando 
+deu erro.  
+
+recaptulando os exemplos acima: 
+clear ; date ; ls - executa todos os comandos, mesmo que um deles deê erro.
+
+ls /tmp/ && echo Linux - executa o segundo somente se o primeiro comando for executado.
+
+ls /tmp/ || echo Linux - se o primeiro comando for executado, todos os comandos 
+seguintes serão ignorados (não serão executados).
+
+OBS_avulsa: todos os comandos já digitados no terminal podem ser reutilizados sem precisar 
+de digitar novamente, aperte as teclas de seta para cima e para baixo para alternar entre 
+os comandos já digitados.
+
+--------- comandos do arquivo history ------------
+
+history - comando usado para exibir todos os comandos já digitados pelo usuário.
+OBS: todos os comandos digitados pelo usuário ficam armazenados em um arquivo de histórico 
+dentro do sistema Linux. Esse comando é muito útil para saber o que foi feito pelo usuário 
+no sistema, se algum comando foi executado corretamente ou não. Cada usuário tem o seu 
+próprio history (arquivo de histórico).
+
+!! - executa novamente o último comando digitado no terminal (muito útil para executar 
+novamente um comando muito longo) sem ter que digitar tudo novamente.
+
+!numDoComandoNoHistory - executa um comando do history pelo número em que esse comando 
+está associado no arquivo do historico, ex: vamos supor que no history existe um comando 
+10 ls, se vc digitar no terminal: !10, (exclamação dez), o terminal listará o diretório atual (diretório em que vc está), outro exemplo: vamos supor que no history exista um 
+comando: 27 cd /etc/apt, ao digitar no terminal: !27, (exclamação vinte e sete), vc entrará 
+no diretório 'apt' do sistema, e assim por diante...
+
+!nomeDoComandoNoHistory - executa um comando que contenha o mesmo nome no 
+history, ex: vamos supor que no arquivo history contenha o nome 'uname --help' (comando 
+de ajuda do sistema) e no terminal vc digitar: !uname, o comando no history que contêm o 
+mesmo nome será executado no terinal.
+
+history -c - limpa o arquivo history (limpa os comando armazenados no arquivo history).
+
+set | grep nomeDaVariavelNoBash - usado para filtrar as variáveis de 
+mesmo nome e de nome semelhante, do bash em específico e o seu 
+valor associado, ex: set | grep HISTFILE, irá exibir HISTFILE=/home/lpi1/.bash_history.
+OBS: o arquivo .bash_history é o arquivo de histórico dos comandos digitados pelo usuário.
+OBS2: os comandos digitados pelo usuário é gravado no history toda vez que é encerrada a 
+sessão do usuário, atualizando o arquivo com os novos comandos digitados na sessão finalizada.
+OBS3: usuários comuns só conseguem visualizar o seu próprio arquivo history, com excessão do 
+usuário root, que consegue acessar o history dos outros usuários.
+
+Ctrl + r - vai auto-completando a procura pelo nome de um comando no arquivo history conforme 
+vc vai digitando o nome desse comando.  
+
+tecla TAB - usado para autocompletar um comando, um nome de arquivo ou nome de um diretório.
+
+man nomeDoComando - usado para acessar o manual de um comando, explicando como esse comando 
+funciona no linux.
+OBS: precione 'q' para sair do manual ou digite /palavraQueVcQuerPesquisarDentroDoManual para 
+poder pesquisar...
+OBS2: comandos internos não tem manual para pesquisa, para saber como os comandos internos 
+do bash funciona, digite: man bash, vc encontrará os comandos internos do bash, somente comandos 
+externos possuem manual para saber sobre cada comando separadamente. 
+
+man bash - usado para consultar o manual do bash e a referência de todos os 
+seus comandos internos.
+
+info nomeDoComando - é um arquivo de informação sobre os comandos, só que de forma reduzida.
+
+man -k "sistem information" - da uma referência de todos os comandos que tem o conteúdo 
+definido entre parênteses (o conteúdo 'sistem information' é só um exemplo, mas pode 
+ser um outro nome de conteúdo que vc queira pesquisar) e exibe os comandos que levam o 
+conteúdo da frase definida entre parênteses.
+
+whatis nomeDoComando - mostra informações sobre o que o comando faz.
+
+apropos palavraOuFraseSemAsAspas - faz o mesmo que (man -k "sistem information"), faz a busca 
+baseado na descrição inserida apos o comando apropos.
+
+
+--------------- trabalhando com linhas de comando: uname, alias -----------------------------
+
+uname - exibe o nome do sistema operacional.
+OBS: O comando uname (com os seus opcionais) é usado para imprimir (exibir no 
+terminal) informações sobre o sistema. Digite no terminal: uname --help, para verificar 
+as opções de comando sobre as informações do sistema.
+
+alias - é usado para criar um atalho ('um apelido') para um comando. Para criar 
+um alias, digite: alias aPalavraQueVcQuiser=comandoDesejado, ex: alias lt=ls, quando vc digitar 
+no terminal: lt, será executado o comando ls, outro ex: alias cm='ls /tmp', quando vc digitar 
+no terminal: cm, será executado o comando ls /tmp, e assim por diante.
+OBS: se vc digitar somente: alias, no terminal, exibirá todos os alias já estão ativo (que já estão 
+criados) no sistema.
+OBS2: até o momento, não foi explicado como deixar os alias criados permanentemente no sistema, por 
+isso, até o momento, todos os alias criados que não for padrão do sistema, serão deletados ao 
+sair da sessão (ao desligar a máquina).
+
+
+---------------- Aplicando filtros a textos e Arquivos ----------------------------
+
+cat nomeDoArquivo - usado para ler um arquivo de texto, o texto será exibido no próprio 
+terminal.
+
+cat -b nomeDoArquivo - exibe no terminal os dados do arquivo numerando somente 
+as linhas que contêm dados.
+
+cat -n nomeDoArquivo - exibe no terminal os dados do arquivo numerando todas as 
+linhas do arquivo, até as linhas em branco.
+
+cat -s nomeDoArquivo - exibe no terminal os dados do arquivo (sem numerar as 
+linhas) e caso o arquivo contenha mais de uma linha em branco em sequência, 
+exibe essas linhas em branco como se fosse uma linha só em branco.
+OBS: Esse comando não exibe as linhas de forma numerada.
+
+cat -A nomeDoArquivo - exibe no terminal os dados do arquivo (sem numerar as 
+linhas) e exibe também os caracteres especiais que estão no arquivo, ex: todo 
+fim de linha do arquivo é exibido um caractere de $ (sifrão), 
+onde foi usado a tecla TAB será exibido um 
+caractere de ^I^ (sircunflexo I sircunflexo), entre outros caracteres especiais.
+
+cat --help - exibe os opcionais do comando cat.
+
+man cat nomeDoArquivo - exibe o manual do comando cat.
+
+tac nomeDoArquivo - exibe os dados do arquivo de forma contrária ao comando cat.
+
+head nomeDoArquivo - exibe o cabeçalho do arquivo, ou seja, as primeiras linhas 
+de um arquivo.
+OBS: O padrão de exibição de linhas em alguns linux é de 5 linhas, e em outros 
+linux o padrão de exibição é de 10 linhas.
+
+head -n2 nomeDoArquivo - exibe somente as duas primeiras linhas do arquivo. 
+OBS: Vc pode definir quantas linhas vc quer seja exibida, inserindo o número 
+de linhas desejadas na frente do opcional -n.
+
+head -c50 nomeDoArquivo - exibe somente os primeiros 50 caracteres do arquivo.
+(até os espaços em branco conta como caractere).
+OBS: Vc pode definir quantos caracteres vc quer que seja exibido inserido o 
+número desejado no lugar do numero 50.
+
+tail nomeDoArquivo - exibe o final do arquivo, ou seja, as últimas linhas de 
+um arquivo.
+OBS: O padrão de exibição de linhas em alguns linux é de 5 linhas, e em outros 
+linux o padrão de exibição é de 10 linhas.
+  
+tail -n4 nomeDoArquivo - exibe somente as últimas 4 linhas do arquivo.
+OBS: Vc pode definir quantas linhas vc quer seja exibida, inserindo o número 
+de linhas desejadas na frente do opcional -n.
+
+tail -f nomeDoArquivo- usado para mostrar saídas de dados ao vivo (mais utilizado para verificação de logs).
+OBS: utilize Ctrl + C para sair do comando tail -f.
+
+tail -n5 -f nomeDoArquivo - usado para mostrar as últimas 5 linhas de saída do 
+arquivo.
+
+
+less nomeDoArquivo - usado para exibir um arquivo de forma páginada.
+OBS: se usar seta para cima e para baixo, irá navegar no arquivo linha por 
+linha, se vc utilizar a tecla TAB, irá navegar no arquivo página por página. Se 
+vc digitar / ao navegar no arquivo, poderá procurar por uma palavra em especifico 
+dentro do arquivo e te direciona até ela, se vc digitar: n, o comando procurará 
+pela próxima palavra igual dentro do arquivo, se vc digitar SHIFT + n, procurará 
+para trás. Se vc digitar CTRL + g, o comando mostrará a linha onde vc está no 
+arquivo e em quantos por cento do arquivo vc está.
+OBS2: Para sair do comando less, digite: q.
+
+wc nomeDoArquivo - exibe a quantidade de linhas, de palavras e de caracteres, seguido pelo nome do arquivo, exatamente nessa ordem.
+OBS: Alguns aracteres especiais têm mais de um byte. 
+
+wc nomeDoArquivo -l - exibe somente a quantidade de linhas dentro do arquivo.
+
+wc nomeDoArquivo -w - exibe somente a quantidade de palavras dentro do arquivo.
+
+wc nomeDoArquivo -c - exibe somente a quantidade de caracteres dentro do arquivo. 
+
+wc * - exibe a quantidade de linhas, palavras e caracteres de todos os arquivos 
+existentes no diretório atual separadamente, organizado por cada arquivo em sua 
+própria linha, e na última linha é exibido o número total somado de todas as 
+linhas, palavras e caracteres de todos os arquivos.
+
+cat nomeDoArquivo | wc -l - exibe somente a quantidade de linhas do 
+arquivo nomeDoArquivo.
+
+nl nomeDoArquivo - numera somente as linhas do arquivo que contêm dados (faz 
+exatamante o mesmo que o comando cat -b).
+
+sort nomeDoArquivo - exibe no terminal os dados do arquivo de forma 
+ordenada (ordem alfabética).
+OBS: As linhas em branco são exibidas antes da primeira letra do arquivo.
+
+sort -r nomeDoArquivo - exibe no termimal os dados do arquivo de forma reversa, 
+começando da letra z (ou da última letra do alfabeto mais próxima de z).
+
+sort -k2 - exibe no terminal os dados do arquivo ordenando os mesmos a partir do 
+primeiro caractere da segunda palavra de cada linha no arquivo.
+
+sort -t -k2 -g - exibe no terminal os dados do arquivo definindo o delimitador no
+ -t, a partir de qual campo será ordenado no -k, e o -g ordena a partir dos 
+numeros ao invés dos caracteres.
+
+sort --help - exibe os opcionais do comando sort.
+
+
+---------------- Aplicando Filtros a Textos e Arquivos -----------------------
+
+uniq nomeDoArquivo - exibe todos os dados dentro do arquivo e os dados iguais, exibe somente uma vez, mas isso só funcionará caso os dados estiverem inseridos 
+uma linha seguida da outra, em sequência, ex: O nome Paulo na linha 1 e 2 do
+arquivo, ou o nome Ana na linha 5, 6 e 7 do arquivo. Têm que ser sempre em 
+sequência, caso contrário, os dados iguais em linhas não em sequência serão
+mostrados também.
+OBS: caso queira exibir os dados iguais do arquivo somente uma vez mesmo que 
+esses dados iguais estejam em linhas separadas, digite: sort nomeDoArquivo | uniq 
+
+uniq -d nomeDoArquivo - exibe SOMENTE os dados que estão duplicados no arquivo 
+em uma linha seguida da outra (faz o inverso do comando uniq).
+
+sort nomeDoArquivo  | uniq - exibe todos os dados do arquivo e ordena os dados de 
+forma alfabética e caso tenha dados iguais, exibe uma única vez.
+
+sort nomeDoArquivo | sort -d - ordena os dados em ordem alfabética e exibe SOMENTE os dados que aparecem mais de uma vez dentro do arquivo.
+
+sort nomeDoArquivo | uniq -c - exibe a quantidade de vezes que o mesmo dado 
+aparece dentro do arquivo. 
+
+OBS_avulso: Devido a caracteristica do uniq somente entender quando as linhas 
+estão em sequência, o uniq é constantemente utilizado com o comando sort, desse 
+jeito: sort nomeDoArquivo | uniq.
+
+expand nomeDoArquivo- esse comando converte TAB em espaços (um TAB equivale a 8 espaços vazios).
+OBS: o expand converte os TABs de qualquer lugar do arquivo.
+
+unexpand nomeDoArquivo - esse comando converte de espaços para TAB.
+OBS: o comando unexpand somente trata os espaços do começo de 
+cada linha do arquivo.
+
+expand nomeDoArquivo | cat -A - converte TABs em espaços e exibe o arquivo no 
+terminal com os espaços já convertidos.
+
+unexpand -a nomeDoArquivo - converte os espaços em branco do começo, do meio e 
+do final de cada linha do arquivo. 
+
+unexpand -t5 -a nomeDoArquivo | cat -A - converte um determinado número de espaços 
+vazios (caracteres vazios) no arquivo como um TAB.
+
+****OBS_avulsa: Todos os comandos exibidos até aqui não modificam os arquivos, somente 
+transformam a saída dos dados e exibem esses dados no terminal.
+
+od - exibe os dados em formato octal.
+
+od -tx nomeDoArquivo - exibe os dados em formato Hexadecimal.
+
+join nomeArquivoUm nomeArquivoDois - é utilizado para exibir a junção de dois arquivos. Vc deve definir o número de indice nos dois arquivos (os indices dos 
+arquivos tem que estar na mesma ordem) antes de inserir os dados desejados, 
+ex: (primeiro arquivo: 1 carro) (segundo arquivo: 1 chevrolet), no 
+caso, o número 1 do primeiro arquivo (com valor: carro) receberá como valor o 
+número 1 do segundo arquivo (chevrolet), e assim por diante, caso contrário dará erro.
+OBS: Vc tem que numerar as linhas do primeiro arquivo e as linhas do segundo 
+arquivo antes de inserir os dados para que a junção dê certo, caso contrário, o 
+comando não funcionará.   
+
+paste nomeDoArquivoUm nomeDoArquivoDois - exibe a junção dos dados de dois 
+arquivos sem considerar indices e sem que tenham o mesmo número de linha de dados, 
+somente pega linha a linha e junta os dados.
+OBS: O comando paste não usa a configuração de indices nos arquivos para juntar 
+os dados, ele simplesmente junta os dados na ordem em que estão.
+
+split -l20 nomeDoArquivo - divide os dados do arquivo a cada 20 linhas criando 
+novos arquivos com pedaços de 20 linhas do arquivo fatiado.
+
+split -l20 nomeDoArquivo nomeFatiasDoArquivo - divide os dados do arquivo a cada 
+20 linhas criando novos arquivos com pedaços de 20 linhas desse arquivo fatiado e 
+dá nome a essas fatias do arquivo.
+
+split -b100 nomeDoArquivo - divide os dados do arquivo a cada 100 bytes (caracteres) criando novos arquivos com pedaços de 100 bytes.
+
+
+----------- Aplicando Filtros a Textos e Arquivos --------------------------
+
+OBS: O comando tr é usado para trocar todos os carateres iguais dentro do arquivo 
+definido no primeiro parametro, pelos caracteres definidos no segundo parametro.
+OBS2: O comando tr -d é usado para deletar todos os caracteres iguais dentro do 
+arquivo definido no -d. 
+
+ex: cat nomeDoArquivo | tr a-z A-Z - transforma todas as letras do arquivo 
+de a até z em letras maiúsculas.
+
+ex: cat nomeDoArquivo | tr A E - tranforma todas as letras do arquivo 
+com A maiúsculo em E maiúsculo.
+
+ex: cat nomeDoArquivo | tr ei EI - transforma todas as letra e minúsculo 
+em E maiúsculo e todas as letras i minúsculas em I maiúsculas do arquivo. 
+
+ex: cat nomeDoArquivo | tr [:upper:] [:lower:] - transforma todas letras 
+maiúsculas em minúsculas do arquivo.
+
+ex: cat nomeDoArquivo | tr ' ' '_' - transforma todos os espaços encontrados em 
+branco do arquivo em underline.
+
+ex: cat nomeDoArquivo | tr -d A - deleta todas as letras A maiúscula do arquivo.
+OBS: O opcional -d do comando tr é usado para deletar (no caso, deleta a letra A)
+
+ex: cat nomeDoArquivo | tr -d [:upper:] - deleta todas as letras em maiúscula do 
+arquivo.
+
+ex: cat nomeDoArquivo | tr -d [:blank:] - deleta todos os espaços em branco 
+encontrados dentro do arquivo.
+
+
+fmt nomeDoArquivo - usado para formatar a saida de texto de um arquivo.
+OBS: O fmt é normalmente usado quando vc tem linhas muito longas com dados no 
+arquivo, e quer reduzir a quantidade de caracteres exibidos por linha (não se 
+preocupe, todos os dados dentro do arquivo serão mantidos e mostrados, o que esse 
+comando faz é somente ajustar a exibição desses dados para melhor visualização).
+OBS2: O padrão de formatação de saída de texto é de 75 caracteres por linha.
+  
+fmt -w50 nomeDoArquivo - formata a saída de texto de um arquivo ajustando a 
+exibição dos dados para 50 caracteres por linha.
+
+
+pr nomeDoArquvivo - pagina um arquivo de texto, com cabeçalho (como se fosse ser impresso).
+
+pr -l30  nomeDoArquivo - pagina um arquivo de texto exibindo o cabeçalho a 
+cada 30 linhas.
+OBS: Quando não defido o nome do cabeçalho, o nome do cabeçalho fica com o nome 
+do arquivo.
+
+pr -l40 -h "nomeDoCabeçalho" - pagína um arquivo de texto exibindo o cabeçalho 
+(com o nome que vc definiu no opcional -h) a cada 30 linhas.
+
+
+cut -c1-5 nomeDoArquivo - recorta do caractere 1 ao 5 de cada linha do arquivo.
+OBS: Vc pode também definir o comando assim: cut -c-5 nomeDoArquivo, (sem 
+definir o número 1 no começo) que será entendido da mesma forma.
+
+OBS: O comando cut usado para recortar partes de um texto no arquivo, vc pode 
+delimitar por caractere(s), campo(s) no texto e recortar somente a parte que 
+nos interessa.
+
+cut -c5-10 nomeDoArquivo - recorta do caractere 5 ao caractere 10 de cada linha 
+do arquivo.
+
+cut -b5-10 nomeDoArquivo - recorta do caractere 5 ao caractere 10 de cada linha 
+do arquivo.
+OBS: Em arquivos de texto, o -c e o -b tem o mesmo resultado, pq cada caractere é 
+contado como 1 byte.
+
+cut -c1,2,5 nomeDoArquivo - recorta somente o caractere 1, 2 e o 5 de cada linha 
+do arquivo.
+
+cut -da -f1 - fatia e exibe o dado de cada linha do arquivo a partir do primeiro 
+delimitador (definido no -d) encontrado em cada linha.
+OBS: Delimitador é um caractere definido no opcional -d do comando cut usado para 
+dividir os dados, tudo que estiver antes desse delimitador será o primeiro campo 
+definido no -f (ex: -f1), e tudo que for após esse delimitador, será o 
+segundo campo definido no -f (ex: -f1-2).
+OBS2: A partir do primeiro delimitador encontrado, todo dado a esquerda desse 
+delimitador será contado como o primeiro campo (o campo é definido no -f), a 
+partir do segundo delimitador encontrado, todo o dado que estiver a esquerda 
+desse delimitador e antes do delimitador anterior, será contado como 
+segundo campo (definido no -f), e assim por diante.
+
+cut -da -f1-3 nomeDoArquivo - fatia e exibe o dado de cada linha do 
+arquivo exibindo os dados de cada linha até encontrar o terceiro delimitador em 
+cada linha.
+
+cut -d' ' -f2- - fatia e exibe o dado de cada linha a partir da segunda ocorrência 
+de delimitador encontrada em cada linha, até o final de cada linha.
+
+cut -d' ' -f1,3 - exibe somente os dados fatiados 1 e 3 a partir do delimitador 
+definifo no -d.
+
+
+sed 's/dadoDoArquivoSubstituir/dadoSubstituido' nomeDoArquivo - usado para 
+substituir um dado do arquivo por outro, caso tenha mais de um dado igual na 
+mesma linha, só altera a primeira ocorrência.
+OBS: Esse comando não faz alteração no arquivo em sí, esse comando só altera a 
+forma de saida dos dados apresentada no terminal, só isso!!!).
+
+sed 's/dadoDoArquivoSubstituir/dadosSubstituido/g' nomeDoArquivo - usado para 
+substituir todas as ocorrências do dadoDoArquivoSubstituir que forem encontradas 
+dentro do arquivo.  
+OBS: Esse comando não faz alteração no arquivo em sí, esse comando só altera a 
+forma de saida dos dados apresentada no terminal, só isso!!!).
+
+sed '3,5 d' nomeDoArquivo - usado para deletar um determinado número de linhas 
+ao exibir os dados do arquivo no terminal (no caso, deleta a linha 3,4 e 5 do 
+arquivo).
+
+sed '/dadoDoArquivoSubstituir/d' nomeDoArquivo - usado para apagar 
+as linhas que contêm o dado de nome dadoArquvivoSubstituir ao exibir os dados 
+no terminal.
+
+
+------------------ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+

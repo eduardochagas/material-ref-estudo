@@ -1,0 +1,62 @@
+=-=-=-=-=-=-=-=-=-=-=- fluxos, pipes e redirecionamento =-=-=-=-=-=-=-=-=-=-=
+
+------------ redirecionamento de saída -----------------------------
+
+comando > arquivo_saida  - O sinal de (maior) é útilizado para redirecionar a  saída de um comando para um arquivo, caso o arquivo já exista, os novos dados 
+redirecionados SOBREESCREVERÁ OS DADOS JÁ EXISTENTES do arquivo, apagando os  dados inseridos anteriormente.
+
+comando >> arquivo_saida  - O sinal de (maior maior) é útilizado para redirecionar a saída de um comando para um arquivo, caso o arquivo já exista,  os novos dados redirecionados SERÁ INSERIDO ABAIXO DO ÚLTIMO DADO EXISTENTE  NO ARQUIVO, mantendo os dados inseridos anteriormente.
+
+comando 2> arquivo_saida_erro - O sinal 2> é utilizado para redirecionar a 
+SAÍDA DE ERRO para um arquivo, caso o arquivo já exista, os novos dados 
+redirecionados SOBREESCREVERÁ OS DADOS JÁ EXISTENTES do arquivo, apagando os  dados inseridos anteriormente.
+
+comando 2>> arquivo_saida_erro - O sinal de 2>> é utilizado para redirecionar 
+a saída de um comando para um arquio, caso o arquivo já exista, os novos dados 
+redirecionados SERÁ INSERIDO ABAIXO DO ÚLTIMO DADO EXISTENTE NO ARQUIVO, mantendo os dados inseridos anteriormente.
+
+para redirecionar os acertos e erros de um mesmo comando em arquivos diferentes, use a sintaxe abaixo:
+
+comando > arquivo_saida.out 2> arquivo_saida_erro
+
+OBS: um exemplo real de um comando que geraria saída de erros e acertos em um 
+mesmo comando é esse: ls -l {aula, AULA}3 > arq_saida_ls.out 2> arq_saida_ls.erro.out
+
+para redirecionar os acertos e erros de um mesmo comando NO MESMO ARQUIVO, use a 
+sintaxe abaixo:
+
+comando > arq_saida_out 2>&1
+
+OBS: O caractere após o sinal de maior no comando acima é: & (e comercial) seguido do 
+número 1, isso indica que vc quer que as duas saídas seja inserida no mesmo arquivo.
+
+=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-
+******* MUITO CUIDADO COM O COMANDO ABAIXO !!! ***************
+
+se vc quiser ordenar os dados de um arquivo (com o comando sort) e redirecionar a  saída para o mesmo arquivo, o bash CRIARÁ UM NOVO ARQUIVO VAZIO, APAGANDO OS DADOS 
+EXISTENTES ANTERIORMENTE. Para fazer do jeito certo, redirecione a saída do comando 
+sort para UM NOVO ARQUIVO COM UM NOVO NOME, depois RENOMEIE ESSE ARQUIVO para o nome 
+do arquivo original!!!
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+------------------------- redirecionamento de entrada ----------------------------
+
+tr 'a-z' 'A-Z' < nome_arquivo.txt - redireciona o arquivo como entrada do comando tr, 
+no caso desse exemplo, transformará todas as letras do arquivo em maiúsculas.
+
+
+-------------- comando mail -------------------------------
+
+O comando mail é utilizado para enviar um email para um usuário linux, ou para uma  conta de e-mail externa. Veja a sintaxe do comando abaixo...
+
+mail -s "Assunto do email" nomeDoEmailOuDoUsuarioDoEmail
+OBS: Após digitar o comando acima e apertar o enter, vc começa a digitar o texto do  email, ou vc pode redirecionar um arquivo e enviar por email, exemplo abaixo:
+
+mail -s "Assunto do email" nomeDoEmailOuDoUsuarioDoEmail < nome_arquivo.txt
+
+
+
+
+
+

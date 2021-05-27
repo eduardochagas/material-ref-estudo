@@ -1,0 +1,405 @@
+==================== Gerenciamento Básico de Arquivos ======================
+
+-------- caminho absoluto e relativo ---------------------------
+caminho absoluto - caminho digitado no terminal a partir do / até o 
+diretório desejado.
+OBS: sempre que começar a digitar a partir do /, significa que vc está 
+começando o comando a partir da raiz do sistema.
+
+caminho relativo - caminho digitado no terminal a partir do diretório atual 
+(em que o usuário está) até o diretório desejado. 
+
+-----------------------------------------------------------------
+
+cd caminho/desejado/ - usado para entrar em um diretório (caminho relativo).
+
+cd .. - acessa o diretório anterior ao atual.
+
+cd - - executa o ultimo comando feito com comando cd.
+Obs: O comando a digitar é: cd -, (cd espaço traço), o segundo traço não 
+faz parte do comando.
+
+cd ~ - volta para o home do usuário.
+Obs: O comando a digitar é: cd ~, (cd espaço tiu), o segundo traço não 
+faz parte do comando.
+
+cd ../.. - acessa dois diretórios anteriores a partir do atual.
+Obs: O comando a digitar é: cd ../.. , (cd espaço dois pontos barra dois  pontos), o traço não faz parte do comando.
+
+
+------------- comando ls ----------------------
+
+ls - lista o diretório atual.
+
+ls -a - lista o diretório atual exibindo também os arquivos 
+ocultos (arquivos ocultos contém um . (ponto) antes do nome do arquivo).
+Obs: O comando a digitar é: ls -a, (cd traço a), o segundo traço não 
+faz parte do comando.
+
+ls -l - mostra uma lista mais detalhada dos arquivos, exibindo permissões 
+do(s) arquivo(s) ou diretório(s), hard links, dono do arquivo, 
+grupo dono do arquivo, tamanho do arquivo em bytes, data e hora da última 
+alteração do arquivo, e o nome do arquivo.
+OBS: O . (ponto) e o .. (ponto ponto) exibidos ao digitar o 
+comando ls -l são diretório atual e diretório anterior. 
+OBS2: O comando ls -lh exibe o tamanho do arquivo em bytes na forma 
+humana (que fica mais fácil para um humano visualizar os bytes).
+
+ls -lR - entra em cada diretório do diretório atual exibindo o nome dos 
+arquivos dentro de cada um deles.
+Obs: O comando a digitar é: ls -lR, (ls traço lR), o segundo traço não 
+faz parte do comando.
+
+ls -l nomeDoArquivo* - exibe somente os arquivos que contêm o 
+nomeDoArquivo seguido de qualquer sequência após esse nome.
+
+ls -l nomeDoArquivo? - exibe somente os arquivos que contêm um caractere 
+á mais além do nomeDoArquivo.
+
+ls -l nomeDoArqui?o - exibe somente os arquivos que contém o nome 
+parecido com o nomeDoArquivo, mas que tenha o caractere diferente na 
+posição em que o sinal de interrogação foi inserido.
+
+ls -l nomeDoArquivo[char1,char2,char3] - exibe somente o nome 
+dos arquivos com final char1, com final char2, e com final char3. 
+ex1: ls -l aula[1, 2, 3] - exibirá somente arquivos de nome aula mas que 
+termine com os caracteres 1, 2, 3.
+
+ex2: ls -l aula[a, b, c] - exibirá somente arquivos de nome aula, mas que 
+termine com os caracteres a, b, c.
+
+ls -l nomeDoArquivo[!char1,char2,char3] - exibe somente o nome 
+dos arquivos QUE NÃO CONTENHA o final char1, char2, e char3. 
+ex1: ls -l aula[!2, 4, 6] - exibirá somente arquivos de nome aula mas  
+QUE NÃO TERMINE COM os caracteres 2, 4, 6.
+
+ex2: ls -l aula[!a, b, c] - exibirá somente arquivos de nome aula, mas 
+QUE NÃO TERMINE COM os caracteres a, b, c.
+
+ls -l nomeDoArquivo[char1-char2] - exibe somente o nome dos arquivos 
+com final a partir do caractere definido no char1 até o caractere 
+definido no char2.
+
+ex1: ls -l aula[1-5] - EXIBIRÁ somente arquivos de nome aula com o último 
+caractere de final 1, 2, 3, 4 e 5.
+
+ex2: ls -l aula[!a-f] - NÃO EXIBIRÁ somente arquivos de nome aula com o 
+último caractere de final a, b, c, d, e, f.
+
+
+ls -l nomeDoArquivo[char1-char2]? - exibe somente o nome dos arquivos 
+com nomeDoArquivo com o caractere de final definido em char1 até o 
+caractere definido em char2, que tenha um caractere qualquer a mais no 
+nome.
+
+ex1: ls -l aula[1-5]? - EXIBIRÁ somente arquivos de nome aula com os caractere de final 1, 2, 3, 4 e 5, mas que contenha um caractere a mais 
+no nome.
+
+
+ls -l nomeDoArquivo{nome1, nome2, nome3} - exibirá somente o 
+nomeDoArquivo que contenha exatamente os finais definidos em nome1, nome2 
+ e nome3.
+
+ex: ls -l aula{10,20,30} - exibirá somente os arquivos que no final de 
+seu nome CONTÉM EXATAMENTE os caracteres definidos entre as chaves.
+
+ex2: ls -l A{ula,ULA}1 - exibirá somente os arquivos que contém aula com 
+o primerio caractere em maiúsculo (no caso, a letra A), seguido da 
+palavra (ula, em maiúsculo e em minúsculo) seguido do número 1.
+
+
+OBS: *, ?, [], [!], {SEQ1, SEQ2}
+* - qualquer caractere (seja um, ou mais de um).
+? - único caractere qualquer.
+[ ] -range de caracteres (de um caractere até outro determinado caractere)
+[! ] - range de caracteres (negando de um caractere até outro caractere)
+{} - sequencia específica de caracteres (somente esses caracteres em 
+especifico).
+------------------------------------------------------------------------
+
+----------------------comando file ------------------
+OBS: Uma caracteristica que percebemos no Linux é que em alguns casos 
+não se costuma utilizar a extensão em arquivos (Como vemos no Windows, 
+que é obrigatória a útilizaçaõ da extensão). No Linux, para saber qual 
+é o tipo de arquivo quando o arquivo não possui extensão, utilizamos o 
+comando: file.
+
+file nomeDoArquivo - exibe qual é o tipo do arquivo, 
+ex: 
+UTF-8 Unicode text (arquivo de texto). 
+Bourne-Again shell script (arquivo Bash).
+JPEG image data (imagem jpeg).
+empty (arquivo vazio).
+
+----------------------------------------------------------------------
+
+cp -opções origem destino - copia um arquivo ou diretório de um 
+determinado lugar (origem) para outro determinado lugar (destino).
+
+cp -opções origem* destino - copia todos os arquivos ou diretórios 
+de um determinado lugar (origem) que tenha o mesmo nome definido em 
+origem seguido de qualquer caractere a mais (não importa quantos a mais) 
+para outro determinado lugar (destino).
+
+cp -v origem destino - copia um arquivo de um determinado lugar (origem) 
+para outro determinado lugar (destino), exibindo os detalhes 
+passo a passo da operação (do que foi copiado para o lugar (destino)).
+OBS1: Caso já tenha algum (ou alguns) arquivos no (destino) de mesmo 
+nome do arquivo (ou dos arquivos) que vai copiar do lugar (origem), 
+ao fazer a cópia, a cópia SOBREESCREVE OS ARQUIVOS DE MESMO NOME no 
+lugar (destino).
+OBS2: Para evitar o que foi descrito em OBS1, utilize o 
+comando: cp -i origem destino.
+
+cp -i origem destino - copia um arquivo de um determinado lugar (origem) 
+para outro determinado lugar (destino), PERGUNTANDO se vc quer 
+SOBREESCREVER UM ARQUIVO caso já tenha um arquivo de mesmo nome no 
+lugar (destino), responda y para SIM, e n para NÃO.
+
+cp -r origem destino - copia um diretório (e tudo que tem dentro dele) 
+de um determinado lugar (origem), para um deteminado lugar (destino).
+
+cp -p origem destino - copia um arquivo de um determinado lugar (origem) 
+para outro determinado lugar (destino), SEM ALTERAR a data, a hora, 
+o usuário dono do arquivo, e o grupo dono do arquivo ao fazer a cópia 
+para o lugar (destino).
+OBS: Ao fazer a cópia de um arquivo ou diretório para outro lugar, a 
+data e hora que o ARQUIVO FOI CRIADO, muda para DATA E HORA ATUAL NO 
+MOMENTO em que O ARQUIVO FOI COPIADO para O LUGAR (destino), para 
+evitar isso, utilize o comando: cp -p origem destino.
+
+cp nomeDoArquivo nomeArquivoMudado - faz a cópia de tudo que tem dentro 
+do arquivo nomeDoArquivo para um novo arquivo nomeArquivoMudado.
+OBS: esse comando pode ser usado também para criar um arquivo de mesmo 
+conteúdo, só que  com o nome diferente especificando o caminho ao qual 
+vc quer que esse arquivo seja copiado, ex: cp Aula1 /tmp/CursoLinux1, 
+ou seja, será criado o arquivo CursoLinux1 dentro do diretório /tmp,
+com o mesmo conteúdo do arquivo Aula1.
+OBS2: Se vc digitar assim: cp nomeDoArquivo /nomeDoDiretório, o arquivo 
+será cópiado para o diretório (destino), Se vc 
+digitar assim: cp nomeDoArquivo /nomeDoDiretório/umNomeQualquer, será 
+copiado os dados do arquivo nomeDoArquivo para um novo arquivo com um 
+outro nome.
+
+OBS: Os caracteres *, ?, [ ], [! ], {}, também podem ser utilizados em 
+(origem) do comando cp para fazer cópias de mais de um arquivo.
+
+---------------------------------------------------------------------
+
+mv origem destino - muda o arquivo ou diretório do local (origem) para 
+o local (destino).
+
+mv arquivo1 arquivo2 - muda o nome do arquivo (arquivo1) para o 
+nome (arquivo2).
+OBS: Caso tenha um arquivo de mesmo nome no diretório em que está 
+ocorrendo a mudança, o arquivo existente será sobreescrito, e os dados 
+do antigo arquivo serão perdidos.
+
+OBS_MV: O comando mv possui todos os opcionais do cp, menos os 
+comandos: -R (-r) e o -p.
+
+---------------------------------------------------------------------
+
+touch nomeDoArquivo - cria um arquivo vazio caso não tenha um arquivo 
+de mesmo nome no diretório atual. Caso haja um arquivo com esse nome,
+o comando altera a data e hora do arquivo para a data e hora atual (para 
+a data e hora atual no momento em que o comando foi executado), isso é útil em algumas aplicações (softwares) quando vc precisa dizer que o  arquivo foi atualizado, ou forçar uma atualização da aplicação.
+
+touch -a nomeDoArquivo - altera a data do último acesso.
+
+touch -m nomeDoArquivo - altera a data da última modificação.
+
+touch -t anoMêsDiaHora nomeDoArquivo - altera o ano, mês, dia, Hora do 
+arquivo (exatamente nessa ordem) digitando somente números.
+OBS: Caso vc modifique a data do arquivo para um determinado ano 
+anterior ao atual, será exibido o ano, mês, dia, (menos a hora).
+
+--------------------------- comando rm --------------------------
+
+rm nomeDoArquivo - usado para remover arquivos.
+
+rm -i nomeDoArquivo - remove o(s) arquivo(s) e caso esteja deletando 
+mais de um arquivo com nome semelhante, será perguntado no 
+terminal: deseja mesmo deletar?, então responda: y para Sim, n para Não. 
+
+rm -v nomeDoArquivo - remove o(s) arquivo(s) exibindo os detalhes passo 
+a passo da operação.
+
+rm -r nomeDoArquivo - usado para remover diretório.
+OBS: Caso tente remover um diretório SEM O OPCIONAL -r, gerará 
+um erro, e obviamente, NÃO REMOVERÁ o diretório.
+ 
+rmdir nomeDoDiretório - remove SOMENTE diretório VAZIO.
+
+rmdir -p Diretório1/Diretório2/Diretório3 - remove o diretório e todos  os seus subdiretórios (SOMENTE se TODOS ELES estiverem VAZIOS).
+
+mkdir nomeDoDiretorio - cria um diretório.
+
+mkdir Diretorio1/Diretorio2 - cria o nomeDoDiretorio e 
+dentro dele cria o nomeDoOutroDiretorio.
+OBS: Somente com o comando mkdir NÃO É POSSÍVEL CRIAR mais do que um 
+subnível de diretórios (um dentro do outro), para isso, utilize o 
+opcional -p,assim: mkdir -p Diretório1/Diretório2/Diretório3, lembrando  que, com o -p, vc pode criar quantos subdiretórios quiser.
+
+mkdir -p Diretório1/Diretório2/Diretório3 - usado para CRIAR MAIS DE 
+UM SUBNÍVEL de diretórios dentro de um diretório.
+
+---------------------------- comando find -----------------
+
+find Diretório -name nomeDoArquivo - procura por um nomeDoArquivo NO 
+SISTEMA A PARTIR de um determinado Diretório, retornando no terminal 
+O CAMINHO ONDE FOI ENCONTRADO o nomeDoArquivo.
+ex: find /home -name aula10 
+OBS: Procurará por um arquivo de nome aula10 A PARTIR DO DIRETÓRIO /home,  
+caso nâo encontre no /home, esse comando PERCORRERÁ por TODOS OS 
+DIRETÓRIOS E SUBDIRETÓRIOS a partir do /home até encontrar o nome do 
+arquivo.
+
+find Diretório -user nomeDoUsuarioDonoDoArquivo - procura a partir do 
+Diretório, tudo (arquivos e diretórios) que contém o nome do usuário dono do arquivo chamado nomeDoUsuarioDonoDoArquivo, dentro do sistema.
+ex: find /home -user lpi1
+OBS: Procurará POR TODOS OS ARQUIVOS E DIRETÓRIOS 
+que contém como nome do usuário dono do (arquivos e diretórios) o nome lpi1.
+
+find Diretório -user nomeUsuarioDonoArquivo -nome nomeArquivo - procura 
+a partir do Diretório, o nome de arquivo chamado nomeArquivo, que tenha 
+como nome de usuário dono do arquivo o nome nomeUsuarioDonoArquivo.
+ex: find /home -user lpi1 -name Aula10.
+OBS: Procurará por um arquivo de nome nomeArquivo (-nome nomeArquivo) A 
+PARTIR DO DIRETÓRIO Diretório (no caso, /home) , caso nâo 
+encontre no /home, esse comando PERCORRERÁ por TODOS OS DIRETÓRIOS E SUBDIRETÓRIOS a partir do Diretório (no caso, /home) até encontrar o 
+nome do arquivo.
+
+------------------ comando tar, gzip, bzip2 e xz -----------------------
+
+OBS: Vamos falar agora sobre os comandos utilizados para agrupar e 
+comprimir arquivos. Esses comandos sao muito utilizados para fazer backup e 
+para mover arquivos de um lugar para outro.
+ 
+OBS: Os opcionais são: 
+c - usado para criar um arquivo de backup.
+x - usado para extrair um arquivo de backup.
+t - usado para listar os arquivos em um arquivo compactado.
+f - usado para dar o nome ao arquivo compactado.
+p - usado para preservar as permissões, a data e a hora (igual ao feito no comando cp e mv)
+v - usado para exibir a execução passo a passo dos detalhes (do  que foi 
+compactado).
+
+tar cpvf nomeDoArquivo.tar - esse comando cria o arquivo, preservando as 
+permissões, a data e hora, exibindo a execução de cada ação para criar o 
+arquivo e dando um nome para esse arquivo (tem que inserir a opção f o nome 
+do arquivo).
+OBS: Ao definir o nome do arquivo, É NECESSÁRIO COLOCAR O .tar APÓS O NOME 
+DO ARQUIVO, caso contrário, o comando não funcionará. 
+OBS2: O comando tar SOMENTE AGRUPA os ARQUIVOS (é totalmente diferente de 
+compactar arquivos).
+OBS2: o opcional f tem que ser obrigatóriamente usado no final (a direita) 
+para poder inserir o nome do arquivo.
+
+
+gzip - é usado para COMPACTAR ARQUIVOS. A sintaxe é 
+assim: gzip nomeDoArquivo.tar
+OBS: Caso vc usar o gzip em arquivos agrupados com tar, por exemplo, o 
+gzip COMPACTARÁ OS ARQUIVOS sobreescrevendo os arquivos (os arquivos 
+agrupados com tar).
+
+gzip -d - usado para descompatar arquivos gzip.
+OBS: Você pode usar: gunzip, para descompatar tbm, dá no mesmo.
+
+gzip -k - usado para fazer o backup e comprimir, mantendo os dois 
+arquivos (o arquivo na forma anterior ao comprimir e o arquivo comprimido).
+
+
+bzip2 - é usado para COMPACTAR ARQUIVOS. A sintaxe é 
+assim: bzip2 nomeDoArquivo.tar.bz2
+OBS: Caso vc usar o bzip2 em arquivos agrupados com tar, por exemplo, o 
+bzip2 COMPACTARÁ OS ARQUIVOS sobreescrevendo os arquivos (os arquivos 
+agrupados com tar).
+
+bzip2 -d - usado para descompatar arquivos bzip2.
+OBS: Você pode usar: bunzip2, para descompatar tbm, dá no mesmo.
+
+bzip2 -k - usado para fazer o backup e comprimir, mantendo os dois 
+arquivos (o arquivo na forma anterior ao comprimir e o arquivo comprimido).
+
+
+xz - é usado para COMPACTAR ARQUIVOS. A sintaxe é 
+assim: xz nomeDoArquivo.tar.xz
+OBS: Caso vc usar o xz em arquivos agrupados com tar, por exemplo, o 
+xz COMPACTARÁ OS ARQUIVOS sobreescrevendo os arquivos (os arquivos 
+agrupados com tar).
+
+xz -k - usado para fazer o backup e comprimir, mantendo os dois 
+arquivos (o arquivo na forma anterior ao comprimir e o arquivo comprimido).
+
+xz -d - usado para descompatar arquivos xz.
+OBS: Você pode usar: unxz, para descompatar tbm, dá no mesmo.
+
+OBS: todos os comandos de compactação contém o:
+-k - para compactar, mantendo o arquivo original.
+-d - para descompactar o arquivo.
+
+
+OBS_avulsa: esses comandos de compactação PODEM SER USADOS COM QUALQUER 
+TIPO DE ARQUIVO, não somente com arquivos tar.
+
+
+tar zcvpf nomeDoArquivo.tar nomeArquivo - usado para AGRUPAR E COMPACTAR AO 
+MESMO TEMPO, criando um arquivo chamado nomeDoArquivo.tar.gz, compactando  
+todos os arquivos que tenham o nome nomeArquivo.
+OBS: O z, j ou J tem que ser usados obrigatóriamente no 
+começo (a esquerda) do comando e o opcional f tem que ser obrigatóriamente 
+usado no final (a direita) para poder inserir o nome do arquivo.
+
+OBS2: Os opcionais de compactação do comando tar são:
+z - compactação com gzip.
+j - compactação com bzip2.
+J - compactação com xz (é isso mesmo, o J é maiúsculo).
+
+
+---------------------- comando: cpio e dd -----------------------------
+
+cpio - agrupa, compacta e descompacta arquivos. E necessário criar uma lista de arquivos e enviar como entrada para o comando cpio, normalmente  criamos a lista de arquivos com o comando: find. No exemplo abaixo, vamos  AGRUPAR TODOS OS ARQUIVOS que começam com o nome novo, procurando a partir  do diretório atual (./) e procurando dentro de seus subdiretórios tbm, 
+depois do pipe ( | ), digitamos: cpio -o > backup.cpio, (que significa: 
+pegue o que foi feito antes do pipe e saia para um 
+arquivo chamado backup.cpio), segue a sintaxe abaixo, ex:
+
+para AGRUPAR ARQUIVOS com cpio, usamos a sintaxe abaixo, ex:
+find ./ -name "novo*" | cpio -o > backup.cpio
+
+para DESAGRUPAR ARQUIVOS com o cpio, usamos a sintaxe abaixo, ex:
+find cpio -i < backup.cpio
+
+
+para COMPACTAR ARQUIVOS usamos a sintaxe abaixo, ex:
+find ./ -name "novo*" | cpio -o | gzip > backup.cpio.gz
+
+para DESCOMÀCTAR ARQUIVOS com cpio (no caso com gzip), usamos a sintaxe abaixo, ex:
+gunzip -C backup.cpio.gz | cpio -i
+
+----------------------------------------------------------
+
+dd - é usado para copiar uma partição do sistema. Você pode copiar uma 
+partição inteira, de uma partição para outra partição, ou copiar uma partição inteira para um arquivo, ou copiar um arquivo de imagem para uma 
+partição inteira. Ao usar o comando: df -h, será mostrada as partições do 
+sistema linux, como no exemplo abaixo:
+
+Filesystem       Size  Used  Avail  Use%  Mounted on 
+udev             980M     0   980M    0%  /dev  
+tmpfs            200M  3,6M   197M    2%  /run
+/dev/sda1        7,3G  3,9G   3,0G   57%  /
+tmpfs           1000M   47M   954M    5%  /dev/shm
+tmpfs            5,0M  4,0K   5,0M    1%  /run/lock
+tmpfs           1000M     0  1000M    0%  /sys/fs/group
+tmpfs            200M   44K   200M    1%  /run/user/1000
+/dev/sr0          57M   57M      0  100%  /media/lpi1/VBOXADDITIONS_5.1.18_114002
+
+repare que na partição /dev/sr0 temos um cd mapeado no virtualBox, o linux encherga 
+como um cd, podemos PEGAR O CONTEÚDO dessa partição (/dev/sr0) e CRIAR UMA IMAGEM
+usando o comando: dd.
+
+segue a sintaxe abaixo, ex:
+dd if=/dev/sr0 of=imagem.img
+OBS: Tanto no parâmetro if=, quanto no parâmetro of=, poderiamos inserir uma partição ou uma imagem para utilizar o comando.
+
+
