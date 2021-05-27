@@ -512,13 +512,56 @@ a ausencia de cópias duplicadas. Essa função tem somente 1 argumento.
 
 
 ---------------------------------------------------
-
+all() - a função all() retorna True se todos os itens em um interavel são verdadeira, caso contrário 
+retorna False. Se o objeto iteravel é vazio, a função all() também retorna Verdadeiro.
 ---------------------------------------------------
 
+    -----------------------------------------
+     usando a função buil-in all() com lista
+    -----------------------------------------
+    ex1:
+        mylist = [0, 1, 1]
+        x = all(mylist)
+        print(x)
+
+        # Returns False because 0 is the same as False
+
+    -----------------------------------------
+     usando a função buil-in all() com tupla
+    -----------------------------------------
+    ex2:
+       mytuple = (0, True, False)
+       x = all(mytuple)
+       print(x)
+
+       # Returns False because both the first and the third items are False
+
+    -----------------------------------------
+     usando a função buil-in all() com conjunto (set)
+    -----------------------------------------
+    ex3:
+       myset = {0, 1, 0}
+       x = all(myset)
+       print(x)
+
+       # Returns False because both the first and the third items are False
+
+    -----------------------------------------------
+     usando a função buil-in all() com dicionário
+    -----------------------------------------------
+
+        mydict = {0 : "Apple", 1 : "Orange"}
+        x = all(mydict)
+        print(x)
+
+        # Returns False because the first key is false.
+
+        # For dictionaries the all() function checks the keys, not the values.
+
 
 
 ---------------------------------------------------
-
+any() - 
 ---------------------------------------------------
 
 
