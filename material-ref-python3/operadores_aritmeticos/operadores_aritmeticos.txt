@@ -4,19 +4,30 @@
 #
 ########################################
 
-+  operador de adição
+=============================================
+# operadores unários (usado em um ÙNICO NÙMERO ou EM UMA ÚNICA VARIÀVEL)
+============================================= 
+  +  operador de adição 
+ 
+  -  operador de subtração 
 
--  operador de subtração
 
-*  operador de multiplicação
+=============================================
+# operadores binários (usado ENTRE DOIS NÚMEROS ou ENTRE DUAS VARIÀVEIS)
+============================================= 
+  +  operador de adição 
+ 
+  -  operador de subtração 
 
-/  operador de divisão
+  *  operador de multiplicação
 
-// divisão de resultado com número inteiro
+  /  operador de divisão
 
-num ** num   um número elevado a outro número
+  // divisão de resultado com número inteiro
 
-% Resto da divisão
+  ** um número elevado a outro número
+
+  % Resto da divisão
 
 
 #################################################
