@@ -79,16 +79,77 @@ print()
 
 print('fatia alguns dados do array, mantendo os dados fatiados na lista original')
 nomes = ['adriano', 'weverton', 'erica', 'eduardo']
-nomes_fatiados = nomes[1:3] 
+nomes_fatiados = nomes[1:3]
 print(nomes_fatiados)
 print()
 
+print('Fatia os dados da: list_1 para a: list_2, fazendo com que as duas listas')
+print('possua os mesmos dados, mas as listas são alocadas em espaço de memória')
+print('diferentes no computador')
+list_1 = [1]
+list_2 = list_1[:] # Esta parte do código descrito como [:] é capaz de produzir uma lista completamente nova.
+list_1[0] = 2
+print(list_2)
+print()
+
+
+#----------------------------------------
+#
+# FATIAMENTO - usando números negativos no fatiamento
+#
+#----------------------------------------
+print('Veja a sintaxe baixo:')
+print('          my_list[start:end]')
+print()
+print('para entender: ')
+print()
+print(' START - é o index do primeiro elemento INCLUIDO NO FATIAMENTO ')
+print(' END - é o index do primeiro elemento NÃO INCLUIDO NO FATIAMENTO ')
+print()
+print('É assim que os índices negativos funcionam com o slice:')
+print()
+my_list = [10, 8, 6, 4, 2]
+new_list = my_list[1:-1] #
+print(new_list) # a saída é: [8, 6, 4]
+print()
+
+print('Se o START especifica um elemento que se encontra mais longe do que o ')
+print('descrito pelo END (do ponto de vista inicial da lista), o fatiamento (slice) estará vazio:')
+print()
+my_list = [10, 8, 6, 4, 2]
+new_list = my_list[-1:1]
+print(new_list) # a saída é: [], pq o fatiamento inicial FOI DEFINIDO COM VALOR INICIAL NEGATIVO e O VALOR FINAL FOI DEFINIDO COM VALOR POSITIVO.
+print()
+
+print('Se o parametro: START do fatiamento especificar um valor negativo,')
+print(' e o parametro: END for especificado com vazio, será feito ')
+print('o FATIAMENTO DA POSIÇÃO NEGATIVA DO ELEMENTO da lista, ATÉ O FINAL DA LISTA')
+print(' ')
+my_list = [1, 2, 3, 4, 5]
+new_list = my_list[-2: ] # o valor: -1 da lista, é o ULTIMO ITEM DA LISTA, o valor: -2 da lista, é o PENÚLTIMO ITEM DA LISTA, E ASSIM POR DIANTE...
+print(new_list) # a saída será: [4, 5]
+print()
+
+print('Fatiamento que deleta todos os elementos de dentro da lista, mantendo a lista')
+print()
+my_list = [10, 8, 6, 4, 2]
+del my_list[:] # deletas todos os dados dentro da lista, mantendo a lista vazia...
+print(my_list)
+print()
+print('A remoção do slice no código muda dramaticamente o significado do código')
+print('   OBS: a instrução: del, eliminará a lista em sí, e não somente o seu conteúdo')
+my_list = [10, 8, 6, 4, 2]
+del my_list # remove a lista, e não somente o conteudo dentro da lista !!!
+#print(my_list) #gerará um erro, pq a lista foi excluida (não existe mais) !!!
+print()
+
+
 ############################################
-# sintaxe para fazer fatiamento de arrays
+# sintaxe para fazer fatiamento (SLICE) de arrays
 print('array[2:] - fatia o array a partir do indice 2 até o final da lista.')
 print('array[:5] - fatia o array do começo dele até (mas não inclusive) o indice 5.')
 print('array[::2] - fatia o array do inicio ao fim de 2 em 2 itens.')
-print('array[::-1] - exibe os valores do array de trás pra frente.') 
+print('array[::-1] - exibe os valores do array de trás pra frente.')
 
 
 
@@ -121,9 +182,25 @@ del alfabeto[2]
 print(alfabeto)
 print()
 
+######################################################################
+# Usando o operador: in, com listas
+print('O operador: in, verifica se um dado elemento (O ARGUMENTO DA ESQUERDA) está ')
+print('atualmente armazenado dentro da lista (O ARGUMENTO DA DIREITA). Se o argumento ')
+print('da esquerda estiver na lista, será retornado: TRUE ')
+my_list = [0, 3, 12, 8, 2]
+print(5 in my_list) # Retorna True
+print()
+
+print('O operador: not in, verifica se um dado elemento (O ARGUMENTO DA ESQUERDA) NÂO ESTÀ ')
+print('atualmente armazenado dentro da lista (O ARGUMENTO DA DIREITA). Se o argumento ')
+print('da esquerda NÂO ESTIVER na lista, será retornado: TRUE ')
+my_list = [0, 3, 12, 8, 2]
+print(5 not in my_list) # Retorna True
+print()
+
 
 ###############################################
-# 
+#
 print('remove os indices definidos nos colchetes menos o último indice ')
 print('após os dois pontos dentro dos colchetes')
 alfabeto = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
@@ -305,13 +382,13 @@ print(n1, n2, n)
 
 #--------------------------------------------------
 #
-#  imprimindo valores de uma tupla (tuplas é como um array, 
-#  só que seus dados são imutáveis, ou seja, seus dados 
+#  imprimindo valores de uma tupla (tuplas é como um array,
+#  só que seus dados são imutáveis, ou seja, seus dados
 #  não podem ser alterados)
 #
 #--------------------------------------------------
 
-print('para imprimir valores de uma tupla (lista imutável) que contém tipos de dados diferentes,') 
+print('para imprimir valores de uma tupla (lista imutável) que contém tipos de dados diferentes,')
 print('utilize o loop for com range(), com o método len() dentro do segundo parâmetro do range(), ex:')
 
 listagem = ('Lápis', 1.75, 'Borracha', 2.00, 'Caderno', 15.90,
@@ -324,7 +401,7 @@ for i in range(0, len(listagem), 2):
     print(listagem[i])
     print('  OBS: Nesse caso, como a string aparece a cada dois itens do array em sequência,')
     print('utilizamos o terceito parâmetro no método: range() com valor 2, para que o loop pule a cada dois itens')
-    print('do array (começando do indice 0, como definido no primeiro parametro do range(), onde') 
+    print('do array (começando do indice 0, como definido no primeiro parametro do range(), onde')
     print('o indice 0 contêm a primeira string da tupla, e assim pegando cada string a cada dois indices')
 
 
@@ -348,26 +425,3 @@ print('copy()')
 # link da documentação python para métodos de array:
 #
 # https://docs.python.org/pt-br/3/tutorial/datastructures.html
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
