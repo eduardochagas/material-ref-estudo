@@ -78,6 +78,13 @@ print('ex: dicionarioCursos.items() retorna os valores abaixo...')
 print('DicionarioCursos: ',dicionarioCursos.items())
 print()
 
+print('Outra forma de usar o dicionario com o metodo: items(), é usando um loop for,')
+print('que retorna as chaves e os valores do dicionario')
+print('ex: dicionarioCursos.items() com o loop: for, retorna os valores abaixo...')
+for keys, values in dicionarioCursos.items():
+    print('DicionarioCursos: key ', keys, "-> values", values)
+print()
+
 
 
 print('*=-' * 10 +' Dicionário Com listas Como Valores ' + '-=*' * 10)
@@ -133,6 +140,31 @@ print('Remove um item do dicionario (chave e valor) inserindo a chave do item')
 print('a ser deletado (entre aspas) como parametro dentro do metodo pop()')
 d.pop('android')
 print(d)
+print()
+
+print('Remove o último item do dicionário (chave e valor)')
+dictionary = {"flower": "flor", "bag": "mochila", "door": "porta"}
+print(dictionary)
+print()
+
+dictionary.popitem()
+print(dictionary)
+print()
+
+print('O método: copy() é usado para copiar todo um dicionário')
+pol_eng_dictionary = {
+    "zamek": "castle",
+    "woda": "water",
+    "gleba": "soil"
+    }
+print(pol_eng_dictionary)
+
+copy_dictionary = pol_eng_dictionary.copy()
+print('dicionario copiado para uma outra variável chamada: copy_dictionary...')
+print('copy_dictionary: ', copy_dictionary)
+print()
+
+
 
 '''
 outra forma de exibir chave e valor de um dicionario sem a função items(), ex:
@@ -160,7 +192,7 @@ for item in roupas:
 .get() - pega o valor do dado no dicionário e exibe, é só inserir a chave do dicionário como parametro dentro do get().
 .update()  - adiciona valores as chaves dos dicionários (repare que a chave é inserida sem as aspas neste metodo).
 .fromkeys() - gera um dicionario somente com chaves e sem valores.
-
+.copy() - usado para copiar todo um dicionário. 
 '''
 
 
