@@ -4,7 +4,6 @@
 #
 ####################################
 
-
 ---------------------------------------------------
 enumerate() - muito usado em listas no python para exibirmos 
 o indice do item, e o item. 
@@ -57,6 +56,24 @@ dir() - mostra todas as funcionalidades de um modulo. (digite o nome do modulo e
 ---------------------------------------------------
 
   # o método dir() é usado para vermos o conteúdo de um módulo embutido do Python
+
+
+
+---------------------------------------------------
+help() - método usado para ajuda no interpretador python.
+---------------------------------------------------
+
+  # o método help() é usado para pesquisarmos sobre algo em relação ao python pelo interpretador.
+
+  O método help() pode ser chamada de duas formas: 
+    
+    apenas help() ou help('pesquisa') 
+
+
+A primeira forma permite que você navegue pela ajuda disponível, de acordo com o que você esteja procurando.
+A segunda forma pesquisa alguma informação mais específica no interpretador.
+
+
 
 
 ---------------------------------------------------
