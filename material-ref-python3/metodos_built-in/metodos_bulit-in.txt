@@ -366,6 +366,26 @@ range() - gera números a partir do valor x, até um valor y.
 
 
 
+-----------------------------------------------------------------
+list() - usado para converter um conjunto de dados em uma lista
+-----------------------------------------------------------------
+  a função list() cria uma lista de objetos.
+
+  a lista de objetos é uma coleção qual é ordenada e mutável.
+
+  o método list() possui um parâmetro:
+
+    iterable - uma sequencia de caracteres (uma string), uma coleção de strings (uma tupla), ou um objeto iterador
+
+        ex:
+
+            x = list(('apple', 'banana', 'cherry'))
+
+            print(x)
+        
+  
+
+
 -----------------------------------------
 map(x, y) - 
 -----------------------------------------
