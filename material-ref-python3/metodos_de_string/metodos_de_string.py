@@ -11,7 +11,7 @@ print('-*-'*50)
 
 
 nome = input('Digite seu nome: ')
-print('Capitalize() = primeiro caractere é Maiúsculo: ', nome.capitalize())
+print('Capitalize() = primeiro caractere é Maiúsculo, o restante da string fica tudo em minúsculo: ', nome.capitalize())
 print()
 print('Center() = centraliza dentro dos espaços em branco definidos: ', nome.center(30))
 print()
